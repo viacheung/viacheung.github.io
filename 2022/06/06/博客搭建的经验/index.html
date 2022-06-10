@@ -488,6 +488,12 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 <h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
 <p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
 <p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
+<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
+<h1 id="6-、插入图像"><a href="#6-、插入图像" class="headerlink" title="6 、插入图像"></a>6 、插入图像</h1><p>修改博客根目录中<code>_config.yml</code>文件的配置项<code>post_asset_folder</code>为<code>true</code>：</p>
+<p>npm install hexo-asset-image –save</p>
+<p>当文章需要添加图片时，将需要添加的图片放入同名的文件夹中，同时通过相对路径索引到该图片。</p>
+<p>右键引入图像</p>
+<p>有待改进</p>
 
                 
             </div>
@@ -723,18 +729,17 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/06/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%9A%84%E7%BB%8F%E9%AA%8C/">
+                <a href="/2022/06/10/git%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="git使用">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">git使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -744,9 +749,9 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -755,7 +760,6 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
