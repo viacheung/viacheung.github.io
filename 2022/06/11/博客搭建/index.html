@@ -4,9 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="git使用, 张维阳的博客">
-    <meta name="description" content="Git1 代码上传Github上…or create a new repository on the command line （空仓库）echo &amp;quot;# mogu&amp;quot; &amp;gt;&amp;gt; README.md
-git init">
+    <meta name="keywords" content="博客搭建, 张维阳的博客">
+    <meta name="description" content="1、参考的文章https://www.bilibili.com/read/cv12633102
+知乎收藏
+https://blog.csdn.net/Mancuojie/article/details/119906071
+2、 遇到的报错信">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +22,7 @@ git init">
 
     
 
-    <title>git使用 | 张维阳的博客</title>
+    <title>博客搭建 | 张维阳的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -310,12 +312,12 @@ git init">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git使用</h1>
+                    <h1 class="description center-align post-title">博客搭建</h1>
                 </div>
             </div>
         </div>
@@ -443,7 +445,7 @@ git init">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-10
+                    2022-06-11
                 </div>
                 
 
@@ -464,56 +466,39 @@ git init">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="1-代码上传Github上"><a href="#1-代码上传Github上" class="headerlink" title="1 代码上传Github上"></a>1 代码上传Github上</h2><h3 id="…or-create-a-new-repository-on-the-command-line-（空仓库）"><a href="#…or-create-a-new-repository-on-the-command-line-（空仓库）" class="headerlink" title="…or create a new repository on the command line （空仓库）"></a>…or create a new repository on the command line （空仓库）</h3><pre><code>echo &quot;# mogu&quot; &gt;&gt; README.md
-git init//初始化产生一个.git
-git add README.md(一般是git add .)
-git commit -m &quot;first commit&quot;
-git branch -M main//这一步最好做一下否则报错
-git remote add origin https://github.com/viacheung/mogu.git//复制代码的https
-git push -u origin main
+                <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
+<p>知乎收藏</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
+<h1 id="2、-遇到的报错信息"><a href="#2、-遇到的报错信息" class="headerlink" title="2、 遇到的报错信息"></a>2、 遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
 </code></pre>
-<h3 id="…or-push-an-existing-repository-from-the-command-line-（非空仓库）"><a href="#…or-push-an-existing-repository-from-the-command-line-（非空仓库）" class="headerlink" title="…or push an existing repository from the command line  （非空仓库）"></a>…or push an existing repository from the command line  （非空仓库）</h3><pre><code>git remote add origin https://github.com/viacheung/mogu.git
-git branch -M main
-git push -u origin main
+<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
+<p>具体配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
+<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
+<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
+<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
+<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
+<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
+<pre><code> deploy:
+  type: git
+  repository: git@github.com:viacheung/viacheung.github.io.git
+  branch: master
 </code></pre>
-<p><strong>1 解决Failed to connect to github.com port 443: Timed out</strong></p>
-<pre><code class="css">git config --global --unset http.proxy//执行该命令再Push
-</code></pre>
-<p><strong>2 若执行git remote add origin</strong>******<br><strong>出现fatal: remote origin already exists.（报错远程起源已经存在。）</strong></p>
-<pre><code>1、先输入 git remote rm origin
-2、再输入 git remote add origin**************
-</code></pre>
-<p><strong>3 Pycharm上， push代码到GitHub提示：</strong></p>
-<pre><code>fatal: unable to access &#39;https://github.com/panc-test/pythonProject.git/&#39;: OpenSSL SSL_read: Connection was aborted, errno 10053
-</code></pre>
-<p>解决方案：</p>
-<p>1、网络不稳定，多试几次</p>
-<p>2、更改网络认证设置</p>
-<p>3、关闭vpn试试？我还没试过</p>
-<pre><code>git config http.sslVerify &quot;false
-</code></pre>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43629813/article/details/113824388?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-113824388-blog-118487040.pc_relevant_antiscanv3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2">https://blog.csdn.net/weixin_43629813/article/details/113824388?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-113824388-blog-118487040.pc_relevant_antiscanv3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2</a></p>
-<h2 id="2-Hexo写文章"><a href="#2-Hexo写文章" class="headerlink" title="2 Hexo写文章"></a>2 Hexo写文章</h2><p>新建一个文章</p>
-<pre><code>$ hexo new [layout] &quot;title&quot;//注意引号是英文的
-</code></pre>
-<p>然后在该文章里面写东西，写完</p>
-<pre><code>hexo g//生成
-hexo s//本地预览
-hexo d//上传服务器
-一行命令：hexo g -d
-</code></pre>
-<p>2.3 添加图片</p>
-<p>关于图片和图片路径的设置，有以下教程。</p>
+<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
+<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611131533246.png" alt="image-20220611131533246"></p>
+<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
+<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
+<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
+<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
+<h1 id="6、添加图片"><a href="#6、添加图片" class="headerlink" title="6、添加图片"></a>6、添加图片</h1><p>关于图片和图片路径的设置，有以下教程。</p>
 <p>事先声明，所有博客文件均保存在 hexo&#x2F;_posts&#x2F;文件夹下</p>
 <p>首先在 hexo &gt; source目录下建一个文件夹叫images，用来保存博客中的图片。</p>
 <p>然后打开Typora的 文件 &gt; 偏好设置，进行如下设置。</p>
 <p>在这里插入图片描述</p>
-<img src="../images/git%E4%BD%BF%E7%94%A8/image-20220610143410957.png" alt="image-20220610143410957" style="zoom:50%;">
+<img src="../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220610143410957.png" alt="image-20220610143410957" style="zoom:50%;">
 
 <p>这样的话所有的博客中的图片都将会保存到 &#x2F;source&#x2F;images&#x2F;该博客md文件名&#x2F;图片名称</p>
 <p>但是仅仅这样设置还不够，这样设置在typora中倒是能看图片了，但是使用的却是相对于当前md文件的相对路径，可是如果启动hexo，是要用服务器访问的，而服务器显然无法根据这个相对路径正确访问到图片，因此还需要在typora中进行进一步设置。</p>
 <p>在typora菜单栏点击 格式-&gt;图像-&gt;设置图片根目录，将hexo&#x2F;source作为其根目录即可。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44705559/article/details/113853446">https://blog.csdn.net/qq_44705559/article/details/113853446</a></p>
-<p><img src="/../images/git%E4%BD%BF%E7%94%A8/YN395KA%60X1%25YHAF2B5YXD.jpg" alt="img"></p>
 
                 
             </div>
@@ -540,7 +525,7 @@ hexo d//上传服务器
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/10/git%E4%BD%BF%E7%94%A8/">http://example.com/2022/06/10/git%E4%BD%BF%E7%94%A8/</a>
+                    <a href="http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -749,9 +734,10 @@ hexo d//上传服务器
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
@@ -769,9 +755,9 @@ hexo d//上传服务器
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -780,6 +766,7 @@ hexo d//上传服务器
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -787,7 +774,7 @@ hexo d//上传服务器
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2022/06/10/git%E4%BD%BF%E7%94%A8/">
@@ -817,7 +804,6 @@ hexo d//上传服务器
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
