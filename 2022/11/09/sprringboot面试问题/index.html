@@ -4,11 +4,16 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="博客搭建, 张维阳的博客">
-    <meta name="description" content="1、参考的文章https://www.bilibili.com/read/cv12633102
-知乎收藏
-https://blog.csdn.net/Mancuojie/article/details/119906071
-2、 遇到的报错信">
+    <meta name="keywords" content="张维阳的博客">
+    <meta name="description" content="SpringBoot 配置文件的加载顺序
+
+类路径下配置文件（一直使用的是这个，也就是resources目录中的application.yml文件）
+
+类路径下config目录下配置文件
+
+程序包所在目录中配置文件
+
+程序包所在目录中con">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +27,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
     
 
-    <title>博客搭建 | 张维阳的博客</title>
+    <title>张维阳的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +317,12 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">博客搭建</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -445,7 +450,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-11
+                    2022-11-09
                 </div>
                 
 
@@ -466,40 +471,72 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<p>知乎收藏</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<h1 id="2、-遇到的报错信息"><a href="#2、-遇到的报错信息" class="headerlink" title="2、 遇到的报错信息"></a>2、 遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
+                <p><strong>SpringBoot 配置文件的加载顺序</strong></p>
+<ul>
+<li><p>类路径下配置文件（一直使用的是这个，也就是resources目录中的application.yml文件）</p>
+</li>
+<li><p>类路径下config目录下配置文件</p>
+</li>
+<li><p>程序包所在目录中配置文件</p>
+</li>
+<li><p>程序包所在目录中config目录下配置文件</p>
+<p><strong>你如何理解 SpringBoot 配置加载顺序？</strong></p>
+<p>在 SpringBoot 里面，可以使用以下几种方式来加载配置。</p>
+<p>1、 properties文件；</p>
+<p>2、 YAML文件；</p>
+<p>3、 系统环境变量；</p>
+<p>4、 命令行参数；</p>
+</li>
+</ul>
+<p><strong>springboot整合第三方技术</strong><br>1、 spring-boot-starter-web (嵌入tomcat和web开发需要servlet与jsp支持)</p>
+<p>2、 spring-boot-starter-data-jpa (数据库支持)</p>
+<p>3、 spring-boot-starter-data-Redis (Redis数据库支持)</p>
+<p>5、 mybatis-spring-boot-starter (第三方的mybatis集成starter)<br>1.导入对应的starter  spring-boot-starter-xx<br>2.做配置<br>3.代码</p>
+<p><strong>SpringBoot有哪些优点？</strong></p>
+<p>1、 快速创建独立运行的spring项目与主流框架集成</p>
+<p>2、 使用嵌入式的servlet容器，应用无需打包成war包</p>
+<p>3、 starters自动依赖与版本控制</p>
+<p>4、 大量的自动配置，简化开发，也可修改默认值</p>
+<p><strong>SpringBoot的缺点</strong></p>
+<p>我觉得是为难人，SpringBoot在目前我觉得没有什么缺点，非要找一个出来我觉得就是</p>
+<p>由于不用自己做的配置，报错时很难定位</p>
+<p><strong>什么是自动配置？</strong></p>
+<p>Spring 和 SpringMVC 的问题在于需要配置大量的参数。</p>
+<p>我们能否带来更多的智能？当一个 MVC JAR 添加到应用程序中的时候，我们能否自动配置一些 beans？</p>
+<p>Spring 查看（CLASSPATH 上可用的框架）已存在的应用程序的配置。在此基础上，SpringBoot 提供了配置应用程序和框架所需要的基本配置。这就是自动配置。<br>比如server.port默认是8080</p>
+<p><strong>spring-boot-starter-parent 有什么用 ?</strong></p>
+<p><strong>什么是SpringBoot</strong></p>
+<p><strong>1、</strong> 用来简化spring应用的初始搭建以及开发过程 使用特定的方式来进行配置（properties或yml文件）</p>
+<p><strong>2、</strong> 创建独立的spring引用程序 main方法运行</p>
+<p><strong>3、</strong> 嵌入的Tomcat 无需部署war文件</p>
+<p><strong>4、</strong> 简化maven配置</p>
+<p><strong>如何在 SpringBoot 中添加通用的 JS 代码?</strong></p>
+<p>在源文件夹下，创建一个名为 static 的文件夹。然后，你可以把你的静态的内容放在这里面。</p>
+<p>例如，myapp.js 的路径是 resources\static\js\myapp.js</p>
+<p><strong>SpringBoot运行项目的几种方式？</strong></p>
+<p>打包用命令或者放到容器中运行</p>
+<p>1、 打成jar包，使用java -jar xxx.jar运行</p>
+<p>2、 打成war包，放到tomcat里面运行</p>
+<p>直接用maven插件运行 maven spring-boot：run</p>
+<p>直接执行main方法运行</p>
+<p><strong>SpringBoot的核心注解是什么？由那些注解组成？</strong></p>
+<ul>
+<li>@<strong>SpringBootConfiguration</strong>：<br>组合了 @Configuration 注解，实现配置文件的功能。</li>
+<li>@<strong>EnableAutoConfiguration</strong>：<br>打开自动配置的功能，也可以关闭某个自动配置的选项，如关闭数据源自动配置功能： @SpringBootApplication(exclude &#x3D; { DataSourceAutoConfiguration.class })。</li>
+<li>@<strong>ComponentScan</strong>：<br>Spring组件扫描。</li>
+</ul>
+<p><strong>YAML 配置的优势在哪里 ?</strong></p>
+<p>YAML 现在可以算是非常流行的一种配置文件格式了，无论是前端还是后端，都可以见到 YAML 配置。那么 YAML 配置和传统的 properties 配置相比到底有哪些优势呢？</p>
+<pre><code>1 配置有序，在一些特殊的场景下，配置有序很关键
+2 支持数组，数组中的元素可以是基本数据类型也可以是对象
+3 简洁
 </code></pre>
-<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
-<p>具体配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
-<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
-<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
-<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
-<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
-<pre><code> deploy:
-  type: git
-  repository: git@github.com:viacheung/viacheung.github.io.git
-  branch: master
-</code></pre>
-<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611131533246.png" alt="image-20220611131533246"></p>
-<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
-<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
-<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
-<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<h1 id="6、添加图片"><a href="#6、添加图片" class="headerlink" title="6、添加图片"></a>6、添加图片</h1><p>关于图片和图片路径的设置，有以下教程。</p>
-<p>事先声明，所有博客文件均保存在 hexo&#x2F;_posts&#x2F;文件夹下</p>
-<p>首先在 hexo &gt; source目录下建一个文件夹叫images，用来保存博客中的图片。</p>
-<p>然后打开Typora的 文件 &gt; 偏好设置，进行如下设置。</p>
-<p>在这里插入图片描述</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611132005739.png" alt="image-20220611132005739"></p>
-<p>这样的话所有的博客中的图片都将会保存到 &#x2F;source&#x2F;images&#x2F;该博客md文件名&#x2F;图片名称</p>
-<p>但是仅仅这样设置还不够，这样设置在typora中倒是能看图片了，但是使用的却是相对于当前md文件的相对路径，可是如果启动hexo，是要用服务器访问的，而服务器显然无法根据这个相对路径正确访问到图片，因此还需要在typora中进行进一步设置。</p>
-<p>在typora菜单栏点击 格式-&gt;图像-&gt;设置图片根目录，将hexo&#x2F;source作为其根目录即可。</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44705559/article/details/113853446">https://blog.csdn.net/qq_44705559/article/details/113853446</a></p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/YN395KA%60X1%25YHAF2B5YXD.jpg" alt="img"></p>
+<p><strong>SpringBoot项目如何热部署？</strong></p>
+<p><strong>如何在自定义端口上运行 SpringBoot应用程序?</strong></p>
+<p>在 application.properties中指定端口serverport&#x3D;8090。</p>
+<p><strong>RequestMapping 和 GetMapping 的不同之处在哪里？</strong></p>
+<p>RequestMapping 具有类属性的，可以进行 GET,POST,PUT 或者其它的注释中具有的请求方法。</p>
+<p>GetMapping 是 GET 请求方法中的一个特例。它只是 ResquestMapping 的一个延伸，目的是为了提高<strong>清晰度</strong>。</p>
 
                 
             </div>
@@ -526,7 +563,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a>
+                    <a href="http://example.com/2022/11/09/sprringboot%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">http://example.com/2022/11/09/sprringboot%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,13 +776,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/18/llb%E6%AF%95%E8%AE%BE/">
+                <a href="/2022/11/09/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="llb毕设">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">llb毕设</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +793,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
                         </span>
                         <span class="publish-author">
                             
@@ -776,13 +813,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/10/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                <a href="/2022/06/18/llb%E6%AF%95%E8%AE%BE/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="博客搭建">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="llb毕设">
                         
-                        <span class="card-title">博客搭建</span>
+                        <span class="card-title">llb毕设</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -793,7 +830,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-18
                             </span>
                         <span class="publish-author">
                             

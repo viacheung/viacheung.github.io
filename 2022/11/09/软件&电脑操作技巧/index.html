@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="博客搭建, 张维阳的博客">
-    <meta name="description" content="1、参考的文章https://www.bilibili.com/read/cv12633102
-知乎收藏
-https://blog.csdn.net/Mancuojie/article/details/119906071
-2、 遇到的报错信">
+    <meta name="keywords" content="张维阳的博客">
+    <meta name="description" content="电脑操作技巧快捷键Ctrl+Tab 同一页面切换Alt+Tab 不同页面切换
+win+mspaint表示画图远程桌面连接-输入想连计算机端口号，再输入电脑账户密码即可连接win+s 打开搜索框Shutdown -s -t 3000定时关机快">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +20,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
     
 
-    <title>博客搭建 | 张维阳的博客</title>
+    <title>张维阳的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +310,12 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">博客搭建</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -445,7 +443,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-11
+                    2022-11-09
                 </div>
                 
 
@@ -466,41 +464,50 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<p>知乎收藏</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<h1 id="2、-遇到的报错信息"><a href="#2、-遇到的报错信息" class="headerlink" title="2、 遇到的报错信息"></a>2、 遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
-</code></pre>
-<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
-<p>具体配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
-<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
-<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
-<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
-<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
-<pre><code> deploy:
-  type: git
-  repository: git@github.com:viacheung/viacheung.github.io.git
-  branch: master
-</code></pre>
-<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611131533246.png" alt="image-20220611131533246"></p>
-<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
-<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
-<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
-<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<h1 id="6、添加图片"><a href="#6、添加图片" class="headerlink" title="6、添加图片"></a>6、添加图片</h1><p>关于图片和图片路径的设置，有以下教程。</p>
-<p>事先声明，所有博客文件均保存在 hexo&#x2F;_posts&#x2F;文件夹下</p>
-<p>首先在 hexo &gt; source目录下建一个文件夹叫images，用来保存博客中的图片。</p>
-<p>然后打开Typora的 文件 &gt; 偏好设置，进行如下设置。</p>
-<p>在这里插入图片描述</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611132005739.png" alt="image-20220611132005739"></p>
-<p>这样的话所有的博客中的图片都将会保存到 &#x2F;source&#x2F;images&#x2F;该博客md文件名&#x2F;图片名称</p>
-<p>但是仅仅这样设置还不够，这样设置在typora中倒是能看图片了，但是使用的却是相对于当前md文件的相对路径，可是如果启动hexo，是要用服务器访问的，而服务器显然无法根据这个相对路径正确访问到图片，因此还需要在typora中进行进一步设置。</p>
-<p>在typora菜单栏点击 格式-&gt;图像-&gt;设置图片根目录，将hexo&#x2F;source作为其根目录即可。</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44705559/article/details/113853446">https://blog.csdn.net/qq_44705559/article/details/113853446</a></p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/YN395KA%60X1%25YHAF2B5YXD.jpg" alt="img"></p>
+                <h1 id="电脑操作技巧"><a href="#电脑操作技巧" class="headerlink" title="电脑操作技巧"></a>电脑操作技巧</h1><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>Ctrl+Tab 同一页面切换<br>Alt+Tab 不同页面切换</p>
+<p>win+mspaint表示画图<br>远程桌面连接-输入想连计算机端口号，再输入电脑账户密码即可连接<br>win+s 打开搜索框<br>Shutdown -s -t 3000<br>定时关机快捷键：<br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/6c67b1d6c533056787bb1ea7.html">https://jingyan.baidu.com/article/6c67b1d6c533056787bb1ea7.html</a></p>
+<p>F11 全屏</p>
+<p>搜索计算器-&gt;程序员选项</p>
+<h2 id="查找本机Ip地址"><a href="#查找本机Ip地址" class="headerlink" title="查找本机Ip地址"></a>查找本机Ip地址</h2><p>cmd输入ipconfig</p>
 
+
+<p>192.168.10.106</p>
+<h2 id="查找端口号8080占用情况"><a href="#查找端口号8080占用情况" class="headerlink" title="查找端口号8080占用情况"></a><strong>查找端口号8080占用情况</strong></h2><p>C:\Users\viacheung&gt;tasklist|findstr “8080“</p>
+<p>C:\Users\viacheung&gt;netstat -aon|findstr “8080” </p>
+<p>TCP  0.0.0.0:8080      0.0.0.0:0       LISTENING    14400 </p>
+<p>TCP  172.27.31.33:53144   157.255.192.102:8080  ESTABLISHED   20996 </p>
+<p>TCP  [::]:8080       [::]:0         LISTENING    14400</p>
+<p><strong>找对应进程</strong></p>
+<p>C:\Users\viacheung&gt;tasklist|findstr “14400”</p>
+<p>java.exe           14400 Console          1  176,948 K</p>
+<p><strong>终止进程</strong></p>
+<p>C:\Users\viacheung&gt;taskkill &#x2F;f &#x2F;t &#x2F;im java.exe</p>
+<p>成功: 已终止 PID 18984 (属于 PID 14400 子进程)的进程。</p>
+<p>成功: 已终止 PID 14400 (属于 PID 30536 子进程)的进程。<br>C:\Users\viacheung&gt;<br>改设备时间是个好方法  删库的东西是个好东西</p>
+<h1 id="软件操作技巧"><a href="#软件操作技巧" class="headerlink" title="软件操作技巧"></a>软件操作技巧</h1><h1 id="matlab"><a href="#matlab" class="headerlink" title="matlab"></a>matlab</h1><pre><code>矩阵分点乘
+先plot 后label什么的
+文件名不能和函数名重复
+主页-布局调整
+</code></pre>
+<h2 id="删文件"><a href="#删文件" class="headerlink" title="删文件"></a>删文件</h2><p>双击安装包删除 program Files x86<br>programData里面也要删去文件夹<br>NIMBUSROM字体不错啊</p>
+<p>vscode添加库：ctrl+&#96;调出终端，然后pip install 库名<br>修改系统时间会导致打不开某些网页</p>
+<p>360网络修复很牛逼</p>
+<p>jdk版本免安装在系统变量里改%JAVA_HOME%文件路径即可<br>idea打不开,双击没反应的解决方案—因为有中文路径<br>git vi编辑器，进入后按i编辑，在esc，然后冒号，sq退出</p>
+<p><strong>前端</strong></p>
+<p>在老的HTML版本，如果需要在HTML页面中声明一段js脚本，需要做<script type="text/javascript">的声明，表明在</p>
+<script type="text/javascript">
+</script>
+
+</p><p>中添加的文本是js脚本；<br>document.form.action,表单分向提交,javascript提交表单<br>同一个表单可以根据用户的选择，提交给不同的后台处理程序。即，表单的分向提交。如，在编写论坛程序时，如果我们希望实现用户在发送贴子的时候，既发送提交功能又有预览功能时，就会遇到上述问题。即，当用户点击提交按钮时，我们希望表单提交给"提交"处理程序；而当用户点击预览按钮时，我们希望表单提交给"预览"处理程序。那么，如何实现上述功能呢？下面代码可以很好的解决这个问题。</p>
+<p>confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。<br>如果访问者点击"确定"，此方法返回true，否则返回false</p>
+<p>getSession()参数为true时，若存在会话，则返回该会话，否则新建一个会话；<br>action<br>action规定了提交表单时发送表单数据的目的地,也即将数据发到哪里,例如action="login.php".method<br>method规定了发送方式,常用的为get和post,涉及到用户隐私时,为了安全起见通常都采用post方式.name<br>name表单的名字,如果是在js中想要获取form的dom对象,直接使用name属性值即可,例如</p>
+<!-- 和都 <%--  表示注释getId() 方法的作用非常简单，就是取得正在运行线程的唯一标识。
+hidden隐藏域在页面中对于用户是不可见的，在表单插入中隐藏域的目的在于收集和发送信息，以利于被处理表单的程序所使用注：隐藏只是在网页页面上不显示输入框，但是虽然隐藏了，还是具有form传值功能。一般用来传值，而不必让用户看到
+href 属性规定链接的目标：onclick 事件会在元素被点击时发生。scope:colspan设置当前单元格横跨的列数。col 规定单元格是列的表头。row 规定单元格是行的表头。colgroup 规定单元格是列组的表头。rowgroup 规定单元格是行组的表头。
+
+# word
+
+word插入图片不显示：段落单倍行距word段落最后一行字体间距太大的解决方法 第一种可能性是此段落的末尾缺少一个“回车符”，可以直接将光标定位在段落末尾，点击键盘“Enter”键即可。word-视图-单页多页doc文件不能用公式页码：下一页--插入页码从1开始（设置页码格式）--设置页码格式底部--链接去掉--删前面页的页码目录--需要设置几级标题word上有一条横线怎么删除   ----->取消格式word的帮助很有用00:36[如何](http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_)[删除Word](http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_)[的](http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_)[分隔符](http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_)[？](http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_)1.打开需要处理的文档，在菜单栏中点击“文件”，在下方找到“选项”。2.在弹出的“选项”对话框中，切换到“显示”选项卡，勾选“显示所有格式标记”。3.这样就能看到分节符了，选中分节符，按下“Delete键”就可以删除了。为什么word行距设为固定值，但行距看起来不一样?网格线取消掉ppt取消所有动画效果:https://zhidao.baidu.com/question/1672468635987877707.html动画->动画窗格
                 
             </div>
             <hr/>
@@ -526,7 +533,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a>
+                    <a href="http://example.com/2022/11/09/%E8%BD%AF%E4%BB%B6&%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/">http://example.com/2022/11/09/%E8%BD%AF%E4%BB%B6&%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,13 +746,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/18/llb%E6%AF%95%E8%AE%BE/">
+                <a href="/2022/11/09/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="llb毕设">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">llb毕设</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +763,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
                         </span>
                         <span class="publish-author">
                             
@@ -776,13 +783,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/10/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                <a href="/2022/11/09/%E9%AD%94%E6%96%B9%E6%8A%80%E5%B7%A7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="博客搭建">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">博客搭建</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -793,7 +800,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
                             </span>
                         <span class="publish-author">
                             

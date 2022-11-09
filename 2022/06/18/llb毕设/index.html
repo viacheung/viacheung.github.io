@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="博客搭建, 张维阳的博客">
-    <meta name="description" content="1、参考的文章https://www.bilibili.com/read/cv12633102
-知乎收藏
-https://blog.csdn.net/Mancuojie/article/details/119906071
-2、 遇到的报错信">
+    <meta name="keywords" content="llb毕设, 张维阳的博客">
+    <meta name="description" content="后端idea 调用Python命令Runtime.getRuntime().exec总是空
+在调用含第三方库的时候，需要指定第三方库的所在 String[] aaa &amp;#x3D; new String[]{“D:\Anaconda3\pyt">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +20,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
     
 
-    <title>博客搭建 | 张维阳的博客</title>
+    <title>llb毕设 | 张维阳的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +310,12 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">博客搭建</h1>
+                    <h1 class="description center-align post-title">llb毕设</h1>
                 </div>
             </div>
         </div>
@@ -445,7 +443,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-11
+                    2022-06-18
                 </div>
                 
 
@@ -466,40 +464,135 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<p>知乎收藏</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<h1 id="2、-遇到的报错信息"><a href="#2、-遇到的报错信息" class="headerlink" title="2、 遇到的报错信息"></a>2、 遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
+                <h1 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h1><p><strong>idea 调用Python命令Runtime.getRuntime().exec总是空</strong></p>
+<p>在调用含第三方库的时候，需要指定第三方库的所在 String[] aaa &#x3D; new String[]{“D:\Anaconda3\python.exe”, “D:\Pythonworkspace\Python_Class\aaa.py”}; proc &#x3D; Runtime.getRuntime().exec(aaa);&#x2F;&#x2F; 执行py文件</p>
+<p><strong>为什么运行后inputimage会被删？</strong></p>
+<p>因为后面有</p>
+<pre><code>if (!imageFile.delete())
 </code></pre>
-<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
-<p>具体配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
-<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
-<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
-<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
-<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
-<pre><code> deploy:
-  type: git
-  repository: git@github.com:viacheung/viacheung.github.io.git
-  branch: master
+<p>这段代码运行，会删除文件</p>
+<p>**为什么python命令command String不能用 String[]可以用?	**</p>
+<h1 id="前端taro"><a href="#前端taro" class="headerlink" title="前端taro"></a>前端taro</h1><h2 id="taro框架安装"><a href="#taro框架安装" class="headerlink" title="taro框架安装"></a>taro框架安装</h2><p>先查看Node版本，确认安装最新版本</p>
+<pre><code>npm config set registry http://registry.npm.taobao.org/   第一个命令是使用npm的淘宝镜像，
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/   配置node-sass为淘宝镜像
+cnpm install -g @tarojs/cli   使用cnpm全局安装taro，将会生成一个taro 命令。taro-cli 包位于 Taro 工程的 packages 目录下，主要负责项目初始化、编译、构建等
 </code></pre>
-<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611131533246.png" alt="image-20220611131533246"></p>
-<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
-<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
-<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
-<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<h1 id="6、添加图片"><a href="#6、添加图片" class="headerlink" title="6、添加图片"></a>6、添加图片</h1><p>关于图片和图片路径的设置，有以下教程。</p>
-<p>事先声明，所有博客文件均保存在 hexo&#x2F;_posts&#x2F;文件夹下</p>
-<p>首先在 hexo &gt; source目录下建一个文件夹叫images，用来保存博客中的图片。</p>
-<p>然后打开Typora的 文件 &gt; 偏好设置，进行如下设置。</p>
-<p>在这里插入图片描述</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611132005739.png" alt="image-20220611132005739"></p>
-<p>这样的话所有的博客中的图片都将会保存到 &#x2F;source&#x2F;images&#x2F;该博客md文件名&#x2F;图片名称</p>
-<p>但是仅仅这样设置还不够，这样设置在typora中倒是能看图片了，但是使用的却是相对于当前md文件的相对路径，可是如果启动hexo，是要用服务器访问的，而服务器显然无法根据这个相对路径正确访问到图片，因此还需要在typora中进行进一步设置。</p>
-<p>在typora菜单栏点击 格式-&gt;图像-&gt;设置图片根目录，将hexo&#x2F;source作为其根目录即可。</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44705559/article/details/113853446">https://blog.csdn.net/qq_44705559/article/details/113853446</a></p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/YN395KA%60X1%25YHAF2B5YXD.jpg" alt="img"></p>
+<p>查看taro是否安装完毕</p>
+<pre><code>taro -V
+</code></pre>
+<p><strong>报错</strong>WARN node unsupported “node**@v6.11.2” is incompatible with electron@^7.1.9, expected node@&gt;&#x3D; 8.6**</p>
+<p>解决：升级node 到官网下载最新版本Msi 无脑下一步即可</p>
+<p><strong>关于node</strong></p>
+<ol>
+<li><p>开源跨平台的JavaScript运行时环境。它几乎是任何类型项目的流行工具！</p>
+</li>
+<li><p>浏览器之外运行V8 JavaScript引擎（Google Chrome的内核）。这使得Node.js的性能非常好。</p>
+</li>
+<li><p>Node.js应用程序在单个程序中运行，无需为每个请求创建新的线程。Node.js在其标准库中提供了一组异步的I&#x2F;O原语，以防JavaScript代码阻塞，通常，Node.js中的库是使用非阻塞范式编写的，使得阻塞行为成为异常而不是常态。</p>
+</li>
+<li><p>Node.js具有独特的优势，因为数百万为浏览器编写的JavaScript的前端开发者现在无需学习完全不同的语言，就可以编写除客户端代码之外的服务器端代码。</p>
+</li>
+</ol>
+<p><strong>报错npm WARN config global –global, –local are deprecated. Use –location&#x3D;global instead.</strong></p>
+<pre><code>npm install --global --production npm-windows-upgrade
+</code></pre>
+<p>上述方案只是解决node 16版本的, 切换到node18, 此时还会有上述问题:</p>
+<p>解决：</p>
+<pre><code> npm install -g npm-windows-upgrade
+ npm-windows-upgrade
+ and select version 8.12.1 for installation.(然后选择下载8.12.1的版本。)
+</code></pre>
+<p>（还未解决 代办）</p>
+<h2 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a><strong>搭建项目</strong></h2><pre><code>taro init taro-dome
+</code></pre>
+<p>一路默认：</p>
+
+
+<p>切换到项目路径</p>
+<p>执行命令</p>
+<pre><code>npm run dev:h5
+</code></pre>
+<p>然后网页出来helloworld</p>
+<h2 id="Taro生成小程序代码并预览"><a href="#Taro生成小程序代码并预览" class="headerlink" title="Taro生成小程序代码并预览"></a>Taro生成小程序代码并预览</h2><p>taro可以生成多端代码，在上一节只生成了h5的显示，这次我们就先来进行生成小程序代码，并进行预览。</p>
+<pre><code>npm run dev:weapp
+</code></pre>
+<p>然后打开微信开发者工具导入项目的dist目录<br><strong>注意</strong></p>
+<p>千万不要在微信开发者工具中修改dist目录，因为这个文件是由taro编译而来的；如果要修改在taro的原项目修改，然后通过编译将修改的内容编译到dist文件中。</p>
+<p>哈哈哈哈哈哈哈哈哈哈 笑死 千万别在webstrom打开 报那文件目录错误 用vscode就没问题（但是需要管理员打开）</p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>想运行identify.py 在terminal里面输入python .\identify.py inputImage&#x2F;tum.jpg</p>
+<h2 id="moileNet"><a href="#moileNet" class="headerlink" title="moileNet"></a>moileNet</h2><h3 id="V1"><a href="#V1" class="headerlink" title="V1"></a>V1</h3>
+
+
+
+
+
+<p>dw不改变深度 但在此之前是降维的</p>
+
+
+
+
+
+
+<h3 id="V2"><a href="#V2" class="headerlink" title="V2"></a>V2</h3>
+
+
+
+
+
+
+
+<p>卷积核个数就是输出层深度    比如这里卷积核个数就是tk</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h1><h2 id="xshell连接阿里云"><a href="#xshell连接阿里云" class="headerlink" title="xshell连接阿里云"></a>xshell连接阿里云</h2><p>1.申请阿里云服务器，下载xshell<br>2.在git里面输入如下命令，然后设置permitrootlogin yes 和 passwordAuthentication yes</p>
+<pre><code>vi /etc/ssh/sshd_config
+</code></pre>
+
+
+<p>退出的时候进行如下操作：</p>
+<pre><code> 1、按Esc 
+ 2、输入：set noreadonly  
+ 3、即可按正常途径保存:wq
+</code></pre>
+<p>3.记得修改实例密码，然后xshell登录</p>
+<p><img src="/.com//image-20220622223749419.png" alt="image-20220622223749419" style="zoom: 67%;"><img src="/.com//image-20220622223823346.png" alt="image-20220622223823346" style="zoom: 67%;"></p>
+<h2 id="服务器环境配置的一些坑"><a href="#服务器环境配置的一些坑" class="headerlink" title="服务器环境配置的一些坑"></a>服务器环境配置的一些坑</h2><p>原文链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/Elon15/article/details/124516929">https://blog.csdn.net/Elon15/article/details/124516929</a></p>
+<p><strong>3.7 那一步是source &#x2F;etc&#x2F;profile</strong></p>
+<p><strong>4.2 下载yum源的时候出现Unable to establish SSL connection，在命令后面跟上–no-check-certificat</strong></p>
+
+
+<p><strong>4.5 yum install -y mysql-community-server报错</strong></p>
+
+
+<p>rpm –import <a target="_blank" rel="noopener" href="https://repo.mysql.com/RPM-GPG-KEY-mysql-2022">https://repo.mysql.com/RPM-GPG-KEY-mysql-2022</a></p>
+<p><strong>4.7 登录数据库改密码执行改密码出错的解决办法：</strong></p>
+<pre><code>mysql&gt; set global validate_password_policy=low; 			//将密码级别改为弱
+mysql&gt; set global validate_password_length=6;				//将密码长度改为6
+然后输入命令ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;; （注意末尾要有分号）
+</code></pre>
+<h1 id="代办"><a href="#代办" class="headerlink" title="代办"></a>代办</h1><p>springboot后端上传腾讯云服务器<br>优先选centos   vnc密码 9853Kb</p>
+<p><strong>4.10 阿里云连接Mysql, 在确保端口开放的情况下，如果出现错误代码1130- Host xxx is not allowed to connect to this MariaDb server，说明是权限问题。如图：</strong></p>
+
+
+<p>1.授权法</p>
+<pre><code>GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39; WITH GRANT OPTION; // %:表示从任何主机连接到mysql服务器
+
+FLUSH  PRIVILEGES;
+</code></pre>
+<p>实测好用，原文链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35396905/article/details/82972618%EF%BC%88%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E5%BE%85%E9%AA%8C%E8%AF%81%EF%BC%89">https://blog.csdn.net/qq_35396905/article/details/82972618（其他方法待验证）</a></p>
+<h2 id="2022-9-13-想法"><a href="#2022-9-13-想法" class="headerlink" title="2022 9.13 想法"></a>2022 9.13 想法</h2><p>前端：微信开发者工具，小程序框架快速入门</p>
+<p>后端功能调整：设定一个百分比，如果低于这个百分比视为不是蘑菇，数据库需要扩大（对应的算法代码也要调整，自己电脑训练不了）问题：其他地方训练好的数据模型，直接拿到本地用也可以吗？？</p>
+<p>部署：看看项目如何部署的  我自己的虚拟机可不可以用来放代码？有ssl证书要求是吧？不买服务器那就做成网页格式的吗</p>
 
                 
             </div>
@@ -526,7 +619,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a>
+                    <a href="http://example.com/2022/06/18/llb%E6%AF%95%E8%AE%BE/">http://example.com/2022/06/18/llb%E6%AF%95%E8%AE%BE/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,13 +832,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/18/llb%E6%AF%95%E8%AE%BE/">
+                <a href="/2022/11/09/sprringboot%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="llb毕设">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">llb毕设</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +849,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
                         </span>
                         <span class="publish-author">
                             
@@ -776,7 +869,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/10/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                <a href="/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
                         
@@ -793,7 +886,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-11
                             </span>
                         <span class="publish-author">
                             

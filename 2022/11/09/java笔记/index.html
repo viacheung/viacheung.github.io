@@ -4,11 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="博客搭建, 张维阳的博客">
-    <meta name="description" content="1、参考的文章https://www.bilibili.com/read/cv12633102
-知乎收藏
-https://blog.csdn.net/Mancuojie/article/details/119906071
-2、 遇到的报错信">
+    <meta name="keywords" content="张维阳的博客">
+    <meta name="description" content="JSON美化插件：JSON formatter
+stater:自动装配  @Enable….  自动装配的开关
+idea翻译的插件：translator
+给微服务加断点来理解源码的方法：
+
+
+点击服务,然后点击虫子图标，给某一行设置断点，然">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +25,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
     
 
-    <title>博客搭建 | 张维阳的博客</title>
+    <title>张维阳的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +315,12 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">博客搭建</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -445,7 +448,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-11
+                    2022-11-09
                 </div>
                 
 
@@ -466,40 +469,19 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<p>知乎收藏</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<h1 id="2、-遇到的报错信息"><a href="#2、-遇到的报错信息" class="headerlink" title="2、 遇到的报错信息"></a>2、 遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
-</code></pre>
-<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
-<p>具体配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
-<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
-<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
-<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
-<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
-<pre><code> deploy:
-  type: git
-  repository: git@github.com:viacheung/viacheung.github.io.git
-  branch: master
-</code></pre>
-<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611131533246.png" alt="image-20220611131533246"></p>
-<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
-<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
-<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
-<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<h1 id="6、添加图片"><a href="#6、添加图片" class="headerlink" title="6、添加图片"></a>6、添加图片</h1><p>关于图片和图片路径的设置，有以下教程。</p>
-<p>事先声明，所有博客文件均保存在 hexo&#x2F;_posts&#x2F;文件夹下</p>
-<p>首先在 hexo &gt; source目录下建一个文件夹叫images，用来保存博客中的图片。</p>
-<p>然后打开Typora的 文件 &gt; 偏好设置，进行如下设置。</p>
-<p>在这里插入图片描述</p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/image-20220611132005739.png" alt="image-20220611132005739"></p>
-<p>这样的话所有的博客中的图片都将会保存到 &#x2F;source&#x2F;images&#x2F;该博客md文件名&#x2F;图片名称</p>
-<p>但是仅仅这样设置还不够，这样设置在typora中倒是能看图片了，但是使用的却是相对于当前md文件的相对路径，可是如果启动hexo，是要用服务器访问的，而服务器显然无法根据这个相对路径正确访问到图片，因此还需要在typora中进行进一步设置。</p>
-<p>在typora菜单栏点击 格式-&gt;图像-&gt;设置图片根目录，将hexo&#x2F;source作为其根目录即可。</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44705559/article/details/113853446">https://blog.csdn.net/qq_44705559/article/details/113853446</a></p>
-<p><img src="/../images/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/YN395KA%60X1%25YHAF2B5YXD.jpg" alt="img"></p>
+                <p>JSON美化插件：JSON formatter</p>
+<p>stater:自动装配  @Enable….  自动装配的开关</p>
+<p>idea翻译的插件：translator</p>
+<p>给微服务加断点来理解源码的方法：</p>
+
+
+<p>点击服务,然后点击虫子图标，给某一行设置断点，然后浏览器访问即可</p>
+<h1 id="POST和Put区别"><a href="#POST和Put区别" class="headerlink" title="POST和Put区别"></a>POST和Put区别</h1><p><strong>put具有幂等性</strong></p>
+<p>如：POST 的语义是在<a target="_blank" rel="noopener" href="http://www.forum.com/articles%E4%B8%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E7%AF%87%E5%B8%96%E5%AD%90%EF%BC%8CHTTP%E5%93%8D%E5%BA%94%E4%B8%AD%E5%BA%94%E5%8C%85%E5%90%AB%E5%B8%96%E5%AD%90%E7%9A%84%E5%88%9B%E5%BB%BA%E7%8A%B6%E6%80%81%E4%BB%A5%E5%8F%8A%E5%B8%96%E5%AD%90%E7%9A%84URI%E3%80%82%E4%B8%A4%E6%AC%A1%E7%9B%B8%E5%90%8C%E7%9A%84POST%E8%AF%B7%E6%B1%82%E4%BC%9A%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%BB%BD%E8%B5%84%E6%BA%90%EF%BC%8C%E5%AE%83%E4%BB%AC%E5%85%B7%E6%9C%89%E4%B8%8D%E5%90%8C%E7%9A%84URI%EF%BC%9B%E6%89%80%E4%BB%A5%EF%BC%8CPOST%E6%96%B9%E6%B3%95%E4%B8%8D%E5%85%B7%E5%A4%87%E5%B9%82%E7%AD%89%E6%80%A7%E3%80%82">http://www.forum.com/articles下创建一篇帖子，HTTP响应中应包含帖子的创建状态以及帖子的URI。两次相同的POST请求会在服务器端创建两份资源，它们具有不同的URI；所以，POST方法不具备幂等性。</a></p>
+<p>而PUT所对应的URI是要创建或更新的资源本身。比如：PUT <a target="_blank" rel="noopener" href="http://www.forum/articles/4231%E7%9A%84%E8%AF%AD%E4%B9%89%E6%98%AF%E5%88%9B%E5%BB%BA%E6%88%96%E6%9B%B4%E6%96%B0ID%E4%B8%BA4231%E7%9A%84%E5%B8%96%E5%AD%90%E3%80%82%E5%AF%B9%E5%90%8C%E4%B8%80URI%E8%BF%9B%E8%A1%8C%E5%A4%9A%E6%AC%A1PUT%E7%9A%84%E5%89%AF%E4%BD%9C%E7%94%A8%E5%92%8C%E4%B8%80%E6%AC%A1PUT%E6%98%AF%E7%9B%B8%E5%90%8C%E7%9A%84%EF%BC%9B%E5%9B%A0%E6%AD%A4%EF%BC%8CPUT%E6%96%B9%E6%B3%95%E5%85%B7%E6%9C%89%E5%B9%82%E7%AD%89%E6%80%A7%E3%80%82">http://www.forum/articles/4231的语义是创建或更新ID为4231的帖子。对同一URI进行多次PUT的副作用和一次PUT是相同的；因此，PUT方法具有幂等性。</a></p>
+<h1 id="java并发环境"><a href="#java并发环境" class="headerlink" title="java并发环境"></a>java并发环境</h1><img src="/.com//2f0d1a2d0da6b52cb761e130d34759a5.png" alt="2f0d1a2d0da6b52cb761e130d34759a5.png">
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39941732/article/details/114894917">https://blog.csdn.net/weixin_39941732/article/details/114894917</a></p>
 
                 
             </div>
@@ -526,7 +508,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">http://example.com/2022/06/11/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a>
+                    <a href="http://example.com/2022/11/09/java%E7%AC%94%E8%AE%B0/">http://example.com/2022/11/09/java%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -739,13 +721,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/18/llb%E6%AF%95%E8%AE%BE/">
+                <a href="/2022/11/09/java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="llb毕设">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">llb毕设</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -756,7 +738,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
                         </span>
                         <span class="publish-author">
                             
@@ -776,13 +758,13 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/10/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                <a href="/2022/11/09/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="博客搭建">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">博客搭建</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -793,7 +775,7 @@ https://blog.csdn.net/Mancuojie/article/details/119906071
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
                             </span>
                         <span class="publish-author">
                             

@@ -1,0 +1,1540 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="张维阳的博客">
+    <meta name="description" content="java基础关于静态代码块和实例代码块
+实例代码块里面不能有静态的东西    静态代码块里面不能用实例变量this
+前端vue项目启动scripts选择bulid
+springboot总结面试问题SpringBoot 配置文件的加载顺序
+
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>张维阳的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">张维阳的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">张维阳的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-11-09
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><p><strong>关于静态代码块和实例代码块</strong></p>
+<p>实例代码块里面不能有静态的东西    静态代码块里面不能用实例变量this</p>
+<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="vue项目启动"><a href="#vue项目启动" class="headerlink" title="vue项目启动"></a>vue项目启动</h2><p>scripts选择bulid</p>
+<h1 id="springboot总结面试问题"><a href="#springboot总结面试问题" class="headerlink" title="springboot总结面试问题"></a>springboot总结面试问题</h1><p><strong>SpringBoot 配置文件的加载顺序</strong></p>
+<ul>
+<li><p>类路径下配置文件（一直使用的是这个，也就是resources目录中的application.yml文件）</p>
+</li>
+<li><p>类路径下config目录下配置文件</p>
+</li>
+<li><p>程序包所在目录中配置文件</p>
+</li>
+<li><p>程序包所在目录中config目录下配置文件</p>
+<p><strong>你如何理解 SpringBoot 配置加载顺序？</strong></p>
+<p>在 SpringBoot 里面，可以使用以下几种方式来加载配置。</p>
+<p>1、 properties文件；</p>
+<p>2、 YAML文件；</p>
+<p>3、 系统环境变量；</p>
+<p>4、 命令行参数；</p>
+</li>
+</ul>
+<p><strong>springboot整合第三方技术</strong><br>1、 spring-boot-starter-web (嵌入tomcat和web开发需要servlet与jsp支持)</p>
+<p>2、 spring-boot-starter-data-jpa (数据库支持)</p>
+<p>3、 spring-boot-starter-data-Redis (Redis数据库支持)</p>
+<p>5、 mybatis-spring-boot-starter (第三方的mybatis集成starter)<br>1.导入对应的starter  spring-boot-starter-xx<br>2.做配置<br>3.代码</p>
+<p><strong>SpringBoot有哪些优点？</strong></p>
+<p>1、 快速创建独立运行的spring项目与主流框架集成</p>
+<p>2、 使用嵌入式的servlet容器，应用无需打包成war包</p>
+<p>3、 starters自动依赖与版本控制</p>
+<p>4、 大量的自动配置，简化开发，也可修改默认值</p>
+<p><strong>SpringBoot的缺点</strong></p>
+<p>我觉得是为难人，SpringBoot在目前我觉得没有什么缺点，非要找一个出来我觉得就是</p>
+<p>由于不用自己做的配置，报错时很难定位</p>
+<p><strong>什么是自动配置？</strong></p>
+<p>Spring 和 SpringMVC 的问题在于需要配置大量的参数。</p>
+<p>我们能否带来更多的智能？当一个 MVC JAR 添加到应用程序中的时候，我们能否自动配置一些 beans？</p>
+<p>Spring 查看（CLASSPATH 上可用的框架）已存在的应用程序的配置。在此基础上，SpringBoot 提供了配置应用程序和框架所需要的基本配置。这就是自动配置。<br>比如server.port默认是8080</p>
+<p><strong>spring-boot-starter-parent 有什么用 ?</strong></p>
+<p><strong>什么是SpringBoot</strong></p>
+<p><strong>1、</strong> 用来简化spring应用的初始搭建以及开发过程 使用特定的方式来进行配置（properties或yml文件）</p>
+<p><strong>2、</strong> 创建独立的spring引用程序 main方法运行</p>
+<p><strong>3、</strong> 嵌入的Tomcat 无需部署war文件</p>
+<p><strong>4、</strong> 简化maven配置</p>
+<p><strong>如何在 SpringBoot 中添加通用的 JS 代码?</strong></p>
+<p>在源文件夹下，创建一个名为 static 的文件夹。然后，你可以把你的静态的内容放在这里面。</p>
+<p>例如，myapp.js 的路径是 resources\static\js\myapp.js</p>
+<p><strong>SpringBoot运行项目的几种方式？</strong></p>
+<p>打包用命令或者放到容器中运行</p>
+<p>1、 打成jar包，使用java -jar xxx.jar运行</p>
+<p>2、 打成war包，放到tomcat里面运行</p>
+<p>直接用maven插件运行 maven spring-boot：run</p>
+<p>直接执行main方法运行</p>
+<p><strong>SpringBoot的核心注解是什么？由那些注解组成？</strong></p>
+<ul>
+<li>@<strong>SpringBootConfiguration</strong>：<br>组合了 @Configuration 注解，实现配置文件的功能。</li>
+<li>@<strong>EnableAutoConfiguration</strong>：<br>打开自动配置的功能，也可以关闭某个自动配置的选项，如关闭数据源自动配置功能： @SpringBootApplication(exclude &#x3D; { DataSourceAutoConfiguration.class })。</li>
+<li>@<strong>ComponentScan</strong>：<br>Spring组件扫描。</li>
+</ul>
+<p><strong>YAML 配置的优势在哪里 ?</strong></p>
+<p>YAML 现在可以算是非常流行的一种配置文件格式了，无论是前端还是后端，都可以见到 YAML 配置。那么 YAML 配置和传统的 properties 配置相比到底有哪些优势呢？</p>
+<pre><code>1 配置有序，在一些特殊的场景下，配置有序很关键
+2 支持数组，数组中的元素可以是基本数据类型也可以是对象
+3 简洁
+</code></pre>
+<p><strong>SpringBoot项目如何热部署？</strong></p>
+<p><strong>如何在自定义端口上运行 SpringBoot应用程序?</strong></p>
+<p>在 application.properties中指定端口serverport&#x3D;8090。</p>
+<p><strong>RequestMapping 和 GetMapping 的不同之处在哪里？</strong></p>
+<p>RequestMapping 具有类属性的，可以进行 GET,POST,PUT 或者其它的注释中具有的请求方法。</p>
+<p>GetMapping 是 GET 请求方法中的一个特例。它只是 ResquestMapping 的一个延伸，目的是为了提高<strong>清晰度</strong>。</p>
+<h1 id="ssm"><a href="#ssm" class="headerlink" title="ssm"></a>ssm</h1><h2 id="Spring配置文件"><a href="#Spring配置文件" class="headerlink" title="Spring配置文件"></a>Spring配置文件</h2><p><strong>Spring的重点配置</strong></p>
+<p><bean>标签</bean></p>
+<p>id属性:在容器中Bean实例的唯一标识，不允许重复</p>
+<p>class属性:要实例化的Bean的全限定名</p>
+<p>scope属性:Bean的作用范围，常用是Singleton(默认)和prototype</p>
+<p><property>标签：属性注入</property></p>
+<p>name属性：属性名称</p>
+<p>value属性：注入的普通属性值</p>
+<p>ref属性：注入的对象引用值</p>
+<p><list>标签</list></p>
+<p><map>标签</map></p>
+<p><properties>标签</properties></p>
+<p><constructor-arg>标签</constructor-arg></p>
+<p><import>标签:导入其他的Spring的分文件</import></p>
+<p> <strong>getBean()方法使用</strong></p>
+
+
+<p>1 这里还用了多态，因为bean里面的类是 UserDaoImpl (UserDao接口的实现类)</p>
+<p><strong>idea如何同时打开两个项目</strong>？</p>
+<p>打开项目结构</p>
+<p><strong>release和snapshot区别</strong></p>
+<p>1.SNAPSHOT快照仓库:可以理解为开发过程中经常修改的不稳定的仓库,引用版本为SNAPSHOT的仓库时每次构建自己的应用时都会重新下载(这里说的是版本号不变的情况下,你不可能更改点代码就去升一个版本吧)。</p>
+<p>2.RELEASE发布仓库:可以理解为正式版稳定的仓库,本地repository一般不会频繁更新release版本的缓存,如果发现本地已有这个版本,就不会去远程Repository下载最新的RELEASE版本。</p>
+<p><strong>JUnit是什么? 为什么要进行单元测试？</strong></p>
+<p>反射获取构造方法，再new instance</p>
+<p>因此执行UserDaoDemo时必然会调用无参构造方法</p>
+<p>先生产工厂对象在调用方法，静态的没必要先生产对象</p>
+
+
+<pre><code>&lt;bean id=&quot;userDao&quot; class=&quot;com.itheima.dao.impl.UserDaoImpl&quot;&gt;&lt;/bean&gt;
+&lt;bean id=&quot;userService&quot; class=&quot;com.itheima.service.impl.UserServiceImpl&quot;&gt;
+    &lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>name 属性值是set后面首字母小写  ref是引用容器中bean的id</p>
+
+
+<p>会产生空指针异常,因为是自己new出来的 不是从容器里面拿的</p>
+<p>引用类型用ref 普通属性类型用value</p>
+
+
+<p>最简单的方式：spring通过无参构造创建对象</p>
+<h2 id="spring注解开发"><a href="#spring注解开发" class="headerlink" title="spring注解开发"></a>spring注解开发</h2>
+
+<p><strong>对于Autowired 和qualifier的不解</strong></p>
+<pre><code>//&lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;&gt;&lt;/property&gt;
+//@Autowired //按照数据类型从Spring容器中进行匹配的
+//@Qualifier(&quot;userDao&quot;)  //是按照id值从容器中进行匹配的 但是主要此处@Qualifier结合@Autowired一起使用
+@Resource(name=&quot;userDao&quot;) //@Resource相当于@Qualifier+@Autowired
+private UserDao userDao;
+</code></pre>
+<p>id是注解时就有的（@resource（name&#x3D;’userDao’），因此自然可以选择用id从容器里面匹配进行注入;</p>
+<p>但是如果容器里只有这一个类型的，就可以只用@Autowired ，按照数据类型从Spring容器中进行匹配的</p>
+<pre><code>//&lt;bean id=&quot;userDao&quot; class=&quot;com.itheima.dao.impl.UserDaoImpl&quot;&gt;&lt;/bean&gt;
+//@Component(&quot;userDao&quot;)
+@Repository(&quot;userDao&quot;)
+public class UserDaoImpl implements UserDao &#123;
+    public void save() &#123;
+        System.out.println(&quot;save running...&quot;);
+    &#125;
+</code></pre>
+<h2 id="spring配置数据源"><a href="#spring配置数据源" class="headerlink" title="spring配置数据源"></a>spring配置数据源</h2><p><strong>关于spring配置数据源中class怎么得到的说明</strong></p>
+<pre><code>//创建数据源对象  设置连接参数
+ComboPooledDataSource dataSource = new ComboPooledDataSource();
+</code></pre>
+<p>不要选中，直接点击ComboPooledDataSource然后copy reference</p>
+<h2 id="springmvc"><a href="#springmvc" class="headerlink" title="springmvc"></a>springmvc</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h3><p><img src="/.com//.assets%5Cimage-20220412201233013.png" alt="image-20220412201233013"></p>
+<p><strong>关于xml配置中的标签context的说明（目的：增加我的命名空间&#x2F;标签 context加载&#x2F;扫描外部文件）</strong></p>
+<p><img src="/.com//.assets%5Cimage-20220412202445367.png" alt="image-20220412202445367"></p>
+<p><img src="/.com//.assets%5Cimage-20220414185801146.png" alt="image-20220414185801146"></p>
+<p>第四行时在第二行的基础上改来的 <u>: context    &#x2F;context</u></p>
+<p>第6行从第五行改来的，把schema的beans全部改为context即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.baidu.com/s?tn=monline_3_dg&wd=%E7%BC%BA%E7%9C%81&usm=4&ie=utf-8&rsv_cq=%E7%BC%BA%E7%9C%81%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D&rsv_dl=0_left_exactqa_detail_28236&rsv_pq=8ac712c70000f599&oq=%E7%BC%BA%E7%9C%81%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D&rsv_t=bc52msmA3URpiFjg8fO04KB4Iysyyq62j4lYXFfe2f2cwznhG/7ED4MWfi6aqk9qehHs">缺省</a>释义：                                                                            </p>
+<p>​                        来自<a target="_blank" rel="noopener" href="http://www.baidu.com/link?url=XVLnnwZNjp2NpiDg8xBv6psq4k7vgn6zgLBpbB5h-TkiXH8nCBIV-G4NBl394LqCxG_shDuCnarYbsI4D0tHPPNFvlDCWikbI5coKIkc-2CYCsF8vVLsJGW5j91p8PIV9dn-gCzCRESqo4itcVYF2Wg6ccZcW5436MZW8C-xsSRbs5H46gKVAwNZpl57SfWA5FM-AIeY-gdSOAdoYnOehq">百度汉语</a>                    </p>
+<p>​                                                                                                                                                                                                                                                                      系统默认状态，<em>意思</em>与“默认”相同。                                                                                                                                                                                                            </p>
+<p><img src="/.com//.assets%5Cimage-20220412203446753.png" alt="image-20220412203446753"></p>
+<p>① 导入SpringMVC相关坐标  &#x2F;因为前端控制器DispathcerServlet在spring-webmvc包里面，所以要导</p>
+<p>② 配置SpringMVC核心控制器DispathcerServlet &#x2F;共有行为</p>
+<p>③ 创建Controller类和视图页面  </p>
+<p>④ 使用注解配置Controller类中业务方法的映射地址  </p>
+<p>⑤ 配置SpringMVC核心文件 spring-mvc.xml  &#x2F;&#x2F;组件扫描 扫 controller</p>
+<p>⑥ 客户端发起请求测试</p>
+<p><strong>关于&#x2F;的说明</strong></p>
+<p><img src="/.com//.assets%5Cimage-20220413095455181.png" alt="image-20220413095455181"></p>
+<p>&#x2F;success.jsp代表在webapp下，不加&#x2F;的话就是当前目录下&#x2F;user&#x2F;success.jsp</p>
+<p>springmvc 扫web spring扫dao sevice</p>
+<p>annotation：注释</p>
+<p><strong>SpringMVC的相关组件</strong></p>
+<p>•前端控制器：DispatcherServlet &#x2F;调用其他功能组组件</p>
+<p>• 处理器映射器：HandlerMapping&#x2F;地址解析 返回执行页面</p>
+<p>• 处理器适配器：HandlerAdapter &#x2F;调用处理器</p>
+<p>• 处理器：Handler&#x2F;controller</p>
+<p>• 视图解析器：View Resolver&#x2F;解析view</p>
+<p>• 视图：View</p>
+<p><strong>SpringMVC的注解和配置</strong></p>
+<p>• 请求映射注解：@RequestMapping&#x2F;虚拟地址映射 方法&#x2F;类</p>
+<p>• 视图解析器配置：</p>
+<p><em>REDIRECT_URL_PREFIX &#x3D; “redirect:”</em> &#x2F;如果重定向，加redirect</p>
+<p><em>FORWARD_URL_PREFIX &#x3D; “forward:”</em> &#x2F;默认转发</p>
+<p><em>prefix &#x3D; “”;</em> </p>
+<p><em>suffix &#x3D; “”;</em> </p>
+<p><u>敲一下</u></p>
+<p>逻辑视图名  webinf（受保护文件夹）是外部不能直接访问，内部可以访问</p>
+<p><img src="/.com//.assets%5Cimage-20220413153745219.png" alt="image-20220413153745219"></p>
+<p>springmvc框架根据方法体里面的参数，帮助注入，创建ModelAndView对象，注入的思想，谁调用谁负责传实参，类似web阶段的监听器和req resp </p>
+<p><img src="/.com//.assets%5Cimage-20220413193452628.png" alt="image-20220413193452628"></p>
+<p>User实体类中，toString方法作用是方便看User里面有啥，sout(user) ,否则返回的是一串地址；</p>
+<p>写在方法形参位置</p>
+<p><strong>数据转换</strong></p>
+<p>js&lt;-&gt;json : JSON.parse  JSON.stringify</p>
+<p>json&lt;-&gt;java ：parseobject    tojsonString</p>
+<p><img src="/.com//.assets%5Cimage-20220414151010415.png" alt="image-20220414151010415"></p>
+<p>或</p>
+<p><img src="/.com//.assets%5Cimage-20220414151147728.png" alt="image-20220414151147728"></p>
+<p>想获取参数的方法体的形参位置注入对应形参即可 谁调用方法谁传递实际参数（框架调用）</p>
+<p><img src="/.com//.assets%5Cimage-20220414155127762.png" alt="image-20220414155127762"></p>
+<p>org.apach&#x3D;&#x3D;tomcat</p>
+<p>导junit +spring-test包—-&gt;单元测试</p>
+<p><img src="/.com//.assets%5Cimage-20220414190347061.png" alt="image-20220414190347061"></p>
+<p>AutoWired :spring 容器里面有的话 自动注入</p>
+<p>runwith:交给spring内核Junit跑</p>
+<p>contextconfiguration：指定配置文件</p>
+<p>idea双shift查询操作 ctrl alt b ：看对应实现类</p>
+<p>bean可以理解为实体 domain：实体包   uitls：工具包</p>
+<p>&lt;[mvc]:annotation-driven&gt; <strong>Spring MVC用来提供Controller请求转发，json自动转换等功能。</strong>，默认会帮我们注册默认处理请求，参数和返回值的类。</p>
+<p><img src="/.com//.assets%5Cimage-20220415103610320.png" alt="image-20220415103610320"></p>
+<p>明白业务-&gt;设计表</p>
+<p><code>userids.for</code>快捷for循环键</p>
+<p>instanceof 严格来说是Java中的一个双目运算符，用来测试一个对象是否为一个类的实例</p>
+<p>听不懂代理模式的去韩顺平设计模式中听</p>
+<p>javaa单继承多实现</p>
+<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p><img src="/.com//.assets%5Cimage-20220418221203409.png" alt="image-20220418221203409"></p>
+<p>18行 用多态是因为目标对象和代理对象是兄弟关系，不能直接赋给</p>
+<p>可以被增强的方法叫做连接点，被增强了的方法叫做切点     切点加通知就是切面</p>
+<p>增强中的过程叫织入，织入完成过后的产物叫切面</p>
+<p>为了做什么：目标对象-&gt;代理对象 怎么做：找到连接点（即方法）经过拦截方法定义后真正拦截到的使之成为切入点 经过一定的操作成为切面 什么样的操作：通过织入把通知&#x2F;增强引入切入点 成为切面 最终的效果</p>
+<p>注意此处不可用实现类Target接受注入，一定要用接口接受注入，因为Spring默认是JDK动态代理，需要接口作为参数。具体可去搜索“Spring 接口接受注入</p>
+<p><img src="/.com//.assets%5Cimage-20220419210313543.png" alt="image-20220419210313543"></p>
+<p>组件扫描需要用到context命名空间</p>
+<p>读未提交，读已提交，可重复读，串行化</p>
+<p>tx:事务</p>
+<p><img src="/.com//.assets%5Cimage-20220420111903315.png" alt="image-20220420111903315"></p>
+<p>对哪些方法进行增强 anno:注解</p>
+<p>自定义bean用anno，非自定义用xml   组件扫描context</p>
+<p>junit测试 log4j日志<img src="/.com//.assets%5Cimage-20220421205215374.png" alt="image-20220421205215374"></p>
+<p><img src="/.com//.assets%5Cimage-20220421205342285.png" alt="image-20220421205342285"></p>
+<p>简单来说就是引用实体，用association；引用List用collection</p>
+<p>一个订单对应一个用户-&gt;一对一，用association</p>
+<p>一个用户里面有多个订单，用collection</p>
+<p>一个用户对应多个角色，一个角色对应多个用户，用collection</p>
+<p><strong>resultMap</strong></p>
+<p>如果数据库表字段名和要封装的实体对象属性名一致，则mybatis自动进行封装，否则就要用resultmap进行映射</p>
+<p>@Before – 表示在任意使用@Test注解标注的public void方法执行之前执行</p>
+<p>这个注解是junit的注解表示在执行测试前统一执行的方法</p>
+<p><img src="/.com//.assets%5Cimage-20220421211556280.png" alt="image-20220421211556280"></p>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><h2 id="mybatisX"><a href="#mybatisX" class="headerlink" title="mybatisX"></a>mybatisX</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47025166/article/details/125362323?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-125362323-blog-118767041.t0_edu_mix&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-125362323-blog-118767041.t0_edu_mix&amp;utm_relevant_index=1">https://blog.csdn.net/weixin_47025166/article/details/125362323?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-125362323-blog-118767041.t0_edu_mix&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-125362323-blog-118767041.t0_edu_mix&amp;utm_relevant_index=1</a></p>
+
+
+
+
+<h2 id="copilot"><a href="#copilot" class="headerlink" title="copilot"></a>copilot</h2><p><strong>安装步骤</strong></p>
+<p>官网申请-&gt;idea搜索安装-&gt;登录</p>
+<p><strong>快捷键：</strong></p>
+<p>接受内联建议：。Tab<br>忽略内联建议：。Esc<br>显示下一个内联建议：或 。Alt + ]<code>Option + ] 显示以前的内联建议：或 .Alt + [</code>Option + [<br>触发内联建议：或 。Alt + `&#96;Option + <br>打开 Copilot（在单独的窗格中最多 10 个建议）：或者选择“打开 Copilot”。Alt + Enter&#96;&#96;Option + Enter</p>
+<p><strong>使用</strong><br>例如：&#x2F;&#x2F;堆排序 回车等待 tab确认 esc取消</p>
+<h2 id="postman"><a href="#postman" class="headerlink" title="postman"></a>postman</h2><p>报错：This file isn’t in your working directory. Teammates you share this request with won’t be able to use this file. To make collaboration easier you can setup your working directory in Settings.<br>解决：File–&gt;Settings–&gt;General–&gt;WORKING DIRECTORY–&gt;Choose–&gt;选择工作目录，并把需要传输的文件放置该目录下</p>
+<h1 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h1><h2 id="第三方技术"><a href="#第三方技术" class="headerlink" title="第三方技术"></a>第三方技术</h2><h3 id="redis安装后配置"><a href="#redis安装后配置" class="headerlink" title="redis安装后配置"></a><strong>redis安装后配置</strong></h3><p><img src="/.com//.assets%5Cimage-20220525102149750.png" alt="image-20220525102149750"></p>
+<h3 id="jetcache"><a href="#jetcache" class="headerlink" title="jetcache"></a>jetcache</h3><p><strong>在jetcache中对于缓存的理解</strong></p>
+<p>有缓存的情况下，做update，看Idea的console，如果没有查询日志的出现，证明没有往数据库走，而是直接从内存里面拿，即说明Update的时候缓存里面已经改变好了，即缓存有效；但是做delete的时候，会出现查询日志，因为删完之后内存无此数据了（考虑到可能是缓存的某些数据存放时间太长已经自动消失了），所以要查一下数据库，此处算不上hit的数据。</p>
+<p><strong>我的私服账号密码 jetty服务器</strong></p>
+<p><img src="/.com//.assets%5Cimage-20220426111621260.png" alt="image-20220426111621260"></p>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h3><p>@RestController注解相当于@ResponseBody ＋ @Controller合在一起的作用。</p>
+<p><img src="/.com//.assets%5Cimage-20220424172808454.png" alt="image-20220424172808454"></p>
+<p>注意：使用如上结构 不可把application放到另一个包里面</p>
+<p>所有插件 plugin都有个configuration</p>
+<h3 id="value"><a href="#value" class="headerlink" title="@value"></a><strong>@value</strong></h3><p>1.@Value(“${xxxx}”)注解从配置文件读取值的用法，也就是从application.<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=yaml&spm=1001.2101.3001.7020">yaml</a>文件中获取值。</p>
+<p>比如存在application.yaml文件，配置内容如下：</p>
+<p>user:<br>    userName: xiaozhou<br>    sex: 女<br>    age: 18</p>
+<p>如果@Value（“${user.userName:xiaosun}”），指定了name的值为xiaosun，当从配置文件中获取不到userName时，则userName值为xiaosun</p>
+<p>2.常量注入</p>
+<p>@Value(“xiaozhou”)<br>privat String name; 表明name的值是xiaozhou。</p>
+<h3 id="Data"><a href="#Data" class="headerlink" title="@Data"></a><strong>@Data</strong></h3><p> 在实体类上添加@Data注解，可以省去代码中大量的 get()、 set()、 toString() 等方法，提高代码的简洁：</p>
+<h3 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="**@SpringBootApplication **"></a>**@SpringBootApplication **</h3><p>是Sprnig Boot项目的核心注解，目的是开启自动配置</p>
+<h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><p>@Autowired是调用容器里面的内容，而@Component @Server 等四大组件就是把下面的类放入容器中</p>
+<h3 id="隐藏指定文件"><a href="#隐藏指定文件" class="headerlink" title="隐藏指定文件"></a><strong>隐藏指定文件</strong></h3><p>idea 里面 setting-file type</p>
+<p>继承：防止依赖冲突 a模块需要一个模块用1.0版本  而b模块需要2.0 因此可以建一个总控模块 让ab继承即可</p>
+<p>要继承主工程的某些依赖，子工程不需要写坐标 </p>
+<p>controller 打包形式用war</p>
+<h2 id="快速复制sringboot模块"><a href="#快速复制sringboot模块" class="headerlink" title="快速复制sringboot模块**"></a>快速复制sringboot模块**</h2><p>先建立一个Baseconfiguration模块 内容包括src和一个pom文件 Pom文件的name和description标签可以删除</p>
+<p>然后复制粘贴 只需要改pom文件的artifactId即可</p>
+<p>配置对应一些技术 无技术不配置  巧用关键字</p>
+<p>springboot内置属性查询：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties">https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties</a></p>
+<h2 id="建springboot模块、整合技术"><a href="#建springboot模块、整合技术" class="headerlink" title="建springboot模块、整合技术"></a><strong>建springboot模块、整合技术</strong></h2><img src="/.com//image-20220428105928576.png" alt="image-20220428105928576" style="zoom: 50%;">
+后面用什么技术勾什么选项 比如junit不用勾 而整合mybatis需要mybatis framework mysql driver
+遇到搜不到的技术 如mybatis-plus druid等 先建模块 然后在mavenrepository上复制对应技术的依赖坐标
+
+<h2 id="隐藏指定文件、指定类型文件"><a href="#隐藏指定文件、指定类型文件" class="headerlink" title="隐藏指定文件、指定类型文件**"></a>隐藏指定文件、指定类型文件**</h2><p> Setting → File Types → Ignored Files and Folders</p>
+<p> 输入要隐藏的文件名，支持*号通配符</p>
+<p> 回车确认添加</p>
+<h2 id="实体类与sql表名映射"><a href="#实体类与sql表名映射" class="headerlink" title="实体类与sql表名映射"></a><strong>实体类与sql表名映射</strong></h2><p>类上添加注解@TableName(value&#x3D;”表名”)</p>
+<h2 id="业务层通用实现类"><a href="#业务层通用实现类" class="headerlink" title="业务层通用实现类"></a><strong>业务层通用实现类</strong></h2><p><strong>（ServiceImpl&lt;M,T&gt;）</strong> </p>
+<p>M指的是mapper T指的是实体类</p>
+<p>注入接口实现类都可以，但是我觉得注入实现类思路更清晰，所以两个都可以的不用纠结</p>
+<h2 id="看response内容"><a href="#看response内容" class="headerlink" title="看response内容"></a>看response内容</h2><p>运行服务器 浏览器输入url F12 network 抓包 </p>
+<h2 id="pom导入依赖爆红"><a href="#pom导入依赖爆红" class="headerlink" title="pom导入依赖爆红"></a>pom导入依赖爆红</h2><p>把依赖复制进去刷新 不要听提示的 没用</p>
+<h2 id="Prefix-must-be-in-canonical-form"><a href="#Prefix-must-be-in-canonical-form" class="headerlink" title="Prefix must be in canonical form"></a><strong>Prefix must be in canonical form</strong></h2><p><img src="/.com//.assets%5Cimage-20220518211130186.png" alt="image-20220518211130186"></p>
+<h1 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h1><h2 id="idea快捷键"><a href="#idea快捷键" class="headerlink" title="idea快捷键"></a>idea快捷键</h2><p>idea :ctrl x 删除当前行</p>
+<p>CTRL F12 查找方法</p>
+<h2 id="shell命令行"><a href="#shell命令行" class="headerlink" title="shell命令行"></a>shell命令行</h2><p>window cls linux cleari —-清屏</p>
+<h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><h2 id="postman-1"><a href="#postman-1" class="headerlink" title="postman"></a>postman</h2><p>在postmman里面发requset时出现如下报错：</p>
+<p>access_control_exception**’, ‘access denied (“java.io.FilePermission” “C:\Program%20Files\ElasticSearch\elasticsearch-7.8.1\plugins\ik\config\IKAnalyzer.cfg.xml” “read”)<br>刚开始碰到这个问题就立马去更改文件夹权限，然后发现完全不起作用，直到看到网上有人说是文件夹路径中存在空格才明白，然后就把elasticsearch-7.8.1这个文件夹移到用户下就解决问题了。</p>
+<h2 id="springboot-1"><a href="#springboot-1" class="headerlink" title="springboot"></a>springboot</h2><h3 id="Controller层注解无法使用"><a href="#Controller层注解无法使用" class="headerlink" title="Controller层注解无法使用"></a>Controller层注解无法使用</h3><p>需要导入spring-boot-starter-web依赖</p>
+<h3 id="IDEA-启动找不到或无法加载主类"><a href="#IDEA-启动找不到或无法加载主类" class="headerlink" title="IDEA 启动找不到或无法加载主类"></a><strong>IDEA 启动找不到或无法加载主类</strong></h3><p>maven里面clean一下再complie即可</p>
+<h3 id="Xverify-none-noverify弃用"><a href="#Xverify-none-noverify弃用" class="headerlink" title="-Xverify:none -noverify弃用"></a>-Xverify:none -noverify弃用</h3><img src="/.com//image-20220519205209283.png" alt="image-20220519205209283" style="zoom:33%;">
+
+<p>当test的时候，注意报校验的description的话，要看yml里面配置是否正确</p>
+<p>自动装配可以放到形参位置，缩小作用范围</p>
+<h3 id="ConfigurationProperties警告"><a href="#ConfigurationProperties警告" class="headerlink" title="@ConfigurationProperties警告"></a><strong>@ConfigurationProperties警告</strong></h3><p>导入如下依赖</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>浏览器无法与服务器交互时 地址栏重新输入localhost试试<br>注意：实现类别放controllor里面 拿出来</p>
+<p>idea项目运行一次后 postman可发多请求 不用再每次重启</p>
+<p>div标签可以理解为一个小块</p>
+<p>这里好像数据全在row里面吧，可以直接把row的值赋给数据</p>
+<p>explore 资源管理器  cmd :cls清屏</p>
+<p>clean清target目录</p>
+<p>同级别的 pro&gt;yml&gt;yaml ，内容上：同覆盖，异合并</p>
+<p>代码上下移动： shift alt 上下键   </p>
+<p>style (css) 需要在head </p>
+<p>用response.getparameter</p>
+<p>如果导入的坐标范围包含runtime就和本地范围取交集，反之取空</p>
+<p>.var 快速取返回值</p>
+<p>ctrl H 看接口实现类</p>
+<p><strong>redis or mongodb</strong></p>
+<p>redis用于不经常变化的数据 但需要经常访问的数据</p>
+<p>Mongodb 用于经常变化的数据</p>
+<p><strong>文件路径中的正斜杠（&#x2F;）与反斜杠（\）</strong></p>
+<p>先总结：斜杠&#x2F;常用；<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%8F%8D%E6%96%9C%E6%9D%A0&spm=1001.2101.3001.7020">反斜杠</a>\只有在windows系统中使用</p>
+<p>只要记住”\“反斜杠有转义的功能，那么写路径的时候就不会出问题了。</p>
+<p><strong>cmd创建多级目录</strong></p>
+<p>F:\Program Files\mongodb&gt;mkdir -p db\data2</p>
+<p><strong>找不到dll的解决办法？</strong></p>
+<p><img src="/.com//.assets%5Cimage-20220525115245052.png" alt="image-20220525115245052"></p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>Error creating bean with name ‘cacheManager’\</p>
+<p>看看配置是不是过时了 </p>
+<pre><code>例如：
+ehcache:
+  config: ehcache.xml
+  变成了：
+infinispan:
+  config: ehcache.xml
+</code></pre>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p><img src="https://img-blog.csdnimg.cn/94b5cab2bb9a49d79df42d60dbbe5ab9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA44GD5bCP55S35a2p44Gk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>报循环依赖错误</p>
+<p>配置文件如下：</p>
+<p>spring:<br>    main:<br>        allow-circular-references: true</p>
+<p>小tip：在项目中右键选择diagrams,可以查看项目中的依赖关系哦</p>
+<h1 id="代办"><a href="#代办" class="headerlink" title="代办"></a>代办</h1><p>startup.cmd -m standalone   初始化测试环境 清除测试产生的东西   开启和关闭把，跟启动tomcat的那两个bat文件名一样</p>
+<p>在测试目录下,如果配置类和application启动类一个目录级别下,可以不用写Import注解    ???</p>
+<p>上面那个是controller调用的，经过了容器，bean内部的方法互相调用不经过容器的管理，所以触发不了cache注解，可能是这个意思</p>
+<p>在jsr303校验中我就是吃了这个亏，一直以为只有为yaml文件注入得属性才可以实现检验</p>
+<p>多级缓存是好的，先从本地找最快，本地找不到去远程缓存找，再找不到就去查数据库</p>
+<p><img src="/.com//.assets%5Cimage-20220607193243949.png" alt="image-20220607193243949"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">张维阳</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2022/11/09/java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">http://example.com/2022/11/09/java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">张维阳</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/11/09/java%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            张维阳
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/09/java%E7%AC%94%E8%AE%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            张维阳
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <a href="/about" target="_blank">张维阳</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
