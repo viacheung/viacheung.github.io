@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="力扣, 张维阳的博客">
+    <meta name="keywords" content="力扣, ViaCheung">
     <meta name="description" content="java基础代码写法while（条件）; 如果没有结构体那么需要写分号。
 |和||的区别||会短路
 数组初始化内容int float double : 0
@@ -25,7 +25,7 @@ char : 空格
 
     
 
-    <title>力扣 | 张维阳的博客</title>
+    <title>力扣 | ViaCheung</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -50,7 +50,7 @@ char : 空格
                     
                     <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">张维阳的博客</span>
+                    <span class="logo-span">ViaCheung</span>
                 </a>
             </div>
             
@@ -149,7 +149,7 @@ char : 空格
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">张维阳的博客</div>
+        <div class="logo-name">ViaCheung</div>
         <div class="logo-desc">
             
             Never really desperate, only the lost of the soul.
@@ -475,7 +475,7 @@ char : 空格
 <p>boolean: false</p>
 <p>String : null</p>
 <p>char : 空格</p>
-<h2 id="求长度三剑客"><a href="#求长度三剑客" class="headerlink" title="求长度三剑客"></a>求长度三剑客</h2><img src="/.com//image-20220919155428203.png" alt="image-20220919155428203" style="zoom:50%;">
+<h2 id="求长度三剑客"><a href="#求长度三剑客" class="headerlink" title="求长度三剑客"></a>求长度三剑客</h2><img src="/.xyz//image-20220919155428203.png" alt="image-20220919155428203" style="zoom:50%;">
 
 <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><strong>转Int</strong></p>
 <p>Integer.valueOf()和Integer.parseInt()</p>
@@ -530,7 +530,7 @@ char : 空格
 <p><strong>分析</strong></p>
 <p>一般而言，字符串的集合都是仅由小写字母构成，所以本文章都是基于该情况展开分析！</p>
 <p>字符串集合：[them, zip, team, the, app, that]。这个样例的前缀树长什么样呢？</p>
-<img src="/.com//1657540498-HHnzlV-1.svg" alt="1.svg" style="zoom: 67%;">
+<img src="/.xyz//1657540498-HHnzlV-1.svg" alt="1.svg" style="zoom: 67%;">
 
 <p>由于都是小写字母，所以对于每个节点，均有 26 个孩子节点，上图中没有画出来，省略了而已…，但是要记住：每个节点均有 26 个孩子节点</p>
 <p>还有一个点要明确：节点仅仅表示从根节点到本节点的路径构成的字符串是否有效而已</p>
@@ -713,7 +713,7 @@ class Trie &#123;
 &#125;
 </code></pre>
 <p>以前面示例作为例子，画个图理解一下</p>
-<img src="/.com//image-20220915160038236.png" alt="image-20220915160038236" style="zoom:50%;">
+<img src="/.xyz//image-20220915160038236.png" alt="image-20220915160038236" style="zoom:50%;">
 
 <p>这道题是课程二，让我们返回拓扑排序，课程一问题让我们返回是否能修完所有课程，无非就是return的不一样罢了。    </p>
 <pre><code class="java">return visited == numCourses;
@@ -732,7 +732,7 @@ class Trie &#123;
 <h3 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h3><h4 id="滑动窗口最大值"><a href="#滑动窗口最大值" class="headerlink" title="滑动窗口最大值"></a>滑动窗口最大值</h4><p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。    返回 滑动窗口中的最大值 。</p>
 <p>这个动图不错</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/solution/dong-hua-yan-shi-dan-diao-dui-lie-239hua-hc5u/">https://leetcode.cn/problems/sliding-window-maximum/solution/dong-hua-yan-shi-dan-diao-dui-lie-239hua-hc5u/</a></p>
-<img src="/.com//begegxp0nc69gltu.gif" alt="BFS 遍历的过程（动图）" style="zoom:33%;">
+<img src="/.xyz//begegxp0nc69gltu.gif" alt="BFS 遍历的过程（动图）" style="zoom:33%;">
 
 <pre><code class="java">class Solution &#123;
     public int[] maxSlidingWindow(int[] nums, int k) &#123;
@@ -905,10 +905,10 @@ Arrays.asList(nums[i],nums[j],nums[k]);
 <h2 id="除自身以外数组的乘积"><a href="#除自身以外数组的乘积" class="headerlink" title="除自身以外数组的乘积"></a>除自身以外数组的乘积</h2><p>题目：给你一个整数数组 <code>nums</code>，返回 <em>数组 <code>answer</code> ，其中 <code>answer[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积</em> 。</p>
 <p>给定两个概念，L数组 R数组</p>
 <p><code>L[i]</code> 代表的是 <code>i</code> 左侧所有数字的乘积，<code>R[i]</code> 代表的是 <code>i</code> 右侧所有数字的乘积。</p>
-<img src="/.com//image-20220920154818329.png" alt="image-20220920154818329" style="zoom: 67%;">
+<img src="/.xyz//image-20220920154818329.png" alt="image-20220920154818329" style="zoom: 67%;">
 
 <p>改进算法：空间复杂度 O(1) 的方法</p>
-<img src="/.com//image-20220920154907687.png" alt="image-20220920154907687" style="zoom: 67%;">
+<img src="/.xyz//image-20220920154907687.png" alt="image-20220920154907687" style="zoom: 67%;">
 
 <pre><code class="java">//我的代码
 class Solution &#123;
@@ -934,7 +934,7 @@ class Solution &#123;
 <h2 id="滚动数组"><a href="#滚动数组" class="headerlink" title="滚动数组"></a>滚动数组</h2><p>结果只和前两个数据有关系，可以采用滚动数组，复杂度可以从O（n)降低到O（1）；</p>
 <h2 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h2><p>给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n&#x2F;2 ⌋ 的元素。</p>
 <p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<img src="/.com//image-20220917190606201.png" alt="image-20220917190606201" style="zoom: 67%;">
+<img src="/.xyz//image-20220917190606201.png" alt="image-20220917190606201" style="zoom: 67%;">
 
 <pre><code class="java">class Solution &#123;
     private Map&lt;Integer, Integer&gt; countNums(int[] nums) &#123;
@@ -971,7 +971,7 @@ class Solution &#123;
 <p>但这个复杂度是nlog(n)</p>
 <h2 id="搜索二维矩阵"><a href="#搜索二维矩阵" class="headerlink" title="搜索二维矩阵"></a>搜索二维矩阵</h2><p>编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target 。该矩阵具有以下特性：</p>
 <p>每行的元素从左到右升序排列。   每列的元素从上到下升序排列。</p>
-<img src="/.com//searchgrid2.jpg" alt="img" style="zoom:50%;">
+<img src="/.xyz//searchgrid2.jpg" alt="img" style="zoom:50%;">
 
 <p><strong>方法一</strong></p>
 <p>直接查找 复杂度O（mn）</p>
@@ -1019,7 +1019,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p><strong>方法三（掌握这个）</strong></p>
-<img src="/.com//image-20220921123558099.png" alt="image-20220921123558099" style="zoom: 80%;">
+<img src="/.xyz//image-20220921123558099.png" alt="image-20220921123558099" style="zoom: 80%;">
 
 <p>我的理解：必须从右上角开始搜索，保证我搜索到的元素在行是最大值，在列是小值，因此如果我元素大于target，则列的最小值大于target（整个列都大于target），列–；小于target，则列的最大值小于target(整个行小于target)，行++</p>
 <pre><code class="java">class Solution &#123;
@@ -1040,7 +1040,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h1 id="空间时间复杂度"><a href="#空间时间复杂度" class="headerlink" title="空间时间复杂度"></a>空间时间复杂度</h1><img src="/.com//image-20221001122257963.png" alt="image-20221001122257963" style="zoom:50%;">
+<h1 id="空间时间复杂度"><a href="#空间时间复杂度" class="headerlink" title="空间时间复杂度"></a>空间时间复杂度</h1><img src="/.xyz//image-20221001122257963.png" alt="image-20221001122257963" style="zoom:50%;">
 
 <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>利于记忆</p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903845227659271">https://juejin.cn/post/6844903845227659271</a></p>
@@ -1085,7 +1085,7 @@ return res.toString();
 &#125;
 </code></pre>
 <p><strong>方法二：字符串匹配</strong></p>
-<img src="/.com//image-20221023224136692.png" alt="image-20221023224136692" style="zoom:80%;">
+<img src="/.xyz//image-20221023224136692.png" alt="image-20221023224136692" style="zoom:80%;">
 
 <pre><code class="java">class Solution &#123;
     public boolean repeatedSubstringPattern(String s) &#123;
@@ -1115,7 +1115,7 @@ return res.toString();
 &#125;
 </code></pre>
 <h3 id="KMP"><a href="#KMP" class="headerlink" title="KMP"></a>KMP</h3><p>图和代码略有不符 理解即可</p>
-<img src="/.com//image-20221023164358460.png" alt="image-20221023164358460" style="zoom: 80%;">
+<img src="/.xyz//image-20221023164358460.png" alt="image-20221023164358460" style="zoom: 80%;">
 
 
 
@@ -1182,7 +1182,7 @@ return res.toString();
     &#125;
 &#125;
 </code></pre>
-<h2 id="翻转字符串里的单词"><a href="#翻转字符串里的单词" class="headerlink" title="翻转字符串里的单词"></a>翻转字符串里的单词</h2><p><img src="/.com//image-20221019213126600.png" alt="image-20221019213126600" style="zoom:80%;">、</p>
+<h2 id="翻转字符串里的单词"><a href="#翻转字符串里的单词" class="headerlink" title="翻转字符串里的单词"></a>翻转字符串里的单词</h2><p><img src="/.xyz//image-20221019213126600.png" alt="image-20221019213126600" style="zoom:80%;">、</p>
 <pre><code class="java">class Solution &#123;
     public String reverseWords(String s) &#123;
         // 除去开头和末尾的空白字符
@@ -1194,7 +1194,7 @@ return res.toString();
     &#125;
 &#125;
 </code></pre>
-<img src="/.com//image-20221019214203980.png" alt="image-20221019214203980" style="zoom:67%;">
+<img src="/.xyz//image-20221019214203980.png" alt="image-20221019214203980" style="zoom:67%;">
 
 
 
@@ -1252,7 +1252,7 @@ class Solution &#123;
 </code></pre>
 <h2 id="回文子串"><a href="#回文子串" class="headerlink" title="回文子串"></a>回文子串</h2><p>给你一个字符串 s ，请你统计并返回这个字符串中 回文子串 的数目。回文字符串 是正着读和倒过来读一样的字符串。子字符串 是字符串中的由连续字符组成的一个序列。具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</p>
 <p>中心拓展：</p>
-<img src="/.com//image-20221018211634458.png" alt="image-20221018211634458" style="zoom:80%;">
+<img src="/.xyz//image-20221018211634458.png" alt="image-20221018211634458" style="zoom:80%;">
 
 <pre><code class="java">class Solution &#123;
     public int countSubstrings(String s) &#123;
@@ -1272,7 +1272,7 @@ class Solution &#123;
 </code></pre>
 <h2 id="438寻找字母异位词"><a href="#438寻找字母异位词" class="headerlink" title="438寻找字母异位词"></a>438寻找字母异位词</h2><p>给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。</p>
 <p>异位词 指由相同字母重排列形成的字符串（包括相同的字符串）。</p>
-<img src="/.com//image-20221006155802666.png" alt="image-20221006155802666" style="zoom:67%;">
+<img src="/.xyz//image-20221006155802666.png" alt="image-20221006155802666" style="zoom:67%;">
 
 <pre><code class="java">class Solution &#123;
     public List&lt;Integer&gt; findAnagrams(String s, String p) &#123;
@@ -1370,9 +1370,9 @@ class Solution &#123;
 输出：&quot;accaccacc&quot;
 </code></pre>
 <p><strong>解法一：辅助栈法</strong></p>
-<img src="/.com//image-20221001100508616.png" alt="image-20221001100508616" style="zoom: 80%;">
+<img src="/.xyz//image-20221001100508616.png" alt="image-20221001100508616" style="zoom: 80%;">
 
-<img src="/.com//ezgif-5-e7185c1cac.gif" alt="[video-to-gif output image]">
+<img src="/.xyz//ezgif-5-e7185c1cac.gif" alt="[video-to-gif output image]">
 
 <p>举例：3 [ a 2 [ c ] ]  </p>
 <p>维护两个stack 前一个是数字  后一个res   </p>
@@ -1696,7 +1696,7 @@ deque两种实现：
 <p>如果可以，返回 true ；否则返回 false 。</p>
 <p>magazine 中的每个字符只能在 ransomNote 中使用一次。</p>
 <p><strong>官方题解</strong></p>
-<img src="/.com//image-20221017202244463.png" alt="image-20221017202244463" style="zoom:67%;">
+<img src="/.xyz//image-20221017202244463.png" alt="image-20221017202244463" style="zoom:67%;">
 
 <p><strong>我的题解</strong></p>
 <pre><code class="java">class Solution &#123;
@@ -1767,7 +1767,7 @@ deque两种实现：
 <p>「快乐数」 定义为：</p>
 <p>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。<br>然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。<br>如果这个过程 结果为 1，那么这个数就是快乐数。</p>
 <p><strong>方法一</strong></p>
-<img src="/.com//image-20221016165323827.png" alt="image-20221016165323827" style="zoom: 80%;">
+<img src="/.xyz//image-20221016165323827.png" alt="image-20221016165323827" style="zoom: 80%;">
 
 
 
@@ -1910,7 +1910,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <h2 id="两两交换链表中的节点24"><a href="#两两交换链表中的节点24" class="headerlink" title="两两交换链表中的节点24"></a>两两交换链表中的节点24</h2><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。</p>
-<img src="/.com//image-20221015163411413.png" alt="image-20221015163411413" style="zoom: 80%;">
+<img src="/.xyz//image-20221015163411413.png" alt="image-20221015163411413" style="zoom: 80%;">
 
 <pre><code class="java">class Solution &#123;
     public ListNode swapPairs(ListNode head) &#123;
@@ -1924,7 +1924,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<img src="/.com//image-20221015163434779.png" alt="image-20221015163434779" style="zoom:80%;">
+<img src="/.xyz//image-20221015163434779.png" alt="image-20221015163434779" style="zoom:80%;">
 
 <pre><code class="java">class Solution &#123;
     public ListNode swapPairs(ListNode head) &#123;
@@ -1945,7 +1945,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <h2 id="移除链表元素203"><a href="#移除链表元素203" class="headerlink" title="移除链表元素203"></a>移除链表元素203</h2><p>给你一个链表的头节点 <code>head</code> 和一个整数 <code>val</code> ，请你删除链表中所有满足 <code>Node.val == val</code> 的节点，并返回 <strong>新的头节点</strong> 。</p>
-<img src="/.com//image-20221014152913347.png" alt="image-20221014152913347" style="zoom:67%;">
+<img src="/.xyz//image-20221014152913347.png" alt="image-20221014152913347" style="zoom:67%;">
 
 <pre><code class="java">class Solution &#123;
     public ListNode removeElements(ListNode head, int val) &#123;
@@ -1964,7 +1964,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p>优先方法二，比较好理解。</p>
-<img src="/.com//image-20221014152957745.png" alt="image-20221014152957745" style="zoom: 67%;">
+<img src="/.xyz//image-20221014152957745.png" alt="image-20221014152957745" style="zoom: 67%;">
 
 <h2 id="设计链表"><a href="#设计链表" class="headerlink" title="设计链表"></a>设计链表</h2>
 
@@ -2097,7 +2097,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h2 id="环形链表I"><a href="#环形链表I" class="headerlink" title="环形链表I"></a>环形链表I</h2><img src="/.com//image-20221015175612893.png" alt="image-20221015175612893" style="zoom: 80%;">
+<h2 id="环形链表I"><a href="#环形链表I" class="headerlink" title="环形链表I"></a>环形链表I</h2><img src="/.xyz//image-20221015175612893.png" alt="image-20221015175612893" style="zoom: 80%;">
 
 <p><strong>方法一：哈希表</strong></p>
 <p>最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。</p>
@@ -2159,7 +2159,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <p>方法二</p>
-<img src="/.com//image-20221015181031942.png" alt="image-20221015181031942" style="zoom:80%;">
+<img src="/.xyz//image-20221015181031942.png" alt="image-20221015181031942" style="zoom:80%;">
 
 <p>环形链表和龟兔赛跑很像，也是相遇后，再有一个指针从头开始和slow一起移动，最后相遇即为结果</p>
 <pre><code class="java">public class Solution &#123;
@@ -2192,13 +2192,13 @@ class Solution &#123;
 <p>1、如果有环，兔子乌龟(兔子和乌龟可以不在一个位置出发，这个要看具体情况)必定会相遇（判断是否有环，循环问题，链表、快乐数）</p>
 <p>2、如果有环，兔子乌龟同时同位置出发，相遇后，再有一个指针从头开始和slow一起移动，最后在入环点相遇。</p>
 <h2 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h2><p>给你两个单链表的头节点 <code>headA</code> 和 <code>headB</code> ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 <code>null</code> </p>
-<img src="/.com//160_statement.png" alt="img" style="zoom:50%;">
+<img src="/.xyz//160_statement.png" alt="img" style="zoom:50%;">
 
 
 
-<img src="/.com//image-20220910174724580.png" alt="image-20220910174724580" style="zoom: 67%;">
+<img src="/.xyz//image-20220910174724580.png" alt="image-20220910174724580" style="zoom: 67%;">
 
-<img src="/.com//image-20221015175222441.png" alt="image-20221015175222441" style="zoom:67%;">
+<img src="/.xyz//image-20221015175222441.png" alt="image-20221015175222441" style="zoom:67%;">
 
 <pre><code class="java">public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123;
     if (headA == null || headB == null) return null;
@@ -2255,7 +2255,7 @@ class Solution &#123;
 </li>
 <li><p><input checked disabled type="checkbox"> 
 最终，堆中的 k个元素即为前 k个高频元素</p>
-<img src="/.com//2b27b1db106a53abe239c5be8e49a800522ab2f6637940cb556bcfe1232ff333-file_1561712388055" alt="img" style="zoom:50%;">
+<img src="/.xyz//2b27b1db106a53abe239c5be8e49a800522ab2f6637940cb556bcfe1232ff333-file_1561712388055" alt="img" style="zoom:50%;">
 
 
 
@@ -2512,7 +2512,7 @@ System.out.println(key);
 String key2 = new String(array);//ab    值
 System.out.println(key2);
 </code></pre>
-<p><img src="/.com//.assets%5Cimage-20220519114000686.png" alt="image-20220519114000686"></p>
+<p><img src="/.xyz//.assets%5Cimage-20220519114000686.png" alt="image-20220519114000686"></p>
 <p><strong>关于Array和List的区别</strong></p>
 <p>1.Array连续  List不连续 因此定义时需要指定Array长度</p>
 <p>2.查找Array 插入List</p>
@@ -2540,19 +2540,19 @@ System.out.println(key2);
     &#125;
 &#125;
 </code></pre>
-<img src="/.com//fdcd3bd27f4008948084f6ec86b58535e71f66862bd89a34bd6fe4cc42d68e89-16578569951531.gif" alt="DFS 与 BFS 对比" style="zoom:25%;">
+<img src="/.xyz//fdcd3bd27f4008948084f6ec86b58535e71f66862bd89a34bd6fe4cc42d68e89-16578569951531.gif" alt="DFS 与 BFS 对比" style="zoom:25%;">
 **BFS 的应用一：层序遍历**
 
 <pre><code>给定一个二叉树，返回其按层序遍历得到的节点值。 层序遍历即逐层地、从左到右访问所有结点。
 </code></pre>
 <p>层序遍历要求的输入结果和 BFS 是不同的。层序遍历要求我们区分每一层，也就是返回一个二维数组。而 BFS 的遍历结果是一个一维数组，无法区分每一层。</p>
-<img src="/.com//fd1d63037d0e2f787d2140fee406e109094a4f66ab0837a7273f8b371eef8096.jpg" alt="BFS 遍历与层序遍历的输出结果不同" style="zoom:33%;">
+<img src="/.xyz//fd1d63037d0e2f787d2140fee406e109094a4f66ab0837a7273f8b371eef8096.jpg" alt="BFS 遍历与层序遍历的输出结果不同" style="zoom:33%;">
 
 <p>截取 BFS 遍历过程中的某个时刻：</p>
-<img src="/.com//4529bf559c6a2d84d550eebaee027c3b7ae25069e4ec91f27b29a4c6358d6662.gif" alt="BFS 遍历的过程（动图）" style="zoom:33%;">
+<img src="/.xyz//4529bf559c6a2d84d550eebaee027c3b7ae25069e4ec91f27b29a4c6358d6662.gif" alt="BFS 遍历的过程（动图）" style="zoom:33%;">
 
 <p>BFS 遍历中某个时刻队列的状态</p>
-<img src="/.com//9f178b56ff1c94388d893f2fb48e9e77e186aba7cfd7483637776359062d68b8.jpg" alt="BFS 遍历中某个时刻队列的状态" style="zoom:33%;">
+<img src="/.xyz//9f178b56ff1c94388d893f2fb48e9e77e186aba7cfd7483637776359062d68b8.jpg" alt="BFS 遍历中某个时刻队列的状态" style="zoom:33%;">
 
 <p>可以看到，此时队列中的结点是 3、4、5，分别来自第 1 层和第 2 层。这个时候，第 1 层的结点还没出完，第 2 层的结点就进来了，而且两层的结点在队列中紧挨在一起，我们无法区分队列中的结点来自哪一层。</p>
 <p>因此，我们需要稍微修改一下代码，在每一层遍历开始前，先记录队列中的结点数量 n（也就是这一层的结点数量），然后一口气处理完这一层的 n 个结点。</p>
@@ -2576,7 +2576,7 @@ void bfs(TreeNode root) &#123;
 &#125;
 </code></pre>
 <p>这样，我们就将 BFS 遍历改造成了层序遍历。在遍历的过程中，结点进队列和出队列的过程为：</p>
-<img src="/.com//94cd1fa999df0276f1dae77a9cca83f4cabda9e2e0b8571cd9550a8ee3545f56.gif" alt="img" style="zoom:33%;">
+<img src="/.xyz//94cd1fa999df0276f1dae77a9cca83f4cabda9e2e0b8571cd9550a8ee3545f56.gif" alt="img" style="zoom:33%;">
 
 <p>可以看到，在 while 循环的每一轮中，都是将当前层的所有结点出队列，再将下一层的所有结点入队列，这样就实现了层序遍历。</p>
 <p>最终我们得到的题解代码为：</p>
@@ -2680,7 +2680,7 @@ void bfs(TreeNode root) &#123;
 </code></pre>
 <h2 id="二叉树最小深度"><a href="#二叉树最小深度" class="headerlink" title="二叉树最小深度"></a>二叉树最小深度</h2><p>给定一个二叉树，找出其最小深度。</p>
 <p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。（注意这里 和求最大深度不一样）</p>
-<img src="/.com//20210203155800503.png" alt="111.二叉树的最小深度" style="zoom:33%;">
+<img src="/.xyz//20210203155800503.png" alt="111.二叉树的最小深度" style="zoom:33%;">
 
 <pre><code class="java">class Solution &#123;
     public int minDepth(TreeNode root) &#123;
@@ -2693,7 +2693,7 @@ void bfs(TreeNode root) &#123;
 &#125;
 </code></pre>
 <h2 id="完全二叉树的节点个数"><a href="#完全二叉树的节点个数" class="headerlink" title="完全二叉树的节点个数"></a>完全二叉树的节点个数</h2><p>给你一棵 <strong>完全二叉树</strong> 的根节点 <code>root</code> ，求出该树的节点个数。</p>
-<img src="/.com//image-20221029171009163.png" alt="image-20221029171009163" style="zoom: 70%;">
+<img src="/.xyz//image-20221029171009163.png" alt="image-20221029171009163" style="zoom: 70%;">
 
 
 
@@ -3315,7 +3315,7 @@ class Solution &#123;
 
         &#125;
 </code></pre>
-<h2 id="二叉树的最近公共祖先"><a href="#二叉树的最近公共祖先" class="headerlink" title="二叉树的最近公共祖先"></a>二叉树的最近公共祖先</h2><img src="/.com//image-20220919202400688.png" alt="image-20220919202400688" style="zoom: 67%;">
+<h2 id="二叉树的最近公共祖先"><a href="#二叉树的最近公共祖先" class="headerlink" title="二叉树的最近公共祖先"></a>二叉树的最近公共祖先</h2><img src="/.xyz//image-20220919202400688.png" alt="image-20220919202400688" style="zoom: 67%;">
 
 
 
@@ -3341,7 +3341,7 @@ class Solution &#123;
 </code></pre>
 <h2 id="二叉搜索树最近公共祖先"><a href="#二叉搜索树最近公共祖先" class="headerlink" title="二叉搜索树最近公共祖先"></a>二叉搜索树最近公共祖先</h2><p>方法一：不用二叉搜索树的性质，直接用二叉树的也可以过。</p>
 <p><strong>方法二：一次遍历</strong></p>
-<img src="/.com//image-20221107120758813.png" alt="image-20221107120758813" style="zoom:67%;">
+<img src="/.xyz//image-20221107120758813.png" alt="image-20221107120758813" style="zoom:67%;">
 
 <pre><code class="java">class Solution &#123;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) &#123;
@@ -3512,7 +3512,7 @@ class Solution &#123;
 </code></pre>
 <h2 id="翻转二叉树"><a href="#翻转二叉树" class="headerlink" title="翻转二叉树"></a>翻转二叉树</h2><p><strong>递归</strong></p>
 <p>深度优先</p>
-<img src="/.com//0f91f7cbf5740de86e881eb7427c6c3993f4eca3624ca275d71e21c5e3e2c550-226_2.gif" alt="226_2.gif" style="zoom:33%;">
+<img src="/.xyz//0f91f7cbf5740de86e881eb7427c6c3993f4eca3624ca275d71e21c5e3e2c550-226_2.gif" alt="226_2.gif" style="zoom:33%;">
 
 <pre><code class="java">自顶向下(好理解  优先这个)
 class Solution &#123;
@@ -3550,7 +3550,7 @@ class Solution &#123;
 </code></pre>
 <p><strong>迭代</strong></p>
 <p>广度优先</p>
-<img src="/.com//f9e06159617cbf8372b544daee37be70286c3d9b762c016664e225044fc4d479-226_%E8%BF%AD%E4%BB%A3.gif" alt="226_迭代.gif" style="zoom:50%;">
+<img src="/.xyz//f9e06159617cbf8372b544daee37be70286c3d9b762c016664e225044fc4d479-226_%E8%BF%AD%E4%BB%A3.gif" alt="226_迭代.gif" style="zoom:50%;">
 
 <pre><code class="JAVA">class Solution &#123;
     public TreeNode invertTree(TreeNode root) &#123;
@@ -3585,9 +3585,9 @@ class Solution &#123;
 
 
 <p>算法：</p>
-<img src="/.com//image-20220923172455790.png" alt="image-20220923172455790" style="zoom:67%;">
+<img src="/.xyz//image-20220923172455790.png" alt="image-20220923172455790" style="zoom:67%;">
 
-<img src="/.com//image-20220923172606089.png" alt="image-20220923172606089" style="zoom:67%;">
+<img src="/.xyz//image-20220923172606089.png" alt="image-20220923172606089" style="zoom:67%;">
 
 <pre><code class="java">public class Codec &#123;
     public String serialize(TreeNode root) &#123;
@@ -3639,7 +3639,7 @@ class Solution &#123;
 <pre><code class="java">else if (i - dp[i - 1] &gt; 0 &amp;&amp; s.charAt(i - dp[i - 1] - 1) == &#39;(&#39;) 
 </code></pre>
 <h2 id="分割等和子集"><a href="#分割等和子集" class="headerlink" title="分割等和子集"></a>分割等和子集</h2><p>给你一个 <strong>只包含正整数</strong> 的 <strong>非空</strong> 数组 <code>nums</code> 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
-<img src="/.com//image-20221005155841234.png" alt="image-20221005155841234" style="zoom: 80%;">
+<img src="/.xyz//image-20221005155841234.png" alt="image-20221005155841234" style="zoom: 80%;">
 
 <p><strong>改进</strong></p>
 
@@ -3678,7 +3678,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<h2 id="打家劫舍-III"><a href="#打家劫舍-III" class="headerlink" title="打家劫舍 III"></a>打家劫舍 III</h2><img src="/.com//image-20220928145951556.png" alt="image-20220928145951556" style="zoom: 80%;">
+<h2 id="打家劫舍-III"><a href="#打家劫舍-III" class="headerlink" title="打家劫舍 III"></a>打家劫舍 III</h2><img src="/.xyz//image-20220928145951556.png" alt="image-20220928145951556" style="zoom: 80%;">
 
 <pre><code class="java">class Solution &#123;
     Map&lt;TreeNode, Integer&gt; f = new HashMap&lt;TreeNode, Integer&gt;();
@@ -3700,7 +3700,7 @@ class Solution &#123;
     &#125;
 &#125;
 </code></pre>
-<img src="/.com//image-20220928150047852.png" alt="image-20220928150047852" style="zoom: 80%;">
+<img src="/.xyz//image-20220928150047852.png" alt="image-20220928150047852" style="zoom: 80%;">
 
 <pre><code class="java">class Solution &#123;
     public int rob(TreeNode root) &#123;
@@ -3727,10 +3727,10 @@ class Solution &#123;
 <p>你可以认为每种硬币的数量是无限的。</p>
 
 
-<img src="/.com//image-20220927211950883.png" alt="image-20220927211950883" style="zoom:80%;">
+<img src="/.xyz//image-20220927211950883.png" alt="image-20220927211950883" style="zoom:80%;">
 
 <p>在上面的递归树中，我们可以看到许多子问题被多次计算。例如，F(1)F(1)F(1) 被计算了 131313 次。为了避免重复的计算，我们将每个子问题的答案存在一个数组中进行记忆化，如果下次还要计算这个问题的值直接从数组中取出返回即可，这样能保证每个子问题最多只被计算一次。</p>
-<img src="/.com//image-20220927212012322.png" alt="image-20220927212012322" style="zoom:80%;">
+<img src="/.xyz//image-20220927212012322.png" alt="image-20220927212012322" style="zoom:80%;">
 
 <pre><code class="java">public class Solution &#123;
     public int coinChange(int[] coins, int amount) &#123;
@@ -3756,9 +3756,9 @@ class Solution &#123;
 
 <h2 id="戳气球"><a href="#戳气球" class="headerlink" title="戳气球"></a>戳气球</h2>
 
-<img src="/.com//image-20220927162801928.png" alt="image-20220927162801928" style="zoom: 67%;">
+<img src="/.xyz//image-20220927162801928.png" alt="image-20220927162801928" style="zoom: 67%;">
 
-<img src="/.com//image-20220927162834656.png" alt="image-20220927162834656" style="zoom:67%;">
+<img src="/.xyz//image-20220927162834656.png" alt="image-20220927162834656" style="zoom:67%;">
 
 <pre><code class="java">class Solution &#123;
     public int maxCoins(int[] nums) &#123;
@@ -3798,10 +3798,10 @@ class Solution &#123;
 我们目前不持有任何股票，并且不处于冷冻期中，对应的「累计最大收益」记为 f[i][2]。
 </code></pre>
 <p><strong>这里的「处于冷冻期」指的是在第 i天结束之后的状态。也就是说：如果第 i 天结束之后处于冷冻期，那么第 i+1 天无法买入股票。</strong></p>
-<img src="/.com//image-20220926192627869.png" alt="image-20220926192627869" style="zoom: 80%;">
+<img src="/.xyz//image-20220926192627869.png" alt="image-20220926192627869" style="zoom: 80%;">
 
 <p>这里自己手推一遍</p>
-<img src="/.com//image-20220926193642785.png" alt="image-20220926193642785" style="zoom:80%;">
+<img src="/.xyz//image-20220926193642785.png" alt="image-20220926193642785" style="zoom:80%;">
 
 
 
@@ -3832,7 +3832,7 @@ class Solution &#123;
 </code></pre>
 <h2 id="完全平方数"><a href="#完全平方数" class="headerlink" title="完全平方数"></a>完全平方数</h2><p>给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。</p>
 <p>完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。</p>
-<img src="/.com//image-20220921173922046.png" alt="image-20220921173922046" style="zoom: 67%;">
+<img src="/.xyz//image-20220921173922046.png" alt="image-20220921173922046" style="zoom: 67%;">
 
 <p>从小到大枚举i，以计算f[i]，最终得到f[n]，j也是从小到大枚举，每次把j当作i的一个平方因子，因此f[i]&#x3D;1+f[ i-j^2 ]  初始条件f(0)&#x3D;0，因此可以一步步把f[i]算出来</p>
 <pre><code class="java">class Solution &#123;
@@ -3878,7 +3878,7 @@ class Solution &#123;
 输出：4
 解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 
 </code></pre>
-<img src="/.com//image-20220924110440818.png" alt="image-20220924110440818" style="zoom: 80%;">
+<img src="/.xyz//image-20220924110440818.png" alt="image-20220924110440818" style="zoom: 80%;">
 
 <pre><code class="java">class Solution &#123;
     public int lengthOfLIS(int[] nums) &#123;
@@ -4007,7 +4007,7 @@ def backtrack(路径, 选择列表):
 </code></pre>
 <p>一般涉及到做选择的问题都可以考虑用回溯法，写回溯的题的时候，方法参数可以先空着，用到什么加什么、</p>
 <p>当只有两个选择的时候，就不用for循环了，直接写出来就行，比如+- ()这种</p>
-<img src="/.com//20210130173631174.png" alt="回溯算法理论基础" style="zoom:50%;">
+<img src="/.xyz//20210130173631174.png" alt="回溯算法理论基础" style="zoom:50%;">
 
 <h2 id="目标和"><a href="#目标和" class="headerlink" title="目标和"></a>目标和</h2>
 
@@ -4035,7 +4035,7 @@ def backtrack(路径, 选择列表):
 <p>我的理解：讲道理这个就是递归呀 相当于二叉树递归</p>
 <h2 id="删除无效括号"><a href="#删除无效括号" class="headerlink" title="删除无效括号"></a>删除无效括号</h2><p>给你一个由若干括号和字母组成的字符串 <code>s</code> ，删除最小数量的无效括号，使得输入的字符串有效。</p>
 <p>返回所有可能的结果。答案可以按 <strong>任意顺序</strong> 返回。</p>
-<img src="/.com//image-20220926152136279.png" alt="image-20220926152136279" style="zoom:80%;">
+<img src="/.xyz//image-20220926152136279.png" alt="image-20220926152136279" style="zoom:80%;">
 
 <pre><code class="java">
 class Solution &#123;
@@ -4104,7 +4104,7 @@ class Solution &#123;
 &#125;
 </code></pre>
 <h2 id="括号匹配"><a href="#括号匹配" class="headerlink" title="括号匹配"></a>括号匹配</h2><p><strong>if的两个选择  括号匹配</strong></p>
-<p><img src="/.com//.assets%5Cimage-20220420170037385.png" alt="image-20220420170037385"></p>
+<p><img src="/.xyz//.assets%5Cimage-20220420170037385.png" alt="image-20220420170037385"></p>
 <h2 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h2><pre><code>//给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的
 // 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。 
 </code></pre>
@@ -4139,7 +4139,7 @@ class Solution &#123;
 
 &#125;
 </code></pre>
-<h2 id="例题3"><a href="#例题3" class="headerlink" title="例题3"></a>例题3</h2><p><img src="/.com//.assets%5Cimage-20220531161347850.png" alt="image-20220531161347850"></p>
+<h2 id="例题3"><a href="#例题3" class="headerlink" title="例题3"></a>例题3</h2><p><img src="/.xyz//.assets%5Cimage-20220531161347850.png" alt="image-20220531161347850"></p>
 <pre><code>vector&lt;int&gt; t;
 void dfs(int cur, int n) &#123;
     if (cur == n) &#123;
@@ -4158,7 +4158,7 @@ void dfs(int cur, int n) &#123;
 <h1 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h1><h2 id="最长递增子序列（也可dp）"><a href="#最长递增子序列（也可dp）" class="headerlink" title="最长递增子序列（也可dp）"></a>最长递增子序列（也可dp）</h2><p>考虑一个简单的贪心，如果我们要使上升子序列尽可能的长，则我们需要让序列上升得尽可能慢，因此我们希望每次在上升子序列最后加上的那个数尽可能的小。</p>
 <p>基于上面的贪心思路，我们维护一个数组 d[i]，表示长度为 i的最长上升子序列的末尾元素的最小值，用 len记录目前最长上升子序列的长度，起始时 len 为 1，d[1]&#x3D;nums[0]</p>
 <p>同时我们可以注意到 d[i] 是关于 i 单调递增的。（显而易见）根据 ddd 数组的单调性，我们可以使用二分查找寻找下标 i，优化时间复杂度。</p>
-<img src="/.com//image-20220924191640236.png" alt="image-20220924191640236" style="zoom:80%;">
+<img src="/.xyz//image-20220924191640236.png" alt="image-20220924191640236" style="zoom:80%;">
 
 <pre><code class="java">class Solution &#123;
     public int lengthOfLIS(int[] nums) &#123;
@@ -4339,7 +4339,7 @@ public ListNode mergeTwoLists(ListNode list1,ListNode list2)&#123;
         &#125;
 ```
 
-<img src="/.com//image-20221003210317519.png" alt="image-20221003210317519" style="zoom:67%;">
+<img src="/.xyz//image-20221003210317519.png" alt="image-20221003210317519" style="zoom:67%;">
 
 
 
@@ -4349,15 +4349,15 @@ public ListNode mergeTwoLists(ListNode list1,ListNode list2)&#123;
 
 # 通项公式
 
-<img src="/.com//image-20220529175511733.png" alt="image-20220529175511733" style="zoom:50%;">
+<img src="/.xyz//image-20220529175511733.png" alt="image-20220529175511733" style="zoom:50%;">
 
-<img src="/.com//image-20220529175454488.png" alt="image-20220529175454488" style="zoom: 50%;">
+<img src="/.xyz//image-20220529175454488.png" alt="image-20220529175454488" style="zoom: 50%;">
 
 **力扣48题翻转矩阵**
 
-<img src="/.com//image-20220516212619082.png" alt="image-20220516212619082" style="zoom: 50%;">
+<img src="/.xyz//image-20220516212619082.png" alt="image-20220516212619082" style="zoom: 50%;">
 
-<img src="/.com//image-20220516212931381.png" alt="image-20220516212931381" style="zoom:33%;">
+<img src="/.xyz//image-20220516212931381.png" alt="image-20220516212931381" style="zoom:33%;">
 
 只关注我画黑框的部分 其余三块都是每个元素旋转而成
 
@@ -4572,7 +4572,7 @@ class Solution &#123;
 
   剪枝操作：
 
-<img src="/.com//image-20221018194452672.png" alt="image-20221018194452672" style="zoom:80%;">
+<img src="/.xyz//image-20221018194452672.png" alt="image-20221018194452672" style="zoom:80%;">
 
 ```java
 按照三数之和写
@@ -4627,7 +4627,7 @@ class Solution &#123;
 
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。  元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 
-<img src="/.com//image-20221012161829652.png" alt="image-20221012161829652" style="zoom:80%;">
+<img src="/.xyz//image-20221012161829652.png" alt="image-20221012161829652" style="zoom:80%;">
 
 ~~~java
 class Solution &#123;
@@ -4807,9 +4807,9 @@ class Solution &#123;
 <pre><code>public boolean check(char[][] board, boolean[][] visited, int i, int, j, String s, int k)
 </code></pre>
 <p>自己一直没发现，而且Idea的比较文件也没有发现，idea比较文件方法，选中两个文件，右键compare files （ctrl+D）</p>
-<p><img src="/.com//.assets%5Cimage-20220608185515191.png" alt="image-20220608185515191"></p>
+<p><img src="/.xyz//.assets%5Cimage-20220608185515191.png" alt="image-20220608185515191"></p>
 <h1 id="Leetcode插件"><a href="#Leetcode插件" class="headerlink" title="Leetcode插件"></a>Leetcode插件</h1><p>因为我已经在一台电脑上配置好了，因此在新电脑上面只需要在idea安装leetcode editor，输入用户名密码保存路径和格式设置（可直接远程操作原电脑进行复制操作）</p>
-<p><a href="mailto:&#53;&#x30;&#x35;&#x33;&#x37;&#49;&#x35;&#x33;&#48;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;">&#53;&#x30;&#x35;&#x33;&#x37;&#49;&#x35;&#x33;&#48;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;</a>   4873350781cet</p>
+<p><a href="mailto:&#x35;&#48;&#53;&#x33;&#55;&#49;&#53;&#51;&#x30;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#x35;&#48;&#53;&#x33;&#55;&#49;&#53;&#51;&#x30;&#x40;&#113;&#113;&#x2e;&#99;&#x6f;&#x6d;</a>   4873350781cet</p>
 <pre><code>$&#123;question.content&#125;
   package leetcode.editor.en;
   public class $!velocityTool.camelCaseName($&#123;question.titleSlug&#125;)&#123;
@@ -4830,7 +4830,7 @@ $!velocityTool.snakeCaseName(str)	转换字符为蛇形样式
 $!velocityTool.leftPadZeros(str,n)	在字符串的左边填充0，使字符串的长度至少为n
 $!velocityTool.date()	获取当前时间
 </code></pre>
-<img src="/.com//image-20220706213501965.png" alt="image-20220706213501965" style="zoom: 67%;">
+<img src="/.xyz//image-20220706213501965.png" alt="image-20220706213501965" style="zoom: 67%;">
 
 <p>记得勾选画框处，Custom Templete ,如果有的题模板不对的话，右键clear cache</p>
 
@@ -4859,7 +4859,7 @@ $!velocityTool.date()	获取当前时间
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/11/09/%E5%8A%9B%E6%89%A3/">http://example.com/2022/11/09/%E5%8A%9B%E6%89%A3/</a>
+                    <a href="http://zhangweiyang.xyz/2022/11/09/%E5%8A%9B%E6%89%A3/">http://zhangweiyang.xyz/2022/11/09/%E5%8A%9B%E6%89%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -5072,13 +5072,13 @@ $!velocityTool.date()	获取当前时间
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/11/09/%E9%AD%94%E6%96%B9%E6%8A%80%E5%B7%A7/">
+                <a href="/2022/11/09/sprringboot%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="魔方">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="springboot面试问题">
                         
-                        <span class="card-title">魔方</span>
+                        <span class="card-title">springboot面试问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -5109,13 +5109,13 @@ $!velocityTool.date()	获取当前时间
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/09/SpringBoot%E8%AE%B2%E4%B9%89/">
+                <a href="/2022/11/09/%E8%BD%AF%E4%BB%B6&%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="springboot讲义">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="windows技巧">
                         
-                        <span class="card-title">springboot讲义</span>
+                        <span class="card-title">windows技巧</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
