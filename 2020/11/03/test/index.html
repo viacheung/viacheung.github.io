@@ -2,7 +2,7 @@
 <html>
 	<head>
 		
-<title>java笔记-</title>
+<title>一个test-</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="/css/index.css">
 
 
-<meta name="keywords" content="算法,魔方,开发">
-<meta name="description" content="总结技术，撰写心得，分享生活">
+
+<meta name="keywords" content="Hexo,Quiet,主题,静态主题,">
+<meta name="description" content="采用简约大方的扁平化Hexo-Quiet主题">
 
 
 <script src="/js/jquery.min.js"></script>
@@ -290,9 +291,19 @@
     <div class="post-header-background-content">
         <ul class="post-header-tag">
             
+            
+            <li><a href="/tags/Hexo">Hexo</a></li>
+            
+            <li><a href="/tags/Quiet">Quiet</a></li>
+            
+            <li><a href="/tags/主题">主题</a></li>
+            
+            <li><a href="/tags/静态主题">静态主题</a></li>
+            
+            
         </ul>
         
-        <h1>java笔记</h1>
+        <h1>一个test</h1>
         <div class="post-header-info">
             <div class="post-header-info-author">
                 
@@ -303,11 +314,13 @@
                             p-id="2902" fill="#ffffff"></path>
                     </svg>
                     
-                <span class="post-header-info-author-text"> <a href="../../about">weiyang</a></span>
+                <span class="post-header-info-author-text"> <a href="https://github.com/79E/hexo-theme-quiet">weiyang</a></span>
                 <div class="post-header-info-author-categories">
                     
+                         <a href="../../categories/测试案例/" target="_blank" >测试案例</a>
+                    
                 </div>
-                <p>2022-11-09 23:27:03</p>
+                <p>2020-11-03 20:33:36</p>
             </div>
         </div>
     </div>
@@ -317,19 +330,45 @@
   <div id="article" class="post-content-info">
     
 
-    <p>JSON美化插件：JSON formatter</p>
-<p>stater:自动装配  @Enable….  自动装配的开关</p>
-<p>idea翻译的插件：translator</p>
-<p>给微服务加断点来理解源码的方法：</p>
-
-
-<p>点击服务,然后点击虫子图标，给某一行设置断点，然后浏览器访问即可</p>
-<h1 id="POST和Put区别"><a href="#POST和Put区别" class="headerlink" title="POST和Put区别"></a>POST和Put区别</h1><p><strong>put具有幂等性</strong></p>
-<p>如：POST 的语义是在<a href="http://www.forum.com/articles%E4%B8%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E7%AF%87%E5%B8%96%E5%AD%90%EF%BC%8CHTTP%E5%93%8D%E5%BA%94%E4%B8%AD%E5%BA%94%E5%8C%85%E5%90%AB%E5%B8%96%E5%AD%90%E7%9A%84%E5%88%9B%E5%BB%BA%E7%8A%B6%E6%80%81%E4%BB%A5%E5%8F%8A%E5%B8%96%E5%AD%90%E7%9A%84URI%E3%80%82%E4%B8%A4%E6%AC%A1%E7%9B%B8%E5%90%8C%E7%9A%84POST%E8%AF%B7%E6%B1%82%E4%BC%9A%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%BB%BD%E8%B5%84%E6%BA%90%EF%BC%8C%E5%AE%83%E4%BB%AC%E5%85%B7%E6%9C%89%E4%B8%8D%E5%90%8C%E7%9A%84URI%EF%BC%9B%E6%89%80%E4%BB%A5%EF%BC%8CPOST%E6%96%B9%E6%B3%95%E4%B8%8D%E5%85%B7%E5%A4%87%E5%B9%82%E7%AD%89%E6%80%A7%E3%80%82">http://www.forum.com/articles下创建一篇帖子，HTTP响应中应包含帖子的创建状态以及帖子的URI。两次相同的POST请求会在服务器端创建两份资源，它们具有不同的URI；所以，POST方法不具备幂等性。</a></p>
-<p>而PUT所对应的URI是要创建或更新的资源本身。比如：PUT <a href="http://www.forum/articles/4231%E7%9A%84%E8%AF%AD%E4%B9%89%E6%98%AF%E5%88%9B%E5%BB%BA%E6%88%96%E6%9B%B4%E6%96%B0ID%E4%B8%BA4231%E7%9A%84%E5%B8%96%E5%AD%90%E3%80%82%E5%AF%B9%E5%90%8C%E4%B8%80URI%E8%BF%9B%E8%A1%8C%E5%A4%9A%E6%AC%A1PUT%E7%9A%84%E5%89%AF%E4%BD%9C%E7%94%A8%E5%92%8C%E4%B8%80%E6%AC%A1PUT%E6%98%AF%E7%9B%B8%E5%90%8C%E7%9A%84%EF%BC%9B%E5%9B%A0%E6%AD%A4%EF%BC%8CPUT%E6%96%B9%E6%B3%95%E5%85%B7%E6%9C%89%E5%B9%82%E7%AD%89%E6%80%A7%E3%80%82">http://www.forum/articles/4231的语义是创建或更新ID为4231的帖子。对同一URI进行多次PUT的副作用和一次PUT是相同的；因此，PUT方法具有幂等性。</a></p>
-<h1 id="java并发环境"><a href="#java并发环境" class="headerlink" title="java并发环境"></a>java并发环境</h1><img src="/.xyz//2f0d1a2d0da6b52cb761e130d34759a5.png" alt="2f0d1a2d0da6b52cb761e130d34759a5.png">
-
-<p><a href="https://blog.csdn.net/weixin_39941732/article/details/114894917">https://blog.csdn.net/weixin_39941732/article/details/114894917</a></p>
+    <p><a href="http://rqdessztt.hn-bkt.clouddn.com/%E7%A7%91%E7%A0%94.assets/0b8627b9dee74dad8c005654e1fd5261.png">http://rqdessztt.hn-bkt.clouddn.com/%E7%A7%91%E7%A0%94.assets/0b8627b9dee74dad8c005654e1fd5261.png</a></p>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="1-代码上传Github上"><a href="#1-代码上传Github上" class="headerlink" title="1 代码上传Github上"></a>1 代码上传Github上</h2><h3 id="…or-create-a-new-repository-on-the-command-line-（空仓库）"><a href="#…or-create-a-new-repository-on-the-command-line-（空仓库）" class="headerlink" title="…or create a new repository on the command line （空仓库）"></a>…or create a new repository on the command line （空仓库）</h3><pre><code>echo &quot;# mogu&quot; &gt;&gt; README.md
+git init//初始化产生一个.git
+git add README.md(一般是git add .)
+git commit -m &quot;first commit&quot;
+git branch -M main//这一步最好做一下否则报错
+git remote add origin https://github.com/viacheung/mogu.git//复制代码的https
+git push -u origin main
+</code></pre>
+<h3 id="…or-push-an-existing-repository-from-the-command-line-（非空仓库）"><a href="#…or-push-an-existing-repository-from-the-command-line-（非空仓库）" class="headerlink" title="…or push an existing repository from the command line  （非空仓库）"></a>…or push an existing repository from the command line  （非空仓库）</h3><pre><code>git remote add origin https://github.com/viacheung/mogu.git
+git branch -M main
+git push -u origin main
+</code></pre>
+<p><strong>1 解决Failed to connect to github.com port 443: Timed out</strong></p>
+<pre><code class="css">git config --global --unset http.proxy//执行该命令再Push
+</code></pre>
+<p><strong>2 若执行git remote add origin</strong>******<br><strong>出现fatal: remote origin already exists.（报错远程起源已经存在。）</strong></p>
+<pre><code>1、先输入 git remote rm origin
+2、再输入 git remote add origin**************
+</code></pre>
+<p><strong>3 Pycharm上， push代码到GitHub提示：</strong></p>
+<pre><code>fatal: unable to access &#39;https://github.com/panc-test/pythonProject.git/&#39;: OpenSSL SSL_read: Connection was aborted, errno 10053
+</code></pre>
+<p>解决方案：</p>
+<p>1、网络不稳定，多试几次</p>
+<p>2、更改网络认证设置</p>
+<p>3、关闭vpn试试？我还没试过</p>
+<pre><code>git config http.sslVerify &quot;false
+</code></pre>
+<p>参考文章：<a href="https://blog.csdn.net/weixin_43629813/article/details/113824388?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-113824388-blog-118487040.pc_relevant_antiscanv3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2">https://blog.csdn.net/weixin_43629813/article/details/113824388?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-113824388-blog-118487040.pc_relevant_antiscanv3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2</a></p>
+<h2 id="2-Hexo写文章"><a href="#2-Hexo写文章" class="headerlink" title="2 Hexo写文章"></a>2 Hexo写文章</h2><p>新建一个文章</p>
+<pre><code>$ hexo new &quot;title&quot;//注意引号是英文的
+</code></pre>
+<p>然后在该文章里面写东西，写完</p>
+<pre><code>hexo g//生成
+hexo s//本地预览
+hexo d//上传服务器
+一行命令：hexo g -d
+</code></pre>
 
   </div>
   <div id="gitalk-container"></div>
@@ -390,21 +429,14 @@ Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
 
     <div class="post-paging">
     
-    <a href="/2022/11/09/SpringBoot%E8%AE%B2%E4%B9%89/">
+    <a href="/2022/06/10/git%E4%BD%BF%E7%94%A8/">
         <div class="post-paging-last">
             <span>上一篇</span>
-            <p>springboot讲义</p>
+            <p>git使用</p>
         </div>
     </a>
     
 
-    
-    <a href="/2022/11/09/sprringboot%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">
-        <div class="post-paging-next">
-            <span>下一篇</span>
-            <p>springboot面试问题</p>
-        </div>
-    </a>
     
 </div>
 </div>
