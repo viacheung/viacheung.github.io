@@ -2,7 +2,7 @@
 <html>
 	<head>
 		
-<title>软件配置-</title>
+<title>基于hexo的Quiet主题搭建博客教程-</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="/css/index.css">
 
 
-<meta name="keywords" content="算法,魔方,开发">
-<meta name="description" content="总结技术，撰写心得，分享生活">
+
+<meta name="keywords" content="Hexo,Quiet,">
+<meta name="description" content="自定义Hexo-Quiet主题">
 
 
 <script src="/js/jquery.min.js"></script>
@@ -290,9 +291,15 @@
     <div class="post-header-background-content">
         <ul class="post-header-tag">
             
+            
+            <li><a href="/tags/Hexo">Hexo</a></li>
+            
+            <li><a href="/tags/Quiet">Quiet</a></li>
+            
+            
         </ul>
         
-        <h1>软件配置</h1>
+        <h1>基于hexo的Quiet主题搭建博客教程</h1>
         <div class="post-header-info">
             <div class="post-header-info-author">
                 
@@ -303,11 +310,13 @@
                             p-id="2902" fill="#ffffff"></path>
                     </svg>
                     
-                <span class="post-header-info-author-text"> <a href="../../about">weiyang</a></span>
+                <span class="post-header-info-author-text"> <a href="https://github.com/viacheung/hexo-theme-quiet">Cange-Q</a></span>
                 <div class="post-header-info-author-categories">
                     
+                         <a href="../../categories/教程/" target="_blank" >教程</a>
+                    
                 </div>
-                <p>2022-11-09 23:27:03</p>
+                <p>2023-05-01 00:55:00</p>
             </div>
         </div>
     </div>
@@ -316,137 +325,111 @@
   
   <div id="article" class="post-content-info">
     
+      <div id="post-toc">
+        <span class="post-toc-title">文章目录</span>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E5%8F%82%E8%80%83%E7%9A%84%E6%96%87%E7%AB%A0"><span class="toc-text">1、参考的文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81-%E9%81%87%E5%88%B0%E7%9A%84%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-text">2、 遇到的报错信息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E9%81%87%E5%88%B0%E8%BD%AC%E4%B9%89%E9%97%AE%E9%A2%98"><span class="toc-text">2.1 遇到转义问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%89%93%E5%BC%80viacheung-github-io%E8%B7%B3%E8%BD%AC%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E4%BD%86%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD"><span class="toc-text">2.2 打开viacheung.github.io跳转绑定域名但显示空白</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E9%9C%80%E8%A6%81%E7%9A%84github%E6%93%8D%E4%BD%9C"><span class="toc-text">3、需要的github操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="toc-text">4、更换主题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E5%A2%9E%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD"><span class="toc-text">5、增加评论功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E3%80%81%E6%8F%92%E5%85%A5%E5%9B%BE%E5%83%8F"><span class="toc-text">6 、插入图像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E5%86%99%E5%8D%9A%E5%AE%A2"><span class="toc-text">7、写博客</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="toc-text">8、换主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Egithub%E9%87%8C%E9%9D%A2%E6%8F%90%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">关于github里面提到的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8EHexo%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对于Hexo的理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E3%80%81%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-text">9 、绑定域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-text">新建文章</span></a></li></ol></li></ol>
+      </div>
+    
 
-    <h1 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h1><h2 id="无法登录的问题"><a href="#无法登录的问题" class="headerlink" title="无法登录的问题"></a>无法登录的问题</h2><p><img src="/.xyz//%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/v2-f33724c4b82fb5c2899bc4cdec4c5f7f_720w.jpg" alt="img"></p>
-<h1 id="typora"><a href="#typora" class="headerlink" title="typora"></a>typora</h1><h2 id="1、解决Typora笔记在另一台电脑上无法显示图片的问题"><a href="#1、解决Typora笔记在另一台电脑上无法显示图片的问题" class="headerlink" title="1、解决Typora笔记在另一台电脑上无法显示图片的问题"></a>1、解决Typora笔记在另一台电脑上无法显示图片的问题</h2><p>1.Typora里面，文件-&gt;偏好设置-&gt;图像，按照下图进行设置</p>
-
-
-<p>2.然后随便找一个地方（别c盘）新建文件夹，文件夹里面有个.assets的文件夹，同级放md文件，.assets放图片的</p>
-<p>3.如果出现无法显示问题，使用全局替换</p>
-
-
-<h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><p>安装的时候记得版本问题 window默认安装的2.0 要么升级</p>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p><strong>Anaconda安装路径</strong></p>
-<p><strong>Anaconda安装路径</strong>\Scripts</p>
-<p><strong>Anaconda安装路径</strong>\Library\bin</p>
-<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><p>免安装mysql教程:<a href="https://www.jb51.net/article/168321.htm%E7%99%BB%E5%BD%95mysql%E5%90%8E%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%88%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81%E4%B8%BA%E7%A9%BA%EF%BC%89">https://www.jb51.net/article/168321.htm登录mysql后，修改密码（默认密码为空）</a></p>
-<p>原文链接：<a href="https://blog.csdn.net/dz77dz/article/details/117705850">https://blog.csdn.net/dz77dz/article/details/117705850</a></p>
-<pre><code>（1）以管理员身份打开“命令行窗口”，输入mysql -uroot -p并按下回车键
-（2）在弹出Enter password: 时，继续按下回车键，即可登录mysql
-（3）输入命令use mysql;
-（4）输入命令ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;; （注意末尾要有分号）
-（5）输入命令flush privileges;
-（6）输入命令exit;——————————————-原文链接：https://blog.csdn.net/dz77dz/article/details/117705850
+    <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p><a href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
+<p>知乎收藏</p>
+<p><a href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
+<h1 id="2、-遇到的报错信息"><a href="#2、-遇到的报错信息" class="headerlink" title="2、 遇到的报错信息"></a>2、 遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
 </code></pre>
-<p>linux安装的话有一些不一样</p>
-<pre><code>mysql&gt; set global validate_password_policy=low; 			//将密码级别改为弱
-mysql&gt; set global validate_password_length=6;				//将密码长度改为6
-
-/*
-    执行完之后,我们可以将刚才设置的混合密码
-    改为自己想要的数字密码或英文密码了
-*/
-mysql&gt; alter user  &#39;用户名&#39;@&#39;localhost&#39; identified by &#39;123456&#39;; //改密码方式一
-mysql&gt; alter user  USER()  identified by &#39;123456&#39;; 			    //改密码方式二
+<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
+<p>具体配置：<a href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
+<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
+<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
+<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
+<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
+<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
+<pre><code> deploy:
+  type: git
+  repository: git@github.com:viacheung/viacheung.github.io.git
+  branch: master
 </code></pre>
-<p><strong>mysq|安装出现应用程序无法正常启动(oxc000007b)的解决方案</strong></p>
-\
+<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170302215.png" alt="image-20230424170302215"></p>
+<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
+<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
+<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
+<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p>这里采用的是 <code>gitalk</code> 一个基于 Github Issue 和 Preact 开发的评论插件</p>
+<p>我们只需要在 <code>Quiet </code>主题文件里面的<code>_config.yml</code>配置文件的 <code>gitalk</code> 进行配置</p>
+<p>首先，您需要选择一个公共github存储库（已存在或创建一个新的github存储库）用于存储评论，</p>
+<p>然后需要创建 <strong>GitHub Application</strong>，如果没有 <a href="https://github.com/settings/applications/new">点击这里申请</a>，<code>Authorization callback URL</code> 填写当前使用插件页面的域名。</p>
+<img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230501002945716.png" alt="image-20230501002945716" style="zoom: 67%;">
 
-
-
-<p>参考文章及软件下载链接<a href="https://blog.csdn.net/vbcom/article/details/7245186">https://blog.csdn.net/vbcom/article/details/7245186</a></p>
-<p><a href="https://blog.csdn.net/qq_46093574/article/details/120351228">https://blog.csdn.net/qq_46093574/article/details/120351228</a></p>
-<p>原因缺少C++库——成功！</p>
-<p><strong>navicate如何把sql文件导出?</strong></p>
-
-
-<p><strong>navicat怎么导入sql数据库文件</strong></p>
-<ol>
-<li>打开Navicat，并连接数据库</li>
-<li>鼠标右键“localhost”，点击“新建数据库”。</li>
-<li>输入数据库名称，字符集选择“utf8”，排序规则选择“ utf8 general ci”，点击“确定”。</li>
-<li>双击新建好的“数据库”。右键点击“运行SQL文件”。</li>
-<li>导入SQL文件，点击开始。</li>
-<li>右击表点刷新。</li>
-</ol>
-<h2 id="1、navicat安装"><a href="#1、navicat安装" class="headerlink" title="1、navicat安装"></a>1、navicat安装</h2><p><a href="https://zhuanlan.zhihu.com/p/445988662">https://zhuanlan.zhihu.com/p/445988662</a></p>
-<h1 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h1><p>参考文章：</p>
-<p><a href="https://blog.csdn.net/qq1198768105/article/details/122952639">https://blog.csdn.net/qq1198768105/article/details/122952639</a></p>
-<p><a href="https://blog.csdn.net/roy8666/article/details/124504994">https://blog.csdn.net/roy8666/article/details/124504994</a></p>
-<pre><code>进入目录
-cd /usr/local
-新建nginx文件夹
-mkdir nginx
-进入Nginx
-cd /usr/local/nginx
-安装
- wget http://nginx.org/download/nginx-1.19.0.tar.gz
-解压
-tar -xvf nginx-1.19.0.tar.gz
-进入文件
-cd /nginx-1.10.2
-安装依赖
-yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel
-添加模块
-./configure --with-http_stub_status_module --with-http_ssl_module
-//执行make命令
-make
-//执行make install命令
-make install
-后面一大堆不知道有没有用，先不写了吧
-……………………
-启动Nginx
-./nginx
-报端口占用错误
-**Nginx [emerg]: bind() to 0.0.0.0:80 failed (98: Address already in use)**
-干掉此程序
-sudo fuser -k 80/tcp
-fuser -k 80/tcp
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/2020-02-02-17-34-57.png" alt="img"></p>
+<pre><code class="yaml">gitalk:
+  clientID: 43557dd07d33bd0ebcdd # （需要替换）GitHub Application Client ID.
+  clientSecret: 4f8841de720cb270e38dea5ff52818c9eb744c36 #（需要替换）GitHub Application Client Secret.
+  repo: blog_commets #（需要替换）GitHub仓库名
+  owner: viacheung #（需要替换）GitHub repository 所有者，可以是个人或者组织。
+  admin: [&#39;viacheung&#39;] #（需要替换）GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
 </code></pre>
-<p>正向：客户端到服务器；反向：服务器到客户端；</p>
-<p>正向代理：帮助客户端访问服务器；反向代理：帮助服务器提供服务；</p>
-<h1 id="vue项目创建"><a href="#vue项目创建" class="headerlink" title="vue项目创建"></a>vue项目创建</h1><h2 id="1-安装node-js"><a href="#1-安装node-js" class="headerlink" title="1 安装node.js"></a>1 安装node.js</h2><p><a href="https://blog.csdn.net/qq_57210034/article/details/124823972">https://blog.csdn.net/qq_57210034/article/details/124823972</a></p>
-<p>官网安装16版本，在nodejs<a href="https://so.csdn.net/so/search?q=%E6%A0%B9%E7%9B%AE%E5%BD%95&spm=1001.2101.3001.7020">根目录</a>,创建<code>node_global</code>，<code>node_cache</code>文件夹</p>
-<p>然后以-管理员身份- 打开cmd，配置路径：</p>
-<p>（步骤：win——输入框——cmd——右键——以管理员身份运行）</p>
-<pre><code>npm config set prefix &quot;D:\Program Files\nodejs\node_global&quot;
-npm config set cache &quot;D:\Program Files\nodejs\node_cache&quot;
+<p>然后发布的时候题头需要comments: true</p>
+<h1 id="6-、插入图像"><a href="#6-、插入图像" class="headerlink" title="6 、插入图像"></a>6 、插入图像</h1><p>修改博客根目录中<code>_config.yml</code>文件的配置项<code>post_asset_folder</code>为<code>true</code>：</p>
+<p>npm install hexo-asset-image –save</p>
+<p>当文章需要添加图片时，将需要添加的图片放入同名的文件夹中，同时通过相对路径索引到该图片。</p>
+<p>右键引入图像</p>
+<p>有待改进</p>
+<p><strong>Typora文件名为中文保存时，插入图片的路径的中文部分是字符串乱码的，怎么解决？</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170226645.png" alt="image-20230424170226645"></p>
+<h1 id="7、写博客"><a href="#7、写博客" class="headerlink" title="7、写博客"></a>7、写博客</h1><ul>
+<li><pre><code class="yaml">layout:
+
+- post
+  title: java笔记
+  date: 2022-11-09 23:27:03
+  tags:
 </code></pre>
-<p>​    <br>​    npm config set registry <a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org/</a>   第一个命令是使用npm的淘宝镜像，<br>​    npm config set sass_binary_site <a href="https://npm.taobao.org/mirrors/node-sass/">https://npm.taobao.org/mirrors/node-sass/</a>   配置node-sass为淘宝镜像<br>​    cnpm install -g @tarojs&#x2F;cli   使用cnpm全局安装taro，将会生成一个taro 命令。taro-cli 包位于 Taro 工程的 packages 目录下，主要负责项目初始化、编译、构建等<br>​    查看taro是否安装完毕<br>​    taro -V</p>
-<p>安装vue脚手架，我也不知道怎么安装好的，最开始安装低版本的Node安装没问题，后来升级node之后，根据系统提示更新了cli，结果失败，一直没安装上，解决方法：按照如下文章，试试？然后卸载再安装，成功了！</p>
-<p><a href="https://blog.csdn.net/qq_43762239/article/details/120333879">https://blog.csdn.net/qq_43762239/article/details/120333879</a></p>
-<pre><code>npm install -g vue-cli
-npm uninstall -g vue-cli 
+</li>
+</ul>
+<pre><code>笔记前面都加上这个 然后hexo clean   g   d
 </code></pre>
-<p>问题：最新版npm : 无法将“npm”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查</p>
-<p>vscode用管理员打开</p>
-<p>问题：npm ERR! missing script: dev</p>
-<p>npm install</p>
-<h1 id="java"><a href="#java" class="headerlink" title="java"></a>java</h1><h2 id="java环境配置"><a href="#java环境配置" class="headerlink" title="java环境配置"></a>java环境配置</h2><p>系统变量里面双击path，新建，浏览目录，找到自己jdk的安装路径下面的bin</p>
-<pre><code class="bash">C:\Program Files\Java\jdk1.8.0_231\bin    //举例
+<h1 id="8、换主题"><a href="#8、换主题" class="headerlink" title="8、换主题"></a>8、换主题</h1><p>找了一个还不错的主题，quiet</p>
+<p><a href="https://github.com/79E/hexo-theme-quiet">https://github.com/79E/hexo-theme-quiet</a></p>
+<p>下载下来，放在F:\programFiles\blog的themes</p>
+
+
+<p>此处执行 </p>
+<pre><code>hexo clean 
+hexo g 
+hexo d
 </code></pre>
-<p>然后使用cmd用java -version进行验证（必须version，v的话识别不到）</p>
-<h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><p><a href="https://blog.csdn.net/l32273/article/details/123684435">https://blog.csdn.net/l32273/article/details/123684435</a></p>
-<p>右侧边栏没有出现maven, 还有一种可能就是pom.xml文件没有识别, idea觉得这个项目就不是个maven项目，导致idea无法加载依赖包。因此上述三种方法都没有用，<br> 解决办法:<br> 右键pom.xml文件, 点击” add as maven project “</p>
-<p><strong>idea配置maven依赖下载路径（否则下载从中央仓库，白配了）</strong></p>
+<p>我们的文章（F:\programFiles\blog\source_posts在此处）前面需要加这个：</p>
+<hr>
+<p>title: 一个简约扁平化的Hexo静态主题博客-Quiet<br>comments: true<br>categories: 项目案例<br>aubot: Cange-Q<br>aubot_link: ‘<a href="https://github.com/79E/hexo-theme-quiet&#39;">https://github.com/79E/hexo-theme-quiet&#39;</a><br>tags:</p>
+<ul>
+<li>Hexo</li>
+<li>Quiet</li>
+<li>主题</li>
+<li>静态主题<br>excerpt: 采用简约大方的扁平化Hexo-Quiet主题<br>toc: false<br>date: 2020-11-03 20:33:36<br>cover: ‘<a href="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imgQuietView.png&#39;">https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imgQuietView.png&#39;</a></li>
+</ul>
+<hr>
+<h3 id="关于github里面提到的问题"><a href="#关于github里面提到的问题" class="headerlink" title="关于github里面提到的问题"></a>关于github里面提到的问题</h3><p><strong>css 样式没有加载出来</strong></p>
+<p>需要管理员打开cmd 切换到博客根路径</p>
+<pre><code>C:\WINDOWS\system32&gt;F:
 
+F:\&gt;cd programFiles
 
-<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><h2 id="translation插件"><a href="#translation插件" class="headerlink" title="translation插件"></a>translation插件</h2><p><a href="https://blog.csdn.net/Lin_1214/article/details/120323971">https://blog.csdn.net/Lin_1214/article/details/120323971</a></p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h2><p>安装后配置下名字邮箱就行了</p>
-<h2 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h2><p>为了能上传到Github</p>
-<p><a href="https://blog.csdn.net/NF_ye/article/details/127475332">https://blog.csdn.net/NF_ye/article/details/127475332</a></p>
-<h2 id="项目上传到github"><a href="#项目上传到github" class="headerlink" title="项目上传到github"></a>项目上传到github</h2><p>b站视频</p>
-<p><a href="https://www.bilibili.com/video/BV1V54y1n7Wn/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ef87b66d94d47349af5013c20ac7b73d">https://www.bilibili.com/video/BV1V54y1n7Wn/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ef87b66d94d47349af5013c20ac7b73d</a></p>
-<p>新建一个repository</p>
+F:\programFiles&gt;cd blog
+</code></pre>
+<p>然后执行</p>
+<pre><code>npm i hexo-renderer-less
+npm i hexo-renderer-ejs
+</code></pre>
+<p>反正成功了</p>
+<p>不知道是不是这个起作用了</p>
+<p><a href="https://www.cnblogs.com/xrblog/p/11587356.html">https://www.cnblogs.com/xrblog/p/11587356.html</a></p>
+<h1 id="对于Hexo的理解"><a href="#对于Hexo的理解" class="headerlink" title="对于Hexo的理解"></a>对于Hexo的理解</h1><p>F:\programFiles\blog\source里面的文件名对应theme里面配置文件的导航名称</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170212169.png" alt="image-20230424170212169"></p>
+<h1 id="9-、绑定域名"><a href="#9-、绑定域名" class="headerlink" title="9 、绑定域名"></a>9 、绑定域名</h1><p>source下面有个CNAME 里面写zhangweiyang.xyz</p>
+<p>github里面有个CNAME 里面写zhangweiyang.xyz</p>
+<h1 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><pre><code>blog根目录下：
 
-
-<p>按照安装命令进行操作，切换到对应项目路径，git add那里改成git add .</p>
-<p>不想上传的可以 gitignore</p>
-
-
-<p> echo “# blog-project” &gt;&gt; README.md  这个可以不写 意思是追加到read.me上 建议自己建一个readme写内容</p>
-<p>如果要修改项目再上传 add commit push就行</p>
-<h1 id="idea-1"><a href="#idea-1" class="headerlink" title="idea"></a>idea</h1><p>新建一个idea页面 maven配置居然会变</p>
+hexo new &quot;xxx&quot;
+</code></pre>
 
   </div>
   <div id="gitalk-container"></div>
@@ -507,19 +490,12 @@ Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
 
     <div class="post-paging">
     
-    <a href="/2022/11/09/sprringboot%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/">
-        <div class="post-paging-last">
-            <span>上一篇</span>
-            <p>springboot面试问题</p>
-        </div>
-    </a>
-    
 
     
-    <a href="/2022/11/09/%E7%A7%91%E7%A0%94/">
+    <a href="/2022/06/10/git%E4%BD%BF%E7%94%A8/">
         <div class="post-paging-next">
             <span>下一篇</span>
-            <p>科研</p>
+            <p>git使用</p>
         </div>
     </a>
     
