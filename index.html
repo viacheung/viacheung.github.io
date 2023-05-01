@@ -452,7 +452,7 @@
         const data = '{"clientID":"43557dd07d33bd0ebcdd","clientSecret":"4f8841de720cb270e38dea5ff52818c9eb744c36","repo":"blog_commets","owner":"viacheung","admin":"viacheung"}'
         const gitalk = new Gitalk({
             ...JSON.parse( data),
-            id:location.pathname,
+            id:decodeURI(location.pathname),
             distractionFreeMode:false
         })
         
