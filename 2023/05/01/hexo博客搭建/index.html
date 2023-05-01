@@ -617,7 +617,10 @@ Fancybox.bind('[data-fancybox="fancybox-gallery-img"]', {
             id:location.pathname,
             distractionFreeMode:false
         })
-        gitalk.render('gitalk-container')
+        
+        if(Boolean('true')){
+            gitalk.render('gitalk-container')
+        }
     </script>
 
 <script>
