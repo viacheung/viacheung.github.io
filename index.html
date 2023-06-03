@@ -211,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/MyBatis/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/ACM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -225,7 +225,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/MyBatis/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2023/06/04/ACM/" class="post-title-link" itemprop="url">ACM</a>
         </h2>
 
         <div class="post-meta">
@@ -239,7 +239,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 01:05:11 / 修改时间：00:55:29" itemprop="dateCreated datePublished" datetime="2023-06-04T01:05:11+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 01:13:09 / 修改时间：01:14:04" itemprop="dateCreated datePublished" datetime="2023-06-04T01:13:09+08:00">2023-06-04</time>
             </span>
 
           
@@ -253,1221 +253,124 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h2><p>1、Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，<strong>加载驱动、创建连接、创建statement</strong>等繁杂的过程，开发者开发时只需要关注如何编写SQL语句，可以严格控制sql执行性能，灵活度高<br>2、作为一个半ORM框架，MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。<br>3、通过xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java对象和 statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）。<br>4、由于MyBatis专注于SQL本身，灵活度高，所以比较适合对性能的要求很高，或者需求变化较多的项目，如互联网项目。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221724470.png#from=url&id=c3p96&originHeight=705&originWidth=1798&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>resultMap:反射创建的对象返回数据<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221905292.png#from=url&id=CApLP&originHeight=706&originWidth=1325&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
-<h2 id="Mybaits的优缺点"><a href="#Mybaits的优缺点" class="headerlink" title="Mybaits的优缺点"></a>Mybaits的优缺点</h2><p>优点：</p>
-<ul>
-<li>基于SQL语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成任何影响，SQL写在XML里，解除sql与程序代码的耦合，便于统一管理；提供XML标签，支持编写动态SQL语句，并可重用。</li>
-<li>与JDBC相比，减少大量代码量，消除了JDBC大量冗余的代码，不需要手动开关连接；</li>
-<li>与各种数据库<strong>兼容</strong>（因为MyBatis使用JDBC来连接数据库，所以只要JDBC支持的数据库MyBatis都支持）。 jdbc相当于接口 mysql类似于实现类</li>
-<li>g很好的集成Spring；</li>
-<li>提供映射标签，支持对象与数据库的ORM字段关系映射；提供对象关系映射标签，支持对象关系组件维护。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li><p>SQL语句的编写工作量较大，尤其当字段多、关联表多时，对开发人员编写SQL语句的功底有一定要求。</p>
-</li>
-<li><p>SQL语句依赖于数据库，导致数据库移植性差，不能随意更换数据库。</p>
-<h2 id="和-的区别是什么？"><a href="#和-的区别是什么？" class="headerlink" title="#{}和${}的区别是什么？"></a>#{}和${}的区别是什么？</h2><p>${} 是 Properties ⽂件中的变量占位符<br>#{} 是 sql 的参数占位符 </p>
-</li>
-<li><p>#{}是占位符，预编译处理；${}是拼接符，字符串替换，没有预编译处理。</p>
-</li>
-<li><p>Mybatis在处理#{}时，#{}传入参数是以字符串传入，会将SQL中的#{}替换为?号，调用PreparedStatement的set方法来赋值。</p>
-</li>
-<li><p>变量替换后，#{} 对应的变量自动加上单引号 ‘’；变量替换后，${} 对应的变量不会加上单引号 ‘’</p>
-</li>
-<li><p>#{} 可以有效的防止SQL注入，提高系统安全性；${} 不能防止SQL 注入</p>
-</li>
-<li><p>#{} 的变量替换是在DBMS 中；${} 的变量替换是在 DBMS 外</p>
-<h2 id="通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？"><a href="#通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？" class="headerlink" title="通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_11-%E9%80%9A%E5%B8%B8%E4%B8%80%E4%B8%AAxml%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%EF%BC%8C%E9%83%BD%E4%BC%9A%E5%86%99%E4%B8%80%E4%B8%AAdao%E6%8E%A5%E5%8F%A3%E4%B8%8E%E4%B9%8B%E5%AF%B9%E5%BA%94%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AAdao%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9Fdao%E6%8E%A5%E5%8F%A3%E9%87%8C%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%81%E5%8F%82%E6%95%B0%E4%B8%8D%E5%90%8C%E6%97%B6%EF%BC%8C%E6%96%B9%E6%B3%95%E8%83%BD%E9%87%8D%E8%BD%BD%E5%90%97%EF%BC%9F">通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？</a></h2><p>Dao接口即Mapper接口。接口的全限名就是映射文件中的namespace的值；接口的方法名，就是映射文件中Mapper的Statement的id值；接口方法内的参数，就是传递给sql的参数。Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名的拼接字符串作为key值，可唯一定位一个MapperStatement。<br>Dao接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。<br>Dao接口的工作原理是JDK动态代理，Mybatis运行时会使用JDK动态代理为Dao接口生成代理proxy对象，代理对象proxy会拦截接口方法，转而执行MappedStatement所代表的sql，然后将sql执行结果返回。</p>
-<h2 id="Xml-映射⽂件中有哪些标签？"><a href="#Xml-映射⽂件中有哪些标签？" class="headerlink" title="Xml 映射⽂件中有哪些标签？"></a>Xml 映射⽂件中有哪些标签？</h2><p><resultMap> 、 <parameterMap> 、 <sql> 、 <include> 、 <selectKey> 、<select>、<insert>、<update>、<delete></delete></update></insert></select></selectKey></include></sql></parameterMap></resultMap></p>
-<h2 id="Mapper接⼝的⼯作原理是什么？"><a href="#Mapper接⼝的⼯作原理是什么？" class="headerlink" title="Mapper接⼝的⼯作原理是什么？"></a>Mapper接⼝的⼯作原理是什么？</h2><p>例： com.mybatis3.mappers.StudentDao.findStudentById ，可以唯⼀找到 namespace(接口全限定名)为 com.mybatis3.mappers.StudentDao 下⾯ id &#x3D; findStudentById 的 MappedStatement （接⼝⽅法内的参数，就是传递给 sql 的参数。 ）<br>在 Mybatis中，每⼀个 <select> 、 <insert> 、 <update> 、 <delete> 标签，都会被解析为⼀个 MappedStatement 对象<br>Dao 接⼝的⼯作原理是 JDK 动态代理， <strong>Mybatis 运⾏时会使⽤ JDK 动态代理为 Dao 接⼝⽣成代理 proxy 对象</strong>，<strong>代理对象 proxy 会拦截接⼝⽅法，转⽽执⾏ MappedStatement 所代表的 sql，然后将 sql 执⾏结果返回。</strong></delete></update></insert></select></p>
-<h2 id="在Mapper中如何传递多个参数？"><a href="#在Mapper中如何传递多个参数？" class="headerlink" title="在Mapper中如何传递多个参数？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_12-%E5%9C%A8mapper%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%9F">在Mapper中如何传递多个参数？</a></h2><p>1、若Dao层函数有多个参数，那么其对应的xml中，#{0}代表接收的是Dao层中的第一个参数，#{1}代表Dao中的第二个参数，以此类推。<br>2、使用@Param注解：在Dao层的参数中前加@Param注解,注解内的参数名为传递到Mapper中的参数名。<br>3、多个参数封装成Map，以HashMap的形式传递到Mapper中。</p>
-<h2 id="Dao-（Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？"><a href="#Dao-（Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？" class="headerlink" title="Dao （Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？"></a>Dao （Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？</h2><p>Dao 接⼝⾥的⽅法，是不能重载的，因为是全限名+⽅法名的保存和寻找策略 </p>
-<h2 id="Mybatisplus-是如何进⾏分⻚的？分⻚插件的原理是什么？"><a href="#Mybatisplus-是如何进⾏分⻚的？分⻚插件的原理是什么？" class="headerlink" title="Mybatisplus 是如何进⾏分⻚的？分⻚插件的原理是什么？"></a>Mybatisplus 是如何进⾏分⻚的？分⻚插件的原理是什么？</h2><h2 id="简述-Mybatis-的插件运⾏原理，以及如何编写⼀个插件"><a href="#简述-Mybatis-的插件运⾏原理，以及如何编写⼀个插件" class="headerlink" title="简述 Mybatis 的插件运⾏原理，以及如何编写⼀个插件"></a>简述 Mybatis 的插件运⾏原理，以及如何编写⼀个插件</h2><p>使用基于jdk的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，<br>当执行这4种接口方法时，会进入拦截方法，invoke()方法<br>如何编写？<br>实现 Mybatis 的 Interceptor 接⼝并复写 intercept() ⽅法，然后在给插件编写注解，指定要拦截哪⼀个接⼝的哪些⽅法即可，记住，别忘了在配置⽂件中配置你编写的插件。 </p>
-<h2 id="Mybatis-执⾏批量插⼊，能返回数据库主键列表吗？"><a href="#Mybatis-执⾏批量插⼊，能返回数据库主键列表吗？" class="headerlink" title="Mybatis 执⾏批量插⼊，能返回数据库主键列表吗？"></a>Mybatis 执⾏批量插⼊，能返回数据库主键列表吗？</h2><p>可以</p>
-<h2 id="Mybatis-动态-sql-是做什么的？都有哪些动态-sql？能简述⼀下动态-sql-的执⾏原理不？"><a href="#Mybatis-动态-sql-是做什么的？都有哪些动态-sql？能简述⼀下动态-sql-的执⾏原理不？" class="headerlink" title="Mybatis 动态 sql 是做什么的？都有哪些动态 sql？能简述⼀下动态 sql 的执⾏原理不？"></a>Mybatis 动态 sql 是做什么的？都有哪些动态 sql？能简述⼀下动态 sql 的执⾏原理不？</h2><p>Mybatis 动态 sql 可以让我们在 Xml 映射⽂件内，以标签的形式编写动态 sql，完成逻辑判断和动态拼接 sql 的功能， Mybatis 提供了 9 种动态 sql 标签trim|where|set|foreach|if|choose|when|otherwise|bind 。其执⾏原理为，使⽤ <strong>OGNL</strong> 从 sql 参数对象中计算表达式的值，根据表达式的值动态拼接 sql，以此来完成动态 sql 的功能。<br><strong>执行原理</strong>：是根据表达式的值完成逻辑判断，并动态拼接sql的功能。</p>
-<h2 id="Mybatis-是如何将-sql-执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？"><a href="#Mybatis-是如何将-sql-执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？" class="headerlink" title="Mybatis 是如何将 sql 执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？"></a>Mybatis 是如何将 sql 执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？</h2><p>第⼀种：是使⽤ <resultMap> 标签，逐⼀定义列名和对象属性名之间的映射关系。<br>第⼆种：使⽤ sql 列的别名功能，将列别名书写为对象属性名，⽐如 T_NAME AS NAME，<br>有了列名与属性名的映射关系后， Mybatis 通过反射创建对象，同时使⽤反射给对象的属性逐⼀赋值并返回，那些找不到映射关系的属性，是⽆法完成赋值的 </resultMap></p>
-<h2 id="Mybatis-能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。"><a href="#Mybatis-能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。" class="headerlink" title="Mybatis 能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。"></a>Mybatis 能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。</h2><p>可以，把 selectOne() 修改为 selectList() 即可<br>关联对象查询，有两种实现⽅式，一种是两条sql 一种是嵌套（join） 具体如下：</p>
-<pre><code>有联合查询和嵌套查询两种方式。
-联合查询是几个表联合查询，通过在resultMap里面配置association节点配置一对一的类就可以完成；
-嵌套查询是先查一个表，根据这个表里面的结果的外键id，再去另外一个表里面查询数据，也是通过association配置，但另外一个表的查询是通过select配置的。
-</code></pre>
-<p>去重复的原理是 <resultMap> 标签内的 <id> ⼦标签 </id></resultMap></p>
-<h2 id="Mybatis的一级、二级缓存（？）"><a href="#Mybatis的一级、二级缓存（？）" class="headerlink" title="Mybatis的一级、二级缓存（？）"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_17-mybatis%E7%9A%84%E4%B8%80%E7%BA%A7%E3%80%81%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98">Mybatis的一级、二级缓存</a>（？）</h2><p>1、 一级缓存：基于PerpetualCache的HashMap本地缓存，其存储作用域为Session，当Session flush或close之后，该Session中的所有Cache就将清空，默认打开一级缓存。<br>2、 二级缓存与一级缓存机制相同，默认也是采用PerpetualCache，HashMap存储，不同在于其存储作用域为Mapper（namespace），并且可自定义存储源，如Ehcache。默认打不开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口（可用来保存对象的状态），可在它的映射文件中配置。<br>对于缓存数据更新机制，当某一个作用域（一级缓存Session&#x2F;二级缓存Namespace）进行了增&#x2F;删&#x2F;改操作后，默认该作用域下所有select中的缓存将被clear。</p>
-<h2 id="使用MyBatis的Mapper接口调用时有哪些要求？"><a href="#使用MyBatis的Mapper接口调用时有哪些要求？" class="headerlink" title="使用MyBatis的Mapper接口调用时有哪些要求？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_18-%E4%BD%BF%E7%94%A8mybatis%E7%9A%84mapper%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82%EF%BC%9F">使用MyBatis的Mapper接口调用时有哪些要求？</a></h2><p>1、Mapper接口方法名和mapper.xml中定义的每个sql的id相同；<br>2、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql的parameterType类型相同；<br>3、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同；<br>4、Mapper.xml文件中的namespace即是mapper接口的类路径。</p>
-<h2 id="Mybatis-是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？"><a href="#Mybatis-是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？" class="headerlink" title="Mybatis 是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？"></a>Mybatis 是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？</h2><p>使⽤ CGLIB 创建⽬标对象的代理对象，当调⽤⽬标⽅法时，进⼊拦截器⽅法，⽐如调⽤ a.getB().getName() ，拦截器 invoke() ⽅法发现 a.getB() 是 null 值，那么就会单独发送事先保存好的查询关联 B 对象的 sql，把 B 查询上来，然后调⽤ a.setB(b)，于是 a 的对象 b 属性就有值了，接着完成 a.getB().getName() ⽅法的调⽤。这就是延迟加载的基本原理。<br>意思就是set我先不做，等你get的时候我再带调用set 然后再get，比较懒</p>
-<h2 id="Mybatis-的-Xml-映射⽂件中，不同的-Xml-映射⽂件，-id-是否可以重复？"><a href="#Mybatis-的-Xml-映射⽂件中，不同的-Xml-映射⽂件，-id-是否可以重复？" class="headerlink" title="Mybatis 的 Xml 映射⽂件中，不同的 Xml 映射⽂件， id 是否可以重复？"></a>Mybatis 的 Xml 映射⽂件中，不同的 Xml 映射⽂件， id 是否可以重复？</h2><p>如果配置了 namespace，那么 id 可以重复；如果没有配置namespace，那么 id 不能重复；<br>原因就是 namespace+id 是作为 Map&lt;String, MappedStatement&gt; 的 key 使⽤的 </p>
-<h2 id="Mybatis-中如何执⾏批处理？"><a href="#Mybatis-中如何执⾏批处理？" class="headerlink" title="Mybatis 中如何执⾏批处理？"></a>Mybatis 中如何执⾏批处理？</h2><p>BatchExecutor 完成批处理。 </p>
-<h2 id="Mybatis-都有哪些-Executor-执⾏器？它们之间的区别是什么？-如何指定使⽤哪⼀种-Executor-执⾏器？"><a href="#Mybatis-都有哪些-Executor-执⾏器？它们之间的区别是什么？-如何指定使⽤哪⼀种-Executor-执⾏器？" class="headerlink" title="Mybatis 都有哪些 Executor 执⾏器？它们之间的区别是什么？ 如何指定使⽤哪⼀种 Executor 执⾏器？"></a>Mybatis 都有哪些 Executor 执⾏器？它们之间的区别是什么？ 如何指定使⽤哪⼀种 Executor 执⾏器？</h2><p>SimpleExecutor ：每执⾏⼀次 update 或 select，就开启⼀个 Statement 对象，⽤完⽴刻关闭（执行一个开一个）<br>ReuseExecutor ： 以 sql 作为 key 查找 Statement 对象，存在就使⽤，不存在就创建，⽤完后，不关闭 Statement 对象，⽽是放置于 Map&lt;String, Statement&gt;内，供下⼀次使⽤。简⾔之，就是重复使⽤ Statement 对象。<br>BatchExecutor ：将所有 sql 都添加到批处理中（addBatch()），等待统⼀执⾏（executeBatch()）<br>配置⽂件中，可以指定默认的 ExecutorType 执<br>⾏器类型 </p>
-<h2 id="Mybatis-是否可以映射-Enum-枚举类？"><a href="#Mybatis-是否可以映射-Enum-枚举类？" class="headerlink" title="Mybatis 是否可以映射 Enum 枚举类？"></a>Mybatis 是否可以映射 Enum 枚举类？</h2><p>Mybatis 可以映射任何对象到表的⼀列上。⾃定义⼀个 TypeHandler ，实现 TypeHandler 的 setParameter() 和 getResult()接⼝⽅法。 TypeHandler 有两个作⽤， javaType –&gt; jdbcType (setParameter())–&gt;设置sql 问号占位符参数<br>jdbcType –&gt; javaType(getResult())-&gt;获取列查询结果</p>
-<h2 id="Mybatis-映射⽂件中，如果-A-标签通过-include-引⽤了-B-标签的内容，请问，-B-标签能否定义在-A-标签的后⾯，还是说必须定义在-A-标签的前⾯？"><a href="#Mybatis-映射⽂件中，如果-A-标签通过-include-引⽤了-B-标签的内容，请问，-B-标签能否定义在-A-标签的后⾯，还是说必须定义在-A-标签的前⾯？" class="headerlink" title="Mybatis 映射⽂件中，如果 A 标签通过 include 引⽤了 B 标签的内容，请问， B 标签能否定义在 A 标签的后⾯，还是说必须定义在 A 标签的前⾯？"></a>Mybatis 映射⽂件中，如果 A 标签通过 include 引⽤了 B 标签的内容，请问， B 标签能否定义在 A 标签的后⾯，还是说必须定义在 A 标签的前⾯？</h2><p>都行， A 标签引⽤了 B 标签，但B在后面，会把A 标签标记为未解析状态，后面有个B，然后 Mybatis 会重新解析那些被标记为未解析的标签，此时再解析 A 标签时， B标签已经存在， OK！</p>
-<h2 id="简述-Mybatis-的-Xml-映射⽂件和-Mybatis-内部数据结构之间的映射关系？"><a href="#简述-Mybatis-的-Xml-映射⽂件和-Mybatis-内部数据结构之间的映射关系？" class="headerlink" title="简述 Mybatis 的 Xml 映射⽂件和 Mybatis 内部数据结构之间的映射关系？"></a>简述 Mybatis 的 Xml 映射⽂件和 Mybatis 内部数据结构之间的映射关系？</h2><pre><code> ---&gt;MappedStatement     标签会被解析为 ParameterMap   参数
-</code></pre>
-<p><resultMap> 标签会被解析为 ResultMap 结果</resultMap></p>
-<h2 id="为什么说-Mybatis-是半⾃动-ORM-映射⼯具？它与全⾃动的区别在哪⾥？"><a href="#为什么说-Mybatis-是半⾃动-ORM-映射⼯具？它与全⾃动的区别在哪⾥？" class="headerlink" title="为什么说 Mybatis 是半⾃动 ORM 映射⼯具？它与全⾃动的区别在哪⾥？"></a>为什么说 Mybatis 是半⾃动 ORM 映射⼯具？它与全⾃动的区别在哪⾥？</h2><p>Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取，所以它是全自动的。<br>Mybatis在查询关联对象或关联集合对象时，Mybatis 需要⼿动编写 sql 来完成 </p>
-<h2 id="Hibernate-和-MyBatis-的区别"><a href="#Hibernate-和-MyBatis-的区别" class="headerlink" title="Hibernate 和 MyBatis 的区别"></a>Hibernate 和 MyBatis 的区别</h2><p><strong>相同点</strong>：都是对jdbc的封装，都是持久层的框架，都用于dao层的开发。<br><strong>不同点</strong><br>1、映射关系<br>MyBatis 是一个半自动映射的框架，配置Java对象与sql语句执行结果的对应关系，多表关联关系配置简单。<br>Hibernate 是一个全表映射的框架，配置Java对象与数据库表的对应关系，多表关联关系配置复杂。<br>2、 SQL优化和移植性<br>Hibernate 对SQL语句封装，提供了日志、缓存、级联（级联比 MyBatis 强大）等特性，此外还提供 HQL（Hibernate Query Language）操作数据库，数据库无关性支持好，但会多消耗性能。如果项目需要支持多种数据库，代码开发量少，但SQL语句优化困难。<br>MyBatis 需要手动编写 SQL，支持动态 SQL、处理列表、动态生成表名、支持存储过程。开发工作量相对大些。直接使用SQL语句操作数据库，不支持数据库无关性，但sql语句优化容易。<br>3、开发难易程度和学习成本<br>Hibernate 是重量级框架，学习使用门槛高，适合于需求相对稳定，中小型的项目，比如：办公自动化系统<br>MyBatis 是轻量级框架，学习使用门槛低，适合于需求变化频繁，大型的项目，比如：互联网电子商务系统<br><strong>总结</strong><br>MyBatis 是一个小巧、方便、高效、简单、直接、半自动化的持久层框架，<br>Hibernate 是一个强大、方便、高效、复杂、间接、全自动化的持久层框架</p>
-<h2 id="JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？"><a href="#JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？" class="headerlink" title="JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？"></a>JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？</h2><p>1、【资源浪费】数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。<br><strong>解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。</strong><br>2、【耦合严重】Jdbc的Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。<br><strong>解决：将Sql语句配置在XXXXmapper.xml文件中与java代码分离。</strong><br>3、 【手动传参】向sql语句传参数麻烦（手动传参），因为sql语句的where条件不一定，可能多也可能少，占位符需要和参数一一对应。<br><strong>解决： Mybatis自动将java对象映射至sql语句。</strong><br>4、 【解析结果麻烦】对结果集解析麻烦，sql变化导致解析代码变化，且解析前需要遍历，如果能将数据库记录封装成pojo对象解析比较方便。<br><strong>解决：Mybatis自动将sql执行结果映射至java对象。</strong></p>
-<h2 id="MyBatis编程步骤是什么样的？"><a href="#MyBatis编程步骤是什么样的？" class="headerlink" title="MyBatis编程步骤是什么样的？"></a>MyBatis编程步骤是什么样的？</h2><p>1、 创建SqlSessionFactory<br>2、 通过SqlSessionFactory创建SqlSession<br>3、 通过sqlsession执行数据库操作<br>4、 调用session.commit()提交事务<br>5、 调用session.close()关闭会话</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 01:05:11 / 修改时间：00:55:10" itemprop="dateCreated datePublished" datetime="2023-06-04T01:05:11+08:00">2023-06-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><strong>冒泡排序</strong></h3><p><strong>简要思路：</strong> 遍历数组，每次比较相邻的两个元素 <code>arr[i], arr[i + 1]</code>，如果 <code>arr[i + 1] &lt; arr[i]</code> ，就把 <code>arr[i + 1]</code> 和 <code>arr[i]</code> 调换位置。</p>
-<p>冒泡排序有这样的排序特性：</p>
-<ul>
-<li>每次都只排好一个元素。</li>
-<li>最坏情况时间复杂度为n^2。</li>
-<li>平均情况时间复杂度为n^2。</li>
-<li>需要额外空间O(1)。</li>
-<li>所需时间和输入数组的初始状态无关。</li>
-</ul>
-<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p><strong>简要思路：</strong> 对于每次循环，我们都找到剩余未排序中的最小数对应的下标，然后在遍历完一次之后把对应的数放到合适的位置上去。</p>
-<p><strong>选择排序有这样的排序特性：</strong></p>
-<ul>
-<li>每次循环都只排好一个元素。</li>
-<li>最坏情况时间复杂度为Θ(n2)。</li>
-<li>平均情况时间复杂度为Θ(n2)。</li>
-<li>需要额外空间为O(1)。</li>
-<li>所需时间和输入数组的初始状态无关。</li>
-</ul>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p><strong>简要思路：</strong> 类似于打牌时整理手里的扑克牌，每次选择一张然后插入到前面已经有序的牌中适当位置。</p>
-<p><strong>插入排序有这样的排序特性：</strong></p>
-<ul>
-<li>每次排好一个元素。</li>
-<li>最坏情况时间复杂度为Θ(n2)。</li>
-<li>平均情况时间复杂度为Θ(n2)。</li>
-<li>需要额外空间为O(1)。</li>
-<li>所需时间和输入数组的初始状态<strong>有关</strong>。</li>
-</ul>
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p><strong>简要思路：</strong> 类似于打牌时整理手里的扑克牌，每次选择一张然后插入到前面已经有序的牌中适当位置。</p>
-<p><strong>插入排序有这样的排序特性：</strong></p>
-<ul>
-<li>每次排好一个元素。</li>
-<li>最坏情况时间复杂度为Θ(�2)。</li>
-<li>平均情况时间复杂度为Θ(�2)。</li>
-<li>需要额外空间为�(1)。</li>
-<li>所需时间和输入数组的初始状态<strong>有关</strong>。</li>
-</ul>
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p><strong>快速排序算法特性：</strong></p>
-<ul>
-<li>时间复杂度和空间复杂度兼优，就好像是以前班里的学霸，学习好体育也不差。</li>
-<li>最坏情况时间复杂度为Θ(�2)。</li>
-<li>平均情况时间复杂度为Θ(����)。</li>
-<li>空间复杂度�(1)。</li>
-<li>只有当原始数组完全随机化才会达到理论上最优情况，那么相反的，如果数组原来就有序，这时候就成了快速排序的最差情况。</li>
-<li>对于小数组，不如换成插入排序来的快 。</li>
-</ul>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><strong>快速排序算法特性：</strong></p>
-<ul>
-<li>时间复杂度和空间复杂度兼优，就好像是以前班里的学霸，学习好体育也不差。</li>
-<li>最坏情况时间复杂度为Θ(�2)。</li>
-<li>平均情况时间复杂度为Θ(����)。</li>
-<li>空间复杂度�(1)。</li>
-<li>只有当原始数组完全随机化才会达到理论上最优情况，那么相反的，如果数组原来就有序，这时候就成了快速排序的最差情况。</li>
-<li>对于小数组，不如换成插入排序来的快 。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 01:05:11 / 修改时间：00:53:28" itemprop="dateCreated datePublished" datetime="2023-06-04T01:05:11+08:00">2023-06-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ul>
-<li>1、单一职责（Single Responsibility Principle）<ul>
-<li>定义：一个类只负责一个功能另有中的相应职责———-就一个类而言，应该只有一个引起它变化的原因；</li>
-<li>优点：实现高内聚，低耦合；</li>
-<li>应用场景：<ul>
-<li>也就是说一个类里最好是放一种类型的方法；比如：DAO：只放操作数据库的方法；Util：只放某个工具的方法；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>2、开闭原则（Open Close Principle）<ul>
-<li>定义：当有新的需求的时候，我们不用修改现在的代码，只需要添加新的代码就可以</li>
-<li>优点：对拓展开放，对内修改关闭。</li>
-</ul>
-</li>
-<li>3、里氏替换原则（Liskov Substitution Principle）<ul>
-<li>定义：所有引用基类的地方必须能透明地使用其子类的对象，也就是说子类对象可以替换其父类对象，而程序执行效果不变。</li>
-<li>里氏替换原则是使代码符合开闭原则的一个重要保证；</li>
-<li>优点：<ul>
-<li>约束继承泛滥，是开闭原则的一种体现；</li>
-<li>加强程序的健壮性，同时变更时也可以做到非常好的提高程序的维护性、扩展性。降低需求变更时引入的风险；</li>
-</ul>
-</li>
-<li>要求：<ul>
-<li>○ 子类可以扩展父类的功能，但不能改变父类原有的功能</li>
-<li>○ 子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法；</li>
-<li>○ 子类可以增加自己特有的方法；</li>
-<li>○ 当子类单独的方法重载父类的方法时，方法的前置条件（即方法的输入&#x2F;入参）要比父类方法的输入参数更宽松；</li>
-<li>○ 当子类的方法实现父类的方法时（重载&#x2F;重写或实现抽象方法）的后置条件（即方法的输出&#x2F;返回值）要比父类更严格或者相等；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>4、接口隔离原则（Interface Segregation Principle）<ul>
-<li>定义：不能强迫用户去依赖那些他们不使用的接口。即：使用多个专门的接口会比使用单一的总接口好；</li>
-<li>优点：避免同一个接口里面包含不同类职责的方法，接口责任划分更加明确，符合高内聚低耦合的思想。</li>
-<li>接口分隔原则：<ul>
-<li>1、一个类对一个类的依赖应该建立在最小的接口上</li>
-<li>2、建立单一接口，不要建立庞大臃肿的接口</li>
-<li>3、尽量细化接口，接口中的方法尽量少</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>5、依赖倒置原则（Dependency Inversion Principle）<ul>
-<li>定义：抽象不应该不依赖于细节，细节应该依赖于抽象；即：针对接口编程，而不是针对实现编程。</li>
-<li>优点：可以减少类间的耦合性、提高系统的稳定性，提高代码可读性和可维护性，可降低修改程序所造成的的风险。</li>
-<li>要求：<ul>
-<li>依赖抽象，而不是依赖实现。</li>
-<li>抽象不应该依赖细节；细节应该依赖抽象。</li>
-<li>高层模块不能依赖低层模块，二者都应该依赖抽象。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>6、迪米特原则（Law of Demeter 又名Least Knowledge Principle）<ul>
-<li>定义：一个对象应该对尽可能少的对象有接触，也就是只接触那些真正需要接触的对象。</li>
-<li>优点：降低类与类之间的耦合<h2 id="Spring-使⽤了哪些设计模式？"><a href="#Spring-使⽤了哪些设计模式？" class="headerlink" title="Spring 使⽤了哪些设计模式？"></a>Spring 使⽤了哪些设计模式？</h2>Spring 框架中⽤到了哪些设计模式？⼯⼚设计模式 : Spring 使⽤⼯⼚模式通过BeanFactory 、 ApplicationContext 创建 bean 对象。代理设计模式 : Spring AOP 功能的实现。单例设计模式 : Spring 中的 Bean 默认都是单例的。模板⽅法模式 : Spring 中 jdbcTemplate 、 hibernateTemplate 等以Template 结尾的对数据库操作的类，它们就使⽤到了模板模式。包装器设计模式 : 我们的项⽬需要连接多个数据库，⽽且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。观察者模式: Spring 事件驱动模型就是观察者模式很经典的⼀个应⽤。适配器模式 :Spring AOP 的增强或通知(Advice)使⽤到了适配器模式、spring MVC 中也是⽤到了适配器模式适配 Controller 。 <h2 id="stream流和for的区别？"><a href="#stream流和for的区别？" class="headerlink" title="stream流和for的区别？"></a>stream流和for的区别？</h2><h2 id="jdk1-8的新特性有哪些？"><a href="#jdk1-8的新特性有哪些？" class="headerlink" title="jdk1.8的新特性有哪些？"></a>jdk1.8的新特性有哪些？</h2>lamad表达式，stream流，localDate和localDateTime日期类</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th><strong>特征</strong></th>
-<th><strong>jdk17</strong></th>
-<th><strong>jdk8</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>垃圾收集器</td>
-<td>ZGC（jdk11提出）（新型垃圾收集器）</td>
-<td>G1收集器</td>
-</tr>
-<tr>
-<td>新特性</td>
-<td>Record类、引入了C++风格的内存管理</td>
-<td>Lambda表达式、Stream API、函数式接口</td>
-</tr>
-<tr>
-<td>性能比较</td>
-<td>改进了JIT编译器、垃圾回收器，提升了性能和响应速度</td>
-<td>不如17</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>Java 17则更适合用于开发大型应用程序和高性能应用程序，例如高性能计算、云计算、大数据处理等。</td>
-<td>Java 8适用于开发中小型应用程序和Web应用程序，例如Web服务、企业级应用程序和桌面应用程序等。</td>
-</tr>
-</tbody></table>
-<p>ZGC优化在哪</p>
-<ul>
-<li>支持 JVM 选项 -XX:+UseDynamicNumberOfGCThreads。此功能默认启用，并告诉 ZGC 对其使用的 GC 线程数保持智能，这通常会导致 Java 应用程序级别的更高吞吐量和更低延迟。</li>
-<li>使用了ZGC的JVM在停止运行时， 基本上是实时的，而之前版本花费的时间更多。</li>
-<li>标记算法现在通常使用更少的内存，并且不再容易出现过多的内存使用。</li>
-<li>ZGC 现在可以在 macOS&#x2F;Aarch64 上运行。</li>
-<li>ZGC 现在发布了两个 GarbageCollectorMXBean，以提供有关 GC 周期和 GC 暂停的信息。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E6%94%BE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E6%94%BE%E9%A2%98/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 01:05:11 / 修改时间：00:52:27" itemprop="dateCreated datePublished" datetime="2023-06-04T01:05:11+08:00">2023-06-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="linux、docker操作"><a href="#linux、docker操作" class="headerlink" title="linux、docker操作"></a>linux、docker操作</h2><h4 id="2、Docker"><a href="#2、Docker" class="headerlink" title="2、Docker"></a>2、Docker</h4><p>Docker如何解决大型项目依赖关系复杂，不同组件依赖的兼容性问题？</p>
-<ul>
-<li>Docker允许开发中将应用、依赖、函数库、配置一起<strong>打包</strong>，形成可移植镜像</li>
-<li>Docker应用运行在容器中，使用沙箱机制，相互<strong>隔离</strong></li>
-</ul>
-<p>Docker如何解决开发、测试、生产环境有差异的问题？</p>
-<ul>
-<li>Docker镜像中包含完整运行环境，包括系统函数库，仅依赖系统的Linux内核，因此可以在任意Linux操作系统上运行</li>
-</ul>
-<p>Docker是一个快速交付应用、运行应用的技术，具备下列优势：</p>
-<ul>
-<li>可以将程序及其依赖、运行环境一起打包为一个镜像，可以迁移到任意Linux操作系统</li>
-<li>运行时利用沙箱机制形成隔离容器，各个应用互不干扰</li>
-<li>启动、移除都可以通过一行命令完成，方便快捷</li>
-</ul>
-<p>Docker和虚拟机的差异：</p>
-<ul>
-<li><p>docker是一个系统进程；虚拟机是在操作系统中的操作系统</p>
-</li>
-<li><p>docker体积小、启动速度快、性能好；虚拟机体积大、启动速度慢、性能一般</p>
-<h5 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a><strong>基本概念</strong></h5><p>镜像：</p>
-</li>
-<li><p>将应用程序及其依赖、环境、配置打包在一起</p>
-</li>
-</ul>
-<p>容器：</p>
-<ul>
-<li>镜像运行起来就是容器，一个镜像可以运行多个容器 容器有自己独立的cpu 内存 文件系统 避免污染镜像</li>
-</ul>
-<p>Docker结构：</p>
-<ul>
-<li>服务端：接收命令或远程请求，操作镜像或容器</li>
-<li>客户端：发送命令或者请求到Docker服务端</li>
-</ul>
-<p>DockerHub：</p>
-<ul>
-<li><p>一个镜像托管的服务器，类似的还有阿里云镜像服务，统称为DockerRegistry</p>
-<h5 id="命令"><a href="#命令" class="headerlink" title="命令"></a><strong>命令</strong></h5><p>docker run命令的常见参数有哪些？</p>
-</li>
-<li><p>–name：指定容器名称</p>
-</li>
-<li><p>-p：指定端口映射</p>
-</li>
-<li><p>-d：让容器后台运行</p>
-</li>
-</ul>
-<p>查看容器日志的命令：</p>
-<ul>
-<li>docker logs</li>
-<li>添加 -f 参数可以持续查看日志</li>
-</ul>
-<p>查看容器状态：</p>
-<ul>
-<li><p>docker ps</p>
-</li>
-<li><p>docker ps -a 查看所有容器，包括已经停止的</p>
-<h5 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h5><p>数据卷的作用：</p>
-</li>
-<li><p>将容器与数据分离，解耦合，方便操作容器内数据，保证数据安全</p>
-</li>
-</ul>
-<p>数据卷操作：</p>
-<ul>
-<li>docker volume create：创建数据卷</li>
-<li>docker volume ls：查看所有数据卷</li>
-<li>docker volume inspect：查看数据卷详细信息，包括关联的宿主机目录位置</li>
-<li>docker volume rm：删除指定数据卷</li>
-<li>docker volume prune：删除所有未使用的数据卷</li>
-</ul>
-<p>docker run的命令中通过 -v 参数挂载文件或目录到容器中：</p>
-<ul>
-<li>-v volume名称:容器内目录</li>
-<li>-v 宿主机文件:容器内文件</li>
-<li>-v 宿主机目录:容器内目录</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230403002812590.png#from=url&id=dNogl&originHeight=218&originWidth=482&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>数据卷挂载与目录直接挂载的</p>
-<ul>
-<li>数据卷挂载耦合度低，由docker来管理目录，但是目录较深，不好找</li>
-<li>目录挂载耦合度高，需要我们自己管理目录，不过目录容易寻找查看、<h5 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h5></li>
-</ul>
-<ol>
-<li>Dockerfile的本质是一个文件，通过指令描述镜像的构建过程</li>
-<li>Dockerfile的第一行必须是FROM，从一个基础镜像来构建</li>
-<li>基础镜像可以是基本操作系统，如Ubuntu。也可以是其他人制作好的镜像，例如：java:8-alpine<h5 id="dockercompose"><a href="#dockercompose" class="headerlink" title="dockercompose"></a>dockercompose</h5>Docker Compose可以基于Compose文件帮我们快速的部署分布式应用，而无需手动一个个创建和运行容器！<h4 id="3、linux命令"><a href="#3、linux命令" class="headerlink" title="3、linux命令"></a>3、linux命令</h4><strong>切换用户</strong><br>su name<br>exit<br><strong>目录操作</strong><br>切换cd<br>查看ls<br>删除rm<br>修改mv<br><strong>文件操作</strong><br>touch rm vi cat chmod 777 a.txt<br>查找进程top ps-ef<br><strong>递归操作</strong><br>-R<h2 id="查找端口号冲突"><a href="#查找端口号冲突" class="headerlink" title="查找端口号冲突"></a>查找端口号冲突</h2><pre><code>netstat -ano | findstr &quot;8080&quot;               //查找
-taskkill /pid 8080 /f                       //释放
-</code></pre>
-<h2 id="topk问题"><a href="#topk问题" class="headerlink" title="topk问题"></a>topk问题</h2>路：只找到TopK，不排序TopK。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/v2-7a9fcf4d6fe7e0b7f873d8d3c6cf40e8_720w.webp#from=url&id=cHzo5&originHeight=225&originWidth=375&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>先用前k个元素生成一个小顶堆，这个小顶堆用于存储，当前最大的k个元素。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/v2-f7aec1e403b784753102a0a11626658a_720w.webp#from=url&id=ayEbX&originHeight=210&originWidth=373&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>接着，从第k+1个元素开始扫描，和堆顶（堆中最小的元素）比较，如果被扫描的元素大于堆顶，则替换堆顶的元素，并调整堆，以保证堆内的k个元素，总是当前最大的k个元素。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/v2-d8c1720ea1dc61a64b867350b8705ebd_720w.webp#from=url&id=ubAoA&originHeight=232&originWidth=456&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>直到，扫描完所有n-k个元素，最终堆中的k个元素，就是猥琐求的TopK。<br>伪代码：<br>heap[k] &#x3D; make_heap(arr[1, k]);<br>for(i&#x3D;k+1 to n){<br>adjust_heap(heep[k],arr[i]);<br>}<br>return heap[k];<br>时间复杂度：O(n<em>lg(k))<br>画外音：n个元素扫一遍，假设运气很差，每次都入堆调整，调整时间复杂度为堆的高度，即lg(k)，故整体时间复杂度是n</em>lg(k)。<br>分析：堆，将冒泡的TopK排序优化为了TopK不排序，节省了计算资源。堆，是求TopK的经典算法，那还有没有更快的方案呢？<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230328215529635.png#from=url&id=LCI8t&originHeight=449&originWidth=1220&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>从复杂度来说，部分（nlogk），完全（klogn）完全入堆的复杂度必然要低一点 那为什么网上都用部分入堆呢？我感觉减少空间占用把<h3 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h3>例如，集合S&#x3D;{1,3,5,7,9}，容易发现，S中所有元素都在1-16之间，于是，可以用16个bit来表示这个集合：存在于集合中的元素，对应bit置1，否则置0。<br>画外音：究竟需要多少存储空间，取决于集合中元素的值域，在什么范围之内。<br>上述集合S，可以用1010101010000000这样一个16bit的bitmap来表示，其中，第1, 3, 5, 7, 9个bit位置是1。<br>但会存在重复元素去重的问题<br>解决：维护一个count去计数，从最高位找count和为k的<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/20181004205225541#from=url&id=NSH3L&originHeight=319&originWidth=464&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><h2 id="100亿数字10mb找中位数"><a href="#100亿数字10mb找中位数" class="headerlink" title="100亿数字10mb找中位数"></a>100亿数字10mb找中位数</h2>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/359d6869d5ce4738bf9c9a42b67d9568">https://www.nowcoder.com/questionTerminal/359d6869d5ce4738bf9c9a42b67d9568</a>来源：牛客网<br>中位数定义：数字排序之后，位于中间的那个数。比如将100亿个数字进行排序，排序之后，位于第50亿个位置的那个数 就是中位数。<br>①内存够：内存够还慌什么啊，直接把100亿个全部排序了，你用冒泡都可以…然后找到中间那个就可以了。但是你以为面试官会给你内存？？<br>②内存不够：题目说是整数，我们认为是带符号的int,所以4字节，占32位。<br>假设100亿个数字保存在一个大文件中，依次读一部分文件到内存(不超过内存的限制)，将每个数字用二进制表示，比较二进制的最高位(第32位，符号位，0是正，1是负)，如果数字的最高位为0，则将这个数字写入 file_0文件中；如果最高位为 1，则将该数字写入file_1文件中。<br>从而将100亿个数字分成了两个文件，假设 file_0文件中有 60亿 个数字，file_1文件中有 40亿 个数字。那么中位数就在 file_0 文件中，并且是 file_0 文件中所有数字排序之后的第 10亿 个数字。（file_1中的数都是负数，file_0中的数都是正数，也即这里一共只有40亿个负数，那么排序之后的第50亿个数一定位于file_0中）<br>现在，我们只需要处理 file_0 文件了（不需要再考虑file_1文件）。对于 file_0 文件，同样采取上面的措施处理：将file_0文件依次读一部分到内存(不超内存限制)，将每个数字用二进制表示，比较二进制的 次高位（第31位），如果数字的次高位为0，写入file_0_0文件中；如果次高位为1，写入file_0_1文件 中。<br>现假设 file_0_0文件中有30亿个数字，file_0_1中也有30亿个数字，则中位数就是：file_0_0文件中的数字从小到大排序之后的第10亿个数字。<br>抛弃file_0_1文件，继续对 file_0_0文件 根据 次次高位(第30位) 划分，假设此次划分的两个文件为：file_0_0_0中有5亿个数字，file_0_0_1中有25亿个数字，那么中位数就是 file_0_0_1文件中的所有数字排序之后的 第 5亿 个数。<br>按照上述思路，直到划分的文件可直接加载进内存时，就可以直接对数字进行快速排序，找出中位数了。<h2 id="大文件排序问题"><a href="#大文件排序问题" class="headerlink" title="大文件排序问题"></a>大文件排序问题</h2>设想你有一个20GB的文件，每行一个字符串，说明如何对这个文件进行排序。<br>内存肯定没有20GB大，所以不可能采用传统排序法。但是可以将文件分成许多块，每块xMB,针对每个快各自进行排序，存回文件系统。<br>然后将这些块逐一合并，最终得到全部排好序的文件。<br>外排序的一个例子是外归并排序（External merge sort），它读入一些能放在内存内的数据量，在内存中排序后输出为一个顺串（即是内部数据有序的临时文件），处理完所有的数据后再进行归并。<a href="#">1</a>比如，要对900MB的数据进行排序，但机器上只有100 MB的可用内存时，外归并排序按如下方法操作：<br>1、读入100 MB的数据至内存中，用某种常规方式（如快速排序、堆排序、归并排序等方法）在内存中完成排序。2、将排序完成的数据写入磁盘。3、重复步骤1和2直到所有的数据都存入了不同的100 MB的块（临时文件）中。在这个例子中，有900 MB数据，单个临时文件大小为100 MB，所以会产生9个临时文件。4、读入每个临时文件（顺串）的前10 MB（ &#x3D; 100 MB &#x2F; (9块 + 1)）的数据放入内存中的输入缓冲区，最后的10 MB作为输出缓冲区。（实践中，将输入缓冲适当调小，而适当增大输出缓冲区能获得更好的效果。）5、执行九路归并算法，将结果输出到输出缓冲区。一旦输出缓冲区满，将缓冲区中的数据写出至目标文件，清空缓冲区。一旦9个输入缓冲区中的一个变空，就从这个缓冲区关联的文件，读入下一个10M数据，除非这个文件已读完。这是“外归并排序”能在主存外完成排序的关键步骤 – 因为“归并算法”(merge algorithm)对每一个大块只是顺序地做一轮访问(进行归并)，每个大块不用完全载入主存。<h2 id="cpu飙高，系统反应慢如何排查"><a href="#cpu飙高，系统反应慢如何排查" class="headerlink" title="cpu飙高，系统反应慢如何排查"></a>cpu飙高，系统反应慢如何排查</h2><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410172241467.png#from=url&id=GSkMk&originHeight=280&originWidth=574&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410172257087.png#from=url&id=QnC8U&originHeight=247&originWidth=627&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>top命令找java进程pid,然后使用jmap命令生成dump文件。file后面是保存的文件名称，1246则是java程序的PID。<br>jmap -dump:format&#x3D;b,file&#x3D;user.dump 1246<br>或者启动时加上如下参数，HeapDumpPath表示生成dump文件保存的目录。<br>-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath&#x3D;D:\tmp<br>然后用jprofile查看占用多的地方<br>两种情况：<br>1、如果cpu利用率高的线程一直是一个，jstack获取该线程Dump日志，然后定位到线程日志，找到对应问题代码<br>1、如果cpu利用率高的线程一直变，说明线程创建多了，有可能是正常的，只是某一刻飙高<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230412005359864.png#from=url&id=ZOQ7O&originHeight=257&originWidth=771&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2>查安装路径<br>whereis mysql<br>查询运行路径<br>which mysql</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 01:04:36 / 修改时间：01:04:37" itemprop="dateCreated datePublished" datetime="2023-06-04T01:04:36+08:00">2023-06-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="十三、算法："><a href="#十三、算法：" class="headerlink" title="十三、算法："></a>十三、算法：</h1><h2 id="13-1-堆排序"><a href="#13-1-堆排序" class="headerlink" title="13.1 堆排序"></a>13.1 堆排序</h2><pre><code class="java">public class heapSort &#123;
-    public static void main(String[] args) &#123;
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        int[] nums=new int[n];
-        for(int i=0;i&lt;n;i++)&#123;
-            nums[i]= sc.nextInt();
-        &#125;
-        //第一步是将得到的数组构建成大顶堆
-        bulidHeap(nums);
-        for(int i=n-1;i&gt;0;i--)&#123;
-            swap(nums,0,i);
-            // bulidHeap后，最后一个节点此时已经到大顶堆了，所以i从n-1开始
-            adjustHeap(nums,0,i);
-        &#125;
-        System.out.println(Arrays.toString(nums));
-    &#125;
-//heapsize ：排序区间   i:需要调整的节点
-    private static void adjustHeap(int[] nums, int i, int heapSize) &#123;
-        int l=2*i+1;
-        int r=l+1;
-        int largest_i=i;
-        if(l&lt;heapSize&amp;&amp;nums[l]&gt;nums[largest_i])&#123;
-            largest_i=l;
-        &#125;
-        if(r&lt;heapSize&amp;&amp;nums[r]&gt;nums[largest_i])&#123;
-            largest_i=l;
-        &#125;
-        if(largest_i!=i)&#123;
-            swap(nums,largest_i,i);
-            //交换之后，将父节点下放一级，就有可能会破坏下一层结构，所以，递归调用adjustHeap.
-            adjustHeap(nums,largest_i,heapSize);
-        &#125;
-    &#125;
-
-    private static void swap(int[] nums, int i, int j) &#123;
-        int temp=nums[i];
-        nums[i]=nums[j];
-        nums[j]=temp;
-    &#125;
-
-    private static void bulidHeap(int[] nums) &#123;
-//        n-1=2x+1或者n-1=2x+2算出来  x=n/2-1
-        for(int i=nums.length/2-1;i&gt;=0;i--)&#123;
-            adjustHeap(nums,i, nums.length);
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fp4y1D7cj/?spm_id_from=333.337.search-card.all.click&vd_source=a94c87b379edd5a7d7d8b35d15935c0f">这个视频不错</a></p>
-<p><img src="https://img-blog.csdnimg.cn/2505e9e359e345659c2d15e29f3d98cb.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<h2 id="13-2-快排"><a href="#13-2-快排" class="headerlink" title="13.2 快排"></a>13.2 快排</h2><pre><code class="java">package face.sort;
-
-import java.util.Arrays;
-
-public class quickSort &#123;
-    public static void main(String[] args) &#123;
-        int[] a=new int[]&#123;1,3,5,-1,0&#125;;
-        sort(a,0,a.length-1);
-        System.out.println(Arrays.toString(a));
-    &#125;
-    public static void sort(int[] a, int low, int hight) &#123;
-        int i, j, index;
-        if (low &gt; hight) &#123;
-            return;
-        &#125;//每一趟结束的条件
-        i = low;
-        j = hight;
-        index = a[i]; // 第一个记录做基准元素
-        while (i &lt; j) &#123;
-            //先从右边进行扫描，找到小于基准值的元素
-            while (i &lt; j &amp;&amp; a[j] &gt;= index) j--;
-            //找到之后交换
-            if (i &lt; j) a[i++] = a[j];
-            //然后从左边扫描，找到大于基准值的元素
-            while (i &lt; j &amp;&amp; a[i] &lt; index) i++;
-            //找到之后交换
-            if (i &lt; j) a[j--] = a[i];
-        &#125;
-        a[i] = index;
-        sort(a, low, i - 1); // 对低子表进行递归排序
-        sort(a, i + 1, hight); // 对高子表进行递归排序
-    &#125;
-&#125;
-</code></pre>
-
-
-<p>经过上述一趟快速排序，我们只确定了一个元素的最终位置，我们最终需要经过n趟快速排序才能将一个含有 n 个数据元素的序列排好序，下面我们来分析其时间复杂度</p>
-<p><strong></strong></p>
-
-
-<h2 id="其他排序"><a href="#其他排序" class="headerlink" title="其他排序"></a>其他排序</h2><p><img src="https://img-blog.csdnimg.cn/a22a2fd0a078461f9d3a03ae06adc9ba.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<p><img src="https://img-blog.csdnimg.cn/e904131636a044b0b991b24998b2d0c1.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<p><img src="https://img-blog.csdnimg.cn/e8fc01ed77b1487c80522e394a510807.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<p><img src="https://img-blog.csdnimg.cn/5d95acc392874064825ef3398f5429ba.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<p><img src="https://img-blog.csdnimg.cn/c5ced2f55dde43b68f81869d015c5c1e.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<h2 id="13-3-二分法"><a href="#13-3-二分法" class="headerlink" title="13.3 二分法"></a>13.3 二分法</h2><pre><code class="java">class Solution &#123;
-//左闭右闭
-    public int search(int[] nums, int target) &#123;
-        // 避免当 target 小于nums[0] nums[nums.length - 1]时多次循环运算
-        if (target &lt; nums[0] || target &gt; nums[nums.length - 1]) &#123;
-            return -1;
-        &#125;
-        int left = 0, right = nums.length - 1;
-        while (left &lt;= right) &#123;
-            int mid = left + ((right - left) &gt;&gt; 1);
-            if (nums[mid] == target)
-                return mid;
-            else if (nums[mid] &lt; target)
-                left = mid + 1;
-            else if (nums[mid] &gt; target)
-                right = mid - 1;
-        &#125;
-        return -1;
-    &#125;
-&#125;
-</code></pre>
-<h2 id="13-4-单例模式"><a href="#13-4-单例模式" class="headerlink" title="13.4 单例模式"></a>13.4 单例模式</h2><p><strong>单例模式（Singleton）：</strong> 保证整个系统中一个类仅有一个对象实例，并提供一个可以访问它的全局访问点。</p>
-<p><strong><code>饿汉式</code>：</strong> 在类加载的时候就创建好单例对象（预先加载）</p>
-<ul>
-<li><strong>优点：</strong> 实现简单、线程安全</li>
-<li><strong>缺点：</strong> 可能会造成系统资源浪费（初始化了一些根本用不到的对象）；增加服务启动的耗时</li>
-</ul>
-<p><strong><code>懒汉式</code>：</strong> 在需要使用时才创建单例对象（延迟初始化）</p>
-<ul>
-<li><strong>优点：</strong> 资源利用率高（只生成需要使用到的实例对象）</li>
-<li><strong>缺点：</strong> 第一次加载时会比较慢；稍不注意容易写出<strong>线程不安全</strong>的代码</li>
-</ul>
-<blockquote>
-<p>饿汉式</p>
-</blockquote>
-<pre><code class="java">问题1：为什么加 final，防止子类继承后更改
-
-public final class Singleton implements Serializable &#123;
-    问题3：为什么设置为私有? 防止其它类中使用new生成新的实例，是否能防止反射创建新的实例?不能，反射private也没用
-    private Singleton() &#123;&#125;
-    问题4：这样初始化是否能保证单例对象创建时的线程安全?没有，这是类变量，是jvm在类加载阶段就进行了初始化，jvm保证了此操作的线程安全性
-    private static final Singleton INSTANCE = new Singleton();
-    问题5：为什么提供静态方法而不是直接将 INSTANCE 设置为 public, 说出你知道的理由。
-    //1.提供更好的封装性；2.提供范型的支持
-    public static Singleton getInstance() &#123;
-        return INSTANCE;
-    &#125;
-    public Object readResolve() &#123;
-        return INSTANCE;
-    &#125;
-&#125;
-</code></pre>
-<blockquote>
-<p>对上面五个问题的回答：</p>
-</blockquote>
-<p>1.final防止子类继承，子类不适当覆盖一些东西，破坏其单例</p>
-<p>2.反序列化也会生出新的对象，所以增加一个方法readResolve，返回该单例，就可以了</p>
-<p>3.设为public别的类都可以创建它的对象，显然就不行。不能防止反射，反射private也没用</p>
-<p>4.静态成员变量的初始化操作，是在类加载阶段完成的，类加载阶段由jvm保证线程安全性</p>
-<p>5.实现懒惰；   可以有更多的控制；   可以增加泛型的控制</p>
-<p>懒汉式</p>
-<pre><code class="java">public final class Singleton &#123;
-    private Singleton() &#123; &#125;
-    private static Singleton INSTANCE = null;
-    // 分析这里的线程安全, 并说明有什么缺点：synchronized加载静态方法上，可以保证线程安全。缺点就是锁的范围过大，每次访问都会加锁，性能比较低。
-    public static synchronized Singleton getInstance() &#123;
-        if( INSTANCE == null )&#123;
-           INSTANCE = new Singleton();
-        &#125;
-        return INSTANCE;
-    &#125;
-&#125;
-</code></pre>
-<p>DCL懒汉式，不过无法防止反射</p>
-<p>这种方式是对懒汉式的改进，只有当 INSTANCE &#x3D;&#x3D; null 时，才会进入同步代码块，且在同步代码块也做了一次空检查，就可以保证线程安全。</p>
-<h3 id="为什么要使用-volatile"><a href="#为什么要使用-volatile" class="headerlink" title="为什么要使用 volatile?"></a>为什么要使用 <code>volatile</code>?</h3><p>为了解决多线程环境下<code>重排序</code>带来的问题。</p>
-<blockquote>
-<p>创建对象会经过三个步骤（不是原子性）：</p>
-</blockquote>
-<blockquote>
-<ol>
-<li>创建空的对象（分配内存）</li>
-<li>调用构造方法（对象初始化）</li>
-<li>将构造好的实例地址赋值给引用</li>
-</ol>
-</blockquote>
-<p><strong>模拟下出问题的流程（假设不加volatile关键字）：</strong></p>
-<ul>
-<li>当 线程1 判断 INSTANCE 为空，进入同步逻辑，继续检查为空，则创建对象</li>
-<li>如果此时发生指令重排序，执行 1-&gt;3-&gt;2 步骤，先创建了空对象，然后赋值给引用，此时还没来得及调用构造方法</li>
-<li>其他线程此时判断 INSTANCE 不为 null，则直接返回 INSTANCE，但是此时对象并没有初始化完毕，就被其他线程使用，可能导致<strong>空指针</strong>异常</li>
-</ul>
-<pre><code> 依然每次都会有锁。而现在，我们将锁的位置变了，并且多加了一个检查。 也就是，先判断实例是否已经存在，若已经存在了，
-* 则不会执行判断方法内的有锁方法了。 而如果，还没有实例化的时候，多个线程进去了，也没有事，因为里面的方法有锁，
-* 只会让一个线程进入最内层方法并实例化实例。如此一来，最多最多，也就是第一次实例化的时候，会有线程阻塞的情况，后续便不会再有线程阻塞的问题。
-</code></pre>
-<pre><code class="java">public class Singleton &#123;
-
-    private volatile static Singleton INSTANCE;
-
-    private Singleton() &#123;&#125;
-
-    public static Singleton getInstance() &#123;
-        //此处依然会有多线程进去的问题
-        if (INSTANCE == null) &#123;
-            synchronized (Singleton.class) &#123;
-                //为什么还要在这里加为空判断, 之前不是判断过了吗？这是为了第一次判断时的并发问题。
-                if (INSTANCE == null) &#123;
-                    INSTANCE = new Singleton();
-                &#125;
-            &#125;
-        &#125;
-        return INSTANCE;
-    &#125;
-
-&#125;
-</code></pre>
-<p>防止反射的单例模式（不是懒汉式）</p>
-<p>枚举</p>
-<pre><code class="java">public enum SingletonEnum &#123;
-    INSTANCE;
-&#125;
-</code></pre>
-<h2 id="13-5-LRU"><a href="#13-5-LRU" class="headerlink" title="13.5 LRU"></a>13.5 LRU</h2><p><img src="https://img-blog.csdnimg.cn/a1fee63f9be84e8a9ea12d19777316af.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<p>实现本题的两种操作，需要用到一个哈希表和一个双向链表。在面试中，面试官一般会期望读者能够自己实现一个简单的双向链表，而不是使用语言自带的、封装好的数据结构。在 Java 语言中，有数据结构 LinkedHashMap。这样的做法不符合面试官的要求，因此下面只给出使用封装好的数据结构实现的代码，而不多做任何阐述。</p>
-<pre><code class="java">class LRUCache extends LinkedHashMap&lt;Integer, Integer&gt;&#123;
-    private int capacity;
-    
-    public LRUCache(int capacity) &#123;
-        super(capacity, 0.75F, true);
-        this.capacity = capacity;
-    &#125;
-
-    public int get(int key) &#123;
-        return super.getOrDefault(key, -1);
-    &#125;
-
-    public void put(int key, int value) &#123;
-        super.put(key, value);
-    &#125;
-
-    @Override
-    protected boolean removeEldestEntry(Map.Entry&lt;Integer, Integer&gt; eldest) &#123;
-        return size() &gt; capacity; 
-    &#125;
-&#125;
-</code></pre>
-<p>方法：哈希表 + 双向链表</p>
-<p>双向链表只是为了方便获取前后节点，节省时间</p>
-<p><img src="https://img-blog.csdnimg.cn/70aa9a0566e744908a4662746efdc258.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
-<pre><code class="java">class LRUCache &#123;
-     class DlinkedNode&#123;
-         int key;
-         int value;
-         DlinkedNode prev;
-         DlinkedNode next;
-         public DlinkedNode() &#123;
-         &#125;
-         public DlinkedNode(int key, int value) &#123;
-             this.key = key;
-             this.value = value;
-         &#125;
-     &#125;
-     private Map&lt;Integer,DlinkedNode&gt; cache=new HashMap&lt;&gt;();
-     private int size;
-     private int capacity;
-     private DlinkedNode head;
-     private DlinkedNode tail;
-
-    public LRUCache(int capacity) &#123;
-        this.size=size;
-        this.capacity=capacity;
-         // 使用伪头部和伪尾部节点
-        head=new DlinkedNode();
-        tail=new DlinkedNode();
-        head.next=tail;
-        tail.prev=head;
-    &#125;
-    
-    public int get(int key) &#123;
-//        通过哈希表定位
-        DlinkedNode node=cache.get(key);
-        if(node==null)&#123;
-            return -1;
-        &#125;else&#123;
-            // 如果 key 存在，先通过哈希表定位，再移到头部
-            moveToHead(node);
-            return node.value;
-        &#125;
-    &#125;
-    public void put(int key, int value) &#123;
-        DlinkedNode node=cache.get(key);
-        if(node==null)&#123;
-             // 如果 key 不存在，创建一个新的节点
-            DlinkedNode newNode = new DlinkedNode(key,value);//建一个新的node
-            // 添加进哈希表
-            cache.put(key,newNode);
-            // 添加至双向链表的头部
-            addToHead(newNode);
-            size++;
-            if(size&gt;capacity)&#123;
-                // 如果超出容量，删除双向链表的尾部节点
-                DlinkedNode tail=removeTail();
-                // 删除哈希表中对应的项
-                cache.remove(tail.key);
-                --size;
-            &#125;
-        &#125;else&#123;
-            // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部
-            node.value=value;
-            moveToHead(node);
-        &#125;
-
-    &#125;
-    // 删除并移动到伪头节点的后面
-    public void moveToHead(DlinkedNode node)&#123;
-        //1、删除
-          removeNode(node);
-          //2、移动
-          addToHead(node);
+          <p>nextInt()：读取到空格或回车之后结束本次的int值；同理还有nextDouble() 、nextFloat()、nextInt()</p>
+<p>int n&#x3D;sc.nextInt();只获取数字 换行符需要sc.nextLine();拿掉</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134906020.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134916246.png" alt="img"></p>
+<p>第二个字符串排序就不用nextLine了</p>
+<p>next()：直至读取到空格或回车之后结束本次的String值，不可读取回车；nextLine()：直至读取到换行符（回车）之后结束本次读取的String，可读取回车（空值）hasNextInt()：判断控制台接收是否为数字,是则接收 hasNextInt()只起到判断作用而不是接收数据</p>
+<p>导包建议：</p>
+<p>import java.util.*;</p>
+<p><strong>例子：</strong></p>
+<p>输入描述:输入有两行，第一行n</p>
+<p>第二行是n个字符串，字符串之间用空格隔开输出描述:输出一行排序后的字符串，空格隔开，无结尾空格</p>
+<pre><code class="plain">import java.util.*;
+public class Main &#123;
+  public static void main(String[] args) &#123;
+      Scanner sc = new Scanner(System.in);
+      int n=sc.nextInt();
+      String enter=sc.nextLine();//把换车符拿掉
+      String line=sc.nextLine();
+      String[] s=line.split(&quot; &quot;);//转为数组好排序
+      Arrays.sort(s);
+      StringBuilder sb=new StringBuilder();
+      for(String ss:s)&#123;
+          sb.append(ss).append(&quot; &quot;);
       &#125;
-    //插入到伪头节点的后面
-    public void addToHead(DlinkedNode node)&#123;
-        node.prev=head;
-        node.next=head.next;
-        node.next.prev=node;
-        head.next=node;
-    &#125;
-    // 删除结点
-    public void removeNode(DlinkedNode node)&#123;
-        node.prev.next=node.next;
-        node.next.prev=node.prev;
-    &#125;
-//去除尾部的结点
-    public DlinkedNode removeTail()&#123;
-        DlinkedNode res=tail.prev;
-        removeNode(res);
-        return res;
-    &#125;
+      String s1 = sb.toString();
+      System.out.println(s1.substring(0,s1.length()-1));
+  &#125;
 &#125;
 </code></pre>
-<h2 id="13-6-手写hashMap"><a href="#13-6-手写hashMap" class="headerlink" title="13.6 手写hashMap"></a>13.6 手写hashMap</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/TheCalm/article/details/119811706">好文章</a></p>
-<h2 id="13-7-邻接矩阵"><a href="#13-7-邻接矩阵" class="headerlink" title="13.7 邻接矩阵"></a>13.7 邻接矩阵</h2><pre><code class="java">public class MGraph01 &#123;
-    public int numNodes;      //图的顶点数目
-    public int numEdges;      //图的边数
-    public Object[] vexs;     //一维顶点数组
-    public int[][] arcs;      //二维边数组
-    public static final int INF = Integer.MAX_VALUE; //无穷大
- 
-    /**
-     * 创建无向图的邻接矩阵
-     */
-    public void createUDG() &#123;
-        Scanner sc = null;
-        try &#123;
-            sc = new Scanner(System.in);
-            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
-            numNodes = Integer.parseInt(sc.nextLine());
-            numEdges = Integer.parseInt(sc.nextLine());
-            vexs = new Object[numNodes];
-            //录入顶点信息
-            System.out.println(&quot;请输入图中的顶点：&quot;);
-            vexs = sc.nextLine().split(&quot; &quot;);
-            //录入边的信息
-            arcs = new int[numNodes][numNodes];
-            for (int i = 0; i &lt; numEdges; i++) &#123;
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的一个顶点：&quot;);
-                //locate方法用来定位某个顶点在数组中的索引
-                int index1 = locate(sc.nextLine());
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的另一个顶点：&quot;);
-                int index2 = locate(sc.nextLine());
-                //无向图是个对称矩阵
-                arcs[index1][index2] = arcs[index2][index1] = 1;
-            &#125;
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            sc.close();
-        &#125;
-    &#125;
- 
-    /**
-     * 创建有向图的邻接矩阵
-     */
-    public void createDG() &#123;
-        Scanner sc = null;
-        try &#123;
-            sc = new Scanner(System.in);
-            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
-            numNodes = Integer.parseInt(sc.nextLine());
-            numEdges = Integer.parseInt(sc.nextLine());
-            vexs = new Object[numNodes];
-            //录入顶点信息
-            System.out.println(&quot;请输入图中的顶点：&quot;);
-            String str = sc.nextLine();
-            vexs = str.split(&quot; &quot;);
-            //录入边的信息
-            arcs = new int[numNodes][numNodes];
-            for (int i = 0; i &lt; numEdges; i++) &#123;
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧尾：&quot;);
-                int index1 = locate(sc.nextLine());
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧头：&quot;);
-                int index2 = locate(sc.nextLine());
-                arcs[index1][index2] = 1;
-            &#125;
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            sc.close();
-        &#125;
-    &#125;
- 
-    /**
-     * 创建无向网的邻接矩阵
-     */
-    public void createUDN() &#123;
-        Scanner sc = null;
-        try &#123;
-            sc = new Scanner(System.in);
-            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
-            numNodes = Integer.parseInt(sc.nextLine());
-            numEdges = Integer.parseInt(sc.nextLine());
-            vexs = new Object[numNodes];
-            //录入顶点信息
-            System.out.println(&quot;请输入图中的顶点：&quot;);
-            String str = sc.nextLine();
-            vexs = str.split(&quot; &quot;);
-            //矩阵初始化，有向网中
-            arcs = new int[numNodes][numNodes];
-            for (int i = 0; i &lt; numNodes; i++) &#123;
-                for (int j = 0; j &lt; numNodes; j++) &#123;
-                    arcs[i][j] = INF;
-                &#125;
-            &#125;
-            //录入边的信息
-            for (int i = 0; i &lt; numEdges; i++) &#123;
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的一个顶点：&quot;);
-                int index1 = locate(sc.nextLine());
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的另一个顶点：&quot;);
-                int index2 = locate(sc.nextLine());
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的权值：&quot;);
-                arcs[index1][index2] = arcs[index2][index1] = Integer.parseInt(sc.nextLine());
-            &#125;
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            sc.close();
-        &#125;
-    &#125;
- 
-    /**
-     * 创建有向网的邻接矩阵
-     */
-    public void createDN() &#123;
-        Scanner sc = null;
-        try &#123;
-            sc = new Scanner(System.in);
-            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
-            numNodes = Integer.parseInt(sc.nextLine());
-            numEdges = Integer.parseInt(sc.nextLine());
-            vexs = new Object[numNodes];
-            //录入顶点信息
-            System.out.println(&quot;请输入图中的顶点：&quot;);
-            String str = sc.nextLine();
-            vexs = str.split(&quot; &quot;);
-            //录入边的信息
-            arcs = new int[numNodes][numNodes];
-            for (int i = 0; i &lt; numEdges; i++) &#123;
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧尾：&quot;);
-                int index1 = locate(sc.nextLine());
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧头：&quot;);
-                int index2 = locate(sc.nextLine());
-                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的权值：&quot;);
-                arcs[index1][index2] = Integer.parseInt(sc.nextLine());
-            &#125;
-        &#125; catch (Exception e) &#123;
-            e.printStackTrace();
-        &#125; finally &#123;
-            sc.close();
-        &#125;
-    &#125;
- 
-    /**
-     * 通过顶点信息来定位其在顶点数组中的索引
-     *
-     * @param s
-     * @return
-     */
-    public int locate(Object s) &#123;
-        for (int i = 0; i &lt; vexs.length; i++) &#123;
-            if (s.equals(vexs[i])) &#123;
-                return i;
-            &#125;
-        &#125;
-        return -1;
-    &#125;
-&#125;
+<h2 id="接受输入的字符a"><a href="#接受输入的字符a" class="headerlink" title="接受输入的字符a"></a>接受输入的字符a</h2><pre><code class="plain">String b = in.next
+if(b.equals(&quot;a&quot;))
 </code></pre>
-<h2 id="前缀树"><a href="#前缀树" class="headerlink" title="前缀树"></a>前缀树</h2><pre><code class="java">package com.nowcoder.community.util;
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>System.out.printf(“%.11f”, ans+sum);&#x2F;&#x2F;.11表示位数</p>
 
-import org.apache.commons.lang3.CharUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+      
+    </div>
 
-import javax.annotation.PostConstruct;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-@Component
-public class SensitiveFilter &#123;
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
 
-    private static final Logger logger = LoggerFactory.getLogger(SensitiveFilter.class);
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
 
-    // 替换符
-    private static final String REPLACEMENT = &quot;***&quot;;
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">基于hexo的Quiet主题搭建博客教程</a>
+        </h2>
 
-    // 根节点
-    private TrieNode rootNode = new TrieNode();
+        <div class="post-meta">
+	  <span class="post-time">
 
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-    //3.1第二步：根据敏感词，初始化前缀树
-    //@PostConstruct代表是初始化方法，SensitiveFilter容器一构造，它就开始
-    @PostConstruct
-    public void init() &#123;
-        try (
-                InputStream is = this.getClass().getClassLoader().getResourceAsStream(&quot;sensitive-words.txt&quot;);
-                //把is先转为字符流，再转为缓冲流
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        ) &#123;
-            String keyword;
-            while ((keyword = reader.readLine()) != null) &#123;
-                // 添加到前缀树
-                this.addKeyword(keyword);
-            &#125;
-        &#125; catch (IOException e) &#123;
-            logger.error(&quot;加载敏感词文件失败: &quot; + e.getMessage());
-        &#125;
-    &#125;
-    //也算3.1第二步：根据敏感词，初始化前缀树
-    // 将一个敏感词添加到前缀树中
-    private void addKeyword(String keyword) &#123;
-        TrieNode tempNode = rootNode;
-        for (int i = 0; i &lt; keyword.length(); i++) &#123;
-            char c = keyword.charAt(i);
-            //找一下当前节点有没有这个子节点，有的话就不再挂了
-            TrieNode subNode = tempNode.getSubNode(c);
+              <time title="创建时间：2023-05-01 00:55:00" itemprop="dateCreated datePublished" datetime="2023-05-01T00:55:00+08:00">2023-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-04 00:15:57" itemprop="dateModified" datetime="2023-06-04T00:15:57+08:00">2023-06-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
 
-            if (subNode == null) &#123;
-                // 初始化子节点
-                subNode = new TrieNode();
-                tempNode.addSubNode(c, subNode);
-            &#125;
+          
 
-            // 指向子节点,进入下一轮循环
-            tempNode = subNode;
+        </div>
+      </header>
 
-            // 设置结束标识
-            if (i == keyword.length() - 1) &#123;
-                tempNode.setKeywordEnd(true);
-            &#125;
-        &#125;
-    &#125;
-//3.1第三步：过滤敏感词
-    /**
-     * 过滤敏感词
-     *
-     * @param text 待过滤的文本
-     * @return 过滤后的文本
-     */
-    public String filter(String text) &#123;
-        if (StringUtils.isBlank(text)) &#123;
-            return null;
-        &#125;
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-        // 指针1
-        TrieNode tempNode = rootNode;
-        // 指针2
-        int begin = 0;
-        // 指针3
-        int position = 0;
-        // 结果
-        StringBuilder sb = new StringBuilder();
-
-        //用指针3效率稍微更高一点
-        while (begin &lt; text.length()) &#123;
-            if (position &lt; text.length()) &#123;
-                char c = text.charAt(position);
-                //例如 ⭐政⭐府⭐  就检测不到，需要跳过符号
-                // 跳过符号
-                if (isSymbol(c)) &#123; //倘若字符c是符号
-                    // 若指针1处于根节点,将此符号计入结果,让指针2向下走一步
-                    if (tempNode == rootNode) &#123;
-                        sb.append(c);
-                        begin++;
-                    &#125;
-                    // 无论符号在开头或中间,指针3都向下走一步
-                    position++;
-                    continue;
-                &#125;
-
-                // 检查下级节点
-                tempNode = tempNode.getSubNode(c);
-                if (tempNode == null) &#123;
-                    // 以begin开头的字符串不是敏感词
-                    sb.append(text.charAt(begin));
-                    // 进入下一个位置
-                    position = ++begin;
-                    // 重新指向根节点
-                    tempNode = rootNode;
-                &#125; else if (tempNode.isKeywordEnd()) &#123;
-                    // 发现敏感词,将begin~position字符串替换掉
-                    sb.append(REPLACEMENT);
-                    // 进入下一个位置
-                    begin = ++position;
-                    // 重新指向根节点
-                    tempNode = rootNode;
-                &#125; else &#123;
-                    // 检查下一个字符
-                    position++;
-                &#125;
-            &#125;
-            // position遍历越界仍未匹配到敏感词
-            else &#123;
-                sb.append(text.charAt(begin));
-                position = ++begin;
-                tempNode = rootNode;
-            &#125;
-        &#125;
-        return sb.toString();
-    &#125;
-
-    // 判断是否为符号
-    private boolean isSymbol(Character c) &#123;
-        // 0x2E80~0x9FFF 是东亚文字范围
-        return !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; 0x2E80 || c &gt; 0x9FFF);
-    &#125;
-
-
-    //这个结构只在这个工具里用，所以定义一个内部类
-    // 3.1小节的第一步：定义前缀树
-    private class TrieNode &#123;
-
-        // 关键词结束标识
-        private boolean isKeywordEnd = false;
-
-        // 一个节点的子节点可能是多个，因此用map来进行封装
-        // 子节点(key是下级字符,value是下级节点)
-        private Map&lt;Character, TrieNode&gt; subNodes = new HashMap&lt;&gt;();
-
-        public boolean isKeywordEnd() &#123;
-            return isKeywordEnd;
-        &#125;
-
-        public void setKeywordEnd(boolean keywordEnd) &#123;
-            isKeywordEnd = keywordEnd;
-        &#125;
-
-        // 添加子节点
-        public void addSubNode(Character c, TrieNode node) &#123;
-            subNodes.put(c, node);
-        &#125;
-
-        // 获取子节点
-        public TrieNode getSubNode(Character c) &#123;
-            return subNodes.get(c);
-        &#125;
-
-    &#125;
-
-&#125;
-</code></pre>
-
+      
+          自定义Hexo-Quiet主题
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1484,9 +387,6 @@ public class SensitiveFilter &#123;
 
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1553,18 +453,18 @@ public class SensitiveFilter &#123;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
