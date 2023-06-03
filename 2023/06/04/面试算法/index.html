@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="十三、算法：13.1 堆排序public class heapSort &amp;#123;     public static void main(String[] args) &amp;#123;         Scanner sc&#x3D;new Scanner(System.in);         int n&#x3D;sc.nextInt();         int[] nums&#x3D;new int[n];">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命运石之门">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="十三、算法：13.1 堆排序public class heapSort &amp;#123;     public static void main(String[] args) &amp;#123;         Scanner sc&#x3D;new Scanner(System.in);         int n&#x3D;sc.nextInt();         int[] nums&#x3D;new int[n];">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2505e9e359e345659c2d15e29f3d98cb.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a22a2fd0a078461f9d3a03ae06adc9ba.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e904131636a044b0b991b24998b2d0c1.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e8fc01ed77b1487c80522e394a510807.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5d95acc392874064825ef3398f5429ba.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c5ced2f55dde43b68f81869d015c5c1e.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a1fee63f9be84e8a9ea12d19777316af.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/70aa9a0566e744908a4662746efdc258.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+<meta property="article:published_time" content="2023-06-03T17:04:36.125Z">
+<meta property="article:modified_time" content="2023-06-03T17:04:37.295Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2505e9e359e345659c2d15e29f3d98cb.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 01:04:36 / 修改时间：01:04:37" itemprop="dateCreated datePublished" datetime="2023-06-04T01:04:36+08:00">2023-06-04</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="十三、算法："><a href="#十三、算法：" class="headerlink" title="十三、算法："></a>十三、算法：</h1><h2 id="13-1-堆排序"><a href="#13-1-堆排序" class="headerlink" title="13.1 堆排序"></a>13.1 堆排序</h2><pre><code class="java">public class heapSort &#123;
+    public static void main(String[] args) &#123;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] nums=new int[n];
+        for(int i=0;i&lt;n;i++)&#123;
+            nums[i]= sc.nextInt();
+        &#125;
+        //第一步是将得到的数组构建成大顶堆
+        bulidHeap(nums);
+        for(int i=n-1;i&gt;0;i--)&#123;
+            swap(nums,0,i);
+            // bulidHeap后，最后一个节点此时已经到大顶堆了，所以i从n-1开始
+            adjustHeap(nums,0,i);
+        &#125;
+        System.out.println(Arrays.toString(nums));
+    &#125;
+//heapsize ：排序区间   i:需要调整的节点
+    private static void adjustHeap(int[] nums, int i, int heapSize) &#123;
+        int l=2*i+1;
+        int r=l+1;
+        int largest_i=i;
+        if(l&lt;heapSize&amp;&amp;nums[l]&gt;nums[largest_i])&#123;
+            largest_i=l;
+        &#125;
+        if(r&lt;heapSize&amp;&amp;nums[r]&gt;nums[largest_i])&#123;
+            largest_i=l;
+        &#125;
+        if(largest_i!=i)&#123;
+            swap(nums,largest_i,i);
+            //交换之后，将父节点下放一级，就有可能会破坏下一层结构，所以，递归调用adjustHeap.
+            adjustHeap(nums,largest_i,heapSize);
+        &#125;
+    &#125;
+
+    private static void swap(int[] nums, int i, int j) &#123;
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    &#125;
+
+    private static void bulidHeap(int[] nums) &#123;
+//        n-1=2x+1或者n-1=2x+2算出来  x=n/2-1
+        for(int i=nums.length/2-1;i&gt;=0;i--)&#123;
+            adjustHeap(nums,i, nums.length);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fp4y1D7cj/?spm_id_from=333.337.search-card.all.click&vd_source=a94c87b379edd5a7d7d8b35d15935c0f">这个视频不错</a></p>
+<p><img src="https://img-blog.csdnimg.cn/2505e9e359e345659c2d15e29f3d98cb.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<h2 id="13-2-快排"><a href="#13-2-快排" class="headerlink" title="13.2 快排"></a>13.2 快排</h2><pre><code class="java">package face.sort;
+
+import java.util.Arrays;
+
+public class quickSort &#123;
+    public static void main(String[] args) &#123;
+        int[] a=new int[]&#123;1,3,5,-1,0&#125;;
+        sort(a,0,a.length-1);
+        System.out.println(Arrays.toString(a));
+    &#125;
+    public static void sort(int[] a, int low, int hight) &#123;
+        int i, j, index;
+        if (low &gt; hight) &#123;
+            return;
+        &#125;//每一趟结束的条件
+        i = low;
+        j = hight;
+        index = a[i]; // 第一个记录做基准元素
+        while (i &lt; j) &#123;
+            //先从右边进行扫描，找到小于基准值的元素
+            while (i &lt; j &amp;&amp; a[j] &gt;= index) j--;
+            //找到之后交换
+            if (i &lt; j) a[i++] = a[j];
+            //然后从左边扫描，找到大于基准值的元素
+            while (i &lt; j &amp;&amp; a[i] &lt; index) i++;
+            //找到之后交换
+            if (i &lt; j) a[j--] = a[i];
+        &#125;
+        a[i] = index;
+        sort(a, low, i - 1); // 对低子表进行递归排序
+        sort(a, i + 1, hight); // 对高子表进行递归排序
+    &#125;
+&#125;
+</code></pre>
+
+
+<p>经过上述一趟快速排序，我们只确定了一个元素的最终位置，我们最终需要经过n趟快速排序才能将一个含有 n 个数据元素的序列排好序，下面我们来分析其时间复杂度</p>
+<p><strong></strong></p>
+
+
+<h2 id="其他排序"><a href="#其他排序" class="headerlink" title="其他排序"></a>其他排序</h2><p><img src="https://img-blog.csdnimg.cn/a22a2fd0a078461f9d3a03ae06adc9ba.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<p><img src="https://img-blog.csdnimg.cn/e904131636a044b0b991b24998b2d0c1.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<p><img src="https://img-blog.csdnimg.cn/e8fc01ed77b1487c80522e394a510807.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<p><img src="https://img-blog.csdnimg.cn/5d95acc392874064825ef3398f5429ba.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<p><img src="https://img-blog.csdnimg.cn/c5ced2f55dde43b68f81869d015c5c1e.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<h2 id="13-3-二分法"><a href="#13-3-二分法" class="headerlink" title="13.3 二分法"></a>13.3 二分法</h2><pre><code class="java">class Solution &#123;
+//左闭右闭
+    public int search(int[] nums, int target) &#123;
+        // 避免当 target 小于nums[0] nums[nums.length - 1]时多次循环运算
+        if (target &lt; nums[0] || target &gt; nums[nums.length - 1]) &#123;
+            return -1;
+        &#125;
+        int left = 0, right = nums.length - 1;
+        while (left &lt;= right) &#123;
+            int mid = left + ((right - left) &gt;&gt; 1);
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] &lt; target)
+                left = mid + 1;
+            else if (nums[mid] &gt; target)
+                right = mid - 1;
+        &#125;
+        return -1;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="13-4-单例模式"><a href="#13-4-单例模式" class="headerlink" title="13.4 单例模式"></a>13.4 单例模式</h2><p><strong>单例模式（Singleton）：</strong> 保证整个系统中一个类仅有一个对象实例，并提供一个可以访问它的全局访问点。</p>
+<p><strong><code>饿汉式</code>：</strong> 在类加载的时候就创建好单例对象（预先加载）</p>
+<ul>
+<li><strong>优点：</strong> 实现简单、线程安全</li>
+<li><strong>缺点：</strong> 可能会造成系统资源浪费（初始化了一些根本用不到的对象）；增加服务启动的耗时</li>
+</ul>
+<p><strong><code>懒汉式</code>：</strong> 在需要使用时才创建单例对象（延迟初始化）</p>
+<ul>
+<li><strong>优点：</strong> 资源利用率高（只生成需要使用到的实例对象）</li>
+<li><strong>缺点：</strong> 第一次加载时会比较慢；稍不注意容易写出<strong>线程不安全</strong>的代码</li>
+</ul>
+<blockquote>
+<p>饿汉式</p>
+</blockquote>
+<pre><code class="java">问题1：为什么加 final，防止子类继承后更改
+
+public final class Singleton implements Serializable &#123;
+    问题3：为什么设置为私有? 防止其它类中使用new生成新的实例，是否能防止反射创建新的实例?不能，反射private也没用
+    private Singleton() &#123;&#125;
+    问题4：这样初始化是否能保证单例对象创建时的线程安全?没有，这是类变量，是jvm在类加载阶段就进行了初始化，jvm保证了此操作的线程安全性
+    private static final Singleton INSTANCE = new Singleton();
+    问题5：为什么提供静态方法而不是直接将 INSTANCE 设置为 public, 说出你知道的理由。
+    //1.提供更好的封装性；2.提供范型的支持
+    public static Singleton getInstance() &#123;
+        return INSTANCE;
+    &#125;
+    public Object readResolve() &#123;
+        return INSTANCE;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>对上面五个问题的回答：</p>
+</blockquote>
+<p>1.final防止子类继承，子类不适当覆盖一些东西，破坏其单例</p>
+<p>2.反序列化也会生出新的对象，所以增加一个方法readResolve，返回该单例，就可以了</p>
+<p>3.设为public别的类都可以创建它的对象，显然就不行。不能防止反射，反射private也没用</p>
+<p>4.静态成员变量的初始化操作，是在类加载阶段完成的，类加载阶段由jvm保证线程安全性</p>
+<p>5.实现懒惰；   可以有更多的控制；   可以增加泛型的控制</p>
+<p>懒汉式</p>
+<pre><code class="java">public final class Singleton &#123;
+    private Singleton() &#123; &#125;
+    private static Singleton INSTANCE = null;
+    // 分析这里的线程安全, 并说明有什么缺点：synchronized加载静态方法上，可以保证线程安全。缺点就是锁的范围过大，每次访问都会加锁，性能比较低。
+    public static synchronized Singleton getInstance() &#123;
+        if( INSTANCE == null )&#123;
+           INSTANCE = new Singleton();
+        &#125;
+        return INSTANCE;
+    &#125;
+&#125;
+</code></pre>
+<p>DCL懒汉式，不过无法防止反射</p>
+<p>这种方式是对懒汉式的改进，只有当 INSTANCE &#x3D;&#x3D; null 时，才会进入同步代码块，且在同步代码块也做了一次空检查，就可以保证线程安全。</p>
+<h3 id="为什么要使用-volatile"><a href="#为什么要使用-volatile" class="headerlink" title="为什么要使用 volatile?"></a>为什么要使用 <code>volatile</code>?</h3><p>为了解决多线程环境下<code>重排序</code>带来的问题。</p>
+<blockquote>
+<p>创建对象会经过三个步骤（不是原子性）：</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>创建空的对象（分配内存）</li>
+<li>调用构造方法（对象初始化）</li>
+<li>将构造好的实例地址赋值给引用</li>
+</ol>
+</blockquote>
+<p><strong>模拟下出问题的流程（假设不加volatile关键字）：</strong></p>
+<ul>
+<li>当 线程1 判断 INSTANCE 为空，进入同步逻辑，继续检查为空，则创建对象</li>
+<li>如果此时发生指令重排序，执行 1-&gt;3-&gt;2 步骤，先创建了空对象，然后赋值给引用，此时还没来得及调用构造方法</li>
+<li>其他线程此时判断 INSTANCE 不为 null，则直接返回 INSTANCE，但是此时对象并没有初始化完毕，就被其他线程使用，可能导致<strong>空指针</strong>异常</li>
+</ul>
+<pre><code> 依然每次都会有锁。而现在，我们将锁的位置变了，并且多加了一个检查。 也就是，先判断实例是否已经存在，若已经存在了，
+* 则不会执行判断方法内的有锁方法了。 而如果，还没有实例化的时候，多个线程进去了，也没有事，因为里面的方法有锁，
+* 只会让一个线程进入最内层方法并实例化实例。如此一来，最多最多，也就是第一次实例化的时候，会有线程阻塞的情况，后续便不会再有线程阻塞的问题。
+</code></pre>
+<pre><code class="java">public class Singleton &#123;
+
+    private volatile static Singleton INSTANCE;
+
+    private Singleton() &#123;&#125;
+
+    public static Singleton getInstance() &#123;
+        //此处依然会有多线程进去的问题
+        if (INSTANCE == null) &#123;
+            synchronized (Singleton.class) &#123;
+                //为什么还要在这里加为空判断, 之前不是判断过了吗？这是为了第一次判断时的并发问题。
+                if (INSTANCE == null) &#123;
+                    INSTANCE = new Singleton();
+                &#125;
+            &#125;
+        &#125;
+        return INSTANCE;
+    &#125;
+
+&#125;
+</code></pre>
+<p>防止反射的单例模式（不是懒汉式）</p>
+<p>枚举</p>
+<pre><code class="java">public enum SingletonEnum &#123;
+    INSTANCE;
+&#125;
+</code></pre>
+<h2 id="13-5-LRU"><a href="#13-5-LRU" class="headerlink" title="13.5 LRU"></a>13.5 LRU</h2><p><img src="https://img-blog.csdnimg.cn/a1fee63f9be84e8a9ea12d19777316af.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<p>实现本题的两种操作，需要用到一个哈希表和一个双向链表。在面试中，面试官一般会期望读者能够自己实现一个简单的双向链表，而不是使用语言自带的、封装好的数据结构。在 Java 语言中，有数据结构 LinkedHashMap。这样的做法不符合面试官的要求，因此下面只给出使用封装好的数据结构实现的代码，而不多做任何阐述。</p>
+<pre><code class="java">class LRUCache extends LinkedHashMap&lt;Integer, Integer&gt;&#123;
+    private int capacity;
+    
+    public LRUCache(int capacity) &#123;
+        super(capacity, 0.75F, true);
+        this.capacity = capacity;
+    &#125;
+
+    public int get(int key) &#123;
+        return super.getOrDefault(key, -1);
+    &#125;
+
+    public void put(int key, int value) &#123;
+        super.put(key, value);
+    &#125;
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry&lt;Integer, Integer&gt; eldest) &#123;
+        return size() &gt; capacity; 
+    &#125;
+&#125;
+</code></pre>
+<p>方法：哈希表 + 双向链表</p>
+<p>双向链表只是为了方便获取前后节点，节省时间</p>
+<p><img src="https://img-blog.csdnimg.cn/70aa9a0566e744908a4662746efdc258.png#alt=%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"></p>
+<pre><code class="java">class LRUCache &#123;
+     class DlinkedNode&#123;
+         int key;
+         int value;
+         DlinkedNode prev;
+         DlinkedNode next;
+         public DlinkedNode() &#123;
+         &#125;
+         public DlinkedNode(int key, int value) &#123;
+             this.key = key;
+             this.value = value;
+         &#125;
+     &#125;
+     private Map&lt;Integer,DlinkedNode&gt; cache=new HashMap&lt;&gt;();
+     private int size;
+     private int capacity;
+     private DlinkedNode head;
+     private DlinkedNode tail;
+
+    public LRUCache(int capacity) &#123;
+        this.size=size;
+        this.capacity=capacity;
+         // 使用伪头部和伪尾部节点
+        head=new DlinkedNode();
+        tail=new DlinkedNode();
+        head.next=tail;
+        tail.prev=head;
+    &#125;
+    
+    public int get(int key) &#123;
+//        通过哈希表定位
+        DlinkedNode node=cache.get(key);
+        if(node==null)&#123;
+            return -1;
+        &#125;else&#123;
+            // 如果 key 存在，先通过哈希表定位，再移到头部
+            moveToHead(node);
+            return node.value;
+        &#125;
+    &#125;
+    public void put(int key, int value) &#123;
+        DlinkedNode node=cache.get(key);
+        if(node==null)&#123;
+             // 如果 key 不存在，创建一个新的节点
+            DlinkedNode newNode = new DlinkedNode(key,value);//建一个新的node
+            // 添加进哈希表
+            cache.put(key,newNode);
+            // 添加至双向链表的头部
+            addToHead(newNode);
+            size++;
+            if(size&gt;capacity)&#123;
+                // 如果超出容量，删除双向链表的尾部节点
+                DlinkedNode tail=removeTail();
+                // 删除哈希表中对应的项
+                cache.remove(tail.key);
+                --size;
+            &#125;
+        &#125;else&#123;
+            // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部
+            node.value=value;
+            moveToHead(node);
+        &#125;
+
+    &#125;
+    // 删除并移动到伪头节点的后面
+    public void moveToHead(DlinkedNode node)&#123;
+        //1、删除
+          removeNode(node);
+          //2、移动
+          addToHead(node);
+      &#125;
+    //插入到伪头节点的后面
+    public void addToHead(DlinkedNode node)&#123;
+        node.prev=head;
+        node.next=head.next;
+        node.next.prev=node;
+        head.next=node;
+    &#125;
+    // 删除结点
+    public void removeNode(DlinkedNode node)&#123;
+        node.prev.next=node.next;
+        node.next.prev=node.prev;
+    &#125;
+//去除尾部的结点
+    public DlinkedNode removeTail()&#123;
+        DlinkedNode res=tail.prev;
+        removeNode(res);
+        return res;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="13-6-手写hashMap"><a href="#13-6-手写hashMap" class="headerlink" title="13.6 手写hashMap"></a>13.6 手写hashMap</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/TheCalm/article/details/119811706">好文章</a></p>
+<h2 id="13-7-邻接矩阵"><a href="#13-7-邻接矩阵" class="headerlink" title="13.7 邻接矩阵"></a>13.7 邻接矩阵</h2><pre><code class="java">public class MGraph01 &#123;
+    public int numNodes;      //图的顶点数目
+    public int numEdges;      //图的边数
+    public Object[] vexs;     //一维顶点数组
+    public int[][] arcs;      //二维边数组
+    public static final int INF = Integer.MAX_VALUE; //无穷大
+ 
+    /**
+     * 创建无向图的邻接矩阵
+     */
+    public void createUDG() &#123;
+        Scanner sc = null;
+        try &#123;
+            sc = new Scanner(System.in);
+            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
+            numNodes = Integer.parseInt(sc.nextLine());
+            numEdges = Integer.parseInt(sc.nextLine());
+            vexs = new Object[numNodes];
+            //录入顶点信息
+            System.out.println(&quot;请输入图中的顶点：&quot;);
+            vexs = sc.nextLine().split(&quot; &quot;);
+            //录入边的信息
+            arcs = new int[numNodes][numNodes];
+            for (int i = 0; i &lt; numEdges; i++) &#123;
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的一个顶点：&quot;);
+                //locate方法用来定位某个顶点在数组中的索引
+                int index1 = locate(sc.nextLine());
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的另一个顶点：&quot;);
+                int index2 = locate(sc.nextLine());
+                //无向图是个对称矩阵
+                arcs[index1][index2] = arcs[index2][index1] = 1;
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            sc.close();
+        &#125;
+    &#125;
+ 
+    /**
+     * 创建有向图的邻接矩阵
+     */
+    public void createDG() &#123;
+        Scanner sc = null;
+        try &#123;
+            sc = new Scanner(System.in);
+            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
+            numNodes = Integer.parseInt(sc.nextLine());
+            numEdges = Integer.parseInt(sc.nextLine());
+            vexs = new Object[numNodes];
+            //录入顶点信息
+            System.out.println(&quot;请输入图中的顶点：&quot;);
+            String str = sc.nextLine();
+            vexs = str.split(&quot; &quot;);
+            //录入边的信息
+            arcs = new int[numNodes][numNodes];
+            for (int i = 0; i &lt; numEdges; i++) &#123;
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧尾：&quot;);
+                int index1 = locate(sc.nextLine());
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧头：&quot;);
+                int index2 = locate(sc.nextLine());
+                arcs[index1][index2] = 1;
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            sc.close();
+        &#125;
+    &#125;
+ 
+    /**
+     * 创建无向网的邻接矩阵
+     */
+    public void createUDN() &#123;
+        Scanner sc = null;
+        try &#123;
+            sc = new Scanner(System.in);
+            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
+            numNodes = Integer.parseInt(sc.nextLine());
+            numEdges = Integer.parseInt(sc.nextLine());
+            vexs = new Object[numNodes];
+            //录入顶点信息
+            System.out.println(&quot;请输入图中的顶点：&quot;);
+            String str = sc.nextLine();
+            vexs = str.split(&quot; &quot;);
+            //矩阵初始化，有向网中
+            arcs = new int[numNodes][numNodes];
+            for (int i = 0; i &lt; numNodes; i++) &#123;
+                for (int j = 0; j &lt; numNodes; j++) &#123;
+                    arcs[i][j] = INF;
+                &#125;
+            &#125;
+            //录入边的信息
+            for (int i = 0; i &lt; numEdges; i++) &#123;
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的一个顶点：&quot;);
+                int index1 = locate(sc.nextLine());
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的另一个顶点：&quot;);
+                int index2 = locate(sc.nextLine());
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条边上的权值：&quot;);
+                arcs[index1][index2] = arcs[index2][index1] = Integer.parseInt(sc.nextLine());
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            sc.close();
+        &#125;
+    &#125;
+ 
+    /**
+     * 创建有向网的邻接矩阵
+     */
+    public void createDN() &#123;
+        Scanner sc = null;
+        try &#123;
+            sc = new Scanner(System.in);
+            System.out.println(&quot;请输入图的顶点数、图的边数：&quot;);
+            numNodes = Integer.parseInt(sc.nextLine());
+            numEdges = Integer.parseInt(sc.nextLine());
+            vexs = new Object[numNodes];
+            //录入顶点信息
+            System.out.println(&quot;请输入图中的顶点：&quot;);
+            String str = sc.nextLine();
+            vexs = str.split(&quot; &quot;);
+            //录入边的信息
+            arcs = new int[numNodes][numNodes];
+            for (int i = 0; i &lt; numEdges; i++) &#123;
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧尾：&quot;);
+                int index1 = locate(sc.nextLine());
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的弧头：&quot;);
+                int index2 = locate(sc.nextLine());
+                System.out.println(&quot;请输入第&quot; + (i + 1) + &quot;条弧上的权值：&quot;);
+                arcs[index1][index2] = Integer.parseInt(sc.nextLine());
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            sc.close();
+        &#125;
+    &#125;
+ 
+    /**
+     * 通过顶点信息来定位其在顶点数组中的索引
+     *
+     * @param s
+     * @return
+     */
+    public int locate(Object s) &#123;
+        for (int i = 0; i &lt; vexs.length; i++) &#123;
+            if (s.equals(vexs[i])) &#123;
+                return i;
+            &#125;
+        &#125;
+        return -1;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="前缀树"><a href="#前缀树" class="headerlink" title="前缀树"></a>前缀树</h2><pre><code class="java">package com.nowcoder.community.util;
+
+import org.apache.commons.lang3.CharUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+@Component
+public class SensitiveFilter &#123;
+
+    private static final Logger logger = LoggerFactory.getLogger(SensitiveFilter.class);
+
+    // 替换符
+    private static final String REPLACEMENT = &quot;***&quot;;
+
+    // 根节点
+    private TrieNode rootNode = new TrieNode();
+
+
+    //3.1第二步：根据敏感词，初始化前缀树
+    //@PostConstruct代表是初始化方法，SensitiveFilter容器一构造，它就开始
+    @PostConstruct
+    public void init() &#123;
+        try (
+                InputStream is = this.getClass().getClassLoader().getResourceAsStream(&quot;sensitive-words.txt&quot;);
+                //把is先转为字符流，再转为缓冲流
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        ) &#123;
+            String keyword;
+            while ((keyword = reader.readLine()) != null) &#123;
+                // 添加到前缀树
+                this.addKeyword(keyword);
+            &#125;
+        &#125; catch (IOException e) &#123;
+            logger.error(&quot;加载敏感词文件失败: &quot; + e.getMessage());
+        &#125;
+    &#125;
+    //也算3.1第二步：根据敏感词，初始化前缀树
+    // 将一个敏感词添加到前缀树中
+    private void addKeyword(String keyword) &#123;
+        TrieNode tempNode = rootNode;
+        for (int i = 0; i &lt; keyword.length(); i++) &#123;
+            char c = keyword.charAt(i);
+            //找一下当前节点有没有这个子节点，有的话就不再挂了
+            TrieNode subNode = tempNode.getSubNode(c);
+
+            if (subNode == null) &#123;
+                // 初始化子节点
+                subNode = new TrieNode();
+                tempNode.addSubNode(c, subNode);
+            &#125;
+
+            // 指向子节点,进入下一轮循环
+            tempNode = subNode;
+
+            // 设置结束标识
+            if (i == keyword.length() - 1) &#123;
+                tempNode.setKeywordEnd(true);
+            &#125;
+        &#125;
+    &#125;
+//3.1第三步：过滤敏感词
+    /**
+     * 过滤敏感词
+     *
+     * @param text 待过滤的文本
+     * @return 过滤后的文本
+     */
+    public String filter(String text) &#123;
+        if (StringUtils.isBlank(text)) &#123;
+            return null;
+        &#125;
+
+        // 指针1
+        TrieNode tempNode = rootNode;
+        // 指针2
+        int begin = 0;
+        // 指针3
+        int position = 0;
+        // 结果
+        StringBuilder sb = new StringBuilder();
+
+        //用指针3效率稍微更高一点
+        while (begin &lt; text.length()) &#123;
+            if (position &lt; text.length()) &#123;
+                char c = text.charAt(position);
+                //例如 ⭐政⭐府⭐  就检测不到，需要跳过符号
+                // 跳过符号
+                if (isSymbol(c)) &#123; //倘若字符c是符号
+                    // 若指针1处于根节点,将此符号计入结果,让指针2向下走一步
+                    if (tempNode == rootNode) &#123;
+                        sb.append(c);
+                        begin++;
+                    &#125;
+                    // 无论符号在开头或中间,指针3都向下走一步
+                    position++;
+                    continue;
+                &#125;
+
+                // 检查下级节点
+                tempNode = tempNode.getSubNode(c);
+                if (tempNode == null) &#123;
+                    // 以begin开头的字符串不是敏感词
+                    sb.append(text.charAt(begin));
+                    // 进入下一个位置
+                    position = ++begin;
+                    // 重新指向根节点
+                    tempNode = rootNode;
+                &#125; else if (tempNode.isKeywordEnd()) &#123;
+                    // 发现敏感词,将begin~position字符串替换掉
+                    sb.append(REPLACEMENT);
+                    // 进入下一个位置
+                    begin = ++position;
+                    // 重新指向根节点
+                    tempNode = rootNode;
+                &#125; else &#123;
+                    // 检查下一个字符
+                    position++;
+                &#125;
+            &#125;
+            // position遍历越界仍未匹配到敏感词
+            else &#123;
+                sb.append(text.charAt(begin));
+                position = ++begin;
+                tempNode = rootNode;
+            &#125;
+        &#125;
+        return sb.toString();
+    &#125;
+
+    // 判断是否为符号
+    private boolean isSymbol(Character c) &#123;
+        // 0x2E80~0x9FFF 是东亚文字范围
+        return !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; 0x2E80 || c &gt; 0x9FFF);
+    &#125;
+
+
+    //这个结构只在这个工具里用，所以定义一个内部类
+    // 3.1小节的第一步：定义前缀树
+    private class TrieNode &#123;
+
+        // 关键词结束标识
+        private boolean isKeywordEnd = false;
+
+        // 一个节点的子节点可能是多个，因此用map来进行封装
+        // 子节点(key是下级字符,value是下级节点)
+        private Map&lt;Character, TrieNode&gt; subNodes = new HashMap&lt;&gt;();
+
+        public boolean isKeywordEnd() &#123;
+            return isKeywordEnd;
+        &#125;
+
+        public void setKeywordEnd(boolean keywordEnd) &#123;
+            isKeywordEnd = keywordEnd;
+        &#125;
+
+        // 添加子节点
+        public void addSubNode(Character c, TrieNode node) &#123;
+            subNodes.put(c, node);
+        &#125;
+
+        // 获取子节点
+        public TrieNode getSubNode(Character c) &#123;
+            return subNodes.get(c);
+        &#125;
+
+    &#125;
+
+&#125;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/" title="">http://viacheung.github.io/2023/06/04/面试算法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E6%B5%8B%E5%BC%80/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E6%94%BE%E9%A2%98/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">十三、算法：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">1.1.</span> <span class="nav-text">13.1 堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-%E5%BF%AB%E6%8E%92"><span class="nav-number">1.2.</span> <span class="nav-text">13.2 快排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%8E%92%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">其他排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-%E4%BA%8C%E5%88%86%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">13.3 二分法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-4-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">13.4 单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-volatile"><span class="nav-number">1.5.1.</span> <span class="nav-text">为什么要使用 volatile?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-5-LRU"><span class="nav-number">1.6.</span> <span class="nav-text">13.5 LRU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-6-%E6%89%8B%E5%86%99hashMap"><span class="nav-number">1.7.</span> <span class="nav-text">13.6 手写hashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-7-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="nav-number">1.8.</span> <span class="nav-text">13.7 邻接矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E6%A0%91"><span class="nav-number">1.9.</span> <span class="nav-text">前缀树</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="相关知识完全二叉树： 从满二叉树最后一个结点往前删除二叉搜索树：左小右大 带数值平衡二叉搜索树：AVL 高度差值小于2存储方式：数组 链式 如果父节点的数组下标是 i，那么它的左孩子就是 i * 2 + 1，右孩子就是 i * 2 + 2。想012就行遍历方式：深度：前中后 迭代 递归 栈                 广度 层次 迭代 队列定义： public class TreeNode &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命运石之门">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="相关知识完全二叉树： 从满二叉树最后一个结点往前删除二叉搜索树：左小右大 带数值平衡二叉搜索树：AVL 高度差值小于2存储方式：数组 链式 如果父节点的数组下标是 i，那么它的左孩子就是 i * 2 + 1，右孩子就是 i * 2 + 2。想012就行遍历方式：深度：前中后 迭代 递归 栈                 广度 层次 迭代 队列定义： public class TreeNode &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-03T17:02:11.388Z">
+<meta property="article:modified_time" content="2023-06-03T17:02:11.887Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-04 01:02:11" itemprop="dateCreated datePublished" datetime="2023-06-04T01:02:11+08:00">2023-06-04</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><p>完全二叉树： 从满二叉树最后一个结点往前删除<br>二叉搜索树：左小右大 带数值<br>平衡二叉搜索树：AVL 高度差值小于2<br>存储方式：数组 链式 <strong>如果父节点的数组下标是 i，那么它的左孩子就是 i * 2 + 1，右孩子就是 i * 2 + 2。</strong>想012就行<br>遍历方式：深度：前中后 迭代 递归 栈<br>                 广度 层次 迭代 队列<br>定义：</p>
+<pre><code>public class TreeNode &#123;
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode() &#123;&#125;
+     TreeNode(int val) &#123; this.val = val; &#125;
+     TreeNode(int val, TreeNode left, TreeNode right) &#123;
+             this.val = val;
+             this.left = left;
+             this.right = right;
+     &#125;
+ &#125;
+</code></pre>
+<p>二叉排序<a target="_blank" rel="noopener" href="http://data.biancheng.net/view/313.html">树</a>（Binary Sort Tree，简称 BST ）又叫二叉查找树和二叉搜索树，是一种实现动态查找表的树形存储结构。</p>
+<ul>
+<li>节点的左子树仅包含键 <strong>小于</strong> 节点键的节点。</li>
+<li>节点的右子树仅包含键 <strong>大于</strong> 节点键的节点。</li>
+<li>左右子树也必须是二叉搜索树。<strong>递归思路：</strong></li>
+</ul>
+<ol>
+<li><p><strong>确定递归函数的参数和返回值：</strong> 确定哪些参数是递归的过程中需要处理的，那么就在递归函数里加上这个参数， 并且还要明确每次递归的返回值是什么进而确定递归函数的返回类型。</p>
+</li>
+<li><p><strong>确定终止条件：</strong> 写完了递归算法, 运行的时候，经常会遇到栈溢出的错误，就是没写终止条件或者终止条件写的不对，操作系统也是用一个栈的结构来保存每一层递归的信息，如果递归没有终止，操作系统的内存栈必然就会溢出。</p>
+</li>
+<li><p><strong>确定单层递归的逻辑：</strong> 确定每一层递归需要处理的信息。在这里也就会重复调用自己来实现递归的过程。</p>
+<h2 id="对称二叉树"><a href="#对称二叉树" class="headerlink" title="对称二叉树"></a>对称二叉树</h2><p>给你一个二叉树的根节点 root ， 检查它是否轴对称。<br>我们可以实现这样一个递归函数，通过「同步移动」两个指针的方法来遍历这棵树，p指针和 q 指针一开始都指向这棵树的根，随后 p 右移时，q 左移 p 左移时，q 右移。每次检查当前 p 和 q 节点的值是否相等，如果相等再判断左右子树是否对称。<br>&#96;&#96;&#96;<br>class Solution {<br>  public boolean isSymmetric(TreeNode root) {<br>  return check(root, root);<br>  }</p>
+<p>  public boolean check(TreeNode p, TreeNode q) {<br>  if (p &#x3D;&#x3D; null &amp;&amp; q &#x3D;&#x3D; null) {<br>      return true;<br>  }<br>  if (p &#x3D;&#x3D; null || q &#x3D;&#x3D; null) {<br>      return false;<br>  }<br>  return p.val &#x3D;&#x3D; q.val &amp;&amp; check(p.left, q.right) &amp;&amp; check(p.right, q.left);<br>  }</p>
+</li>
+</ol>
+<p> }</p>
+<pre><code>## 二叉树的最大深度
+给定一个二叉树，找出其最大深度。 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+</code></pre>
+<p>class Solution {<br>     public int maxDepth(TreeNode root) {<br>         if (root &#x3D;&#x3D; null) {<br>             return 0;<br>         } else {<br>             int leftHeight &#x3D; maxDepth(root.left);<br>             int rightHeight &#x3D; maxDepth(root.right);<br>             return Math.max(leftHeight, rightHeight) + 1;<br>         }<br>     }<br> }</p>
+<p> &#x2F;&#x2F;return root &#x3D;&#x3D; null ? 0 : Math.max(this.maxDepth(root.left), this.maxDepth(root.right)) + 1;</p>
+<pre><code>
+</code></pre>
+<p>public int maxDepth (TreeNode root) {<br>         &#x2F;&#x2F; write code here<br>         if(root&#x3D;&#x3D;null) return 0;<br>         return Math.max(maxDepth(root.left),maxDepth(root.right))+1;<br>     }</p>
+<pre><code>## 二叉树最小深度
+给定一个二叉树，找出其最小深度。
+最小深度是从根节点到最近叶子节点的最短路径上的节点数量。（注意这里 和求最大深度不一样）
+![](https://raw.githubusercontent.com/viacheung/img/main/image/20210203155800503.png#from=url&amp;id=SnAFW&amp;originHeight=748&amp;originWidth=958&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public int minDepth(TreeNode root) {<br>         if (root &#x3D;&#x3D; null) return 0;<br>         &#x2F;&#x2F;这两个else if 很重要 就是为了防止出现上图所示情况<br>         else if (root.left &#x3D;&#x3D; null) return minDepth(root.right) + 1;<br>         else if (root.right &#x3D;&#x3D; null) return minDepth(root.left) + 1;<br>         else return Math.min(minDepth(root.left), minDepth(root.right)) + 1;<br>     }<br> }</p>
+<pre><code>## 完全二叉树的节点个数(×)
+给你一棵 **完全二叉树** 的根节点 root ，求出该树的节点个数。
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221029171009163.png#from=url&amp;id=E8WGB&amp;originHeight=735&amp;originWidth=882&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221031151200655.png#from=url&amp;id=LtIHX&amp;originHeight=429&amp;originWidth=874&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public int countNodes(TreeNode root) {<br>         if(root &#x3D;&#x3D; null) {<br>             return 0;<br>         }<br>         int left &#x3D; countNodes(root.left);<br>         int right &#x3D; countNodes(root.right);</p>
+<pre><code>     return left+right+1;
+     
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>遍历树来统计节点是一种时间复杂度为 O(n) 的简单解决方案。你可以设计一个更快的算法吗
+</code></pre>
+<p>class Solution {<br>     public int countNodes(TreeNode root) {<br>         if (root &#x3D;&#x3D; null) {<br>             return 0;<br>         }<br>         int level &#x3D; 0;<br>         TreeNode node &#x3D; root;<br>         &#x2F;&#x2F;去最下左结点  记录下结点和层数<br>         while (node.left !&#x3D; null) {<br>             level++;<br>             node &#x3D; node.left;<br>         }<br>         &#x2F;&#x2F;          2^level<br>         &#x2F;&#x2F;当 0≤i&lt;h 时，第 i层包含 2^i 个节点，最底层包含的节点数最少为 1，最多为 2^h。<br>         int low &#x3D; 1 &lt;&lt; level, high &#x3D; (1 &lt;&lt; (level + 1)) - 1;<br>         while (low &lt; high) {<br>             &#x2F;&#x2F; 这一句一用就会超时  原因是防止溢出，可能出现两者相加超过int表示范围<br>             int mid &#x3D; (high - low + 1) &#x2F; 2 + low;<br>             if (exists(root, level, mid)) {<br>                 low &#x3D; mid;<br>             } else {<br>                 high &#x3D; mid - 1;<br>             }<br>         }<br>         return low;<br>     }<br>     bits:1000-&gt; 100&gt; 10 &gt;1<br>     k:1100 右 左 左<br>     public boolean exists(TreeNode root, int level, int k) {<br>         int bits &#x3D; 1 &lt;&lt; (level - 1);<br>         TreeNode node &#x3D; root;<br>         while (node !&#x3D; null &amp;&amp; bits &gt; 0) {<br>             if ((bits &amp; k) &#x3D;&#x3D; 0) {<br>                 node &#x3D; node.left;<br>             } else {<br>                 node &#x3D; node.right;<br>             }<br>             bits &gt;&gt;&#x3D; 1;<br>         }<br>         return node !&#x3D; null;<br>     }<br> }</p>
+<pre><code>## 二叉树的所有路径
+给你一个二叉树的根节点 root ，按 **任意顺序** ，返回所有从根节点到叶子节点的路径。
+**叶子节点** 是指没有子节点的节点。
+</code></pre>
+<p>&#x2F;&#x2F;我写的 那就选这个！<br> class Solution {<br>     List<String> ans&#x3D;new ArrayList&lt;&gt;();<br>     public List<String> binaryTreePaths(TreeNode root) {<br>         StringBuilder sb&#x3D;new StringBuilder();<br>         dfs(root,sb);<br>         return ans;<br>     }<br>     public void dfs(TreeNode root, StringBuilder sb){<br>         if(root&#x3D;&#x3D;null) return;<br>         if(sb.length()&#x3D;&#x3D;0){<br>             sb.append(root.val);<br>         }else{<br>             sb.append(“-&gt;”).append(root.val);<br>         }<br>         if(root.left&#x3D;&#x3D;null&amp;&amp;root.right&#x3D;&#x3D;null){<br>             ans.add(sb.toString());<br>             return;<br>         }<br>         &#x2F;&#x2F;注意这里 一定要new StringBuilder 递归左子树之后再传入右子树的sb已经变成左子树的路径了，因此不能用sb了，而应该把前面sb的值copy来<br>         dfs(root.left,new StringBuilder(sb));<br>         dfs(root.right,new StringBuilder(sb));</String></String></p>
+<pre><code> &#125;
+</code></pre>
+<p> }</p>
+<pre><code>
+</code></pre>
+<p>&#x2F;&#x2F;还有一种方法，就是回溯。<br>     private void dfs(TreeNode root, StringBuilder cur, List<String> paths) {<br>         if (root &#x3D;&#x3D; null) return;<br>         if (root.left &#x3D;&#x3D; null &amp;&amp; root.right &#x3D;&#x3D; null) {<br>             paths.add(cur.toString() + root.val);<br>             return;<br>         }<br>         int sz &#x3D; cur.length();<br>         cur.append(root.val).append(“-&gt;”);<br>         dfs(root.left, cur);<br>         dfs(root.right, cur);<br>         cur.delete(sz, cur.length());&#x2F;&#x2F;在这里已经定义了dfs的回溯，因此dfs(root.left, cur);执行完毕就已经是回溯的了，也就不会影响        dfs(root.right, cur);的路径了！ 完美！<br>     }</String></p>
+<pre><code>## 平衡二叉树
+给定一个二叉树，判断它是否是高度平衡的二叉树。
+本题中，一棵高度平衡二叉树定义为：一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1 。
+**方法一：自顶向下的递归**（选这个）
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221101131731698.png#from=url&amp;id=iYLI8&amp;originHeight=197&amp;originWidth=805&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public boolean isBalanced(TreeNode root) {<br>         if(root&#x3D;&#x3D;null) return true;<br>         &#x2F;&#x2F;这个&amp;&amp;开始没想到 根节点高度满足还需要后面节点也都是如此<br>         return Math.abs(getDepth(root.right)-getDepth(root.left))&lt;2&amp;&amp;isBalanced(root.right)&amp;&amp;isBalanced(root.left);<br>     }<br>     public int getDepth(TreeNode root){<br>         if(root&#x3D;&#x3D;null) return 0;<br>         return Math.max(getDepth(root.left),getDepth(root.right))+1;<br>     }<br> }<br> O(n^2)</p>
+<pre><code>![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221101131921565.png#from=url&amp;id=N1EiN&amp;originHeight=198&amp;originWidth=817&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public boolean isBalanced(TreeNode root) {<br>         return height(root) &gt;&#x3D; 0;<br>     }</p>
+<pre><code> public int height(TreeNode root) &#123;
+     if (root == null) &#123;
+         return 0;
+     &#125;
+     int leftHeight = height(root.left);
+     int rightHeight = height(root.right);
+     if (leftHeight == -1 || rightHeight == -1 || Math.abs(leftHeight - rightHeight) &gt; 1) &#123;
+         return -1;
+     &#125; else &#123;
+         return Math.max(leftHeight, rightHeight) + 1;
+     &#125;
+ &#125;
+</code></pre>
+<p> }<br> O(n)<br>     自底向上的递归就是及时止损 自顶向下的递归就是不管三七二十一先把所有的高度算一遍</p>
+<pre><code>## 左叶子之和
+题目：计算二叉树左叶子的和
+左叶子 是节点的左节点不为空且左节点的左右节点都为空 
+1、出口：节点空或者节点无子节点
+2、判断为左节点 加到ans
+</code></pre>
+<p>&#x2F;&#x2F;我的题解 我选择用自己的<br> class Solution {<br>     int ans&#x3D;0;<br>     public int sumOfLeftLeaves(TreeNode root) {<br>         dfs(root);<br>         return ans;<br>     }<br>     public void dfs(TreeNode root){<br>         &#x2F;&#x2F;出口<br>         if(root&#x3D;&#x3D;null||(root.left&#x3D;&#x3D;null&amp;&amp;root.right&#x3D;&#x3D;null)) return;<br>         &#x2F;&#x2F;左节点存在且为叶节点<br>         if(root.left!&#x3D;null&amp;&amp;root.left.left&#x3D;&#x3D;null&amp;&amp;root.left.right&#x3D;&#x3D;null){<br>             ans+&#x3D;root.left.val;<br>         }<br>         &#x2F;&#x2F;递归到左右节点<br>         dfs(root.left);<br>         dfs(root.right);<br>     }<br> }</p>
+<pre><code>## 找树左下角的值
+给定一个二叉树的 **根节点**root，请找出该二叉树的 **最底层 最左边** 节点的值。
+假设二叉树中至少有一个节点。
+</code></pre>
+<p>class Solution {<br>     &#x2F;&#x2F;维护当前树高度和值<br>     int curval&#x3D;0;<br>     int curheight&#x3D;0;<br>     public int findBottomLeftValue(TreeNode root) {<br>         dfs(root,0);<br>         return curval;<br>     }<br>     public void dfs(TreeNode root,int height){<br>         if(root&#x3D;&#x3D;null) return;<br>         height++;&#x2F;&#x2F;向下递归一层加一<br>         &#x2F;&#x2F;也就是说到最深高度且先遍历左边就能保证找到了左下角的节点值<br>         if(height&gt;curheight){<br>             curheight&#x3D;height;<br>             curval&#x3D;root.val;<br>         }<br>         &#x2F;&#x2F;因为是先左后右 相同高度左边结点优先遍历到<br>         &#x2F;&#x2F;这个想法没问题 但是int数据表示范围32位有限 出现内存溢出 所以还是Left在前</p>
+<pre><code>     // if(height==curheight)&#123;
+     //     Math.min(curval,root.val);
+     // &#125;
+     dfs(root.left,height);
+     dfs(root.right,height);
+
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>## 路径总和
+给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 **根节点到叶子节点** 的路径，这条路径上所有节点值相加等于目标和 targetSum 。如果存在，返回 true ；否则，返回 false 。
+</code></pre>
+<p>class Solution {<br>    &#x2F;&#x2F;有待改进 需要剪枝。。。 因为就算找到targetSum&#x3D;&#x3D;0 递归还在继续<br>     boolean ans&#x3D;false;<br>     public boolean hasPathSum(TreeNode root, int targetSum) {<br>         dfs(root,targetSum);<br>         return ans;<br>     }<br>     public void dfs(TreeNode root,int targetSum){<br>         if(root&#x3D;&#x3D;null) return;<br>         targetSum&#x3D;targetSum-root.val;<br>         if(root.left&#x3D;&#x3D;null&amp;&amp;root.right&#x3D;&#x3D;null){<br>             if(targetSum&#x3D;&#x3D;0){<br>                 ans&#x3D;true;<br>                 return;<br>             }<br>         }<br>         dfs(root.left,targetSum);<br>         dfs(root.right,targetSum);<br>     }<br> }</p>
+<pre><code>官方题解：简洁！
+</code></pre>
+<p>class Solution {<br>     public boolean hasPathSum(TreeNode root, int sum) {<br>         if (root &#x3D;&#x3D; null) {<br>             return false;<br>         }<br>         &#x2F;&#x2F;递归到最后一层   最后只需要判断sum&#x3D;&#x3D;root.val就行<br>         if (root.left &#x3D;&#x3D; null &amp;&amp; root.right &#x3D;&#x3D; null) {<br>             return sum &#x3D;&#x3D; root.val;<br>         }<br>         &#x2F;&#x2F;一直递归到最后一层  sum - root.val（传参到sum）一直在减少<br>         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);<br>     }<br> }</p>
+<pre><code>## 从中序与后序遍历序列构造二叉树
+给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗 _二叉树_ 。
+</code></pre>
+<p>class Solution {<br>     int post_idx;<br>     int[] postorder;<br>     int[] inorder;<br>     Map&lt;Integer, Integer&gt; idx_map &#x3D; new HashMap&lt;Integer, Integer&gt;();</p>
+<pre><code> public TreeNode buildTree(int[] inorder, int[] postorder) &#123;
+     this.postorder = postorder;
+     this.inorder = inorder;
+     // 从后序遍历的最后一个元素开始
+     post_idx = postorder.length - 1;
+
+     // 建立（元素，下标）键值对的哈希表
+     int idx = 0;
+     for (Integer val : inorder) &#123;
+         idx_map.put(val, idx++);
+     &#125;
+     
+     return helper(0, inorder.length - 1);
+ &#125;
+ 
+ public TreeNode helper(int in_left, int in_right) &#123;
+     // 如果这里没有节点构造二叉树了，就结束
+     if (in_left &gt; in_right) &#123;
+         return null;
+     &#125;
+
+     // 选择 post_idx 位置的元素作为当前子树根节点
+     int root_val = postorder[post_idx];
+     TreeNode root = new TreeNode(root_val);
+     // 根据 root 所在位置分成左右两棵子树
+     int index = idx_map.get(root_val);
+     // 下标减一
+     post_idx--;
+     // 构造右子树
+     root.right = helper(index + 1, in_right);
+     // 构造左子树
+     root.left = helper(in_left, index - 1);
+     return root;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>## 最大二叉树
+给定一个不重复的整数数组 nums 。 **最大二叉树** 可以用下面的算法从 nums 递归地构建:
+
+1. 创建一个根节点，其值为 nums 中的最大值。
+2. 递归地在最大值 **左边** 的 **子数组前缀上** 构建左子树。
+3. 递归地在最大值 **右边** 的 **子数组后缀上** 构建右子树。
+
+返回 _nums 构建的_***最大二叉树*** 。
+**递归**
+</code></pre>
+<p>&#x2F;&#x2F;我最初的解法<br> class Solution {<br>     int[] nums;<br>     public TreeNode constructMaximumBinaryTree(int[] nums) {<br>         this.nums&#x3D;nums;<br>         return buildTreee(0,nums.length-1);<br>     }<br>     public TreeNode buildTreee(int left,int right){<br>         if(left&gt;right) return null;<br>         int index&#x3D;getMaxNumIndex(left,right);<br>         TreeNode root&#x3D;new TreeNode(nums[index]);<br>         root.left&#x3D;buildTreee(left,index-1);<br>         root.right&#x3D;buildTreee(index+1,right);<br>         return root;<br>     }<br>     public int getMaxNumIndex(int left,int right){<br>         int max&#x3D;Integer.MIN_VALUE;<br>         int index&#x3D;0;<br>         for(int i&#x3D;left;i&lt;&#x3D;right;i++){<br>             if(nums[i]&gt;max){<br>                 max&#x3D;nums[i];<br>                 index&#x3D;i;<br>             }<br>         }<br>         return index;<br>     }<br> }<br> &#x2F;&#x2F;优化后<br> class Solution {<br>     int[] nums;<br>     public TreeNode constructMaximumBinaryTree(int[] nums) {<br>         this.nums&#x3D;nums;<br>         return buildTreee(0,nums.length-1);<br>     }<br>     public TreeNode buildTreee(int left,int right){<br>         if(left&gt;right) return null;<br>         int best&#x3D;left;<br>         for (int i &#x3D; left + 1; i &lt;&#x3D; right; ++i) {<br>             if (nums[i] &gt; nums[best]) {<br>                 best &#x3D; i;<br>             }<br>         }<br>         TreeNode root&#x3D;new TreeNode(nums[best]);<br>         root.left&#x3D;buildTreee(left,best-1);<br>         root.right&#x3D;buildTreee(best+1,right);<br>         return root;<br>     }<br> }</p>
+<pre><code>**单调栈**
+## 验证二叉搜索树
+给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。
+**有效** 二叉搜索树定义如下：
+
+- 节点的左子树只包含 **小于** 当前节点的数。
+- 节点的右子树只包含 **大于** 当前节点的数。
+- 所有左子树和右子树自身必须也是二叉搜索树。
+</code></pre>
+<p>class Solution {<br>     public boolean isValidBST(TreeNode root) {<br>         return dfs(root,Long.MIN_VALUE,Long.MAX_VALUE);<br>     }<br>     public boolean dfs(TreeNode root,long l,long r){<br>         if(root&#x3D;&#x3D;null) return true;<br>         if(root.val&lt;&#x3D;l||root.val&gt;&#x3D;r) return false;<br>         return dfs(root.left,l,root.val)&amp;&amp;dfs(root.right,root.val,r);<br>     }<br> }</p>
+<pre><code>
+## 二叉搜索树的最小绝对差
+</code></pre>
+<p>class Solution {<br>     int ans&#x3D;Integer.MAX_VALUE;<br>     public int getMinimumDifference(TreeNode root) {<br>         dfs(root);<br>         return ans;<br>     }<br>     public void dfs(TreeNode root){<br>         if(root&#x3D;&#x3D;null) return;<br>         &#x2F;&#x2F;我的题解：寻找左子树里最大值和右子树里面最小值 然后同根节点做差求Min<br>         &#x2F;&#x2F;左子树里最大值就是左孩子的最右结点 右子树同理<br>         TreeNode node_l&#x3D;root.left,node_r&#x3D;root.right;<br>         while(node_l!&#x3D;null&amp;&amp;node_l.right!&#x3D;null){<br>             node_l&#x3D;node_l.right;<br>         }<br>         while(node_r!&#x3D;null&amp;&amp;node_r.left!&#x3D;null){<br>             node_r&#x3D;node_r.left;<br>         }<br>         int l&#x3D;node_l&#x3D;&#x3D;null?Integer.MAX_VALUE:root.val-node_l.val;<br>         int r&#x3D;node_r&#x3D;&#x3D;null?Integer.MAX_VALUE:node_r.val-root.val;<br>         ans&#x3D;Math.min(Math.min(l,r),ans);<br>         dfs(root.left);<br>         dfs(root.right);<br>     }<br> }</p>
+<pre><code>![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221104202039345.png#from=url&amp;id=wt3OW&amp;originHeight=634&amp;originWidth=908&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     int pre;<br>     int ans;<br>     public int getMinimumDifference(TreeNode root) {<br>         ans &#x3D; Integer.MAX_VALUE;<br>         pre &#x3D; -1;<br>         dfs(root);<br>         return ans;<br>     }<br>     public void dfs(TreeNode root) {<br>         if (root &#x3D;&#x3D; null) {<br>             return;<br>         }<br>         &#x2F;&#x2F;中序 左根右  有序<br>         &#x2F;&#x2F;只需要计算相邻结点差值的最小值就可<br>         dfs(root.left);<br>         if (pre &#x3D;&#x3D; -1) {<br>             pre &#x3D; root.val;<br>         } else {<br>             ans &#x3D; Math.min(ans, root.val - pre);<br>             pre &#x3D; root.val;<br>         }<br>         dfs(root.right);<br>     }<br> }<br> 优雅！！！！！！！！</p>
+<pre><code>## 二叉搜索树中的众数
+给你一个含重复值的二叉搜索树（BST）的根节点 root ，找出并返回 BST 中的所有 [众数](https://baike.baidu.com/item/%E4%BC%97%E6%95%B0/44796)（即，出现频率最高的元素）。
+如果树中有不止一个众数，可以按 **任意顺序** 返回。
+假定 BST 满足如下定义：
+
+- 结点左子树中所含节点的值 **小于等于** 当前节点的值
+- 结点右子树中所含节点的值 **大于等于** 当前节点的值
+- 左子树和右子树都是二叉搜索树
+
+我的思路：
+哈希表 dfs遍历结点 map存储结点以及结点出现个数，然后每个entrySet取value 打擂台的方式，最后得出最大的value以及key 然后根据value再遍历一次 看看有无相等的 有就加入结果集List but不想实现。。。。。
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221106213939182.png#from=url&amp;id=KQHNh&amp;originHeight=1174&amp;originWidth=918&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     &#x2F;&#x2F;记录众数<br>     List<Integer> answer&#x3D;new ArrayList&lt;&gt;();<br>     &#x2F;&#x2F;  当前数字 出现个数   最大出现个数<br>     int base,count,maxcount;</Integer></p>
+<pre><code> public int[] findMode(TreeNode root) &#123;
+     dfs(root);
+     int[] ans=new int[answer.size()];
+     for(int i=0;i&lt;answer.size();i++)&#123;
+         ans[i]=answer.get(i);
+     &#125;
+     return ans;
+ &#125;
+ public void dfs(TreeNode root)&#123;
+ //中序遍历 使得递增顺序
+     if(root==null) return;
+     dfs(root.left);
+     update(root.val);
+     dfs(root.right);
+ &#125;
+ public void update(int val)&#123;
+     if(val==base)&#123;
+         count++;
+     &#125;else&#123;
+         count=1;
+         base=val;
+     &#125;
+     if(count==maxcount)&#123;
+         answer.add(val);
+     &#125;
+     if(count&gt;maxcount)&#123;
+         answer.clear();
+         maxcount=count;
+         answer.add(val);
+     &#125;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>## 二叉树前序遍历
+**递归**（本质栈）
+</code></pre>
+<p>class Solution {<br>     public List<Integer> preorderTraversal(TreeNode root) {<br>         List<Integer> res &#x3D; new ArrayList<Integer>();<br>         preorder(root, res);<br>         return res;<br>     }</Integer></Integer></Integer></p>
+<pre><code> public void preorder(TreeNode root, List&lt;Integer&gt; res) &#123;
+     if (root == null) &#123;
+         return;
+     &#125;
+     res.add(root.val);
+     preorder(root.left, res);
+     preorder(root.right, res);
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>**迭代**（利用栈）
+</code></pre>
+<p>class Solution {<br>     public List<Integer> preorderTraversal(TreeNode root) {<br>         List<Integer> res &#x3D; new ArrayList<Integer>();<br>         if (root &#x3D;&#x3D; null) {<br>             return res;<br>         }</Integer></Integer></Integer></p>
+<pre><code>     Deque&lt;TreeNode&gt; stack = new LinkedList&lt;TreeNode&gt;();
+     TreeNode node = root;
+     //结束条件：栈为空且node为Null
+     while (!stack.isEmpty() || node != null) &#123;
+         //到达最左
+         while (node != null) &#123;
+             res.add(node.val);
+             stack.push(node);
+             node = node.left;
+         &#125;
+         //到达最左后，node为Null，此时要出栈（也就是返回父结点）
+         node = stack.pop();
+         //遍历右结点
+         node = node.right;
+     &#125;
+     return res;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>**Morris 遍历**
+[https://blog.csdn.net/liujia2115/article/details/109215284](https://blog.csdn.net/liujia2115/article/details/109215284)
+</code></pre>
+<p>class Solution {<br>     public List<Integer> preorderTraversal(TreeNode root) {<br>         return morrisMethod(root);<br>     }</Integer></p>
+<pre><code> /**
+  * Morris遍历
+  * @param root
+  * @return
+  */
+ private List&lt;Integer&gt; morrisMethod(TreeNode root) &#123;
+     List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+     if (root == null) &#123;
+         return list;
+     &#125;
+     TreeNode cur = root;
+     TreeNode mostRight = null;
+     while (cur != null) &#123;
+         mostRight = cur.left;
+         if (mostRight != null) &#123; 
+             //左子树最右结点 mostRight.right != cur防止循环回去了
+             while (mostRight.right != null &amp;&amp; mostRight.right != cur) &#123;
+                 mostRight = mostRight.right;
+             &#125;
+             //第一次来
+             if (mostRight.right == null) &#123;
+                 mostRight.right = cur;
+                 list.add(cur.val); // 第一次到的时候打印
+                 cur = cur.left;
+                 continue;
+             &#125; else &#123;//第二次来
+                 mostRight.right = null; // 第二次到的时候不打印
+             &#125;
+         &#125; else &#123; // cur.left为空 直接add cur的值
+             list.add(cur.val);
+         &#125;
+         cur = cur.right;
+         &#125;
+     return list;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>morris中序遍历就是在第一次到的时候不打印 第二次到的时候打印 list.add(cur.val);移到 mostRight.right = null; 后面
+## 合并二叉树
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221009174111479.png#from=url&amp;id=XEdCx&amp;originHeight=303&amp;originWidth=970&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {<br>         if(root1 &#x3D;&#x3D; null) return root2;<br>         if(root2 &#x3D;&#x3D; null) return root1;<br>         TreeNode merged &#x3D; new TreeNode(root1.val + root2.val);&#x2F;&#x2F;返回结点<br>         merged.left&#x3D;mergeTrees(root1.left, root2.left);&#x2F;&#x2F;构造左边是啥<br>         merged.right&#x3D;mergeTrees(root1.right, root2.right);&#x2F;&#x2F;构造右边是啥<br>         return merged;<br>     }<br> }</p>
+<pre><code>## 二叉搜索数转累加数
+给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。
+</code></pre>
+<p>class Solution {<br>     int sum &#x3D; 0;<br>     public TreeNode convertBST(TreeNode root) {<br>         dfs(root);<br>         return root;<br>     }<br>     void dfs(TreeNode node) {<br>         if (node &#x3D;&#x3D; null) return;<br>         dfs(node.right);<br>         sum +&#x3D; node.val;<br>         node.val &#x3D; sum;<br>         dfs(node.left);<br>     }<br> }</p>
+<pre><code>我对于本题递归的理解：dfs(node.right)直接递归到最右下结点，sum=最右下结点的值，赋给最右下结点值， dfs(node.left); 判断为空 return出来
+dfs(node.right)执行完毕，进入上一递归，此时为上一层根结点，然后sum += node.val;node.val = sum;此时算的是根结点的累加值，同理，dfs(node.left)；
+递归不要人肉递归，还是要套模板，只需要关注![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221007210341362.png#from=url&amp;id=L7OCa&amp;originHeight=188&amp;originWidth=295&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+这一部分内容就行，让变量具有普适性
+## 二叉树遍历题和二叉树展开为链表题的对比（均为迭代）
+做二叉树首先要想到用递归（and迭代）
+</code></pre>
+<p>二叉树遍历<br> class Solution {<br>     public List<Integer> inorderTraversal(TreeNode root) {<br>         List<Integer> res &#x3D; new ArrayList<Integer>();<br>         Deque<TreeNode> stk &#x3D; new LinkedList<TreeNode>();<br>         while (root !&#x3D; null || !stk.isEmpty()) {<br>             while (root !&#x3D; null) {<br>                 stk.push(root);<br>                 root &#x3D; root.left;<br>             }<br>             root &#x3D; stk.pop();<br>             res.add(root.val);<br>             root &#x3D; root.right;<br>         }<br>         return res;<br>     }<br> }<br> 二叉树展开为链表<br>     class Solution {<br>         &#x2F;&#x2F;同中序遍历的题进行对比<br>         public void flatten(TreeNode root) {<br>             List<TreeNode> list &#x3D; new ArrayList&lt;&gt;();<br>             Deque<TreeNode> stk &#x3D; new LinkedList&lt;&gt;();<br>             while (root !&#x3D; null || !stk.isEmpty()) {<br>                 while (root !&#x3D; null) {<br>                     list.add(root);&#x2F;&#x2F;和中序比较多了这一行<br>                     stk.push(root);<br>                     root &#x3D; root.left;<br>                 }<br>                 root &#x3D; stk.pop();<br>                 &#x2F;&#x2F;少了一行list.add(root.val);<br>                 root &#x3D; root.right;<br>             }<br>             int size &#x3D; list.size();<br>             for (int i &#x3D; 1; i &lt; size; i++) {<br>                 TreeNode pre &#x3D; list.get(i - 1), cur &#x3D; list.get(i);<br>                 pre.left &#x3D; null;<br>                 pre.right &#x3D; cur;<br>             }</TreeNode></TreeNode></TreeNode></TreeNode></Integer></Integer></Integer></p>
+<pre><code>     &#125;
+</code></pre>
+<pre><code>## 二叉树的最近公共祖先
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20220919202400688.png#from=url&amp;id=j4cbY&amp;originHeight=569&amp;originWidth=1108&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>*&#x2F;<br> class Solution {<br>     private TreeNode ans;<br>     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {<br> &#x2F;&#x2F;        TreeNode ans&#x3D;null;   &#x2F;&#x2F;这一句不能有，有的话，ans&#x3D;root就无法覆盖ans的值，ans&#x3D;root只能识别到 private TreeNode ans;   如果有的话 下面必须return this.ans才行 把外面的引进来作为成员变量<br>         dfs(root,p,q);<br>         return ans;&#x2F;&#x2F;想引用外面的变量需要加this.<br>     }<br>     private boolean dfs(TreeNode root, TreeNode p, TreeNode q){<br>         if(root&#x3D;&#x3D;null) return false;<br>         boolean lson&#x3D;dfs(root.left,p,q);&#x2F;&#x2F;这里必须加数据类型呀，因为lson rson第一次出现，都没初始化呢，要指定其数据类型<br>         boolean rson&#x3D;dfs(root.right,p,q);<br>         if((lson&amp;&amp;rson)||(p.val&#x3D;&#x3D;root.val||q.val&#x3D;&#x3D;root.val)&amp;&amp;(lson||rson)){<br>             ans&#x3D;root;<br>             System.out.println(ans);<br>         }<br>         return root.val&#x3D;&#x3D;p.val||root.val&#x3D;&#x3D;q.val||lson||rson;<br>     }<br> }</p>
+<pre><code>## 二叉搜索树最近公共祖先
+方法一：不用二叉搜索树的性质，直接用二叉树的也可以过。
+**方法二：一次遍历**
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221107120758813.png#from=url&amp;id=lNLxA&amp;originHeight=569&amp;originWidth=850&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {<br>         TreeNode ancestor &#x3D; root;<br>         while (true) {<br>             if (p.val &lt; ancestor.val &amp;&amp; q.val &lt; ancestor.val) {<br>                 ancestor &#x3D; ancestor.left;<br>             } else if (p.val &gt; ancestor.val &amp;&amp; q.val &gt; ancestor.val) {<br>                 ancestor &#x3D; ancestor.right;<br>             } else {<br>                 break;<br>             }<br>         }<br>         return ancestor;<br>     }<br> }</p>
+<pre><code>## 二叉搜索树中的插入操作
+给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 **保证** ，新值和原始二叉搜索树中的任意节点值都不同。
+**注意**，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 **任意有效的结果** 。
+</code></pre>
+<p>class Solution {<br>     public TreeNode insertIntoBST(TreeNode root, int val) {<br>         &#x2F;&#x2F;为空建一个返回<br>         if(root&#x3D;&#x3D;null) return new TreeNode(val);<br>         dfs(root,val);<br>         return root;<br>     }<br>     public void dfs(TreeNode root, int val){<br>         &#x2F;&#x2F;大于的话 需要插入到左子树 看左节点是否为空，空的话直接加入，然后返回， 否则递归到左子树<br>         if(root.val&gt;val){<br>             if(root.left&#x3D;&#x3D;null){<br>                 root.left&#x3D;new TreeNode(val);<br>                 return;<br>             }<br>             dfs(root.left,val);<br>         }else{<br>             if(root.right&#x3D;&#x3D;null){<br>                 root.right&#x3D;new TreeNode(val);<br>                 return;<br>             }<br>             dfs(root.right,val);<br>         }<br>     }<br> }</p>
+<pre><code>## 删除二叉搜索树的节点
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221108190047074.png#from=url&amp;id=FBOgA&amp;originHeight=189&amp;originWidth=1029&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public TreeNode deleteNode(TreeNode root, int key) {<br>         if(root&#x3D;&#x3D;null) return null;<br>         if(key&lt;root.val){<br>             root.left&#x3D;deleteNode(root.left,key);<br>             return root;<br>         }<br>         if(key&gt;root.val){<br>             root.right&#x3D;deleteNode(root.right,key);<br>             return root;<br>         }<br>         &#x2F;&#x2F;key&#x3D;&#x3D;root.val<br>         &#x2F;&#x2F;左右都空<br>         if(key&#x3D;&#x3D;root.val){<br>             if(root.right&#x3D;&#x3D;null&amp;&amp;root.left&#x3D;&#x3D;null){<br>                 return null;<br>             }<br>             &#x2F;&#x2F;左子树为空<br>             if(root.left&#x3D;&#x3D;null){<br>                 return root.right;<br>             }<br>             &#x2F;&#x2F;右子树为空<br>             if(root.right&#x3D;&#x3D;null){<br>                 return root.left;<br>             }<br>             &#x2F;&#x2F;左右都不为空<br>             if(root.right!&#x3D;null&amp;&amp;root.left!&#x3D;null){<br>                 &#x2F;&#x2F;寻找左子树最大结点值val<br>                 int val&#x3D;getMaxInLeft(root.left);<br>                 &#x2F;&#x2F;对根节点赋值val<br>                 root.val&#x3D;val;<br>                 &#x2F;&#x2F;删除等于val的那个结点，并更新左结点<br>                 root.left&#x3D;deleteNode(root.left,val);<br>                 return root;<br>             }<br>         }<br>         return root;</p>
+<pre><code> &#125;
+  //找到左子树中最大的值
+ public int getMaxInLeft(TreeNode root)&#123;
+     //递归
+     // if(root.right==null&amp;&amp;root.left==null) return root.val;
+     // //右子树为空 必然最大的就是根节点
+     // if(root.right==null) return root.val;
+     // return getMaxInLeft(root.right);
+     TreeNode node=root;
+     while(node.right!=null)&#123;
+         node=node.right;
+     &#125;
+     return node.val;
+ &#125;
+</code></pre>
+<pre><code>## 修剪二叉搜索树
+给你二叉搜索树的根节点 root ，同时给定最小边界low 和最大边界 high。通过修剪二叉搜索树，使得所有节点的值在[low, high]中。修剪树 **不应该** 改变保留在树中的元素的相对结构 (即，如果没有被移除，原有的父代子代关系都应当保留)。 可以证明，存在 **唯一的答案** 。
+所以结果应当返回修剪好的二叉搜索树的新的根节点。注意，根节点可能会根据给定的边界发生改变。
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221109113639092.png#from=url&amp;id=YMNuv&amp;originHeight=217&amp;originWidth=821&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public TreeNode trimBST(TreeNode root, int low, int high) {<br>         &#x2F;&#x2F;在根结点把三种情况解决掉了 套用递归解决问题<br>         if(root&#x3D;&#x3D;null) return null;<br>         if(root.val&gt;high){<br>             return trimBST(root.left,low,high);<br>         }else if(root.val&lt;low){<br>             return trimBST(root.right,low,high);<br>         }else{<br>             root.right&#x3D;trimBST(root.right,low,high);<br>             root.left&#x3D;trimBST(root.left,low,high);<br>             return root;<br>         }<br>     }<br> }</p>
+<pre><code>## 将有序数组转换为二叉搜索树
+给你一个整数数组 nums ，其中元素已经按 **升序** 排列，请你将其转换为一棵 **高度平衡** 二叉搜索树。
+**高度平衡** 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。
+</code></pre>
+<p>class Solution {</p>
+<pre><code> public TreeNode sortedArrayToBST(int[] nums) &#123;
+     return dfs(nums,0,nums.length-1);
+ &#125;
+ public TreeNode dfs(int[] nums,int begin,int end)&#123;
+     //越界返回空
+     if(begin&gt;end) return null;
+     //二分确定根结点
+     int index=(begin+end)/2;
+     int val=nums[index];
+     //创建结点
+     TreeNode root=new TreeNode(val);
+     //递归  创建树
+     root.right=dfs(nums,index+1,end);
+     root.left=dfs(nums,begin,index-1);
+     return root;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>## 把二叉搜索树转换为累加树
+给出二叉 **搜索** 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。
+提醒一下，二叉搜索树满足下列约束条件：
+
+- 节点的左子树仅包含键 **小于** 节点键的节点。
+- 节点的右子树仅包含键 **大于** 节点键的节点。
+- 左右子树也必须是二叉搜索树。
+
+**方法一：反序中序遍历**
+思路及算法
+本题中要求我们将每个节点的值修改为原来的节点值加上所有大于它的节点值之和。这样我们只需要反序中序遍历该二叉搜索树，记录过程中的节点值之和，并不断更新当前遍历到的节点的节点值，即可得到题目要求的累加树。
+</code></pre>
+<p>class Solution {<br>     int sum&#x3D;0;<br>     public TreeNode convertBST(TreeNode root) {<br>         dfs(root);<br>         return root;<br>     }<br>     public void dfs(TreeNode root){<br>         if(root&#x3D;&#x3D;null) return;<br>         dfs(root.right);<br>         sum+&#x3D;root.val;<br>         root.val&#x3D;sum;<br>         dfs(root.left);<br>     }<br> }</p>
+<pre><code>## 翻转二叉树
+**递归**
+深度优先
+![](https://raw.githubusercontent.com/viacheung/img/main/image/0f91f7cbf5740de86e881eb7427c6c3993f4eca3624ca275d71e21c5e3e2c550-226_2.gif#from=url&amp;id=jhlMl&amp;originHeight=543&amp;originWidth=773&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>自顶向下(好理解  优先这个)<br> class Solution {<br>     public TreeNode invertTree(TreeNode root) {<br>         &#x2F;&#x2F;递归函数的终止条件，节点为空时返回<br>         if(root&#x3D;&#x3D;null) {<br>             return null;<br>         }<br>         &#x2F;&#x2F;下面三句是将当前节点的左右子树交换<br>         TreeNode tmp &#x3D; root.right;<br>         root.right &#x3D; root.left;<br>         root.left &#x3D; tmp;<br>         &#x2F;&#x2F;递归交换当前节点的 左子树<br>         invertTree(root.left);<br>         &#x2F;&#x2F;递归交换当前节点的 右子树<br>         invertTree(root.right);<br>         &#x2F;&#x2F;函数返回时就表示当前这个节点，以及它的左右子树<br>         &#x2F;&#x2F;都已经交换完了<br>         return root;<br>     }<br> }<br> 自底向上(代码简洁)<br> class Solution {<br>     public TreeNode invertTree(TreeNode root) {<br>         if (root &#x3D;&#x3D; null) {<br>             return null;<br>         }<br>         TreeNode left &#x3D; invertTree(root.left);<br>         TreeNode right &#x3D; invertTree(root.right);<br>         root.left &#x3D; right;<br>         root.right &#x3D; left;<br>         return root;<br>     }<br> }</p>
+<pre><code>**迭代**
+广度优先
+![](https://raw.githubusercontent.com/viacheung/img/main/image/f9e06159617cbf8372b544daee37be70286c3d9b762c016664e225044fc4d479-226_%E8%BF%AD%E4%BB%A3.gif#from=url&amp;id=VSsgm&amp;originHeight=700&amp;originWidth=905&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>class Solution {<br>     public TreeNode invertTree(TreeNode root) {<br>         if(root&#x3D;&#x3D;null) {<br>             return null;<br>         }<br>         &#x2F;&#x2F;将二叉树中的节点逐层放入队列中，再迭代处理队列中的元素<br>         LinkedList<TreeNode> queue &#x3D; new LinkedList<TreeNode>();<br>         queue.add(root);<br>         while(!queue.isEmpty()) {<br>             &#x2F;&#x2F;每次都从队列中拿一个节点，并交换这个节点的左右子树<br>             TreeNode tmp &#x3D; queue.poll();<br>             TreeNode left &#x3D; tmp.left;<br>             tmp.left &#x3D; tmp.right;<br>             tmp.right &#x3D; left;<br>             &#x2F;&#x2F;如果当前节点的左子树不为空，则放入队列等待后续处理<br>             if(tmp.left!&#x3D;null) {<br>                 queue.add(tmp.left);<br>             }<br>             &#x2F;&#x2F;如果当前节点的右子树不为空，则放入队列等待后续处理<br>             if(tmp.right!&#x3D;null) {<br>                 queue.add(tmp.right);<br>             }</TreeNode></TreeNode></p>
+<pre><code>     &#125;
+     //返回处理完的根节点
+     return root;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>## 二叉树的序列化和反序列化
+题目：
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20220923172523030.png#from=url&amp;id=ofY5U&amp;originHeight=219&amp;originWidth=987&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+算法：
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20220923172455790.png#from=url&amp;id=OkRty&amp;originHeight=373&amp;originWidth=1118&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20220923172606089.png#from=url&amp;id=gsjbZ&amp;originHeight=381&amp;originWidth=1028&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>public class Codec {<br>     public String serialize(TreeNode root) {<br>         return rserialize(root, “”);<br>     }</p>
+<pre><code> public TreeNode deserialize(String data) &#123;
+     String[] dataArray = data.split(&quot;,&quot;);
+     List&lt;String&gt; dataList = new LinkedList&lt;String&gt;(Arrays.asList(dataArray));
+     return rdeserialize(dataList);
+ &#125;
+
+ public String rserialize(TreeNode root, String str) &#123;
+     if (root == null) &#123;
+         str += &quot;None,&quot;;
+     &#125; else &#123;
+         str += str.valueOf(root.val) + &quot;,&quot;;//或者这样写 str+=String.valueOf(root.val)+&quot;,&quot;;  把root.val转成String类型
+         str = rserialize(root.left, str);
+         str = rserialize(root.right, str);
+     &#125;
+     return str;
+ &#125;
+
+ public TreeNode rdeserialize(List&lt;String&gt; dataList) &#123;
+     if (dataList.get(0).equals(&quot;None&quot;)) &#123;
+         dataList.remove(0);
+         return null;
+     &#125;
+
+     TreeNode root = new TreeNode(Integer.valueOf(dataList.get(0)));
+     dataList.remove(0);
+     root.left = rdeserialize(dataList);
+     root.right = rdeserialize(dataList);
+ 
+     return root;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>## 总结
+![img](https://raw.githubusercontent.com/viacheung/img/main/image/20211030125421.png)![](https://raw.githubusercontent.com/viacheung/img/main/image/20211030125421.png#from=url&amp;id=XlSHO&amp;originHeight=1050&amp;originWidth=1660&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+## 二叉树的前序遍历
+1、递归
+</code></pre>
+<p>public class Solution {<br>     &#x2F;**<br>      * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可<br>      *<br>      *<br>      * @param root TreeNode类<br>      * @return int整型一维数组<br>      *&#x2F;<br>     List<Integer> ans&#x3D;new ArrayList&lt;&gt;();;<br>     public int[] preorderTraversal (TreeNode root) {<br>         &#x2F;&#x2F; write code here<br>         dfs(root);<br>         int[] res&#x3D;new int[ans.size()];<br>         for(int i&#x3D;0;i&lt;ans.size();i++){<br>             res[i]&#x3D;ans.get(i);<br>         }<br>         return res;</Integer></p>
+<pre><code> &#125;
+ public void dfs(TreeNode root)&#123;
+     if(root==null) return;
+     ans.add(root.val);
+     dfs(root.left);
+     dfs(root.right);
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>2、迭代
+![](https://raw.githubusercontent.com/viacheung/img/main/image/717C18C1D3175AB683DE7E050A4236ED#from=url&amp;id=GQb4Z&amp;originHeight=1506&amp;originWidth=2682&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>public int[] preorderTraversal (TreeNode root) {<br>         List<Integer> ans&#x3D;new ArrayList&lt;&gt;();<br>         Stack<TreeNode> stack&#x3D;new Stack&lt;&gt;();<br>         &#x2F;&#x2F; 判空<br>         if(root&#x3D;&#x3D;null) return new int[0];<br>         stack.push(root);<br>         while(!stack.isEmpty()){<br>             TreeNode node&#x3D;stack.pop();<br>             ans.add(node.val);<br>             &#x2F;&#x2F; 栈先进后出<br>             if(node.right!&#x3D;null) stack.push(node.right);<br>             if(node.left!&#x3D;null) stack.push(node.left);<br>         }<br>         int[] finnal_ans&#x3D;new int[ans.size()];<br>         for(int i&#x3D;0;i&lt;ans.size();i++){<br>             finnal_ans[i]&#x3D;ans.get(i);<br>         }<br>         return finnal_ans;<br>     }</TreeNode></Integer></p>
+<pre><code>## 二叉树中序遍历
+### 递归
+换个顺序就行
+### 迭代
+![](https://raw.githubusercontent.com/viacheung/img/main/image/23368751A430C010C582743B0E2F9414#from=url&amp;id=Y5GO6&amp;originHeight=1530&amp;originWidth=2390&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>public class Solution {<br>     &#x2F;**<br>      * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可<br>      *<br>      *<br>      * @param root TreeNode类<br>      * @return int整型一维数组<br>      *&#x2F;<br>     public int[] inorderTraversal (TreeNode root) {<br>         &#x2F;&#x2F; write code here<br>         List<Integer> list&#x3D;new ArrayList&lt;&gt;();<br>         Stack<TreeNode> stack&#x3D;new Stack&lt;&gt;();<br>         if(root&#x3D;&#x3D;null) return new int[0];<br>         while(!stack.isEmpty()||root!&#x3D;null){<br>             while(root!&#x3D;null){<br>                 stack.push(root);<br>                 root&#x3D;root.left;<br>             }<br>             TreeNode node&#x3D;stack.pop();<br>             list.add(node.val);<br>             root&#x3D;node.right;<br>         }<br>         int[] res&#x3D;new int[list.size()];<br>         for(int i&#x3D;0;i&lt;list.size();i++){<br>             res[i]&#x3D;list.get(i);<br>         }<br>         return res;<br>     }<br> }</TreeNode></Integer></p>
+<pre><code>## 二叉树的后序遍历
+### 迭代
+
+- step 1：开辟一个辅助栈，用于记录要访问的子节点，开辟一个前序指针pre。
+- step 2：从根节点开始，每次优先进入每棵的子树的最左边一个节点，我们将其不断加入栈中，用来保存父问题。
+- step 3：弹出一个栈元素，看成该子树的根，判断这个根的右边有没有节点或是有没有被访问过，如果没有右节点或是被访问过了，可以访问这个根，并将前序节点标记为这个根。
+- step 4：如果没有被访问，那这个根必须入栈，进入右子树继续访问，只有右子树结束了回到这里才能继续访问根。
+
+![](https://raw.githubusercontent.com/viacheung/img/main/image/05EE17BA6FA1FB90EDDEF5A26D0FEEF4#from=url&amp;id=lTtZd&amp;originHeight=1560&amp;originWidth=2618&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>import java.util.*;</p>
+<p> &#x2F;*</p>
+<ul>
+<li>public class TreeNode {</li>
+<li>int val &#x3D; 0;</li>
+<li>TreeNode left &#x3D; null;</li>
+<li>TreeNode right &#x3D; null;</li>
+<li>public TreeNode(int val) {</li>
+<li><pre><code>this.val = val;
+</code></pre>
+</li>
+<li>}</li>
+<li>}<br>  *&#x2F;</li>
+</ul>
+<p> public class Solution {<br>     &#x2F;**<br>      * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可<br>      *<br>      *<br>      * @param root TreeNode类<br>      * @return int整型一维数组<br>      *&#x2F;<br>     public int[] postorderTraversal (TreeNode root) {<br>         &#x2F;&#x2F; write code here<br>         &#x2F;&#x2F; 牢记栈的特性  先入栈后访问<br>         TreeNode pre&#x3D;null;&#x2F;&#x2F;标记这个是访问过的前序节点<br>         List<Integer> list&#x3D;new ArrayList&lt;&gt;();<br>         Stack<TreeNode> stack&#x3D;new Stack&lt;&gt;();<br>         while(!stack.isEmpty()||root!&#x3D;null){<br>             &#x2F;&#x2F; 找最左边节点<br>             while(root!&#x3D;null){<br>                 stack.push(root);<br>                 root&#x3D;root.left;<br>             }<br>             TreeNode node&#x3D;stack.pop();<br>             &#x2F;&#x2F; 如果右节点为空或者已经被访问了<br>             if(node.right&#x3D;&#x3D;null||node.right&#x3D;&#x3D;pre){<br>                 list.add(node.val);<br>                 pre&#x3D;node;<br>             }else{<br>                 &#x2F;&#x2F;该节点入栈<br>                 stack.push(node);<br>                 &#x2F;&#x2F;先访问右边<br>                 root&#x3D;node.right;<br>             }<br>         }<br>         int[] res&#x3D;new int[list.size()];<br>         for(int i&#x3D;0;i&lt;list.size();i++){<br>             res[i]&#x3D;list.get(i);<br>         }<br>         return res;<br>     }<br> }</TreeNode></Integer></p>
+<pre><code>## 求二叉树的层序遍历
+
+- step 1：首先判断二叉树是否为空，空树没有遍历结果。
+- step 2：建立辅助队列，根节点首先进入队列。不管层次怎么访问，根节点一定是第一个，那它肯定排在队伍的最前面。
+- step 3：每次进入一层，统计队列中元素的个数。因为每当访问完一层，下一层作为这一层的子节点，一定都加入队列，而再下一层还没有加入，因此此时队列中的元素个数就是这一层的元素个数。
+- step 4：每次遍历这一层这么多的节点数，将其依次从队列中弹出，然后加入这一行的一维数组中，如果它们有子节点，依次加入队列排队等待访问。
+- step 5：访问完这一层的元素后，将这个一维数组加入二维数组中，再访问下一层。
+
+![](https://raw.githubusercontent.com/viacheung/img/main/image/07986E476EB2CECD3C5F81D0BCADBE12#from=url&amp;id=g6qHU&amp;originHeight=1080&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+### 迭代
+</code></pre>
+<p>import java.util.*;</p>
+<p> &#x2F;*</p>
+<ul>
+<li>public class TreeNode {</li>
+<li>int val &#x3D; 0;</li>
+<li>TreeNode left &#x3D; null;</li>
+<li>TreeNode right &#x3D; null;</li>
+<li>}<br>  *&#x2F;</li>
+</ul>
+<p> public class Solution {<br>     &#x2F;**<br>      *<br>      * @param root TreeNode类<br>      * @return int整型ArrayList&lt;ArrayList&lt;&gt;&gt;<br>      *&#x2F;<br>     public ArrayList&lt;ArrayList<Integer>&gt; levelOrder (TreeNode root) {<br>         &#x2F;&#x2F; write code here<br>         Queue<TreeNode> queue&#x3D;new LinkedList&lt;&gt;();<br>         ArrayList&lt;ArrayList<Integer>&gt; ans&#x3D;new ArrayList();<br>          &#x2F;&#x2F;如果是空，则直接返回空数组<br>         if(root&#x3D;&#x3D;null) return ans;<br>         &#x2F;&#x2F; 根加进去<br>         queue.add(root);<br>         while(!queue.isEmpty()){<br>             &#x2F;&#x2F; 当前层个数<br>             int n&#x3D;queue.size();<br>             &#x2F;&#x2F; 当前层的集合<br>             ArrayList<Integer> temp &#x3D; new ArrayList();<br>             for(int i&#x3D;0;i&lt;n;i++){<br>                 &#x2F;&#x2F; poll出来<br>                 TreeNode node&#x3D;queue.poll();<br>                 temp.add(node.val);<br>                 &#x2F;&#x2F;若是左右孩子存在，则存入左右孩子作为下一个层次<br>                 if(node.left!&#x3D;null) queue.add(node.left);<br>                 if(node.right!&#x3D;null) queue.add(node.right);<br>             }<br>             &#x2F;&#x2F; 每一层加进结果集<br>             ans.add(temp);<br>         }<br>         return ans;<br>     }<br> }</Integer></Integer></TreeNode></Integer></p>
+<pre><code>## 按之字形顺序打印二叉树
+给定一个二叉树，返回该二叉树的之字形层序遍历，（第一层从左向右，下一层从右向左，一直这样交替）
+和二叉树层序遍历一样 无非就是加一个flag进行一个奇偶判断
+注意一个API 
+ Collections.reverse();//反转集合
+</code></pre>
+<p>import java.util.*;</p>
+<p> &#x2F;*<br> public class TreeNode {<br>     int val &#x3D; 0;<br>     TreeNode left &#x3D; null;<br>     TreeNode right &#x3D; null;</p>
+<pre><code> public TreeNode(int val) &#123;
+     this.val = val;
+
+ &#125;
+</code></pre>
+<p> }<br> *&#x2F;<br> public class Solution {<br>     public ArrayList&lt;ArrayList<Integer> &gt; Print(TreeNode pRoot) {<br>         Queue<TreeNode> queue&#x3D;new LinkedList&lt;&gt;();<br>         ArrayList&lt;ArrayList<Integer>&gt; ans&#x3D;new ArrayList();<br>          &#x2F;&#x2F;如果是空，则直接返回空数组<br>         if(pRoot&#x3D;&#x3D;null) return ans;<br>         &#x2F;&#x2F; 根加进去<br>         queue.add(pRoot);<br>         boolean flag&#x3D;true;<br>         while(!queue.isEmpty()){<br>             &#x2F;&#x2F; 当前层个数<br>             int n&#x3D;queue.size();<br>             &#x2F;&#x2F; 当前层的集合<br>             ArrayList<Integer> temp &#x3D; new ArrayList();<br>             for(int i&#x3D;0;i&lt;n;i++){<br>                 &#x2F;&#x2F; poll出来<br>                 TreeNode node&#x3D;queue.poll();<br>                 temp.add(node.val);<br>                 &#x2F;&#x2F;若是左右孩子存在，则存入左右孩子作为下一个层次<br>                 if(node.left!&#x3D;null) queue.add(node.left);<br>                 if(node.right!&#x3D;null) queue.add(node.right);<br>             }<br>             &#x2F;&#x2F; 每一层加进结果集<br>             if(flag) ans.add(temp);<br>             else {<br>                 Collections.reverse(temp);<br>                 ans.add(temp);<br>             }<br>             flag&#x3D;!flag;<br>         }<br>         return ans;<br>     }</Integer></Integer></TreeNode></Integer></p>
+<p> }</p>
+<pre><code>## 求根节点到叶节点数字之和
+给你一个二叉树的根节点 root ，树中每个节点都存放有一个 0 到 9 之间的数字。
+每条从根节点到叶节点的路径都代表一个数字：
+
+- 例如，从根节点到叶节点的路径 1 -&gt; 2 -&gt; 3 表示数字 123 。
+
+计算从根节点到叶节点生成的 **所有数字之和** 。
+**叶节点** 是指没有子节点的节点。
+</code></pre>
+<p>&#x2F;&#x2F;  思路 我把这题类比二叉树的所有路径那题  append的时候简单了 不用加&#x3D;&gt;  最后用一下Integer.parseInt(s)把字符串转为数字 然后求和就行！<br> class Solution {<br>     List<String> ans&#x3D;new ArrayList&lt;&gt;();<br>     int sum&#x3D;0;<br>     public int sumNumbers(TreeNode root) {<br>         StringBuilder sb&#x3D;new StringBuilder();<br>         dfs(root,sb);<br>         for(String s:ans){<br>             int i&#x3D;Integer.parseInt(s);<br>             sum+&#x3D;i;<br>         }<br>         return sum;<br>     }<br>     public void dfs(TreeNode root,StringBuilder sb){<br>         if(root&#x3D;&#x3D;null) return;<br>         sb.append(root.val);<br>         if(root.right&#x3D;&#x3D;null&amp;&amp;root.left&#x3D;&#x3D;null){<br>             ans.add(sb.toString());<br>         }<br>         dfs(root.left,new StringBuilder(sb));<br>         dfs(root.right,new StringBuilder(sb));<br>     }<br> }</String></p>
+<pre><code>## 将二叉搜索树变平衡
+给你一棵二叉搜索树，请你返回一棵 **平衡后** 的二叉搜索树，新生成的树应该与原来的树有着相同的节点值。如果有多种构造方法，请你返回任意一种。
+如果一棵二叉搜索树中，每个节点的两棵子树高度差不超过 1 ，我们就称这棵二叉搜索树是 **平衡的** 。
+题解 中序遍历把二叉树转变为有序数组，然后在根据有序数组构造平衡二叉搜索树。
+</code></pre>
+<p>class Solution {<br>     List<Integer> res&#x3D;new ArrayList&lt;&gt;();<br>     public TreeNode balanceBST(TreeNode root) {<br>         &#x2F;&#x2F; 中序遍历把二叉树转变为有序数组，然后在根据有序数组构造平衡二叉搜索树。<br>         tranval(root);<br>         return getTree(0,res.size()-1);<br>     }<br>     &#x2F;&#x2F; 有序树转成有序数组<br>     public void tranval(TreeNode root){<br>         if(root&#x3D;&#x3D;null) return;<br>         tranval(root.left);<br>         res.add(root.val);<br>         tranval(root.right);<br>     }<br>     &#x2F;&#x2F; 有序数组转成平衡二叉树<br>     public TreeNode getTree(int left,int right){<br>         if(left&gt;right) return null;<br>         &#x2F;&#x2F; 二分<br>         int mid&#x3D;(left+right)&#x2F;2;<br>         &#x2F;&#x2F; 创建结点<br>         TreeNode root&#x3D;new TreeNode(res.get(mid));<br>         root.left&#x3D;getTree(left,mid-1);<br>         root.right&#x3D;getTree(mid+1,right);<br>         return root;<br>     }<br> }</Integer></p>
+<pre><code>## 相同的树
+给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+题解:和对称树基本一样
+</code></pre>
+<p>class Solution {<br>     public boolean isSameTree(TreeNode p, TreeNode q) {<br>         if(p&#x3D;&#x3D;null&amp;&amp;q&#x3D;&#x3D;null) return true;<br>         if(p&#x3D;&#x3D;null||q&#x3D;&#x3D;null) return false;<br>         return p.val&#x3D;&#x3D;q.val&amp;&amp;isSameTree(p.left,q.left)&amp;&amp;isSameTree(p.right,q.right);<br>     }<br> }</p>
+<pre><code>## 填充每个节点的下一个右侧节点指针
+给定一个 **完美二叉树** ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+初始状态下，所有 next 指针都被设置为 NULL。
+题解：递归
+</code></pre>
+<p>if (cur.left !&#x3D; null) cur.left.next &#x3D; cur.right; &#x2F;&#x2F; 操作1<br>         if (cur.right !&#x3D; null) {<br>             if(cur.next !&#x3D; null) cur.right.next &#x3D; cur.next.left; &#x2F;&#x2F;操作2<br>             else cur.right.next &#x3D; null;<br>         }</p>
+<pre><code>最终答案
+</code></pre>
+<p>&#x2F;&#x2F; 递归法<br> class Solution {<br>     public void traversal(Node cur) {<br>         if (cur &#x3D;&#x3D; null) return;<br>         if (cur.left !&#x3D; null) cur.left.next &#x3D; cur.right; &#x2F;&#x2F; 操作1<br>         if (cur.right !&#x3D; null) {<br>             if(cur.next !&#x3D; null) cur.right.next &#x3D; cur.next.left; &#x2F;&#x2F;操作2<br>             else cur.right.next &#x3D; null;<br>         }<br>         traversal(cur.left);  &#x2F;&#x2F; 左<br>         traversal(cur.right); &#x2F;&#x2F;右<br>     }<br>     public Node connect(Node root) {<br>         traversal(root);<br>         return root;<br>     }<br> }</p>
+<pre><code>## **二叉树中和为某一值的路径(一)**
+给定一个二叉树root和一个值 sum ，判断是否有从根节点到叶子节点的节点值之和等于 sum 的路径。
+</code></pre>
+<p>import java.util.*;</p>
+<p> &#x2F;*</p>
+<ul>
+<li>public class TreeNode {</li>
+<li>int val &#x3D; 0;</li>
+<li>TreeNode left &#x3D; null;</li>
+<li>TreeNode right &#x3D; null;</li>
+<li>}<br>  *&#x2F;</li>
+</ul>
+<p> public class Solution {<br>     &#x2F;**<br>      *<br>      * @param root TreeNode类<br>      * @param sum int整型<br>      * @return bool布尔型<br>      *&#x2F;<br>     public boolean hasPathSum (TreeNode root, int sum) {<br>         &#x2F;&#x2F; write code here<br>         if(root&#x3D;&#x3D;null) return false;<br>         if(root.right&#x3D;&#x3D;null&amp;&amp;root.left&#x3D;&#x3D;null&amp;&amp;sum-root.val&#x3D;&#x3D;0) return true;<br>         return hasPathSum(root.left,sum-root.val)||hasPathSum(root.right,sum-root.val);<br>     }</p>
+<p> }</p>
+<pre><code>## 二叉搜索树与双向链表
+输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表
+**思路：**
+二叉搜索树最左端的元素一定最小，最右端的元素一定最大，符合“左中右”的特性，因此二叉搜索树的中序遍历就是一个递增序列，我们只要对它中序遍历就可以组装称为递增双向链表。每次遍历的时候构造好双向链表，注意次序；
+**具体做法：**
+
+- step 1：创建两个指针，一个指向题目中要求的链表头（head），一个指向当前遍历的前一节点（pre)。
+- step 2：首先递归到最左，初始化head与pre。
+- step 3：然后处理中间根节点，依次连接pre与当前节点，连接后更新pre为当前节点。
+- step 4：最后递归进入右子树，继续处理。
+- step 5：递归出口即是节点为空则返回。
+</code></pre>
+<p>public class Solution {<br>     &#x2F;&#x2F;返回的第一个指针，即为最小值，先定为null<br>     public TreeNode head &#x3D; null;<br>     &#x2F;&#x2F;中序遍历当前值的上一位，初值为最小值，先定为null<br>     public TreeNode pre &#x3D; null;<br>     public TreeNode Convert(TreeNode pRootOfTree) {<br>         if(pRootOfTree&#x3D;&#x3D;null) return null;<br>         &#x2F;&#x2F; 首先递归到最左最小值  中序的顺序<br>         Convert(pRootOfTree.left);<br>         &#x2F;&#x2F;初始化<br>         if(pre&#x3D;&#x3D;null){<br>             pre&#x3D;pRootOfTree;<br>             head&#x3D;pRootOfTree;&#x2F;&#x2F;初始化头结点<br>         }<br>         else {<br>             &#x2F;&#x2F;总之保证Pre在pRootOfTree的前面<br>             pre.right&#x3D;pRootOfTree;<br>             pRootOfTree.left&#x3D;pre;<br>             pre&#x3D;pRootOfTree;<br>         }<br>         Convert(pRootOfTree.right);<br>         return head;<br>     }<br> }</p>
+<pre><code># BFS&amp;DFS
+DFS 遍历使用递归：
+</code></pre>
+<p>void dfs(TreeNode root) {<br>    if (root &#x3D;&#x3D; null) {<br>        return;<br>    }<br>    dfs(root.left);&#x2F;&#x2F;递归到最后一层最左边节点，左右节点为空，return出来，到最后一层第二个节点<br>    dfs(root.right);<br>}</p>
+<pre><code>BFS 遍历使用队列数据结构：
+</code></pre>
+<p>void bfs(TreeNode root) {<br>    Queue<TreeNode> queue &#x3D; new ArrayDeque&lt;&gt;();<br>    queue.add(root);<br>    while (!queue.isEmpty()) {<br>        TreeNode node &#x3D; queue.poll(); &#x2F;&#x2F; Java 的 pop 写作 poll()<br>        if (node.left !&#x3D; null) {<br>            queue.add(node.left);&#x2F;&#x2F;队列先进后出，所以是按层往外扩，一直从左往右遍历<br>        }<br>        if (node.right !&#x3D; null) {<br>            queue.add(node.right);<br>        }<br>    }<br>}</TreeNode></p>
+<pre><code>![](https://raw.githubusercontent.com/viacheung/img/main/image/fdcd3bd27f4008948084f6ec86b58535e71f66862bd89a34bd6fe4cc42d68e89-16578569951531.gif#from=url&amp;id=z1lRO&amp;originHeight=500&amp;originWidth=1200&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+## **BFS 的应用一：层序遍历**
+给定一个二叉树，返回其按层序遍历得到的节点值。 层序遍历即逐层地、从左到右访问所有结点。
+层序遍历要求的输入结果和 BFS 是不同的。层序遍历要求我们区分每一层，也就是返回一个二维数组。而 BFS 的遍历结果是一个一维数组，无法区分每一层。
+![](https://raw.githubusercontent.com/viacheung/img/main/image/fd1d63037d0e2f787d2140fee406e109094a4f66ab0837a7273f8b371eef8096.jpg#from=url&amp;id=PiTE8&amp;originHeight=500&amp;originWidth=1200&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+截取 BFS 遍历过程中的某个时刻：
+![](https://raw.githubusercontent.com/viacheung/img/main/image/4529bf559c6a2d84d550eebaee027c3b7ae25069e4ec91f27b29a4c6358d6662.gif#from=url&amp;id=upSXy&amp;originHeight=500&amp;originWidth=1200&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+BFS 遍历中某个时刻队列的状态
+![](https://raw.githubusercontent.com/viacheung/img/main/image/9f178b56ff1c94388d893f2fb48e9e77e186aba7cfd7483637776359062d68b8.jpg#from=url&amp;id=vTrDJ&amp;originHeight=500&amp;originWidth=1200&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+可以看到，此时队列中的结点是 3、4、5，分别来自第 1 层和第 2 层。这个时候，第 1 层的结点还没出完，第 2 层的结点就进来了，而且两层的结点在队列中紧挨在一起，我们无法区分队列中的结点来自哪一层。
+因此，我们需要稍微修改一下代码，在每一层遍历开始前，先记录队列中的结点数量 n（也就是这一层的结点数量），然后一口气处理完这一层的 n 个结点。
+</code></pre>
+<p>&#x2F;&#x2F; 二叉树的层序遍历<br>void bfs(TreeNode root) {<br>    Queue<TreeNode> queue &#x3D; new ArrayDeque&lt;&gt;();<br>    queue.add(root);<br>    while (!queue.isEmpty()) {<br>        int n &#x3D; queue.size();<br>        for (int i &#x3D; 0; i &lt; n; i++) {<br>            &#x2F;&#x2F; 变量 i 无实际意义，只是为了循环 n 次<br>            TreeNode node &#x3D; queue.poll();<br>            if (node.left !&#x3D; null) {<br>                queue.add(node.left);<br>            }<br>            if (node.right !&#x3D; null) {<br>                queue.add(node.right);<br>            }<br>        }<br>    }<br>}</TreeNode></p>
+<pre><code>这样，我们就将 BFS 遍历改造成了层序遍历。在遍历的过程中，结点进队列和出队列的过程为：
+![](https://raw.githubusercontent.com/viacheung/img/main/image/94cd1fa999df0276f1dae77a9cca83f4cabda9e2e0b8571cd9550a8ee3545f56.gif#from=url&amp;id=dM647&amp;originHeight=500&amp;originWidth=1200&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+可以看到，在 while 循环的每一轮中，都是将当前层的所有结点出队列，再将下一层的所有结点入队列，这样就实现了层序遍历。
+最终我们得到的题解代码为：
+</code></pre>
+<p>public List&lt;List<Integer>&gt; levelOrder(TreeNode root) {<br>    List&lt;List<Integer>&gt; res &#x3D; new ArrayList&lt;&gt;();</Integer></Integer></p>
+<pre><code>Queue&lt;TreeNode&gt; queue = new ArrayDeque&lt;&gt;();
+if (root != null) &#123;
+    queue.add(root);
+&#125;
+while (!queue.isEmpty()) &#123;
+    int n = queue.size();
+    List&lt;Integer&gt; level = new ArrayList&lt;&gt;();
+    for (int i = 0; i &lt; n; i++) &#123; 
+        TreeNode node = queue.poll();//弹出队头n次 正好就是把上一层的结点全部弹出 剩下的就是这一层的节点数量 
+        level.add(node.val);//level放每一层的值
+        if (node.left != null) &#123;
+            queue.add(node.left);
+        &#125;
+        if (node.right != null) &#123;
+            queue.add(node.right);
+        &#125;
+    &#125;
+    res.add(level);//加入结果集
+&#125;
+
+return res;
+</code></pre>
+<p>}</p>
+<pre><code>
+ 
+# 递归
+我的理解：
+主要函数里面return一个自定义函数，自定义函数里面前一部分写好递归的统一模板，然后开始递归下一层。
+甩锅给后面的过程，然后得有一个出口。
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/226907/1685799400993-fcd546a8-e08a-44c6-ada3-220be1d8330a.png#clientId=u5d472611-2419-4&amp;from=paste&amp;id=ud8dca7da&amp;originalType=url&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;size=159429&amp;status=done&amp;style=none&amp;taskId=u25c6154d-b67e-45c5-8a42-037f9a36d2a&amp;title=)
+</code></pre>
+<p>&#x2F;**</p>
+<ul>
+<li>合并两有序链表  递归方法 代码少 但效率不行<br> <em>&#x2F;<br>public ListNode mergeTwoLists(ListNode list1,ListNode list2){<br> if(list1&#x3D;&#x3D;null||list2&#x3D;&#x3D;null){<br> return list1&#x3D;&#x3D;null?list2:list1;<br> }else if(list1.val&lt;list2.val){<br> list1.next&#x3D;mergeTwoLists(list1.next,list2);<br> return list1;<br> }else{<br> list2.next&#x3D;mergeTwoLists(list2.next,list1);<br> return list2;<br> }<br>}<br>&#x2F;</em>*</li>
+<li>普通方法 代码多 但效率快<br> <em>&#x2F;<br>&#x2F;</em><br>public ListNode mergeTwoLists(ListNode list1,ListNode list2){<br> if(list1&#x3D;&#x3D;null||list2&#x3D;&#x3D;null){<br> return list1&#x3D;&#x3D;null?list2:list1;<br> }<br> ListNode head&#x3D;new ListNode(0);<br> ListNode tail&#x3D;head,aptr&#x3D;list1,bptr&#x3D;list2;<br> while (list1!&#x3D;null&amp;&amp;list2!&#x3D;null){<br> if(list1.val&lt;list2.val){<br>     tail.next&#x3D;list1;<br>     list1&#x3D;list1.next;<br> }else{<br>     tail.next&#x3D;list2;<br>     list2&#x3D;list2.next;<br> }<br> tail&#x3D;tail.next;<br> }<br> tail.next&#x3D;list1!&#x3D;null?list1:list2;<br> return head.next;<br>}<br> *&#x2F;<br>&#96;&#96;&#96;</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/" title="">http://viacheung.github.io/2023/06/04/二叉树/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E8%B4%AA%E5%BF%83/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">相关知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">对称二叉树</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

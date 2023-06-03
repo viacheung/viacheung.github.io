@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言常用方法：dummyNode空结点 、双指针、快慢指针链表好多都可以用递归或者迭代，递归简洁不好想，递归好理解ListNode是由自己定义的java中的链表对象类结构如下 public class ListNode &amp;#123;         int val;         ListNode next;         public ListNode(int x) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命运石之门">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="前言常用方法：dummyNode空结点 、双指针、快慢指针链表好多都可以用递归或者迭代，递归简洁不好想，递归好理解ListNode是由自己定义的java中的链表对象类结构如下 public class ListNode &amp;#123;         int val;         ListNode next;         public ListNode(int x) &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220915164549004.png#from=url&id=jmahs&originHeight=199&originWidth=919&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015173826107.png#from=url&id=I1dqL&originHeight=414&originWidth=941&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015163411413.png#from=url&id=Qcy5p&originHeight=437&originWidth=1020&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015163434779.png#from=url&id=ClEFA&originHeight=573&originWidth=1032&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221014152913347.png#from=url&id=pMqN0&originHeight=399&originWidth=1000&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221014152957745.png#from=url&id=xCFzX&originHeight=616&originWidth=983&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221014160959772.png#from=url&id=aMxLq&originHeight=330&originWidth=926&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="article:published_time" content="2023-06-03T17:02:36.328Z">
+<meta property="article:modified_time" content="2023-06-03T17:02:36.749Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220915164549004.png#from=url&id=jmahs&originHeight=199&originWidth=919&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title=">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E9%93%BE%E8%A1%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-04 01:02:36" itemprop="dateCreated datePublished" datetime="2023-06-04T01:02:36+08:00">2023-06-04</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>常用方法：dummyNode空结点 、双指针、快慢指针<br>链表好多都可以用递归或者迭代，递归简洁不好想，递归好理解<br>ListNode是由自己定义的java中的链表对象<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220915164549004.png#from=url&id=jmahs&originHeight=199&originWidth=919&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="><br>类结构如下</p>
+<pre><code>public class ListNode &#123;
+        int val;
+        ListNode next;
+        public ListNode(int x) &#123;
+             val = x;
+        &#125;
+ &#125;
+</code></pre>
+<h2 id="删除链表结点"><a href="#删除链表结点" class="headerlink" title="删除链表结点"></a>删除链表结点</h2><pre><code>class Solution &#123;
+     public ListNode removeElements(ListNode head, int val) &#123;
+         ListNode dumyNode=new ListNode();
+         dumyNode.next=head;
+         ListNode cur=dumyNode;
+         while(cur.next!=null)&#123;
+             if(cur.next.val==val)&#123;
+                 cur.next=cur.next.next;
+             &#125;else&#123;
+                 cur=cur.next;
+             &#125;
+         &#125;
+         return dumyNode.next;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="删除链表的倒数第-N-个结点"><a href="#删除链表的倒数第-N-个结点" class="headerlink" title="删除链表的倒数第 N 个结点"></a>删除链表的倒数第 N 个结点</h2><p>给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。<br>方法一：一种容易想到的方法是，我们首先从头节点开始对链表进行一次遍历，得到链表的长度 L。随后我们再从头节点开始对链表进行一次遍历，当遍历到第 L−n+1 个节点时，它就是我们需要删除的节点。<br>方法二：我们也可以在遍历链表的同时将所有节点依次入栈。根据栈「先进后出」的原则，我们弹出栈的第 n 个节点就是需要删除的节点，并且目前栈顶的节点就是待删除节点的前驱节点。这样一来，删除操作就变得十分方便了。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015173826107.png#from=url&id=I1dqL&originHeight=414&originWidth=941&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="><br> ListNode dummy &#x3D; new ListNode(0, head);&#x2F;&#x2F;val为0 下一个结点为head</p>
+<pre><code>//我喜欢方法三
+ class Solution &#123;
+     public ListNode removeNthFromEnd(ListNode head, int n) &#123;
+         // 双指针
+         ListNode dummyNode =new ListNode(0);
+         dummyNode.next=head;
+         //用dummyNode好删除
+         ListNode node1=dummyNode;
+         ListNode node2=dummyNode;
+         //Node1先往后移动n个位置
+         for(int i=0;i&lt;n;i++)&#123;
+              node1=node1.next;
+         &#125;
+         //这俩同时移动 node1.next!=null这个判断条件是为了到最后一个节点 而不是null节点
+         while(node1.next!=null)&#123;
+             node1=node1.next;
+             node2=node2.next;
+         &#125;
+         //删除
+         node2.next=node2.next.next;
+         return dummyNode.next;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="两两交换链表中的节点24"><a href="#两两交换链表中的节点24" class="headerlink" title="两两交换链表中的节点24"></a>两两交换链表中的节点24</h2><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015163411413.png#from=url&id=Qcy5p&originHeight=437&originWidth=1020&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<pre><code>class Solution &#123;
+     public ListNode swapPairs(ListNode head) &#123;
+         if (head == null || head.next == null) &#123;
+             return head;
+         &#125;
+         ListNode newHead = head.next;
+         head.next = swapPairs(newHead.next);
+         newHead.next = head;
+         return newHead;
+     &#125;
+ &#125;
+</code></pre>
+<p>选择迭代！<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015163434779.png#from=url&id=ClEFA&originHeight=573&originWidth=1032&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<pre><code>class Solution &#123;
+     public ListNode swapPairs(ListNode head) &#123;
+         ListNode dummyNode=new ListNode(0);
+         dummyNode.next=head;
+         ListNode temp=dummyNode;
+         while(temp.next!=null&amp;&amp;temp.next.next!=null)&#123;
+            //存一下
+             ListNode node1=temp.next;
+             ListNode node2=temp.next.next;
+             //node1指向node2指向的
+             node1.next=node2.next;
+             //temp指向node2
+             temp.next=node2;
+             //node2--&gt;node1
+             node2.next=node1;
+             //移动temp
+             temp=node1;
+         &#125;
+         //返回头结点
+         return dummyNode.next;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="移除链表元素203"><a href="#移除链表元素203" class="headerlink" title="移除链表元素203"></a>移除链表元素203</h2><p>优先迭代<br>给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val &#x3D;&#x3D; val 的节点，并返回 <strong>新的头节点</strong> 。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221014152913347.png#from=url&id=pMqN0&originHeight=399&originWidth=1000&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="><br>要求返回头节点 最好的方法 用一个dumyNode！！！！</p>
+<pre><code>class Solution &#123;
+     public ListNode removeElements(ListNode head, int val) &#123;
+         ListNode dumyNode=new ListNode();
+         dumyNode.next=head;
+         ListNode cur=dumyNode;
+         while(cur.next!=null)&#123;
+             if(cur.next.val==val)&#123;
+                 cur.next=cur.next.next;
+             &#125;else&#123;
+                 cur=cur.next;
+             &#125;
+         &#125;
+         return dumyNode.next;
+     &#125;
+ &#125;
+</code></pre>
+<p>优先方法二，比较好理解。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221014152957745.png#from=url&id=xCFzX&originHeight=616&originWidth=983&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h2 id="设计链表"><a href="#设计链表" class="headerlink" title="设计链表"></a>设计链表</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221014160959772.png#from=url&id=aMxLq&originHeight=330&originWidth=926&originalType=binary&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&title="><br><strong>单链表</strong></p>
+<pre><code>class MyLinkedList &#123;
+     //用哨兵节点（值为0）当作头结点(但不是真的头结点)
+     int size;
+     ListNode head;
+     //初始化
+     public MyLinkedList() &#123;
+         size=0;
+         head=new ListNode(0);
+     &#125;
+     
+     public int get(int index) &#123;
+         if(index&lt;0||index&gt;=size)&#123;
+             return -1;
+         &#125;
+         ListNode cur=head;
+         for(int i=0;i&lt;=index;i++)&#123;
+             cur=cur.next;
+         &#125;
+         return cur.val;
+     &#125;
+     //操作某个结点 cur到它前面一个去
+     public void addAtHead(int val) &#123;
+         addAtIndex(0,val);
+     &#125;
+     
+     public void addAtTail(int val) &#123;
+         addAtIndex(size,val);
+     &#125;
+     
+     public void addAtIndex(int index, int val) &#123;
+         if(index&gt;size)&#123;
+             return;
+         &#125;
+         //小于0设为0
+         index=index&lt;0?0:index;
+         ListNode tar=new ListNode(val);
+         ListNode cur=head;
+         for(int i=0;i&lt;index;i++)&#123;
+             cur=cur.next;
+         &#125;
+         tar.next=cur.next;
+         cur.next=tar;
+         size++;
+     &#125;
+     
+     public void deleteAtIndex(int index) &#123;
+         if(index&lt;0||index&gt;=size)&#123;
+             return;
+         &#125;
+         ListNode cur=head;
+         for(int i=0;i&lt;index;i++)&#123;
+             cur=cur.next;
+         &#125;
+         cur.next=cur.next.next;
+         size--;
+     &#125;
+ &#125;
+</code></pre>
+<p>双链表就不写辣</p>
+<h2 id="回文链表"><a href="#回文链表" class="headerlink" title="回文链表"></a>回文链表</h2><p><strong>方法一：将值复制到数组中后用双指针法</strong><br>一共为两个步骤：</p>
+<ol>
+<li>复制链表值到数组列表中。</li>
+<li>使用双指针法判断是否为回文。node_1.val &#x3D;&#x3D; node_2.val</li>
+</ol>
+<p><strong>方法二：快慢指针</strong></p>
+<ol>
+<li>找到前半部分链表的尾节点。</li>
+<li>根据前半部分分链表尾结点，反转后半部分链表。</li>
+<li>判断是否回文。</li>
+<li>恢复链表（再把步骤二做一次）。</li>
+<li>返回结果。<br>&#96;&#96;&#96;<br>&#x2F;**</li>
+</ol>
+<ul>
+<li>Definition for singly-linked list.</li>
+<li>public class ListNode {</li>
+<li><pre><code>int val;
+</code></pre>
+</li>
+<li><pre><code>ListNode next;
+</code></pre>
+</li>
+<li><pre><code>ListNode() &#123;&#125;
+</code></pre>
+</li>
+<li><pre><code>ListNode(int val) &#123; this.val = val; &#125;
+</code></pre>
+</li>
+<li><pre><code>ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;
+</code></pre>
+</li>
+<li>}<br>  *&#x2F;<br> class Solution {<br> public boolean isPalindrome(ListNode head) {<br> &#x2F;&#x2F;方法一 辅助数组 双指针<br> &#x2F;&#x2F; ListNode cur&#x3D;head;<br> &#x2F;&#x2F; int len&#x3D;0;<br> &#x2F;&#x2F; while(cur!&#x3D;null){<br> &#x2F;&#x2F;     len++;<br> &#x2F;&#x2F;     cur&#x3D;cur.next;<br> &#x2F;&#x2F; }<br> &#x2F;&#x2F; int[] result&#x3D;new int[len];<br> &#x2F;&#x2F; cur&#x3D;head;<br> &#x2F;&#x2F; for(int i&#x3D;0;i&lt;len;i++){<br> &#x2F;&#x2F;     result[i]&#x3D;cur.val;<br> &#x2F;&#x2F;     cur&#x3D;cur.next;<br> &#x2F;&#x2F; }<br> &#x2F;&#x2F; int l&#x3D;0,r&#x3D;len-1;<br> &#x2F;&#x2F; while(l&lt;r){<br> &#x2F;&#x2F;     if(result[l]!&#x3D;result[r]) return false;<br> &#x2F;&#x2F;     l++;<br> &#x2F;&#x2F;     r–;<br> &#x2F;&#x2F; }<br> &#x2F;&#x2F; return true;<br> &#x2F;&#x2F;方法二 快慢指针<br> ListNode slow&#x3D;head,fast&#x3D;head,pre&#x3D;head;<br> while(fast!&#x3D;null&amp;&amp;fast.next!&#x3D;null){<br>     pre&#x3D;slow;<br>     slow&#x3D;slow.next;<br>     fast&#x3D;fast.next.next;<br> }<br> pre.next&#x3D;null;<br> ListNode node1&#x3D;head;<br> ListNode node2&#x3D;reverseList(slow);<br> while(node1!&#x3D;null){<br>     if(node1.val!&#x3D;node2.val) return false;<br>     node1&#x3D;node1.next;<br>     node2&#x3D;node2.next;<br> }<br> return true;<br> }<br> &#x2F;&#x2F;反转链表<br> public ListNode reverseList(ListNode head){<br> ListNode pre&#x3D;null,temp&#x3D;null,cur&#x3D;head;<br> while(cur!&#x3D;null){<br>     &#x2F;&#x2F;记录当前节点的下一个节点<br>     temp&#x3D;cur.next;<br>     &#x2F;&#x2F;然后将当前节点指向pre<br>     cur.next&#x3D;pre;<br>     &#x2F;&#x2F;pre和cur节点都前进一位<br>     pre&#x3D;cur;<br>     cur&#x3D;temp;<br> }<br> return pre;<br> }</li>
+</ul>
+<p> }</p>
+<pre><code>## 反转链表
+最简单的不考虑复杂度的话，利用**外部空间**
+先申请一个动态扩容的数组或者容器，比如 ArrayList 这样的。然后不断遍历链表，将链表中的元素添加到这个容器中。再利用容器自身的 API，反转整个容器，这样就达到反转的效果了。最后同时遍历容器和链表，将链表中的值改为容器中的值。因为此时容器的值是：
+5 4 3 2 1
+链表按这个顺序重新被设置一边，就达到要求啦。
+**一、迭代**（好理解一点）
+两个指针，cur和pre，pre先指向Null，cur指向head，然后遍历cur，每次迭代到cur，用一个tmp存储cur的下一结点，然后cur的Next指向pre，pre前进一位（pre指向cur，cur指向tmp）
+**代码**
+</code></pre>
+<p>class Solution {<br>     public ListNode reverseList(ListNode head) {<br>         &#x2F;&#x2F;申请节点，pre和 cur，pre指向null<br>         ListNode pre &#x3D; null;<br>         ListNode cur &#x3D; head;<br>         ListNode tmp &#x3D; null;<br>         while(cur!&#x3D;null) {<br>             &#x2F;&#x2F;记录当前节点的下一个节点<br>             tmp &#x3D; cur.next;<br>             &#x2F;&#x2F;然后将当前节点指向pre<br>             cur.next &#x3D; pre;<br>             &#x2F;&#x2F;pre和cur节点都前进一位<br>             pre &#x3D; cur;<br>             cur &#x3D; tmp;<br>         }<br>         return pre;<br>     }<br> }</p>
+<pre><code>**二、递归（不好理解）**
+递归的两个条件：
+</code></pre>
+<p>终止条件是当前节点或者下一个节点&#x3D;&#x3D;null<br> 在函数内部，改变节点的指向，也就是 head 的下一个节点指向 head 递归函数那句</p>
+<pre><code>head.next.next = head
+很不好理解，其实就是 head 的下一个节点指向head。递归函数中每次返回的 cur 其实只最后一个节点，在递归函数内部，改变的是当前节点的指向。动画演示如下：
+![](https://raw.githubusercontent.com/viacheung/img/main/image/dacd1bf55dec5c8b38d0904f26e472e2024fc8bee4ea46e3aa676f340ba1eb9d-%E9%80%92%E5%BD%92.gif#from=url&amp;id=RJoNw&amp;originHeight=360&amp;originWidth=640&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+我的理解：先一直执行ListNode cur = reverseList(head.next)，一直到head为4的时候，if里面成立（head.next==null），跳出，此时cur为5，但是是在4这个结点的递归里面，因此head为4，所以head.next.next 就是5-&gt;4；防止链表循环（因为已经形成了一个环了），需要将head.next设置为空，然后返回cur，因为每层递归函数都返回cur。
+</code></pre>
+<p>class Solution {<br>     public ListNode reverseList(ListNode head) {<br>         &#x2F;&#x2F;递归终止条件是当前为空，或者下一个节点为空<br>         if(head&#x3D;&#x3D;null || head.next&#x3D;&#x3D;null) {<br>             return head;<br>         }<br>         &#x2F;&#x2F;这里的cur就是最后一个节点<br>         ListNode cur &#x3D; reverseList(head.next);<br>         &#x2F;&#x2F;这里请配合动画演示理解<br>         &#x2F;&#x2F;如果链表是 1-&gt;2-&gt;3-&gt;4-&gt;5，那么此时的cur就是5<br>         &#x2F;&#x2F;而head是4，head的下一个是5，下下一个是空<br>         &#x2F;&#x2F;所以head.next.next 就是5-&gt;4<br>         head.next.next &#x3D; head;<br>         &#x2F;&#x2F;防止链表循环，需要将head.next设置为空<br>         head.next &#x3D; null;<br>         &#x2F;&#x2F;每层递归函数都返回cur，也就是最后一个节点<br>         return cur;<br>     }<br> }</p>
+<pre><code>## 环形链表I
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015175612893.png#from=url&amp;id=jfKJC&amp;originHeight=510&amp;originWidth=813&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+**方法一：哈希表**
+最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。
+具体地，我们可以使用哈希表来存储所有已经访问过的节点。每次我们到达一个节点，如果该节点已经存在于哈希表中，则说明该链表是环形链表，否则就将该节点加入哈希表中。重复这一过程，直到我们遍历完整个链表即可。
+</code></pre>
+<p>public class Solution {<br>     public boolean hasCycle(ListNode head) {<br>         Set<ListNode> seen &#x3D; new HashSet<ListNode>();<br>         while (head !&#x3D; null) {<br>             if (!seen.add(head)) {<br>                 return true;<br>             }<br>             head &#x3D; head.next;<br>         }<br>         return false;<br>     }<br> }</ListNode></ListNode></p>
+<pre><code>**方法二：快慢指针**（龟兔赛跑）
+本方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。
+假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。
+我们可以根据上述思路来解决本题。具体地，我们定义两个指针，一快一慢。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置 head，而快指针在位置 head.next。这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。
+**细节**
+为什么我们要规定初始时慢指针在位置 head，快指针在位置 head.next，而不是两个指针都在位置 head（即与「乌龟」和「兔子」中的叙述相同）？
+观察下面的代码，我们使用的是 while 循环，循环条件先于循环体。由于循环条件一定是判断快慢指针是否重合，如果我们将两个指针初始都置于 head，那么 while 循环就不会执行。因此，我们可以假想一个在 head 之前的虚拟节点，慢指针从虚拟节点移动一步到达 head，快指针从虚拟节点移动两步到达 head.next，这样我们就可以使用 while 循环了。
+当然，我们也可以使用 do-while 循环。此时，我们就可以把快慢指针的初始值都置为 head。
+</code></pre>
+<p>public class Solution {<br>     public boolean hasCycle(ListNode head) {<br>         if (head &#x3D;&#x3D; null || head.next &#x3D;&#x3D; null) {<br>             return false;<br>         }<br>         ListNode slow &#x3D; head;<br>         ListNode fast &#x3D; head.next;<br>         while (slow !&#x3D; fast) {<br>             if (fast &#x3D;&#x3D; null || fast.next &#x3D;&#x3D; null) {<br>                 return false;<br>             }<br>             slow &#x3D; slow.next;<br>             fast &#x3D; fast.next.next;<br>         }<br>         return true;<br>     }<br> }</p>
+<pre><code>## 环形链表II
+给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 _如果链表无环，则返回 null。_
+方法一 哈希
+</code></pre>
+<p>public class Solution {<br>     public ListNode detectCycle(ListNode head) {<br>         Set<ListNode> seen&#x3D;new HashSet&lt;&gt;();<br>         while(head!&#x3D;null){<br>             &#x2F;&#x2F;用contains也可<br>             if(seen.add(head)){<br>                 head&#x3D;head.next;<br>             }else{<br>                 return head;<br>             }<br>         }<br>         return null;<br>     }<br> }</ListNode></p>
+<pre><code>方法二
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015181031942.png#from=url&amp;id=NKSlT&amp;originHeight=815&amp;originWidth=1002&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+环形链表和龟兔赛跑很像，也是相遇后，再有一个指针从头开始和slow一起移动，最后相遇即为结果
+</code></pre>
+<p>public class Solution {<br>     public ListNode detectCycle(ListNode head) {<br>         ListNode slow&#x3D;head,fast&#x3D;head;<br>         while(fast!&#x3D;null&amp;&amp;fast.next!&#x3D;null){<br>             slow&#x3D;slow.next;<br>             fast&#x3D;fast.next.next;<br>             if(slow&#x3D;&#x3D;fast){<br>                 ListNode node&#x3D;head;<br>                 while(node!&#x3D;slow){<br>                     slow&#x3D;slow.next;<br>                     node&#x3D;node.next;<br>                 }<br>                 return node;<br>             }<br>         }<br>         return null;<br>     }<br> }</p>
+<pre><code>弗洛伊德循环查找算法结论：
+1、如果有环，兔子乌龟(兔子和乌龟可以不在一个位置出发，这个要看具体情况)必定会相遇（判断是否有环，循环问题，链表、快乐数）
+2、如果有环，兔子乌龟同时同位置出发，相遇后，再有一个指针从头开始和slow一起移动，最后在入环点相遇。
+## 相交链表(√)
+给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null
+![](https://raw.githubusercontent.com/viacheung/img/main/image/160_statement.png#from=url&amp;id=FbSsk&amp;originHeight=241&amp;originWidth=742&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20220910174724580.png#from=url&amp;id=k655o&amp;originHeight=418&amp;originWidth=1054&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015175222441.png#from=url&amp;id=PgMOV&amp;originHeight=449&amp;originWidth=910&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>public ListNode getIntersectionNode(ListNode headA, ListNode headB) {<br>     if (headA &#x3D;&#x3D; null || headB &#x3D;&#x3D; null) return null;<br>     ListNode pA &#x3D; headA, pB &#x3D; headB;<br>     while (pA !&#x3D; pB) {<br>         pA &#x3D; pA &#x3D;&#x3D; null ? headB : pA.next;<br>         pB &#x3D; pB &#x3D;&#x3D; null ? headA : pB.next;<br>     }<br>     return pA;<br> }<br> 总结：当某个结点为空就去另一个链表的头节点（目的是缩短差距 慢慢的这俩就可以一起到达相交结点），直到两者相遇，管他为空还是在一个结点处</p>
+<pre><code>还有一种基本的方法，就是构造一个哈希表，先把A链表的结点都存进去，然后遍历B链表，当某个节点在A里面有则返回之；
+## 两两交换链表中的节点
+给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+题解：
+模拟 娅结点 temp
+</code></pre>
+<p>class Solution {<br>     public ListNode swapPairs(ListNode head) {<br>         ListNode dummyNode&#x3D;new ListNode(0);<br>         dummyNode.next&#x3D;head;<br>         ListNode temp&#x3D;dummyNode;<br>         while(temp.next!&#x3D;null&amp;&amp;temp.next.next!&#x3D;null){<br>             ListNode node1&#x3D;temp.next;<br>             ListNode node2&#x3D;temp.next.next;<br>             temp.next&#x3D;node2;<br>             node1.next&#x3D;node2.next;<br>             node2.next&#x3D;node1;<br>             temp&#x3D;node1;<br>         }<br>         return dummyNode.next;<br>     }<br> }</p>
+<pre><code>## **链表内指定区间反转**
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20230402185058710.png#from=url&amp;id=MGZKI&amp;originHeight=211&amp;originWidth=653&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+题解：
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20230402185131136.png#from=url&amp;id=TIzP1&amp;originHeight=540&amp;originWidth=861&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+算法思路：
+1、设置一个dummyNode指向头节点 方便后面返回结果
+2、pre指到m位置前一个
+3、开始工作 for(m-&gt;n )每次把后面一个节点放到头节点位置
+4、返回结果
+</code></pre>
+<p>public ListNode reverseBetween (ListNode head, int m, int n) {<br>         &#x2F;&#x2F; write code here<br>         ListNode dumyNode &#x3D;new ListNode(-1);<br>         dumyNode.next&#x3D;head;<br>         ListNode pre&#x3D;dumyNode;<br>         for(int i&#x3D;0;i&lt;m-1;i++){<br>             pre&#x3D;pre.next;<br>         }<br>         ListNode cur&#x3D;pre.next;<br>         for(int i&#x3D;m;i&lt;n;i++){<br>             ListNode curNext&#x3D;cur.next;<br>             cur.next&#x3D;curNext.next;<br>             curNext.next&#x3D;pre.next;&#x2F;&#x2F;这里我原本写的curNext.next&#x3D;cur 这是不对的 这个算法思路就是每次把后面节点移动到最前面 如果我们在循环里面不改cur 那么此时cur并不是头节点  pre.next最保险；<br>             pre.next&#x3D;curNext;<br>         }<br>         return dumyNode.next;<br>     }</p>
+<pre><code>## **链表中的节点每k个一组翻转**
+将给出的链表中的节点每 k 个一组翻转，返回翻转后的链表 如果链表中的节点数不是 k 的倍数，将最后剩下的节点保持原样 你不能更改节点中的值，只能更改节点本身。
+题解：
+须知：这个方法返回反转后的头节点
+1、遍历到下一组的头节点 记为tail 中间如果发现tail为null 直接返回head
+2、然后反转链表 此时pre为null 判断条件为cur!=tail 平常反转链表条件为cur!=null 有异曲同工之妙
+3、head.next=reverseKGroup(tail,k); 此处为递归 tail正好也是下一组的头节点
+4、直接返回pre;
+![](https://raw.githubusercontent.com/viacheung/img/main/image/D024AA6BA7A670402678A9ACAD54EB10#from=url&amp;id=aRkHY&amp;originHeight=1080&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+</code></pre>
+<p>public ListNode reverseKGroup (ListNode head, int k) {<br>         &#x2F;&#x2F; write code here<br>         &#x2F;&#x2F; 这个方法返回的是反转后的头节点<br>         ListNode tail&#x3D;head;<br>         &#x2F;&#x2F; 此时tail为下一组的头节点<br>         for(int i&#x3D;0;i&lt;k;i++){<br>             if(tail&#x3D;&#x3D;null) return head;<br>             tail&#x3D;tail.next;<br>         }<br>         ListNode pre&#x3D;null;<br>         ListNode cur&#x3D;head;<br>         while(cur!&#x3D;tail){<br>             ListNode curNext&#x3D;cur.next;<br>             cur.next&#x3D;pre;<br>             pre&#x3D;cur;<br>             cur&#x3D;curNext;<br>         }<br>         head.next&#x3D;reverseKGroup(tail,k);<br>         &#x2F;&#x2F; 最后pre指向的是cur(tail的前一个 也就是本组的最后一个节点（现在变成头节点）)<br>         return pre;<br>     }</p>
+<pre><code>## 合并两个有序链表
+描述
+输入两个递增的链表，单个链表的长度为n，合并这两个链表并使新链表中的节点仍然是递增排序的。
+### 递归
+1、如果有一个链表为空，返回另一个链表2、如果pHead1 节点值比小pHead2，下一个节点应该是 pHead1，应该return pHead1，在return之前，指定pHead1的下一个节点应该是pHead1.next和pHead2俩链表的合并后的头结点3、如果pHead1 节点值比pHead2大，下一个节点应该是pHead2，应该return pHead2，在return之前，指定pHead2的下一个节点应该是pHead1和pHead2.next俩链表的合并后的头结点
+</code></pre>
+<p>public class Solution {<br>     public ListNode Merge(ListNode list1, ListNode list2) {<br>         if (list1 &#x3D;&#x3D; null || list2 &#x3D;&#x3D; null) return list1 &#x3D;&#x3D; null ? list2 : list1;<br>         if (list1.val &gt; list2.val) {<br>             list2.next &#x3D; Merge(list2.next, list1);<br>             return list2;<br>         } else {<br>             list1.next &#x3D; Merge(list1.next, list2);<br>             return list1;<br>         }<br>     }<br> }</p>
+<pre><code>## **链表相加(二)**
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20230403212432459.png#from=url&amp;id=P9GBR&amp;originHeight=470&amp;originWidth=641&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+题解：
+反转链表后进行相加，每次记录相加后的进位数字
+</code></pre>
+<p>public ListNode addInList (ListNode head1, ListNode head2) {<br>         &#x2F;&#x2F; 进行判空处理<br>         if(head1 &#x3D;&#x3D; null)<br>             return head2;<br>         if(head2 &#x3D;&#x3D; null){<br>             return head1;<br>         }<br>         &#x2F;&#x2F; 反转h1链表<br>         head1 &#x3D; reverse(head1);<br>         &#x2F;&#x2F; 反转h2链表<br>         head2 &#x3D; reverse(head2);<br>         &#x2F;&#x2F; 创建新的链表头节点<br>         ListNode head &#x3D; new ListNode(-1);<br>         ListNode nHead &#x3D; head;<br>         &#x2F;&#x2F; 记录进位的数值<br>         int tmp &#x3D; 0;<br>         while(head1 !&#x3D; null || head2 !&#x3D; null){<br>             &#x2F;&#x2F; val用来累加此时的数值（加数+加数+上一位的进位&#x3D;当前总的数值）<br>             int val &#x3D; tmp;<br>             &#x2F;&#x2F; 当节点不为空的时候，则需要加上当前节点的值<br>             if (head1 !&#x3D; null) {<br>                 val +&#x3D; head1.val;<br>                 head1 &#x3D; head1.next;<br>             }<br>             &#x2F;&#x2F; 当节点不为空的时候，则需要加上当前节点的值<br>             if (head2 !&#x3D; null) {<br>                 val +&#x3D; head2.val;<br>                 head2 &#x3D; head2.next;<br>             }<br>             &#x2F;&#x2F; 求出进位<br>             tmp &#x3D; val&#x2F;10;<br>             &#x2F;&#x2F; 进位后剩下的数值即为当前节点的数值<br>             nHead.next &#x3D; new ListNode(val%10);<br>             &#x2F;&#x2F; 下一个节点<br>             nHead &#x3D; nHead.next;</p>
+<pre><code>     &#125;
+     // 最后当两条链表都加完的时候，进位不为0的时候，则需要再加上这个进位
+     if(tmp &gt; 0)&#123;
+         nHead.next = new ListNode(tmp);
+     &#125;
+     // 重新反转回来返回
+     return reverse(head.next);
+ &#125;
+
+ // 反转链表
+ public ListNode reverse(ListNode head)&#123;
+     ListNode pre=null;
+     ListNode cur=head;
+     while(cur!=null)&#123;
+         ListNode curNext=cur.next;
+         cur.next=pre;
+         pre=cur;
+         cur=curNext;
+     &#125;
+     return pre;
+ &#125;
+</code></pre>
+<pre><code>## **单链表的排序**
+给定一个节点数为n的无序单链表，对其按升序排序
+
+- step 1：遍历链表，将节点值加入数组。
+- step 2：使用内置的排序函数对数组进行排序。
+- step 3：依次遍历数组和链表，按照位置将链表中的节点值修改为排序后的数组值。
+</code></pre>
+<p>public class Solution {<br>     &#x2F;**<br>      *<br>      * @param head ListNode类 the head node<br>      * @return ListNode类<br>      <em>&#x2F;<br>     public ListNode sortInList (ListNode head) {<br>         &#x2F;&#x2F; write code here<br>         &#x2F;</em>*<br>         1、复制到数组<br>         2、sort<br>         3、转为链表<br>          *&#x2F;<br>         List<Integer> list&#x3D;new ArrayList&lt;&gt;();<br>         ListNode p&#x3D;head;<br>         while(p!&#x3D;null){<br>             list.add(p.val);<br>             p&#x3D;p.next;<br>         }<br>         p&#x3D;head;<br>         Collections.sort(list);<br>         for(int num:list){<br>             p.val&#x3D;num;<br>             p&#x3D;p.next;<br>         }<br>         return head;<br>     }</Integer></p>
+<pre><code>## **判断一个链表是否为回文结构**
+### 思路
+因为需要判断是否为回文结构，所以要比较头尾的数据，而链表无法随机查询数据，所以可以先将链表转换成list。
+### 具体步骤
+
+- 首先初始化一个list列表；
+- 遍历链表，将链表中的值转移至list中；
+- 在list中通过比较头尾的值来判断链表是否为回文结构。
+- 代码如下：
+</code></pre>
+<p>import java.util.<em>;<br> &#x2F;</em></p>
+<ul>
+<li>public class ListNode {</li>
+<li>int val;</li>
+<li>ListNode next &#x3D; null;</li>
+<li>}<br> <em>&#x2F;<br> public class Solution {<br>&#x2F;</em>*<br> * <ul>
+<li><p>@param head ListNode类 the head</p>
+</li>
+<li><p>@return bool布尔型<br> *&#x2F;<br>public boolean isPail (ListNode head) {<br> &#x2F;&#x2F; write code here<br> &#x2F;&#x2F; n&#x3D;&#x3D;1，返回true<br> if (head.next &#x3D;&#x3D; null){<br> return true;<br> }<br> List<Integer> nums &#x3D; new ArrayList<Integer>();<br> &#x2F;&#x2F; 将链表转换成list<br> while(head!&#x3D;null){<br> nums.add(head.val);<br> head &#x3D; head.next;<br> }<br> int i &#x3D; 0;<br> int j &#x3D; nums.size()-1;<br> while(i&lt;j){<br> &#x2F;&#x2F; 不等则返回false<br> &#x2F;&#x2F; 这边有一个坑，如果不适用equals而使用!&#x3D;的话，在牛客上对于有负数的测试用例可能会无法通过。<br> if (!nums.get(i).equals(nums.get(j))){<br>     return false;<br> }<br> ++i;<br> –j;<br> }<br> return true;<br>}<br> }</Integer></Integer></p>
+<pre><code>## 旋转链表
+给你一个链表的头节点 head ，旋转链表，将链表每个节点向右移动 k 个位置。
+记给定链表的长度为 ，注意到当向右移动的次数 k≥n 时，我们仅需要向右移动 k mod n次即可。因为每 n 次移动都会让链表变为原状。这样我们可以知道，新链表的最后一个节点为原链表的第 (n−1)−(k mod n)个节点（从 0 开始计数）。
+这样，我们可以先将给定的链表连接成环，然后将指定位置断开。
+具体代码中，我们首先计算出链表的长度 n，并找到该链表的末尾节点，将其与头节点相连。这样就得到了闭合为环的链表。然后我们找到新链表的最后一个节点（即原链表的第 (n−1)−(k mod n)个节点），将当前闭合为环的链表断开，即可得到我们所需要的结果。
+特别地，当链表长度不大于 1，或者 k 为 n 的倍数时，新链表将与原链表相同，我们无需进行任何处理。
+</code></pre>
+<p>class Solution {<br>  public ListNode rotateRight(ListNode head, int k) {</p>
+<p>   if (k &#x3D;&#x3D; 0 || head &#x3D;&#x3D; null || head.next &#x3D;&#x3D; null) {<br>   return head;<br>   }<br>   &#x2F;&#x2F; 初始链表长度<br>   int n &#x3D; 1;<br>   ListNode iter &#x3D; head;<br>   &#x2F;&#x2F; 到最后一个结点<br>   while (iter.next !&#x3D; null) {<br>   iter &#x3D; iter.next;<br>   n++;<br>   }<br>   &#x2F;&#x2F; 计算旧头节点和新头节点偏移量<br>   int add &#x3D; n - k % n;<br>   if (add &#x3D;&#x3D; n) {<br>   return head;<br>   }<br>   &#x2F;&#x2F; 连接为环<br>   iter.next &#x3D; head;<br>   &#x2F;&#x2F; 移动到新头结点<br>   while (add– &gt; 0) {<br>   iter &#x3D; iter.next;<br>   }<br>   &#x2F;&#x2F; 断开即可<br>   ListNode ret &#x3D; iter.next;<br>   iter.next &#x3D; null;<br>   &#x2F;&#x2F; 返回<br>   return ret;</p>
+</li>
+</ul>
+<p>  }</p>
+</li>
+</ul>
+<p> }</p>
+<pre><code>## 重排链表
+![](https://raw.githubusercontent.com/viacheung/img/main/image/image-20230406191651380.png#from=url&amp;id=uA2FK&amp;originHeight=256&amp;originWidth=669&amp;originalType=binary&amp;ratio=1.25&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=)
+
+1. 创建一个队列
+2. 除了head 其他入队
+3. 维护一个count 根据count值奇偶连接链表
+</code></pre>
+<p>class Solution {<br>     public void reorderList(ListNode head) {<br>         &#x2F;&#x2F; 使用双端队列的方法来解决<br>         Deque<ListNode> de &#x3D; new LinkedList&lt;&gt;();<br>         &#x2F;&#x2F; 这里是取head的下一个节点，head不需要再入队了，避免造成重复<br>         ListNode cur &#x3D; head.next;<br>         while (cur !&#x3D; null){<br>             de.offer(cur);<br>             cur &#x3D; cur.next;<br>         }<br>         cur &#x3D; head;  &#x2F;&#x2F; 回到头部</ListNode></p>
+<pre><code>     int count = 0;
+     while (!de.isEmpty())&#123;
+         if (count % 2 == 0)&#123;
+             // 偶数，取出队列右边尾部的值
+             cur.next = de.pollLast();
+         &#125;else &#123;
+             // 奇数，取出队列左边头部的值
+             cur.next = de.poll();
+         &#125;
+         cur  = cur.next;
+         count++;
+     &#125;
+     cur.next = null;
+ &#125;
+</code></pre>
+<p> }</p>
+<pre><code>
+ 
+</code></pre>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E9%93%BE%E8%A1%A8/" title="">http://viacheung.github.io/2023/06/04/链表/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E6%95%B0%E7%BB%84/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%BB%93%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">删除链表结点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-N-%E4%B8%AA%E7%BB%93%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">删除链表的倒数第 N 个结点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B924"><span class="nav-number">4.</span> <span class="nav-text">两两交换链表中的节点24</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0203"><span class="nav-number">5.</span> <span class="nav-text">移除链表元素203</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8"><span class="nav-number">6.</span> <span class="nav-text">设计链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8"><span class="nav-number">7.</span> <span class="nav-text">回文链表</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

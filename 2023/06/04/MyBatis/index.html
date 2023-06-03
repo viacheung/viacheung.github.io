@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MyBatis是什么？1、Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，加载驱动、创建连接、创建statement等繁杂的过程，开发者开发时只需要关注如何编写SQL语句，可以严格控制sql执行性能，灵活度高2、作为一个半ORM框架，MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命运石之门">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/MyBatis/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="MyBatis是什么？1、Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，加载驱动、创建连接、创建statement等繁杂的过程，开发者开发时只需要关注如何编写SQL语句，可以严格控制sql执行性能，灵活度高2、作为一个半ORM框架，MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221724470.png#from=url&id=c3p96&originHeight=705&originWidth=1798&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221905292.png#from=url&id=CApLP&originHeight=706&originWidth=1325&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+<meta property="article:published_time" content="2023-06-03T17:05:11.559Z">
+<meta property="article:modified_time" content="2023-06-03T16:55:29.848Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221724470.png#from=url&id=c3p96&originHeight=705&originWidth=1798&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/MyBatis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/MyBatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 01:05:11 / 修改时间：00:55:29" itemprop="dateCreated datePublished" datetime="2023-06-04T01:05:11+08:00">2023-06-04</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h2><p>1、Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，<strong>加载驱动、创建连接、创建statement</strong>等繁杂的过程，开发者开发时只需要关注如何编写SQL语句，可以严格控制sql执行性能，灵活度高<br>2、作为一个半ORM框架，MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。<br>3、通过xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java对象和 statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）。<br>4、由于MyBatis专注于SQL本身，灵活度高，所以比较适合对性能的要求很高，或者需求变化较多的项目，如互联网项目。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221724470.png#from=url&id=c3p96&originHeight=705&originWidth=1798&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><br>resultMap:反射创建的对象返回数据<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230317221905292.png#from=url&id=CApLP&originHeight=706&originWidth=1325&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="></p>
+<h2 id="Mybaits的优缺点"><a href="#Mybaits的优缺点" class="headerlink" title="Mybaits的优缺点"></a>Mybaits的优缺点</h2><p>优点：</p>
+<ul>
+<li>基于SQL语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成任何影响，SQL写在XML里，解除sql与程序代码的耦合，便于统一管理；提供XML标签，支持编写动态SQL语句，并可重用。</li>
+<li>与JDBC相比，减少大量代码量，消除了JDBC大量冗余的代码，不需要手动开关连接；</li>
+<li>与各种数据库<strong>兼容</strong>（因为MyBatis使用JDBC来连接数据库，所以只要JDBC支持的数据库MyBatis都支持）。 jdbc相当于接口 mysql类似于实现类</li>
+<li>g很好的集成Spring；</li>
+<li>提供映射标签，支持对象与数据库的ORM字段关系映射；提供对象关系映射标签，支持对象关系组件维护。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>SQL语句的编写工作量较大，尤其当字段多、关联表多时，对开发人员编写SQL语句的功底有一定要求。</p>
+</li>
+<li><p>SQL语句依赖于数据库，导致数据库移植性差，不能随意更换数据库。</p>
+<h2 id="和-的区别是什么？"><a href="#和-的区别是什么？" class="headerlink" title="#{}和${}的区别是什么？"></a>#{}和${}的区别是什么？</h2><p>${} 是 Properties ⽂件中的变量占位符<br>#{} 是 sql 的参数占位符 </p>
+</li>
+<li><p>#{}是占位符，预编译处理；${}是拼接符，字符串替换，没有预编译处理。</p>
+</li>
+<li><p>Mybatis在处理#{}时，#{}传入参数是以字符串传入，会将SQL中的#{}替换为?号，调用PreparedStatement的set方法来赋值。</p>
+</li>
+<li><p>变量替换后，#{} 对应的变量自动加上单引号 ‘’；变量替换后，${} 对应的变量不会加上单引号 ‘’</p>
+</li>
+<li><p>#{} 可以有效的防止SQL注入，提高系统安全性；${} 不能防止SQL 注入</p>
+</li>
+<li><p>#{} 的变量替换是在DBMS 中；${} 的变量替换是在 DBMS 外</p>
+<h2 id="通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？"><a href="#通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？" class="headerlink" title="通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_11-%E9%80%9A%E5%B8%B8%E4%B8%80%E4%B8%AAxml%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%EF%BC%8C%E9%83%BD%E4%BC%9A%E5%86%99%E4%B8%80%E4%B8%AAdao%E6%8E%A5%E5%8F%A3%E4%B8%8E%E4%B9%8B%E5%AF%B9%E5%BA%94%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AAdao%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9Fdao%E6%8E%A5%E5%8F%A3%E9%87%8C%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%81%E5%8F%82%E6%95%B0%E4%B8%8D%E5%90%8C%E6%97%B6%EF%BC%8C%E6%96%B9%E6%B3%95%E8%83%BD%E9%87%8D%E8%BD%BD%E5%90%97%EF%BC%9F">通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？</a></h2><p>Dao接口即Mapper接口。接口的全限名就是映射文件中的namespace的值；接口的方法名，就是映射文件中Mapper的Statement的id值；接口方法内的参数，就是传递给sql的参数。Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名的拼接字符串作为key值，可唯一定位一个MapperStatement。<br>Dao接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。<br>Dao接口的工作原理是JDK动态代理，Mybatis运行时会使用JDK动态代理为Dao接口生成代理proxy对象，代理对象proxy会拦截接口方法，转而执行MappedStatement所代表的sql，然后将sql执行结果返回。</p>
+<h2 id="Xml-映射⽂件中有哪些标签？"><a href="#Xml-映射⽂件中有哪些标签？" class="headerlink" title="Xml 映射⽂件中有哪些标签？"></a>Xml 映射⽂件中有哪些标签？</h2><p><resultMap> 、 <parameterMap> 、 <sql> 、 <include> 、 <selectKey> 、<select>、<insert>、<update>、<delete></delete></update></insert></select></selectKey></include></sql></parameterMap></resultMap></p>
+<h2 id="Mapper接⼝的⼯作原理是什么？"><a href="#Mapper接⼝的⼯作原理是什么？" class="headerlink" title="Mapper接⼝的⼯作原理是什么？"></a>Mapper接⼝的⼯作原理是什么？</h2><p>例： com.mybatis3.mappers.StudentDao.findStudentById ，可以唯⼀找到 namespace(接口全限定名)为 com.mybatis3.mappers.StudentDao 下⾯ id &#x3D; findStudentById 的 MappedStatement （接⼝⽅法内的参数，就是传递给 sql 的参数。 ）<br>在 Mybatis中，每⼀个 <select> 、 <insert> 、 <update> 、 <delete> 标签，都会被解析为⼀个 MappedStatement 对象<br>Dao 接⼝的⼯作原理是 JDK 动态代理， <strong>Mybatis 运⾏时会使⽤ JDK 动态代理为 Dao 接⼝⽣成代理 proxy 对象</strong>，<strong>代理对象 proxy 会拦截接⼝⽅法，转⽽执⾏ MappedStatement 所代表的 sql，然后将 sql 执⾏结果返回。</strong></delete></update></insert></select></p>
+<h2 id="在Mapper中如何传递多个参数？"><a href="#在Mapper中如何传递多个参数？" class="headerlink" title="在Mapper中如何传递多个参数？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_12-%E5%9C%A8mapper%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%9F">在Mapper中如何传递多个参数？</a></h2><p>1、若Dao层函数有多个参数，那么其对应的xml中，#{0}代表接收的是Dao层中的第一个参数，#{1}代表Dao中的第二个参数，以此类推。<br>2、使用@Param注解：在Dao层的参数中前加@Param注解,注解内的参数名为传递到Mapper中的参数名。<br>3、多个参数封装成Map，以HashMap的形式传递到Mapper中。</p>
+<h2 id="Dao-（Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？"><a href="#Dao-（Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？" class="headerlink" title="Dao （Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？"></a>Dao （Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？</h2><p>Dao 接⼝⾥的⽅法，是不能重载的，因为是全限名+⽅法名的保存和寻找策略 </p>
+<h2 id="Mybatisplus-是如何进⾏分⻚的？分⻚插件的原理是什么？"><a href="#Mybatisplus-是如何进⾏分⻚的？分⻚插件的原理是什么？" class="headerlink" title="Mybatisplus 是如何进⾏分⻚的？分⻚插件的原理是什么？"></a>Mybatisplus 是如何进⾏分⻚的？分⻚插件的原理是什么？</h2><h2 id="简述-Mybatis-的插件运⾏原理，以及如何编写⼀个插件"><a href="#简述-Mybatis-的插件运⾏原理，以及如何编写⼀个插件" class="headerlink" title="简述 Mybatis 的插件运⾏原理，以及如何编写⼀个插件"></a>简述 Mybatis 的插件运⾏原理，以及如何编写⼀个插件</h2><p>使用基于jdk的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，<br>当执行这4种接口方法时，会进入拦截方法，invoke()方法<br>如何编写？<br>实现 Mybatis 的 Interceptor 接⼝并复写 intercept() ⽅法，然后在给插件编写注解，指定要拦截哪⼀个接⼝的哪些⽅法即可，记住，别忘了在配置⽂件中配置你编写的插件。 </p>
+<h2 id="Mybatis-执⾏批量插⼊，能返回数据库主键列表吗？"><a href="#Mybatis-执⾏批量插⼊，能返回数据库主键列表吗？" class="headerlink" title="Mybatis 执⾏批量插⼊，能返回数据库主键列表吗？"></a>Mybatis 执⾏批量插⼊，能返回数据库主键列表吗？</h2><p>可以</p>
+<h2 id="Mybatis-动态-sql-是做什么的？都有哪些动态-sql？能简述⼀下动态-sql-的执⾏原理不？"><a href="#Mybatis-动态-sql-是做什么的？都有哪些动态-sql？能简述⼀下动态-sql-的执⾏原理不？" class="headerlink" title="Mybatis 动态 sql 是做什么的？都有哪些动态 sql？能简述⼀下动态 sql 的执⾏原理不？"></a>Mybatis 动态 sql 是做什么的？都有哪些动态 sql？能简述⼀下动态 sql 的执⾏原理不？</h2><p>Mybatis 动态 sql 可以让我们在 Xml 映射⽂件内，以标签的形式编写动态 sql，完成逻辑判断和动态拼接 sql 的功能， Mybatis 提供了 9 种动态 sql 标签trim|where|set|foreach|if|choose|when|otherwise|bind 。其执⾏原理为，使⽤ <strong>OGNL</strong> 从 sql 参数对象中计算表达式的值，根据表达式的值动态拼接 sql，以此来完成动态 sql 的功能。<br><strong>执行原理</strong>：是根据表达式的值完成逻辑判断，并动态拼接sql的功能。</p>
+<h2 id="Mybatis-是如何将-sql-执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？"><a href="#Mybatis-是如何将-sql-执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？" class="headerlink" title="Mybatis 是如何将 sql 执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？"></a>Mybatis 是如何将 sql 执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？</h2><p>第⼀种：是使⽤ <resultMap> 标签，逐⼀定义列名和对象属性名之间的映射关系。<br>第⼆种：使⽤ sql 列的别名功能，将列别名书写为对象属性名，⽐如 T_NAME AS NAME，<br>有了列名与属性名的映射关系后， Mybatis 通过反射创建对象，同时使⽤反射给对象的属性逐⼀赋值并返回，那些找不到映射关系的属性，是⽆法完成赋值的 </resultMap></p>
+<h2 id="Mybatis-能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。"><a href="#Mybatis-能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。" class="headerlink" title="Mybatis 能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。"></a>Mybatis 能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。</h2><p>可以，把 selectOne() 修改为 selectList() 即可<br>关联对象查询，有两种实现⽅式，一种是两条sql 一种是嵌套（join） 具体如下：</p>
+<pre><code>有联合查询和嵌套查询两种方式。
+联合查询是几个表联合查询，通过在resultMap里面配置association节点配置一对一的类就可以完成；
+嵌套查询是先查一个表，根据这个表里面的结果的外键id，再去另外一个表里面查询数据，也是通过association配置，但另外一个表的查询是通过select配置的。
+</code></pre>
+<p>去重复的原理是 <resultMap> 标签内的 <id> ⼦标签 </id></resultMap></p>
+<h2 id="Mybatis的一级、二级缓存（？）"><a href="#Mybatis的一级、二级缓存（？）" class="headerlink" title="Mybatis的一级、二级缓存（？）"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_17-mybatis%E7%9A%84%E4%B8%80%E7%BA%A7%E3%80%81%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98">Mybatis的一级、二级缓存</a>（？）</h2><p>1、 一级缓存：基于PerpetualCache的HashMap本地缓存，其存储作用域为Session，当Session flush或close之后，该Session中的所有Cache就将清空，默认打开一级缓存。<br>2、 二级缓存与一级缓存机制相同，默认也是采用PerpetualCache，HashMap存储，不同在于其存储作用域为Mapper（namespace），并且可自定义存储源，如Ehcache。默认打不开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口（可用来保存对象的状态），可在它的映射文件中配置。<br>对于缓存数据更新机制，当某一个作用域（一级缓存Session&#x2F;二级缓存Namespace）进行了增&#x2F;删&#x2F;改操作后，默认该作用域下所有select中的缓存将被clear。</p>
+<h2 id="使用MyBatis的Mapper接口调用时有哪些要求？"><a href="#使用MyBatis的Mapper接口调用时有哪些要求？" class="headerlink" title="使用MyBatis的Mapper接口调用时有哪些要求？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/Mybatis/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_18-%E4%BD%BF%E7%94%A8mybatis%E7%9A%84mapper%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82%EF%BC%9F">使用MyBatis的Mapper接口调用时有哪些要求？</a></h2><p>1、Mapper接口方法名和mapper.xml中定义的每个sql的id相同；<br>2、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql的parameterType类型相同；<br>3、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同；<br>4、Mapper.xml文件中的namespace即是mapper接口的类路径。</p>
+<h2 id="Mybatis-是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？"><a href="#Mybatis-是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？" class="headerlink" title="Mybatis 是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？"></a>Mybatis 是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？</h2><p>使⽤ CGLIB 创建⽬标对象的代理对象，当调⽤⽬标⽅法时，进⼊拦截器⽅法，⽐如调⽤ a.getB().getName() ，拦截器 invoke() ⽅法发现 a.getB() 是 null 值，那么就会单独发送事先保存好的查询关联 B 对象的 sql，把 B 查询上来，然后调⽤ a.setB(b)，于是 a 的对象 b 属性就有值了，接着完成 a.getB().getName() ⽅法的调⽤。这就是延迟加载的基本原理。<br>意思就是set我先不做，等你get的时候我再带调用set 然后再get，比较懒</p>
+<h2 id="Mybatis-的-Xml-映射⽂件中，不同的-Xml-映射⽂件，-id-是否可以重复？"><a href="#Mybatis-的-Xml-映射⽂件中，不同的-Xml-映射⽂件，-id-是否可以重复？" class="headerlink" title="Mybatis 的 Xml 映射⽂件中，不同的 Xml 映射⽂件， id 是否可以重复？"></a>Mybatis 的 Xml 映射⽂件中，不同的 Xml 映射⽂件， id 是否可以重复？</h2><p>如果配置了 namespace，那么 id 可以重复；如果没有配置namespace，那么 id 不能重复；<br>原因就是 namespace+id 是作为 Map&lt;String, MappedStatement&gt; 的 key 使⽤的 </p>
+<h2 id="Mybatis-中如何执⾏批处理？"><a href="#Mybatis-中如何执⾏批处理？" class="headerlink" title="Mybatis 中如何执⾏批处理？"></a>Mybatis 中如何执⾏批处理？</h2><p>BatchExecutor 完成批处理。 </p>
+<h2 id="Mybatis-都有哪些-Executor-执⾏器？它们之间的区别是什么？-如何指定使⽤哪⼀种-Executor-执⾏器？"><a href="#Mybatis-都有哪些-Executor-执⾏器？它们之间的区别是什么？-如何指定使⽤哪⼀种-Executor-执⾏器？" class="headerlink" title="Mybatis 都有哪些 Executor 执⾏器？它们之间的区别是什么？ 如何指定使⽤哪⼀种 Executor 执⾏器？"></a>Mybatis 都有哪些 Executor 执⾏器？它们之间的区别是什么？ 如何指定使⽤哪⼀种 Executor 执⾏器？</h2><p>SimpleExecutor ：每执⾏⼀次 update 或 select，就开启⼀个 Statement 对象，⽤完⽴刻关闭（执行一个开一个）<br>ReuseExecutor ： 以 sql 作为 key 查找 Statement 对象，存在就使⽤，不存在就创建，⽤完后，不关闭 Statement 对象，⽽是放置于 Map&lt;String, Statement&gt;内，供下⼀次使⽤。简⾔之，就是重复使⽤ Statement 对象。<br>BatchExecutor ：将所有 sql 都添加到批处理中（addBatch()），等待统⼀执⾏（executeBatch()）<br>配置⽂件中，可以指定默认的 ExecutorType 执<br>⾏器类型 </p>
+<h2 id="Mybatis-是否可以映射-Enum-枚举类？"><a href="#Mybatis-是否可以映射-Enum-枚举类？" class="headerlink" title="Mybatis 是否可以映射 Enum 枚举类？"></a>Mybatis 是否可以映射 Enum 枚举类？</h2><p>Mybatis 可以映射任何对象到表的⼀列上。⾃定义⼀个 TypeHandler ，实现 TypeHandler 的 setParameter() 和 getResult()接⼝⽅法。 TypeHandler 有两个作⽤， javaType –&gt; jdbcType (setParameter())–&gt;设置sql 问号占位符参数<br>jdbcType –&gt; javaType(getResult())-&gt;获取列查询结果</p>
+<h2 id="Mybatis-映射⽂件中，如果-A-标签通过-include-引⽤了-B-标签的内容，请问，-B-标签能否定义在-A-标签的后⾯，还是说必须定义在-A-标签的前⾯？"><a href="#Mybatis-映射⽂件中，如果-A-标签通过-include-引⽤了-B-标签的内容，请问，-B-标签能否定义在-A-标签的后⾯，还是说必须定义在-A-标签的前⾯？" class="headerlink" title="Mybatis 映射⽂件中，如果 A 标签通过 include 引⽤了 B 标签的内容，请问， B 标签能否定义在 A 标签的后⾯，还是说必须定义在 A 标签的前⾯？"></a>Mybatis 映射⽂件中，如果 A 标签通过 include 引⽤了 B 标签的内容，请问， B 标签能否定义在 A 标签的后⾯，还是说必须定义在 A 标签的前⾯？</h2><p>都行， A 标签引⽤了 B 标签，但B在后面，会把A 标签标记为未解析状态，后面有个B，然后 Mybatis 会重新解析那些被标记为未解析的标签，此时再解析 A 标签时， B标签已经存在， OK！</p>
+<h2 id="简述-Mybatis-的-Xml-映射⽂件和-Mybatis-内部数据结构之间的映射关系？"><a href="#简述-Mybatis-的-Xml-映射⽂件和-Mybatis-内部数据结构之间的映射关系？" class="headerlink" title="简述 Mybatis 的 Xml 映射⽂件和 Mybatis 内部数据结构之间的映射关系？"></a>简述 Mybatis 的 Xml 映射⽂件和 Mybatis 内部数据结构之间的映射关系？</h2><pre><code> ---&gt;MappedStatement     标签会被解析为 ParameterMap   参数
+</code></pre>
+<p><resultMap> 标签会被解析为 ResultMap 结果</resultMap></p>
+<h2 id="为什么说-Mybatis-是半⾃动-ORM-映射⼯具？它与全⾃动的区别在哪⾥？"><a href="#为什么说-Mybatis-是半⾃动-ORM-映射⼯具？它与全⾃动的区别在哪⾥？" class="headerlink" title="为什么说 Mybatis 是半⾃动 ORM 映射⼯具？它与全⾃动的区别在哪⾥？"></a>为什么说 Mybatis 是半⾃动 ORM 映射⼯具？它与全⾃动的区别在哪⾥？</h2><p>Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取，所以它是全自动的。<br>Mybatis在查询关联对象或关联集合对象时，Mybatis 需要⼿动编写 sql 来完成 </p>
+<h2 id="Hibernate-和-MyBatis-的区别"><a href="#Hibernate-和-MyBatis-的区别" class="headerlink" title="Hibernate 和 MyBatis 的区别"></a>Hibernate 和 MyBatis 的区别</h2><p><strong>相同点</strong>：都是对jdbc的封装，都是持久层的框架，都用于dao层的开发。<br><strong>不同点</strong><br>1、映射关系<br>MyBatis 是一个半自动映射的框架，配置Java对象与sql语句执行结果的对应关系，多表关联关系配置简单。<br>Hibernate 是一个全表映射的框架，配置Java对象与数据库表的对应关系，多表关联关系配置复杂。<br>2、 SQL优化和移植性<br>Hibernate 对SQL语句封装，提供了日志、缓存、级联（级联比 MyBatis 强大）等特性，此外还提供 HQL（Hibernate Query Language）操作数据库，数据库无关性支持好，但会多消耗性能。如果项目需要支持多种数据库，代码开发量少，但SQL语句优化困难。<br>MyBatis 需要手动编写 SQL，支持动态 SQL、处理列表、动态生成表名、支持存储过程。开发工作量相对大些。直接使用SQL语句操作数据库，不支持数据库无关性，但sql语句优化容易。<br>3、开发难易程度和学习成本<br>Hibernate 是重量级框架，学习使用门槛高，适合于需求相对稳定，中小型的项目，比如：办公自动化系统<br>MyBatis 是轻量级框架，学习使用门槛低，适合于需求变化频繁，大型的项目，比如：互联网电子商务系统<br><strong>总结</strong><br>MyBatis 是一个小巧、方便、高效、简单、直接、半自动化的持久层框架，<br>Hibernate 是一个强大、方便、高效、复杂、间接、全自动化的持久层框架</p>
+<h2 id="JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？"><a href="#JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？" class="headerlink" title="JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？"></a>JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？</h2><p>1、【资源浪费】数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。<br><strong>解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。</strong><br>2、【耦合严重】Jdbc的Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。<br><strong>解决：将Sql语句配置在XXXXmapper.xml文件中与java代码分离。</strong><br>3、 【手动传参】向sql语句传参数麻烦（手动传参），因为sql语句的where条件不一定，可能多也可能少，占位符需要和参数一一对应。<br><strong>解决： Mybatis自动将java对象映射至sql语句。</strong><br>4、 【解析结果麻烦】对结果集解析麻烦，sql变化导致解析代码变化，且解析前需要遍历，如果能将数据库记录封装成pojo对象解析比较方便。<br><strong>解决：Mybatis自动将sql执行结果映射至java对象。</strong></p>
+<h2 id="MyBatis编程步骤是什么样的？"><a href="#MyBatis编程步骤是什么样的？" class="headerlink" title="MyBatis编程步骤是什么样的？"></a>MyBatis编程步骤是什么样的？</h2><p>1、 创建SqlSessionFactory<br>2、 通过SqlSessionFactory创建SqlSession<br>3、 通过sqlsession执行数据库操作<br>4、 调用session.commit()提交事务<br>5、 调用session.close()关闭会话</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/MyBatis/" title="">http://viacheung.github.io/2023/06/04/MyBatis/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">MyBatis是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybaits%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">Mybaits的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">#{}和${}的区别是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E5%B8%B8%E4%B8%80%E4%B8%AAXml%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%EF%BC%8C%E9%83%BD%E4%BC%9A%E5%86%99%E4%B8%80%E4%B8%AADao%E6%8E%A5%E5%8F%A3%E4%B8%8E%E4%B9%8B%E5%AF%B9%E5%BA%94%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AADao%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9FDao%E6%8E%A5%E5%8F%A3%E9%87%8C%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%81%E5%8F%82%E6%95%B0%E4%B8%8D%E5%90%8C%E6%97%B6%EF%BC%8C%E6%96%B9%E6%B3%95%E8%83%BD%E9%87%8D%E8%BD%BD%E5%90%97%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">通常一个Xml映射文件，都会写一个Dao接口与之对应，那么这个Dao接口的工作原理是什么？Dao接口里的方法、参数不同时，方法能重载吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xml-%E6%98%A0%E5%B0%84%E2%BD%82%E4%BB%B6%E4%B8%AD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A0%87%E7%AD%BE%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">Xml 映射⽂件中有哪些标签？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapper%E6%8E%A5%E2%BC%9D%E7%9A%84%E2%BC%AF%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">Mapper接⼝的⼯作原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Mapper%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">在Mapper中如何传递多个参数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dao-%EF%BC%88Mapper%EF%BC%89%E6%8E%A5%E2%BC%9D%E2%BE%A5%E7%9A%84%E2%BD%85%E6%B3%95%EF%BC%8C%E5%8F%82%E6%95%B0%E4%B8%8D%E5%90%8C%E6%97%B6%EF%BC%8C%E2%BD%85%E6%B3%95%E8%83%BD%E9%87%8D%E8%BD%BD%E5%90%97%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">Dao （Mapper）接⼝⾥的⽅法，参数不同时，⽅法能重载吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatisplus-%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E2%BE%8F%E5%88%86%E2%BB%9A%E7%9A%84%EF%BC%9F%E5%88%86%E2%BB%9A%E6%8F%92%E4%BB%B6%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">Mybatisplus 是如何进⾏分⻚的？分⻚插件的原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0-Mybatis-%E7%9A%84%E6%8F%92%E4%BB%B6%E8%BF%90%E2%BE%8F%E5%8E%9F%E7%90%86%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E2%BC%80%E4%B8%AA%E6%8F%92%E4%BB%B6"><span class="nav-number">10.</span> <span class="nav-text">简述 Mybatis 的插件运⾏原理，以及如何编写⼀个插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E6%89%A7%E2%BE%8F%E6%89%B9%E9%87%8F%E6%8F%92%E2%BC%8A%EF%BC%8C%E8%83%BD%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E9%94%AE%E5%88%97%E8%A1%A8%E5%90%97%EF%BC%9F"><span class="nav-number">11.</span> <span class="nav-text">Mybatis 执⾏批量插⼊，能返回数据库主键列表吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E5%8A%A8%E6%80%81-sql-%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9F%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8A%A8%E6%80%81-sql%EF%BC%9F%E8%83%BD%E7%AE%80%E8%BF%B0%E2%BC%80%E4%B8%8B%E5%8A%A8%E6%80%81-sql-%E7%9A%84%E6%89%A7%E2%BE%8F%E5%8E%9F%E7%90%86%E4%B8%8D%EF%BC%9F"><span class="nav-number">12.</span> <span class="nav-text">Mybatis 动态 sql 是做什么的？都有哪些动态 sql？能简述⼀下动态 sql 的执⾏原理不？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E6%98%AF%E5%A6%82%E4%BD%95%E5%B0%86-sql-%E6%89%A7%E2%BE%8F%E7%BB%93%E6%9E%9C%E5%B0%81%E8%A3%85%E4%B8%BA%E2%BD%AC%E6%A0%87%E5%AF%B9%E8%B1%A1%E5%B9%B6%E8%BF%94%E5%9B%9E%E7%9A%84%EF%BC%9F%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%98%A0%E5%B0%84%E5%BD%A2%E5%BC%8F%EF%BC%9F"><span class="nav-number">13.</span> <span class="nav-text">Mybatis 是如何将 sql 执⾏结果封装为⽬标对象并返回的？都有哪些映射形式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E8%83%BD%E6%89%A7%E2%BE%8F%E2%BC%80%E5%AF%B9%E2%BC%80%E3%80%81%E2%BC%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E5%90%97%EF%BC%9F%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AE%9E%E7%8E%B0%E2%BD%85%E5%BC%8F%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82"><span class="nav-number">14.</span> <span class="nav-text">Mybatis 能执⾏⼀对⼀、⼀对多的关联查询吗？都有哪些实现⽅式，以及它们之间的区别。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis%E7%9A%84%E4%B8%80%E7%BA%A7%E3%80%81%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%EF%BC%88%EF%BC%9F%EF%BC%89"><span class="nav-number">15.</span> <span class="nav-text">Mybatis的一级、二级缓存（？）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8MyBatis%E7%9A%84Mapper%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="nav-number">16.</span> <span class="nav-text">使用MyBatis的Mapper接口调用时有哪些要求？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E6%98%AF%E5%90%A6%E2%BD%80%E6%8C%81%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%EF%BC%88%E6%87%92%E5%8A%A0%E8%BD%BD%EF%BC%89%EF%BC%9F%E5%A6%82%E6%9E%9C%E2%BD%80%E6%8C%81%EF%BC%8C%E5%AE%83%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">17.</span> <span class="nav-text">Mybatis 是否⽀持延迟加载（懒加载）？如果⽀持，它的实现原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E7%9A%84-Xml-%E6%98%A0%E5%B0%84%E2%BD%82%E4%BB%B6%E4%B8%AD%EF%BC%8C%E4%B8%8D%E5%90%8C%E7%9A%84-Xml-%E6%98%A0%E5%B0%84%E2%BD%82%E4%BB%B6%EF%BC%8C-id-%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%A4%8D%EF%BC%9F"><span class="nav-number">18.</span> <span class="nav-text">Mybatis 的 Xml 映射⽂件中，不同的 Xml 映射⽂件， id 是否可以重复？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%A7%E2%BE%8F%E6%89%B9%E5%A4%84%E7%90%86%EF%BC%9F"><span class="nav-number">19.</span> <span class="nav-text">Mybatis 中如何执⾏批处理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B-Executor-%E6%89%A7%E2%BE%8F%E5%99%A8%EF%BC%9F%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9A%E4%BD%BF%E2%BD%A4%E5%93%AA%E2%BC%80%E7%A7%8D-Executor-%E6%89%A7%E2%BE%8F%E5%99%A8%EF%BC%9F"><span class="nav-number">20.</span> <span class="nav-text">Mybatis 都有哪些 Executor 执⾏器？它们之间的区别是什么？ 如何指定使⽤哪⼀种 Executor 执⾏器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%98%A0%E5%B0%84-Enum-%E6%9E%9A%E4%B8%BE%E7%B1%BB%EF%BC%9F"><span class="nav-number">21.</span> <span class="nav-text">Mybatis 是否可以映射 Enum 枚举类？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-%E6%98%A0%E5%B0%84%E2%BD%82%E4%BB%B6%E4%B8%AD%EF%BC%8C%E5%A6%82%E6%9E%9C-A-%E6%A0%87%E7%AD%BE%E9%80%9A%E8%BF%87-include-%E5%BC%95%E2%BD%A4%E4%BA%86-B-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C%E8%AF%B7%E9%97%AE%EF%BC%8C-B-%E6%A0%87%E7%AD%BE%E8%83%BD%E5%90%A6%E5%AE%9A%E4%B9%89%E5%9C%A8-A-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%90%8E%E2%BE%AF%EF%BC%8C%E8%BF%98%E6%98%AF%E8%AF%B4%E5%BF%85%E9%A1%BB%E5%AE%9A%E4%B9%89%E5%9C%A8-A-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%89%8D%E2%BE%AF%EF%BC%9F"><span class="nav-number">22.</span> <span class="nav-text">Mybatis 映射⽂件中，如果 A 标签通过 include 引⽤了 B 标签的内容，请问， B 标签能否定义在 A 标签的后⾯，还是说必须定义在 A 标签的前⾯？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0-Mybatis-%E7%9A%84-Xml-%E6%98%A0%E5%B0%84%E2%BD%82%E4%BB%B6%E5%92%8C-Mybatis-%E5%86%85%E9%83%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%97%B4%E7%9A%84%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">23.</span> <span class="nav-text">简述 Mybatis 的 Xml 映射⽂件和 Mybatis 内部数据结构之间的映射关系？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4-Mybatis-%E6%98%AF%E5%8D%8A%E2%BE%83%E5%8A%A8-ORM-%E6%98%A0%E5%B0%84%E2%BC%AF%E5%85%B7%EF%BC%9F%E5%AE%83%E4%B8%8E%E5%85%A8%E2%BE%83%E5%8A%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E5%93%AA%E2%BE%A5%EF%BC%9F"><span class="nav-number">24.</span> <span class="nav-text">为什么说 Mybatis 是半⾃动 ORM 映射⼯具？它与全⾃动的区别在哪⾥？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate-%E5%92%8C-MyBatis-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">25.</span> <span class="nav-text">Hibernate 和 MyBatis 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC%E7%BC%96%E7%A8%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84%EF%BC%8CMyBatis%E6%98%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%BF%99%E4%BA%9B%E9%97%AE%E9%A2%98%E7%9A%84%EF%BC%9F"><span class="nav-number">26.</span> <span class="nav-text">JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis%E7%BC%96%E7%A8%8B%E6%AD%A5%E9%AA%A4%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">27.</span> <span class="nav-text">MyBatis编程步骤是什么样的？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
