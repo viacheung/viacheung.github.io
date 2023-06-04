@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="linux、docker操作2、DockerDocker如何解决大型项目依赖关系复杂，不同组件依赖的兼容性问题？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发岗开发题">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E5%8F%91%E9%A2%98/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="linux、docker操作2、DockerDocker如何解决大型项目依赖关系复杂，不同组件依赖的兼容性问题？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230403002812590.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/v2-7a9fcf4d6fe7e0b7f873d8d3c6cf40e8_720w.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/v2-f7aec1e403b784753102a0a11626658a_720w.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/v2-d8c1720ea1dc61a64b867350b8705ebd_720w.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230328215529635.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/20181004205225541">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410172241467.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410172257087.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230412005359864.png">
+<meta property="article:published_time" content="2023-06-04T09:42:31.000Z">
+<meta property="article:modified_time" content="2023-06-04T09:46:05.682Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230403002812590.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E5%8F%91%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>开发岗开发题 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E5%8F%91%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          开发岗开发题
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 17:42:31 / 修改时间：17:46:05" itemprop="dateCreated datePublished" datetime="2023-06-04T17:42:31+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%AB%E8%82%A1/" itemprop="url" rel="index"><span itemprop="name">八股</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="linux、docker操作"><a href="#linux、docker操作" class="headerlink" title="linux、docker操作"></a>linux、docker操作</h2><h4 id="2、Docker"><a href="#2、Docker" class="headerlink" title="2、Docker"></a>2、Docker</h4><p>Docker如何解决大型项目依赖关系复杂，不同组件依赖的兼容性问题？<span id="more"></span></p>
+<ul>
+<li>Docker允许开发中将应用、依赖、函数库、配置一起<strong>打包</strong>，形成可移植镜像</li>
+<li>Docker应用运行在容器中，使用沙箱机制，相互<strong>隔离</strong></li>
+</ul>
+<p>Docker如何解决开发、测试、生产环境有差异的问题？</p>
+<ul>
+<li>Docker镜像中包含完整运行环境，包括系统函数库，仅依赖系统的Linux内核，因此可以在任意Linux操作系统上运行</li>
+</ul>
+<p>Docker是一个快速交付应用、运行应用的技术，具备下列优势：</p>
+<ul>
+<li>可以将程序及其依赖、运行环境一起打包为一个镜像，可以迁移到任意Linux操作系统</li>
+<li>运行时利用沙箱机制形成隔离容器，各个应用互不干扰</li>
+<li>启动、移除都可以通过一行命令完成，方便快捷</li>
+</ul>
+<p>Docker和虚拟机的差异：</p>
+<ul>
+<li>docker是一个系统进程；虚拟机是在操作系统中的操作系统</li>
+<li>docker体积小、启动速度快、性能好；虚拟机体积大、启动速度慢、性能一般</li>
+</ul>
+<h5 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a><strong>基本概念</strong></h5><p>镜像：</p>
+<ul>
+<li>将应用程序及其依赖、环境、配置打包在一起</li>
+</ul>
+<p>容器：</p>
+<ul>
+<li>镜像运行起来就是容器，一个镜像可以运行多个容器 容器有自己独立的cpu 内存 文件系统 避免污染镜像</li>
+</ul>
+<p>Docker结构：</p>
+<ul>
+<li>服务端：接收命令或远程请求，操作镜像或容器</li>
+<li>客户端：发送命令或者请求到Docker服务端</li>
+</ul>
+<p>DockerHub：</p>
+<ul>
+<li>一个镜像托管的服务器，类似的还有阿里云镜像服务，统称为DockerRegistry</li>
+</ul>
+<h5 id="命令"><a href="#命令" class="headerlink" title="命令"></a><strong>命令</strong></h5><p>docker run命令的常见参数有哪些？</p>
+<ul>
+<li>–name：指定容器名称</li>
+<li>-p：指定端口映射</li>
+<li>-d：让容器后台运行</li>
+</ul>
+<p>查看容器日志的命令：</p>
+<ul>
+<li>docker logs</li>
+<li>添加 -f 参数可以持续查看日志</li>
+</ul>
+<p>查看容器状态：</p>
+<ul>
+<li>docker ps</li>
+<li>docker ps -a 查看所有容器，包括已经停止的</li>
+</ul>
+<h5 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h5><p>数据卷的作用：</p>
+<ul>
+<li>将容器与数据分离，解耦合，方便操作容器内数据，保证数据安全</li>
+</ul>
+<p>数据卷操作：</p>
+<ul>
+<li>docker volume create：创建数据卷</li>
+<li>docker volume ls：查看所有数据卷</li>
+<li>docker volume inspect：查看数据卷详细信息，包括关联的宿主机目录位置</li>
+<li>docker volume rm：删除指定数据卷</li>
+<li>docker volume prune：删除所有未使用的数据卷</li>
+</ul>
+<p>docker run的命令中通过 -v 参数挂载文件或目录到容器中：</p>
+<ul>
+<li>-v volume名称:容器内目录</li>
+<li>-v 宿主机文件:容器内文件</li>
+<li>-v 宿主机目录:容器内目录</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230403002812590.png" alt="img"></p>
+<p>数据卷挂载与目录直接挂载的</p>
+<ul>
+<li>数据卷挂载耦合度低，由docker来管理目录，但是目录较深，不好找</li>
+<li>目录挂载耦合度高，需要我们自己管理目录，不过目录容易寻找查看、</li>
+</ul>
+<h5 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h5><ol>
+<li>Dockerfile的本质是一个文件，通过指令描述镜像的构建过程</li>
+<li>Dockerfile的第一行必须是FROM，从一个基础镜像来构建</li>
+<li>基础镜像可以是基本操作系统，如Ubuntu。也可以是其他人制作好的镜像，例如：java:8-alpine</li>
+</ol>
+<h5 id="dockercompose"><a href="#dockercompose" class="headerlink" title="dockercompose"></a>dockercompose</h5><p>Docker Compose可以基于Compose文件帮我们快速的部署分布式应用，而无需手动一个个创建和运行容器！</p>
+<h4 id="3、linux命令"><a href="#3、linux命令" class="headerlink" title="3、linux命令"></a>3、linux命令</h4><p><strong>切换用户</strong></p>
+<p>su name</p>
+<p>exit</p>
+<p><strong>目录操作</strong></p>
+<p>切换cd</p>
+<p>查看ls</p>
+<p>删除rm</p>
+<p>修改mv</p>
+<p><strong>文件操作</strong></p>
+<p>touch rm vi cat chmod 777 a.txt</p>
+<p>查找进程top ps-ef</p>
+<p><strong>递归操作</strong></p>
+<p>-R</p>
+<h2 id="查找端口号冲突"><a href="#查找端口号冲突" class="headerlink" title="查找端口号冲突"></a>查找端口号冲突</h2><pre><code class="plain">netstat -ano | findstr &quot;8080&quot;               //查找
+taskkill /pid 8080 /f                       //释放
+</code></pre>
+<h2 id="topk问题"><a href="#topk问题" class="headerlink" title="topk问题"></a>topk问题</h2><p>路：只找到TopK，不排序TopK。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/v2-7a9fcf4d6fe7e0b7f873d8d3c6cf40e8_720w.webp" alt="img"></p>
+<p>先用前k个元素生成一个小顶堆，这个小顶堆用于存储，当前最大的k个元素。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/v2-f7aec1e403b784753102a0a11626658a_720w.webp" alt="img"></p>
+<p>接着，从第k+1个元素开始扫描，和堆顶（堆中最小的元素）比较，如果被扫描的元素大于堆顶，则替换堆顶的元素，并调整堆，以保证堆内的k个元素，总是当前最大的k个元素。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/v2-d8c1720ea1dc61a64b867350b8705ebd_720w.webp" alt="img"></p>
+<p>直到，扫描完所有n-k个元素，最终堆中的k个元素，就是猥琐求的TopK。</p>
+<p>伪代码：</p>
+<p>heap[k] &#x3D; make_heap(arr[1, k]);</p>
+<p>for(i&#x3D;k+1 to n){</p>
+<p>adjust_heap(heep[k],arr[i]);</p>
+<p>}</p>
+<p>return heap[k];</p>
+<p>时间复杂度：O(n*lg(k))</p>
+<p>画外音：n个元素扫一遍，假设运气很差，每次都入堆调整，调整时间复杂度为堆的高度，即lg(k)，故整体时间复杂度是n*lg(k)。</p>
+<p>分析：堆，将冒泡的TopK排序优化为了TopK不排序，节省了计算资源。堆，是求TopK的经典算法，那还有没有更快的方案呢？</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230328215529635.png" alt="img"></p>
+<p>从复杂度来说，部分（nlogk），完全（klogn）完全入堆的复杂度必然要低一点 那为什么网上都用部分入堆呢？我感觉减少空间占用把</p>
+<h3 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h3><p>例如，集合S&#x3D;{1,3,5,7,9}，容易发现，S中所有元素都在1-16之间，于是，可以用16个bit来表示这个集合：存在于集合中的元素，对应bit置1，否则置0。</p>
+<p>画外音：究竟需要多少存储空间，取决于集合中元素的值域，在什么范围之内。</p>
+<p>上述集合S，可以用1010101010000000这样一个16bit的bitmap来表示，其中，第1, 3, 5, 7, 9个bit位置是1。</p>
+<p>但会存在重复元素去重的问题</p>
+<p>解决：维护一个count去计数，从最高位找count和为k的</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/20181004205225541" alt="img"></p>
+<h2 id="100亿数字10mb找中位数"><a href="#100亿数字10mb找中位数" class="headerlink" title="100亿数字10mb找中位数"></a>100亿数字10mb找中位数</h2><p>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/359d6869d5ce4738bf9c9a42b67d9568%E6%9D%A5%E6%BA%90%EF%BC%9A%E7%89%9B%E5%AE%A2%E7%BD%91">https://www.nowcoder.com/questionTerminal/359d6869d5ce4738bf9c9a42b67d9568来源：牛客网</a></p>
+<p>中位数定义：数字排序之后，位于中间的那个数。比如将100亿个数字进行排序，排序之后，位于第50亿个位置的那个数 就是中位数。 </p>
+<p>①内存够：内存够还慌什么啊，直接把100亿个全部排序了，你用冒泡都可以…然后找到中间那个就可以了。但是你以为面试官会给你内存？？ </p>
+<p>②内存不够：题目说是整数，我们认为是带符号的int,所以4字节，占32位。 </p>
+<p>假设100亿个数字保存在一个大文件中，依次读一部分文件到内存(不超过内存的限制)，将每个数字用二进制表示，比较二进制的最高位(第32位，符号位，0是正，1是负)，如果数字的最高位为0，则将这个数字写入 file_0文件中；如果最高位为 1，则将该数字写入file_1文件中。 </p>
+<p>从而将100亿个数字分成了两个文件，假设 file_0文件中有 60亿 个数字，file_1文件中有 40亿 个数字。那么中位数就在 file_0 文件中，并且是 file_0 文件中所有数字排序之后的第 10亿 个数字。（file_1中的数都是负数，file_0中的数都是正数，也即这里一共只有40亿个负数，那么排序之后的第50亿个数一定位于file_0中） </p>
+<p>现在，我们只需要处理 file_0 文件了（不需要再考虑file_1文件）。对于 file_0 文件，同样采取上面的措施处理：将file_0文件依次读一部分到内存(不超内存限制)，将每个数字用二进制表示，比较二进制的 次高位（第31位），如果数字的次高位为0，写入file_0_0文件中；如果次高位为1，写入file_0_1文件 中。 </p>
+<p>现假设 file_0_0文件中有30亿个数字，file_0_1中也有30亿个数字，则中位数就是：file_0_0文件中的数字从小到大排序之后的第10亿个数字。 </p>
+<p>抛弃file_0_1文件，继续对 file_0_0文件 根据 次次高位(第30位) 划分，假设此次划分的两个文件为：file_0_0_0中有5亿个数字，file_0_0_1中有25亿个数字，那么中位数就是 file_0_0_1文件中的所有数字排序之后的 第 5亿 个数。</p>
+<p>按照上述思路，直到划分的文件可直接加载进内存时，就可以直接对数字进行快速排序，找出中位数了。</p>
+<h2 id="大文件排序问题"><a href="#大文件排序问题" class="headerlink" title="大文件排序问题"></a>大文件排序问题</h2><p>设想你有一个20GB的文件，每行一个字符串，说明如何对这个文件进行排序。</p>
+<p>内存肯定没有20GB大，所以不可能采用传统排序法。但是可以将文件分成许多块，每块xMB,针对每个快各自进行排序，存回文件系统。</p>
+<p>然后将这些块逐一合并，最终得到全部排好序的文件。</p>
+<p>外排序的一个例子是外归并排序（External merge sort），它读入一些能放在内存内的数据量，在内存中排序后输出为一个顺串（即是内部数据有序的临时文件），处理完所有的数据后再进行归并。<a target="_blank" rel="noopener" href="https://www.yuque.com/yunanyizhihua/nw82a7/mnq44dey61kan0en#">1</a>比如，要对900MB的数据进行排序，但机器上只有100 MB的可用内存时，外归并排序按如下方法操作：</p>
+<p>1、读入100 MB的数据至内存中，用某种常规方式（如快速排序、堆排序、归并排序等方法）在内存中完成排序。2、将排序完成的数据写入磁盘。3、重复步骤1和2直到所有的数据都存入了不同的100 MB的块（临时文件）中。在这个例子中，有900 MB数据，单个临时文件大小为100 MB，所以会产生9个临时文件。4、读入每个临时文件（顺串）的前10 MB（ &#x3D; 100 MB &#x2F; (9块 + 1)）的数据放入内存中的输入缓冲区，最后的10 MB作为输出缓冲区。（实践中，将输入缓冲适当调小，而适当增大输出缓冲区能获得更好的效果。）5、执行九路归并算法，将结果输出到输出缓冲区。一旦输出缓冲区满，将缓冲区中的数据写出至目标文件，清空缓冲区。一旦9个输入缓冲区中的一个变空，就从这个缓冲区关联的文件，读入下一个10M数据，除非这个文件已读完。这是“外归并排序”能在主存外完成排序的关键步骤 – 因为“归并算法”(merge algorithm)对每一个大块只是顺序地做一轮访问(进行归并)，每个大块不用完全载入主存。</p>
+<h2 id="cpu飙高，系统反应慢如何排查"><a href="#cpu飙高，系统反应慢如何排查" class="headerlink" title="cpu飙高，系统反应慢如何排查"></a>cpu飙高，系统反应慢如何排查</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410172241467.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410172257087.png" alt="img"></p>
+<p>top命令找java进程pid,然后使用jmap命令生成dump文件。file后面是保存的文件名称，1246则是java程序的PID。</p>
+<p>jmap -dump:format&#x3D;b,file&#x3D;user.dump 1246</p>
+<p>或者启动时加上如下参数，HeapDumpPath表示生成dump文件保存的目录。</p>
+<p>-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath&#x3D;D:\tmp</p>
+<p>然后用jprofile查看占用多的地方</p>
+<p>两种情况：</p>
+<p>1、如果cpu利用率高的线程一直是一个，jstack获取该线程Dump日志，然后定位到线程日志，找到对应问题代码</p>
+<p>1、如果cpu利用率高的线程一直变，说明线程创建多了，有可能是正常的，只是某一刻飙高</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230412005359864.png" alt="img"></p>
+<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p>查安装路径</p>
+<p>whereis mysql</p>
+<p>查询运行路径</p>
+<p>which mysql</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E5%8F%91%E9%A2%98/" title="开发岗开发题">http://viacheung.github.io/2023/06/04/开发岗开发题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="prev" title="计算机网络">
+      <i class="fa fa-chevron-left"></i> 计算机网络
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E9%93%BE%E8%A1%A8/" rel="next" title="链表">
+      链表 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E3%80%81docker%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">linux、docker操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81Docker"><span class="nav-number">1.0.1.</span> <span class="nav-text">2、Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">数据卷</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dockerfile"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">dockerfile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dockercompose"><span class="nav-number">1.0.1.5.</span> <span class="nav-text">dockercompose</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81linux%E5%91%BD%E4%BB%A4"><span class="nav-number">1.0.2.</span> <span class="nav-text">3、linux命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%86%B2%E7%AA%81"><span class="nav-number">2.</span> <span class="nav-text">查找端口号冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#topk%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">topk问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%9B%BE"><span class="nav-number">3.1.</span> <span class="nav-text">位图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#100%E4%BA%BF%E6%95%B0%E5%AD%9710mb%E6%89%BE%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">100亿数字10mb找中位数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E6%96%87%E4%BB%B6%E6%8E%92%E5%BA%8F%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">大文件排序问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cpu%E9%A3%99%E9%AB%98%EF%BC%8C%E7%B3%BB%E7%BB%9F%E5%8F%8D%E5%BA%94%E6%85%A2%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5"><span class="nav-number">6.</span> <span class="nav-text">cpu飙高，系统反应慢如何排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">7.</span> <span class="nav-text">mysql</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

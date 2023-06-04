@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%93%88%E5%B8%8C%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="post-title-link" itemprop="url">哈希表</a>
+            <a href="/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">防雷防电检测系统</a>
         </h2>
 
         <div class="post-meta">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:12:27 / 修改时间：14:34:56" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:27+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 18:17:19 / 修改时间：18:20:43" itemprop="dateCreated datePublished" datetime="2023-06-04T18:17:19+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +227,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
                 </span>
             </span>
 
@@ -242,294 +242,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="同构字符串"><a href="#同构字符串" class="headerlink" title="同构字符串"></a>同构字符串</h2><p>给定两个字符串 s 和 t ，判断它们是否是同构的。</p>
-<p>如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。</p>
-<p>每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。</p>
-<pre><code class="plain">class Solution &#123;
-     public boolean isIsomorphic(String s, String t) &#123;
-         Map&lt;Character, Character&gt; map1 = new HashMap&lt;&gt;();
-         Map&lt;Character, Character&gt; map2 = new HashMap&lt;&gt;();
-         for (int i = 0, j = 0; i &lt; s.length(); i++, j++) &#123;
-             if (!map1.containsKey(s.charAt(i))) &#123;
-                 map1.put(s.charAt(i), t.charAt(j)); // map1保存 s[i] 到 t[j]的映射
-             &#125;
-             if (!map2.containsKey(t.charAt(j))) &#123;
-                 map2.put(t.charAt(j), s.charAt(i)); // map2保存 t[j] 到 s[i]的映射
-             &#125;  
-             // 无法映射，返回 false   //之前映射一次了 所以这次不行 例如 a-&gt;b   又遇到a  c 那必然失败
-             if (map1.get(s.charAt(i)) != t.charAt(j) || map2.get(t.charAt(j)) != s.charAt(i)) &#123;
-                 return false;
-             &#125;
-         &#125;
-         return true;
-     &#125;
- &#125;
-</code></pre>
-<h2 id="查找共用字符"><a href="#查找共用字符" class="headerlink" title="查找共用字符"></a>查找共用字符</h2><p>给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ <strong>包括重复字符</strong>），并以数组形式返回。你可以按 <strong>任意顺序</strong> 返回答案。</p>
-<p>思路</p>
-<pre><code class="plain">class Solution &#123;
-     public List&lt;String&gt; commonChars(String[] words) &#123;
-         // 哈希    hash数组存储每个字符对应的在各个字符串里面出现的最小频率    
-         // 输入：words = [&quot;bella&quot;,&quot;label&quot;,&quot;roller&quot;]
-         // hash[1]=0,hash[&#39;l&#39;-&#39;a&#39;]=2
-         // 输出：[&quot;e&quot;,&quot;l&quot;,&quot;l&quot;]   
-         List&lt;String&gt; res=new ArrayList&lt;&gt;();
-         int[] hash=new int[26];
-         //给hash初始化一个最大值
-         Arrays.fill(hash,Integer.MAX_VALUE);
-         for(int i=0;i&lt;words.length;i++)&#123;
-             int[] newhash=new int[26];
-             for(int j=0;j&lt;words[i].length();j++)&#123;
-                 newhash[words[i].charAt(j)-&#39;a&#39;]++;
-             &#125;
-             for(int k=0;k&lt;26;k++)&#123;
-                 hash[k]=Math.min(hash[k],newhash[k]);
-             &#125;
-         &#125;
-         for(int i=0;i&lt;26;i++)&#123;
-             while(hash[i]!=0)&#123;
-                 char c=(char)(&#39;a&#39;+i);//必须指定转的类型
-                 res.add(String.valueOf(c));
-                 hash[i]--;
-             &#125;
-         &#125;
-         return res;
- 
-     &#125;
- &#125;
-</code></pre>
-<h2 id="赎金信"><a href="#赎金信" class="headerlink" title="赎金信"></a>赎金信</h2><p>给你两个字符串：ransomNote 和 magazine ，判断 ransomNote 能不能由 magazine 里面的字符构成。</p>
-<p>如果可以，返回 true ；否则返回 false 。</p>
-<p>magazine 中的每个字符只能在 ransomNote 中使用一次。</p>
-<p><strong>官方题解</strong></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221017202244463.png" alt="img"></p>
-<p><strong>我的题解</strong></p>
-<pre><code class="plain">class Solution &#123;
-     //我的思路：先magazine存kv，然后ransomNote找如果没key或者value为0直接返回false，否则magazine对应v-1
-     public boolean canConstruct(String ransomNote, String magazine) &#123;
-         Map&lt;Character,Integer&gt; map=new HashMap&lt;&gt;();
-         for(char c:magazine.toCharArray())&#123;
-             map.put(c,map.getOrDefault(c,0)+1);
-         &#125;
-         for(char d:ransomNote.toCharArray())&#123;  
-             if(!map.containsKey(d)||map.get(d)==0)&#123;
-                 return false;
-             &#125;else&#123;
-                 map.put(d,map.get(d)-1);
-             &#125;
-         &#125;
-         return true;
-     &#125;
- &#125;
-</code></pre>
-<h2 id="四数相加II"><a href="#四数相加II" class="headerlink" title="四数相加II"></a>四数相加II</h2><p><strong>这题和四数之和不一样 四数之和是一个数组里面 用排序+双重for循环+双指针，这个用两次hash就行</strong></p>
-<p>给你四个整数数组nums1、nums2、nums3 和 nums4 ，数组长度都是 n ，请你计算有多少个元组 (i, j, k, l) 能满足：</p>
-<ul>
-<li>0 &lt;&#x3D; i, j, k, l &lt; n</li>
-<li>nums1[i] + nums2[j] + nums3[k] + nums4[l] &#x3D;&#x3D; 0</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221017155818344.png" alt="img"></p>
-<pre><code class="plain">class Solution &#123;
-     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) &#123;
-         Map&lt;Integer, Integer&gt; countAB = new HashMap&lt;Integer, Integer&gt;();
-         for (int u : A) &#123;
-             for (int v : B) &#123;
-                 countAB.put(u + v, countAB.getOrDefault(u + v, 0) + 1);
-             &#125;
-         &#125;
-         int ans = 0;
-         for (int u : C) &#123;
-             for (int v : D) &#123;
-                 if (countAB.containsKey(-u - v)) &#123;
-                     ans += countAB.get(-u - v);
-                 &#125;
-             &#125;
-         &#125;
-         return ans;
-     &#125;
- &#125;
-</code></pre>
-<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h2><p><strong>方法一：****暴力</strong></p>
-<p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。 时间复杂度：O(N2)</p>
-<p><strong>方法二（优先）：哈希表</strong></p>
-<p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
-<p>哈希表：存key 数字 value 下标</p>
-<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
-<p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
-<pre><code class="plain">class Solution &#123;
-     public int[] twoSum(int[] nums, int target) &#123;
-         Map&lt;Integer, Integer&gt; hashtable = new HashMap&lt;Integer, Integer&gt;();
-         for (int i = 0; i &lt; nums.length; ++i) &#123;
-             if (hashtable.containsKey(target - nums[i])) &#123;
-                 return new int[]&#123;hashtable.get(target - nums[i]), i&#125;;
-             &#125;
-             hashtable.put(nums[i], i);
-         &#125;
-         return new int[0];
-     &#125;
- &#125;
-</code></pre>
-<h2 id="202-快乐数"><a href="#202-快乐数" class="headerlink" title="202. 快乐数"></a>202. 快乐数</h2><p>编写一个算法来判断一个数 n 是不是快乐数。</p>
-<p>「快乐数」 定义为：</p>
-<p>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果这个过程 结果为 1，那么这个数就是快乐数。</p>
-<p><strong>方法一（选这个）</strong>（简单一点）</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165323827.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165445320.png" alt="img"></p>
-<pre><code class="plain">class Solution &#123;
-     //简单 求下一个元素
-     private int getNext(int n) &#123;
-         int totalSum = 0;
-         while (n &gt; 0) &#123;
-             int d = n % 10;
-             n = n / 10;
-             totalSum += d * d;
-         &#125;
-         return totalSum;
-     &#125;
-     //hashset存  要么循环要么最后为1
-     public boolean isHappy(int n) &#123;
-         Set&lt;Integer&gt; seen = new HashSet&lt;&gt;();
-         while (n != 1 &amp;&amp; !seen.contains(n)) &#123;
-             seen.add(n);
-             n = getNext(n);
-         &#125;
-         return n == 1;
-     &#125;
- &#125;
-</code></pre>
-<p><strong>方法二</strong></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165617310.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165555141.png" alt="img"></p>
-<pre><code class="plain">class Solution &#123;
-      public int getNext(int n) &#123;
-         int totalSum = 0;
-         while (n &gt; 0) &#123;
-             int d = n % 10;
-             n = n / 10;
-             totalSum += d * d;
-         &#125;
-         return totalSum;
-     &#125;
- 
-     public boolean isHappy(int n) &#123;
-         int slowRunner = n;
-         int fastRunner = n;
-         while (fastRunner != 1 &amp;&amp; slowRunner != fastRunner) &#123;
-             slowRunner = getNext(slowRunner);
-             fastRunner = getNext(getNext(fastRunner));
-         &#125;
-         return fastRunner == 1;
-     &#125;
- &#125;
-</code></pre>
-<h2 id="349-两个数组的交集"><a href="#349-两个数组的交集" class="headerlink" title="349. 两个数组的交集"></a>349. 两个数组的交集</h2><p>给定两个数组 nums1 和 nums2 ，返回 <em>它们的交集</em> 。输出结果中的每个元素一定是 <strong>唯一</strong> 的。我们可以 <strong>不考虑输出结果的顺序</strong> 。</p>
-<p>我自己的解法</p>
-<pre><code class="plain">class Solution &#123;
-     public int[] intersection(int[] nums1, int[] nums2) &#123;
-         int n=nums1.length;
-         int m=nums2.length;
-         Set&lt;Integer&gt; hashSet=new HashSet&lt;&gt;();
-         Set&lt;Integer&gt; mergeSet=new HashSet&lt;&gt;();
-         //1、利用Set无重复元素的特点 把nums1进行去重
-         for(int i=0;i&lt;n;i++)&#123;
-             hashSet.add(nums1[i]);
-         &#125;
-         //2、判断hashSet里面有么有nums2,有的话把nums2放到Set结果里面
-         for(int i=0;i&lt;m;i++)&#123;
-             if(hashSet.contains(nums2[i]))&#123;
-                 mergeSet.add(nums2[i]);
-             &#125;
-         &#125;
-         //Set转int[]
-         int[] res=new int[mergeSet.size()];
-         int i=0;
-         for(int num:mergeSet)&#123;
-             res[i++]=num;
-         &#125;
-         return res;
-     &#125;
- &#125;
-</code></pre>
-<h2 id="242-有效的字母异位词"><a href="#242-有效的字母异位词" class="headerlink" title="242.有效的字母异位词"></a>242.有效的字母异位词</h2><p>题解：这个比寻找字母异位词起始下标还简单一点 是基础 那个是用滑动窗口，然后每次移动后再去判断 这个都不用 直接算</p>
-<p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</p>
-<p>注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015215819113.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015215826918.png" alt="img"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%88%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E4%BA%8C%E5%88%86/" class="post-title-link" itemprop="url">二分</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 14:12:19 / 修改时间：14:34:29" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:19+08:00">2023-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="二分排序"><a href="#二分排序" class="headerlink" title="二分排序"></a>二分排序</h1><p>部分有序也可以二分</p>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>1、记录答案法（推荐这个）</p>
+          <h3 id="项目概要"><a href="#项目概要" class="headerlink" title="项目概要"></a>项目概要</h3><p>港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器；</p>
+<p>研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/%E4%BA%8C%E5%88%86/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -553,7 +270,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -567,7 +284,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">二叉树</a>
+            <a href="/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/" class="post-title-link" itemprop="url">魔方天地</a>
         </h2>
 
         <div class="post-meta">
@@ -581,7 +298,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:12:10 / 修改时间：14:33:37" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:10+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 18:16:57 / 修改时间：18:21:07" itemprop="dateCreated datePublished" datetime="2023-06-04T18:16:57+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -589,7 +306,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
                 </span>
             </span>
 
@@ -604,11 +321,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><p>完全二叉树： 从满二叉树最后一个结点往前删除</p>
-<p>二叉搜索树：左小右大 带数值</p>
+          <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h2 id="魔方天地"><a href="#魔方天地" class="headerlink" title="魔方天地"></a>魔方天地</h2><h3 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h3><p>主要包括魔方教程的发布、展示、检索、评论，用户的登录注册等。 在这其中加入了一些中间件进行优化，最后做了上线部署。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -632,7 +348,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E8%AF%86%E8%8F%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -646,7 +362,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">多线程</a>
+            <a href="/2023/06/04/%E8%AF%86%E8%8F%87/" class="post-title-link" itemprop="url">识菇</a>
         </h2>
 
         <div class="post-meta">
@@ -660,7 +376,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:12:01 / 修改时间：14:32:46" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:01+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 18:04:11 / 修改时间：18:08:20" itemprop="dateCreated datePublished" datetime="2023-06-04T18:04:11+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -668,7 +384,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%AB%E8%82%A1/" itemprop="url" rel="index"><span itemprop="name">八股</span></a>
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
                 </span>
             </span>
 
@@ -683,91 +399,275 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="请简要描述线程与进程的关系-区别及优缺点？"><a href="#请简要描述线程与进程的关系-区别及优缺点？" class="headerlink" title="请简要描述线程与进程的关系,区别及优缺点？"></a>请简要描述线程与进程的关系,区别及优缺点？</h2><p><strong>根本区别</strong>：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 14:11:50 / 修改时间：14:32:11" itemprop="dateCreated datePublished" datetime="2023-06-04T14:11:50+08:00">2023-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>不用管最优子结构啊和重叠子问题</p>
+          <h1 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h1><p><strong>idea 调用Python命令Runtime.getRuntime().exec总是空</strong></p>
+<p>在调用含第三方库的时候，需要指定第三方库的所在 String[] aaa &#x3D; new String[]{“D:\Anaconda3\python.exe”, “D:\Pythonworkspace\Python_Class\aaa.py”}; proc &#x3D; Runtime.getRuntime().exec(aaa);&#x2F;&#x2F; 执行py文件</p>
+<p><strong>为什么运行后inputimage会被删？</strong></p>
+<p>因为后面有</p>
+<p>if (!imageFile.delete())</p>
+<p>这段代码运行，会删除文件</p>
+<p><strong>为什么python命令command String不能用 String[]可以用?</strong>	</p>
+<h1 id="前端taro"><a href="#前端taro" class="headerlink" title="前端taro"></a>前端taro</h1><h2 id="taro框架安装"><a href="#taro框架安装" class="headerlink" title="taro框架安装"></a>taro框架安装</h2><p>先查看Node版本，确认安装最新版本</p>
+<pre><code class="plain">npm config set registry http://registry.npm.taobao.org/   第一个命令是使用npm的淘宝镜像，
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/   配置node-sass为淘宝镜像
+cnpm install -g @tarojs/cli   使用cnpm全局安装taro，将会生成一个taro 命令。taro-cli 包位于 Taro 工程的 packages 目录下，主要负责项目初始化、编译、构建等
+</code></pre>
+<p>查看taro是否安装完毕</p>
+<p>taro -V</p>
+<p><strong>报错</strong>WARN node unsupported “node**@v6.11.2” is incompatible with electron@^7.1.9, expected node@&gt;&#x3D; 8.6**</p>
+<p>解决：升级node 到官网下载最新版本Msi 无脑下一步即可</p>
+<p><strong>关于node</strong></p>
 <ol>
-<li>确定dp数组（dp table）以及下标的含义</li>
-<li>确定递推公式</li></ol>
+<li>开源跨平台的JavaScript运行时环境。它几乎是任何类型项目的流行工具！</li>
+<li>浏览器之外运行V8 JavaScript引擎（Google Chrome的内核）。这使得Node.js的性能非常好。</li>
+<li>Node.js应用程序在单个程序中运行，无需为每个请求创建新的线程。Node.js在其标准库中提供了一组异步的I&#x2F;O原语，以防JavaScript代码阻塞，通常，Node.js中的库是使用非阻塞范式编写的，使得阻塞行为成为异常而不是常态。</li>
+<li>Node.js具有独特的优势，因为数百万为浏览器编写的JavaScript的前端开发者现在无需学习完全不同的语言，就可以编写除客户端代码之外的服务器端代码。</li>
+</ol>
+<p><strong>报错npm WARN config global –global, –local are deprecated. Use –location&#x3D;global instead.</strong></p>
+<p>npm install –global –production npm-windows-upgrade</p>
+<p>上述方案只是解决node 16版本的, 切换到node18, 此时还会有上述问题:</p>
+<p>解决：</p>
+<pre><code class="plain">npm install -g npm-windows-upgrade
+ npm-windows-upgrade
+ and select version 8.12.1 for installation.(然后选择下载8.12.1的版本。)
+</code></pre>
+<p>（还未解决 代办）</p>
+<h2 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a><strong>搭建项目</strong></h2><p>taro init taro-dome</p>
+<p>一路默认：</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256299.png" alt="img"></p>
+<p>切换到项目路径</p>
+<p>执行命令</p>
+<p>npm run dev:h5</p>
+<p>然后网页出来helloworld</p>
+<h2 id="Taro生成小程序代码并预览"><a href="#Taro生成小程序代码并预览" class="headerlink" title="Taro生成小程序代码并预览"></a>Taro生成小程序代码并预览</h2><p>taro可以生成多端代码，在上一节只生成了h5的显示，这次我们就先来进行生成小程序代码，并进行预览。</p>
+<p>npm run dev:weapp</p>
+<p>然后打开微信开发者工具导入项目的dist目录<strong>注意</strong></p>
+<p>千万不要在微信开发者工具中修改dist目录，因为这个文件是由taro编译而来的；如果要修改在taro的原项目修改，然后通过编译将修改的内容编译到dist文件中。</p>
+<p>哈哈哈哈哈哈哈哈哈哈 笑死 千万别在webstrom打开 报那文件目录错误 用vscode就没问题（但是需要管理员打开）</p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>想运行identify.py 在terminal里面输入python .\identify.py inputImage&#x2F;tum.jpg</p>
+<h2 id="moileNet"><a href="#moileNet" class="headerlink" title="moileNet"></a>moileNet</h2><h3 id="V1"><a href="#V1" class="headerlink" title="V1"></a>V1</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256572.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256388.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256246.png" alt="img"></p>
+<p>dw不改变深度 但在此之前是降维的</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256871.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257167.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257016.png" alt="img"></p>
+<h3 id="V2"><a href="#V2" class="headerlink" title="V2"></a>V2</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257934.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257498.png" alt="img"></p>
+<p>卷积核个数就是输出层深度 比如这里卷积核个数就是tk</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257792.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257692.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257827.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022258379.png" alt="img"></p>
+<h1 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h1><h3 id="服务器安装conda"><a href="#服务器安装conda" class="headerlink" title="服务器安装conda"></a>服务器安装conda</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wyf2017/article/details/118676765">https://blog.csdn.net/wyf2017/article/details/118676765</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhou_438/article/details/102483103">https://blog.csdn.net/zhou_438/article/details/102483103</a></p>
+<h3 id="服务器tensorflow"><a href="#服务器tensorflow" class="headerlink" title="服务器tensorflow"></a>服务器tensorflow</h3><pre><code class="plain">conda create -n tensorflow pip python=3.7//安装虚拟环境tensorflow
+activate tensorflow//激活环境   
+如果是服务器的话就是 因为权限不够需要 source activate tensorflow//激活环境 
+pip install tensorflow-cpu==2.10.0 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
+ conda info --envs
+</code></pre>
+<h2 id="数据库部署"><a href="#数据库部署" class="headerlink" title="数据库部署"></a>数据库部署</h2><p>通过Navicat把表放上去就行 记得 docker inspect 容器名 看下ip 填到后端yaml里面</p>
+<h2 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h2><p>任意目录 上传jar包 新建dockerfile </p>
+<pre><code class="plain">FROM java:8
+EXPOSE 8888
+ADD ./blog_api.jar /api.jar
+RUN bash -c &#39;touch /api.jar&#39;
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/api.jar&quot;,&quot;--spring.profiles.active=prod&quot;]
+</code></pre>
+<p>docker build -f .&#x2F;blog_dockerfile -t app .&#x2F;&#x2F;通过这个构建镜像 f是文件 t tagdocker run –name mushroom_app -p 8800:8800 mushroom_app&#x2F;&#x2F;通过这个启动</p>
+<p>然后记得阿里云开放端口</p>
+<p>docker logs mushroom_app 查看日志</p>
+<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><p>npm run dev:weapp 可以打包dist目录</p>
+<p>放到vx微信开发者工具里面，但是微信这傻逼尼玛的还只能访问域名，劳资有是有，但是得续费3个月服务器才行哦</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html">https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html</a></p>
+<h2 id="xshell连接阿里云"><a href="#xshell连接阿里云" class="headerlink" title="xshell连接阿里云"></a>xshell连接阿里云</h2><p>1.申请阿里云服务器，下载xshell2.在git里面输入如下命令，然后设置permitrootlogin yes 和 passwordAuthentication yes</p>
+<p>vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022258413.png" alt="img"></p>
+<p>退出的时候进行如下操作：</p>
+<pre><code class="plain">1、按Esc 
+ 2、输入：set noreadonly  
+ 3、即可按正常途径保存:wq
+</code></pre>
+<p>3.记得修改实例密码，然后xshell登录</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022300375.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022301893.png" alt="img"></p>
+<h2 id="服务器环境配置的一些坑"><a href="#服务器环境配置的一些坑" class="headerlink" title="服务器环境配置的一些坑"></a>服务器环境配置的一些坑</h2><p>原文链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/Elon15/article/details/124516929">https://blog.csdn.net/Elon15/article/details/124516929</a></p>
+<p><strong>3.7 那一步是source &#x2F;etc&#x2F;profile</strong></p>
+<p><strong>4.2 下载yum源的时候出现Unable to establish SSL connection，在命令后面跟上–no-check-certificat</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022301950.png" alt="img"></p>
+<p><strong>4.5 yum install -y mysql-community-server报错</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022309394.png" alt="img"></p>
+<p>rpm –import <a target="_blank" rel="noopener" href="https://repo.mysql.com/RPM-GPG-KEY-mysql-2022">https://repo.mysql.com/RPM-GPG-KEY-mysql-2022</a></p>
+<p><strong>4.7 登录数据库改密码执行改密码出错的解决办法：</strong></p>
+<pre><code class="plain">mysql&gt; set global validate_password_policy=low;             //将密码级别改为弱
+mysql&gt; set global validate_password_length=6;               //将密码长度改为6
+然后输入命令ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;; （注意末尾要有分号）
+</code></pre>
+<h1 id="代办"><a href="#代办" class="headerlink" title="代办"></a>代办</h1><p><strong>4.10 阿里云连接Mysql, 在确保端口开放的情况下，如果出现错误代码1130- Host xxx is not allowed to connect to this MariaDb server，说明是权限问题。如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022314137.png" alt="img"></p>
+<p>1.授权法</p>
+<pre><code class="plain">GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39; WITH GRANT OPTION; // %:表示从任何主机连接到mysql服务器
+
+FLUSH  PRIVILEGES;
+</code></pre>
+<p>实测好用，原文链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35396905/article/details/82972618%EF%BC%88%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E5%BE%85%E9%AA%8C%E8%AF%81%EF%BC%89">https://blog.csdn.net/qq_35396905/article/details/82972618（其他方法待验证）</a></p>
+<h4 id="1、postman文件云服务上传路径问题！！！！！！！！"><a href="#1、postman文件云服务上传路径问题！！！！！！！！" class="headerlink" title="1、postman文件云服务上传路径问题！！！！！！！！"></a>1、postman文件云服务上传路径问题！！！！！！！！</h4><h2 id="2022-9-13-想法"><a href="#2022-9-13-想法" class="headerlink" title="2022 9.13 想法"></a>2022 9.13 想法</h2><p>前端：微信开发者工具，小程序框架快速入门</p>
+<p>后端功能调整：设定一个百分比，如果低于这个百分比视为不是蘑菇，数据库需要扩大（对应的算法代码也要调整，自己电脑训练不了）问题：其他地方训练好的数据模型，直接拿到本地用也可以吗？？</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/RPC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/04/RPC/" class="post-title-link" itemprop="url">RPC</a>
+        </h2>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 18:03:19 / 修改时间：18:14:36" itemprop="dateCreated datePublished" datetime="2023-06-04T18:03:19+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png" alt="image-20230604180538472" style="zoom:50%;">
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/RPC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/04/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">字符串</a>
+        </h2>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 17:45:22 / 修改时间：18:02:40" itemprop="dateCreated datePublished" datetime="2023-06-04T17:45:22+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>利于记忆</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903845227659271">https://juejin.cn/post/6844903845227659271</a></p>
+<p>可视化</p>
+<p><a target="_blank" rel="noopener" href="https://regexper.com/">https://regexper.com/</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/%E5%AD%97%E7%AC%A6%E4%B8%B2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -790,7 +690,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -858,14 +758,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

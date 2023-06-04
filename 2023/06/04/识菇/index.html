@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="后端idea 调用Python命令Runtime.getRuntime().exec总是空 在调用含第三方库的时候，需要指定第三方库的所在 String[] aaa &#x3D; new String[]{“D:\Anaconda3\python.exe”, “D:\Pythonworkspace\Python_Class\aaa.py”}; proc &#x3D; Runtime.getRunt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="识菇">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E8%AF%86%E8%8F%87/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="后端idea 调用Python命令Runtime.getRuntime().exec总是空 在调用含第三方库的时候，需要指定第三方库的所在 String[] aaa &#x3D; new String[]{“D:\Anaconda3\python.exe”, “D:\Pythonworkspace\Python_Class\aaa.py”}; proc &#x3D; Runtime.getRunt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256299.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256572.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256388.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256246.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256871.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257167.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257016.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257934.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257498.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257792.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257692.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257827.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022258379.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022258413.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022300375.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022301893.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022301950.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022309394.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022314137.png">
+<meta property="article:published_time" content="2023-06-04T10:04:11.000Z">
+<meta property="article:modified_time" content="2023-06-04T10:08:20.131Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256299.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E8%AF%86%E8%8F%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>识菇 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E8%AF%86%E8%8F%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          识菇
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 18:04:11 / 修改时间：18:08:20" itemprop="dateCreated datePublished" datetime="2023-06-04T18:04:11+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h1><p><strong>idea 调用Python命令Runtime.getRuntime().exec总是空</strong></p>
+<p>在调用含第三方库的时候，需要指定第三方库的所在 String[] aaa &#x3D; new String[]{“D:\Anaconda3\python.exe”, “D:\Pythonworkspace\Python_Class\aaa.py”}; proc &#x3D; Runtime.getRuntime().exec(aaa);&#x2F;&#x2F; 执行py文件</p>
+<p><strong>为什么运行后inputimage会被删？</strong></p>
+<p>因为后面有</p>
+<p>if (!imageFile.delete())</p>
+<p>这段代码运行，会删除文件</p>
+<p><strong>为什么python命令command String不能用 String[]可以用?</strong>	</p>
+<h1 id="前端taro"><a href="#前端taro" class="headerlink" title="前端taro"></a>前端taro</h1><h2 id="taro框架安装"><a href="#taro框架安装" class="headerlink" title="taro框架安装"></a>taro框架安装</h2><p>先查看Node版本，确认安装最新版本</p>
+<pre><code class="plain">npm config set registry http://registry.npm.taobao.org/   第一个命令是使用npm的淘宝镜像，
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/   配置node-sass为淘宝镜像
+cnpm install -g @tarojs/cli   使用cnpm全局安装taro，将会生成一个taro 命令。taro-cli 包位于 Taro 工程的 packages 目录下，主要负责项目初始化、编译、构建等
+</code></pre>
+<p>查看taro是否安装完毕</p>
+<p>taro -V</p>
+<p><strong>报错</strong>WARN node unsupported “node**@v6.11.2” is incompatible with electron@^7.1.9, expected node@&gt;&#x3D; 8.6**</p>
+<p>解决：升级node 到官网下载最新版本Msi 无脑下一步即可</p>
+<p><strong>关于node</strong></p>
+<ol>
+<li>开源跨平台的JavaScript运行时环境。它几乎是任何类型项目的流行工具！</li>
+<li>浏览器之外运行V8 JavaScript引擎（Google Chrome的内核）。这使得Node.js的性能非常好。</li>
+<li>Node.js应用程序在单个程序中运行，无需为每个请求创建新的线程。Node.js在其标准库中提供了一组异步的I&#x2F;O原语，以防JavaScript代码阻塞，通常，Node.js中的库是使用非阻塞范式编写的，使得阻塞行为成为异常而不是常态。</li>
+<li>Node.js具有独特的优势，因为数百万为浏览器编写的JavaScript的前端开发者现在无需学习完全不同的语言，就可以编写除客户端代码之外的服务器端代码。</li>
+</ol>
+<p><strong>报错npm WARN config global –global, –local are deprecated. Use –location&#x3D;global instead.</strong></p>
+<p>npm install –global –production npm-windows-upgrade</p>
+<p>上述方案只是解决node 16版本的, 切换到node18, 此时还会有上述问题:</p>
+<p>解决：</p>
+<pre><code class="plain">npm install -g npm-windows-upgrade
+ npm-windows-upgrade
+ and select version 8.12.1 for installation.(然后选择下载8.12.1的版本。)
+</code></pre>
+<p>（还未解决 代办）</p>
+<h2 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a><strong>搭建项目</strong></h2><p>taro init taro-dome</p>
+<p>一路默认：</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256299.png" alt="img"></p>
+<p>切换到项目路径</p>
+<p>执行命令</p>
+<p>npm run dev:h5</p>
+<p>然后网页出来helloworld</p>
+<h2 id="Taro生成小程序代码并预览"><a href="#Taro生成小程序代码并预览" class="headerlink" title="Taro生成小程序代码并预览"></a>Taro生成小程序代码并预览</h2><p>taro可以生成多端代码，在上一节只生成了h5的显示，这次我们就先来进行生成小程序代码，并进行预览。</p>
+<p>npm run dev:weapp</p>
+<p>然后打开微信开发者工具导入项目的dist目录<strong>注意</strong></p>
+<p>千万不要在微信开发者工具中修改dist目录，因为这个文件是由taro编译而来的；如果要修改在taro的原项目修改，然后通过编译将修改的内容编译到dist文件中。</p>
+<p>哈哈哈哈哈哈哈哈哈哈 笑死 千万别在webstrom打开 报那文件目录错误 用vscode就没问题（但是需要管理员打开）</p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>想运行identify.py 在terminal里面输入python .\identify.py inputImage&#x2F;tum.jpg</p>
+<h2 id="moileNet"><a href="#moileNet" class="headerlink" title="moileNet"></a>moileNet</h2><h3 id="V1"><a href="#V1" class="headerlink" title="V1"></a>V1</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256572.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256388.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256246.png" alt="img"></p>
+<p>dw不改变深度 但在此之前是降维的</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022256871.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257167.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257016.png" alt="img"></p>
+<h3 id="V2"><a href="#V2" class="headerlink" title="V2"></a>V2</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257934.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257498.png" alt="img"></p>
+<p>卷积核个数就是输出层深度 比如这里卷积核个数就是tk</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257792.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257692.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022257827.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022258379.png" alt="img"></p>
+<h1 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h1><h3 id="服务器安装conda"><a href="#服务器安装conda" class="headerlink" title="服务器安装conda"></a>服务器安装conda</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wyf2017/article/details/118676765">https://blog.csdn.net/wyf2017/article/details/118676765</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhou_438/article/details/102483103">https://blog.csdn.net/zhou_438/article/details/102483103</a></p>
+<h3 id="服务器tensorflow"><a href="#服务器tensorflow" class="headerlink" title="服务器tensorflow"></a>服务器tensorflow</h3><pre><code class="plain">conda create -n tensorflow pip python=3.7//安装虚拟环境tensorflow
+activate tensorflow//激活环境   
+如果是服务器的话就是 因为权限不够需要 source activate tensorflow//激活环境 
+pip install tensorflow-cpu==2.10.0 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
+ conda info --envs
+</code></pre>
+<h2 id="数据库部署"><a href="#数据库部署" class="headerlink" title="数据库部署"></a>数据库部署</h2><p>通过Navicat把表放上去就行 记得 docker inspect 容器名 看下ip 填到后端yaml里面</p>
+<h2 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h2><p>任意目录 上传jar包 新建dockerfile </p>
+<pre><code class="plain">FROM java:8
+EXPOSE 8888
+ADD ./blog_api.jar /api.jar
+RUN bash -c &#39;touch /api.jar&#39;
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/api.jar&quot;,&quot;--spring.profiles.active=prod&quot;]
+</code></pre>
+<p>docker build -f .&#x2F;blog_dockerfile -t app .&#x2F;&#x2F;通过这个构建镜像 f是文件 t tagdocker run –name mushroom_app -p 8800:8800 mushroom_app&#x2F;&#x2F;通过这个启动</p>
+<p>然后记得阿里云开放端口</p>
+<p>docker logs mushroom_app 查看日志</p>
+<h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><p>npm run dev:weapp 可以打包dist目录</p>
+<p>放到vx微信开发者工具里面，但是微信这傻逼尼玛的还只能访问域名，劳资有是有，但是得续费3个月服务器才行哦</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html">https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html</a></p>
+<h2 id="xshell连接阿里云"><a href="#xshell连接阿里云" class="headerlink" title="xshell连接阿里云"></a>xshell连接阿里云</h2><p>1.申请阿里云服务器，下载xshell2.在git里面输入如下命令，然后设置permitrootlogin yes 和 passwordAuthentication yes</p>
+<p>vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022258413.png" alt="img"></p>
+<p>退出的时候进行如下操作：</p>
+<pre><code class="plain">1、按Esc 
+ 2、输入：set noreadonly  
+ 3、即可按正常途径保存:wq
+</code></pre>
+<p>3.记得修改实例密码，然后xshell登录</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022300375.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022301893.png" alt="img"></p>
+<h2 id="服务器环境配置的一些坑"><a href="#服务器环境配置的一些坑" class="headerlink" title="服务器环境配置的一些坑"></a>服务器环境配置的一些坑</h2><p>原文链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/Elon15/article/details/124516929">https://blog.csdn.net/Elon15/article/details/124516929</a></p>
+<p><strong>3.7 那一步是source &#x2F;etc&#x2F;profile</strong></p>
+<p><strong>4.2 下载yum源的时候出现Unable to establish SSL connection，在命令后面跟上–no-check-certificat</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022301950.png" alt="img"></p>
+<p><strong>4.5 yum install -y mysql-community-server报错</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022309394.png" alt="img"></p>
+<p>rpm –import <a target="_blank" rel="noopener" href="https://repo.mysql.com/RPM-GPG-KEY-mysql-2022">https://repo.mysql.com/RPM-GPG-KEY-mysql-2022</a></p>
+<p><strong>4.7 登录数据库改密码执行改密码出错的解决办法：</strong></p>
+<pre><code class="plain">mysql&gt; set global validate_password_policy=low;             //将密码级别改为弱
+mysql&gt; set global validate_password_length=6;               //将密码长度改为6
+然后输入命令ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;; （注意末尾要有分号）
+</code></pre>
+<h1 id="代办"><a href="#代办" class="headerlink" title="代办"></a>代办</h1><p><strong>4.10 阿里云连接Mysql, 在确保端口开放的情况下，如果出现错误代码1130- Host xxx is not allowed to connect to this MariaDb server，说明是权限问题。如图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022314137.png" alt="img"></p>
+<p>1.授权法</p>
+<pre><code class="plain">GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39; WITH GRANT OPTION; // %:表示从任何主机连接到mysql服务器
+
+FLUSH  PRIVILEGES;
+</code></pre>
+<p>实测好用，原文链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35396905/article/details/82972618%EF%BC%88%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E5%BE%85%E9%AA%8C%E8%AF%81%EF%BC%89">https://blog.csdn.net/qq_35396905/article/details/82972618（其他方法待验证）</a></p>
+<h4 id="1、postman文件云服务上传路径问题！！！！！！！！"><a href="#1、postman文件云服务上传路径问题！！！！！！！！" class="headerlink" title="1、postman文件云服务上传路径问题！！！！！！！！"></a>1、postman文件云服务上传路径问题！！！！！！！！</h4><h2 id="2022-9-13-想法"><a href="#2022-9-13-想法" class="headerlink" title="2022 9.13 想法"></a>2022 9.13 想法</h2><p>前端：微信开发者工具，小程序框架快速入门</p>
+<p>后端功能调整：设定一个百分比，如果低于这个百分比视为不是蘑菇，数据库需要扩大（对应的算法代码也要调整，自己电脑训练不了）问题：其他地方训练好的数据模型，直接拿到本地用也可以吗？？</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E8%AF%86%E8%8F%87/" title="识菇">http://viacheung.github.io/2023/06/04/识菇/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/RPC/" rel="prev" title="RPC">
+      <i class="fa fa-chevron-left"></i> RPC
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/" rel="next" title="魔方天地">
+      魔方天地 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF"><span class="nav-number">1.</span> <span class="nav-text">后端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%AB%AFtaro"><span class="nav-number">2.</span> <span class="nav-text">前端taro</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#taro%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">taro框架安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.2.</span> <span class="nav-text">搭建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Taro%E7%94%9F%E6%88%90%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A3%E7%A0%81%E5%B9%B6%E9%A2%84%E8%A7%88"><span class="nav-number">2.3.</span> <span class="nav-text">Taro生成小程序代码并预览</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">3.1.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moileNet"><span class="nav-number">3.2.</span> <span class="nav-text">moileNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#V1"><span class="nav-number">3.2.1.</span> <span class="nav-text">V1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V2"><span class="nav-number">3.2.2.</span> <span class="nav-text">V2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="nav-number">4.</span> <span class="nav-text">项目部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85conda"><span class="nav-number">4.0.1.</span> <span class="nav-text">服务器安装conda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8tensorflow"><span class="nav-number">4.0.2.</span> <span class="nav-text">服务器tensorflow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%83%A8%E7%BD%B2"><span class="nav-number">4.1.</span> <span class="nav-text">数据库部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-number">4.2.</span> <span class="nav-text">后端部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.3.</span> <span class="nav-text">微信小程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xshell%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91"><span class="nav-number">4.4.</span> <span class="nav-text">xshell连接阿里云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91"><span class="nav-number">4.5.</span> <span class="nav-text">服务器环境配置的一些坑</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E5%8A%9E"><span class="nav-number">5.</span> <span class="nav-text">代办</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81postman%E6%96%87%E4%BB%B6%E4%BA%91%E6%9C%8D%E5%8A%A1%E4%B8%8A%E4%BC%A0%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%81"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">1、postman文件云服务上传路径问题！！！！！！！！</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2022-9-13-%E6%83%B3%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">2022 9.13 想法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/Redis/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -205,7 +205,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/Redis/" class="post-title-link" itemprop="url">Redis</a>
+            <a href="/2023/06/04/%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">数组</a>
         </h2>
 
         <div class="post-meta">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:10:34 / 修改时间：14:24:25" itemprop="dateCreated datePublished" datetime="2023-06-04T14:10:34+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 17:44:24 / 修改时间：17:57:09" itemprop="dateCreated datePublished" datetime="2023-06-04T17:44:24+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,10 +242,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Redis是什么以及优缺点"><a href="#Redis是什么以及优缺点" class="headerlink" title="Redis是什么以及优缺点"></a>Redis是什么以及优缺点</h2><p>整个数据库加载在内存当中操作，定期通过异步操作把数据库中的数据flush到硬盘上进行保存，每秒10w次读写操作</p>
+          <h2 id="API、经验"><a href="#API、经验" class="headerlink" title="API、经验"></a>API、经验</h2><h4 id="填充数组"><a href="#填充数组" class="headerlink" title="填充数组"></a><strong>填充数组</strong></h4><pre><code class="plain">一维数组
+ boolean[] a1 = new boolean[5];
+     Arrays.fill( a1,true );
+ Arrays.fill( a1,3,4,false);//下标3变为false 左开右闭
+ 二维数组  把一维数组当作一个对象
+  int[][] map=new int[4][5];
+    int[] ten=new int[10];
+    Arrays.fill(ten, -1);
+    Arrays.fill(map,ten);  //成功
+</code></pre>
+<h4 id="填充集合"><a href="#填充集合" class="headerlink" title="填充集合"></a></h4>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/Redis/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E6%95%B0%E7%BB%84/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -269,7 +279,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/MySQL/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%95%B0%E5%AD%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -283,7 +293,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/MySQL/" class="post-title-link" itemprop="url">MySQL</a>
+            <a href="/2023/06/04/%E6%95%B0%E5%AD%A6/" class="post-title-link" itemprop="url">数学</a>
         </h2>
 
         <div class="post-meta">
@@ -297,7 +307,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:10:25 / 修改时间：14:23:34" itemprop="dateCreated datePublished" datetime="2023-06-04T14:10:25+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 17:44:12 / 修改时间：17:56:23" itemprop="dateCreated datePublished" datetime="2023-06-04T17:44:12+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +315,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%AB%E8%82%A1/" itemprop="url" rel="index"><span itemprop="name">八股</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
                 </span>
             </span>
 
@@ -320,12 +330,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="数据库三范式"><a href="#数据库三范式" class="headerlink" title="数据库三范式"></a>数据库三范式</h2><ul>
-<li>第一范式：<strong>列的原子性</strong>，数据库表的每一列都不可分割</li>
-<li>第二范式：要求确保表中每列与主键相关</li></ul>
+          <h2 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a>Pow(x, n)</h2><p>实现 <a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/valarray/pow/">pow(x,n)</a> ，即计算 x 的整数 n 次幂函数（即，xn ）。</p>
+<p><strong>题解：</strong></p>
+<p>本质就是递归算法，</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/MySQL/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E6%95%B0%E5%AD%A6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -349,7 +359,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/Spring/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -363,7 +373,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/Spring/" class="post-title-link" itemprop="url">Spring</a>
+            <a href="/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">设计模式</a>
         </h2>
 
         <div class="post-meta">
@@ -377,7 +387,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:10:07 / 修改时间：14:24:57" itemprop="dateCreated datePublished" datetime="2023-06-04T14:10:07+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 17:43:46 / 修改时间：17:54:20" itemprop="dateCreated datePublished" datetime="2023-06-04T17:43:46+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -400,11 +410,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="使用Spring框架的好处是什么？"><a href="#使用Spring框架的好处是什么？" class="headerlink" title="使用Spring框架的好处是什么？"></a>使用Spring框架的好处是什么？</h2><ul>
-<li><strong>轻量：</strong>Spring 是轻量的，基本的版本大约2MB</li></ul>
+          <h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ul>
+<li><p>1、单一职责（Single Responsibility Principle）</p>
+</li>
+<li><ul>
+<li>定义：一个类只负责一个功能另有中的相应职责———-就一个类而言，应该只有一个引起它变化的原因；</li></ul></li></ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/Spring/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -428,7 +441,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/Mybatis/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -442,7 +455,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/Mybatis/" class="post-title-link" itemprop="url">Mybatis</a>
+            <a href="/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">软件配置</a>
         </h2>
 
         <div class="post-meta">
@@ -456,85 +469,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:09:57 / 修改时间：14:22:25" itemprop="dateCreated datePublished" datetime="2023-06-04T14:09:57+08:00">2023-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%AB%E8%82%A1/" itemprop="url" rel="index"><span itemprop="name">八股</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h2><p>1、Mybatis是一个半ORM（对象关系映射）框架，它内部封装了JDBC，<strong>加载驱动、创建连接、创建statement</strong>等繁杂的过程，开发者开发时只需要关注如何编写SQL语句，可以严格控制sql执行性能，灵活度高</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/04/Mybatis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%8F%92%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/04/%E6%8F%92%E4%BB%B6/" class="post-title-link" itemprop="url">插件</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-06-04 14:08:17 / 修改时间：14:30:35" itemprop="dateCreated datePublished" datetime="2023-06-04T14:08:17+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 17:43:32 / 修改时间：17:51:52" itemprop="dateCreated datePublished" datetime="2023-06-04T17:43:32+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -557,30 +492,93 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Leetcode插件"><a href="#Leetcode插件" class="headerlink" title="Leetcode插件"></a>Leetcode插件</h1><p>因为我已经在一台电脑上配置好了，因此在新电脑上面只需要在idea安装leetcode editor，输入用户名密码保存路径和格式设置（可直接远程操作原电脑进行复制操作）</p>
-<p><a href="mailto:505371530@qq.com">505371530@qq.com</a> 4873350781cet</p>
-<pre><code class="plain">$&#123;question.content&#125;
-  package leetcode.editor.en;
-  public class $!velocityTool.camelCaseName($&#123;question.titleSlug&#125;)&#123;
-      public static void main(String[] args) &#123;
-           Solution solution = new $!velocityTool.camelCaseName($&#123;question.titleSlug&#125;)().new Solution();
-      &#125;
-      $&#123;question.code&#125;
-  &#125;
-$&#123;question.title&#125;   题目标题    示例:两数之和
-$&#123;question.titleSlug&#125;   题目标记    示例:two-sum
-$&#123;question.frontendQuestionId&#125;  题目编号
-$&#123;question.content&#125; 题目描述
-$&#123;question.code&#125;    题目代码
-$!velocityTool.camelCaseName(str)   转换字符为大驼峰样式（开头字母大写）
-$!velocityTool.smallCamelCaseName(str)  转换字符为小驼峰样式（开头字母小写）
-$!velocityTool.snakeCaseName(str)   转换字符为蛇形样式
-$!velocityTool.leftPadZeros(str,n)  在字符串的左边填充0，使字符串的长度至少为n
-$!velocityTool.date()   获取当前时间
-</code></pre>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220706213501965.png" alt="img"></p>
-<p>记得勾选画框处，Custom Templete ,如果有的题模板不对的话，右键clear cache</p>
+          <h1 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h1><h2 id="无法登录的问题"><a href="#无法登录的问题" class="headerlink" title="无法登录的问题"></a>无法登录的问题</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230525165941548.png" alt="img"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%A8%A1%E6%8B%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/04/%E6%A8%A1%E6%8B%9F/" class="post-title-link" itemprop="url">模拟</a>
+        </h2>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 17:43:21 / 修改时间：17:48:45" itemprop="dateCreated datePublished" datetime="2023-06-04T17:43:21+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="任务调度器"><a href="#任务调度器" class="headerlink" title="任务调度器"></a>任务调度器</h2><h2 id="方法一：模拟"><a href="#方法一：模拟" class="headerlink" title="方法一：模拟"></a>方法一：模拟</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221012192843953.png" alt="img"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/%E6%A8%A1%E6%8B%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -598,7 +596,7 @@ $!velocityTool.date()   获取当前时间
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -666,14 +664,14 @@ $!velocityTool.date()   获取当前时间
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

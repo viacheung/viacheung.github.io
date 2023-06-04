@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Google无法登录的问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件配置">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="Google无法登录的问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230525165941548.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022219730.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022222190.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022222235.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022223098.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022223619.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022224373.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022224428.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022225120.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022225425.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022225686.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306022226550.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/95dcb922b85fb32f0a12d33fb143cbe3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/33e060985e818ed68a0621337dde00b5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/4b83e4a4f9d70275cd80d29a4793e202.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/226907/1685716728321-f466943f-1891-4af2-9285-cdd7fb6c2b75.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/226907/1685716728720-6fbe7ebc-2326-4544-b6a6-7375199ccac4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/dfe94e7fe0e6aa0081651f80ebdeb0ee.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/226907/1685716728349-886006ff-3af9-4ac0-b214-6b526e0d1336.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/56a6915b1968aaa30eff070b2e49994d.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/02c3e8b1eb022b19121ee9eb94e54fc3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/82b020ba4d6d79376ba8f22ca21f14d7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/2a536172bbc202cc1f1885491b090a34.png">
+<meta property="article:published_time" content="2023-06-04T09:43:32.000Z">
+<meta property="article:modified_time" content="2023-06-04T09:51:52.434Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230525165941548.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>软件配置 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件配置
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 17:43:32 / 修改时间：17:51:52" itemprop="dateCreated datePublished" datetime="2023-06-04T17:43:32+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h1><h2 id="无法登录的问题"><a href="#无法登录的问题" class="headerlink" title="无法登录的问题"></a>无法登录的问题</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230525165941548.png" alt="img"></p>
+<span id="more"></span>
+
+<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><h2 id="怎样删除Github中的项目"><a href="#怎样删除Github中的项目" class="headerlink" title="怎样删除Github中的项目"></a>怎样删除Github中的项目</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/A994958/article/details/118054176">https://blog.csdn.net/A994958/article/details/118054176</a></p>
+<h1 id="电脑"><a href="#电脑" class="headerlink" title="电脑"></a>电脑</h1><h2 id="电脑管家桌面整理不错"><a href="#电脑管家桌面整理不错" class="headerlink" title="电脑管家桌面整理不错"></a>电脑管家桌面整理不错</h2><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl + shift +F 切换繁体</p>
+<h1 id="typora"><a href="#typora" class="headerlink" title="typora"></a>typora</h1><h2 id="快捷键-1"><a href="#快捷键-1" class="headerlink" title="快捷键"></a>快捷键</h2><p>F11全屏</p>
+<h2 id="1、解决Typora笔记在另一台电脑上无法显示图片的问题"><a href="#1、解决Typora笔记在另一台电脑上无法显示图片的问题" class="headerlink" title="1、解决Typora笔记在另一台电脑上无法显示图片的问题"></a>1、解决Typora笔记在另一台电脑上无法显示图片的问题</h2><p>1.Typora里面，文件-&gt;偏好设置-&gt;图像，按照下图进行设置</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022219730.png" alt="img"></p>
+<p>2.然后随便找一个地方（别c盘）新建文件夹，文件夹里面有个.assets的文件夹，同级放md文件，.assets放图片的</p>
+<p>3.如果出现无法显示问题，使用全局替换</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022222190.png" alt="img"></p>
+<h2 id="2、高亮设置"><a href="#2、高亮设置" class="headerlink" title="2、高亮设置"></a>2、高亮设置</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022222235.png" alt="img"></p>
+<p>注意缩进</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022223098.png" alt="img"></p>
+<p>我实验室电脑q必须大写不知为何</p>
+<h2 id="3、外链图片不显示"><a href="#3、外链图片不显示" class="headerlink" title="3、外链图片不显示"></a>3、外链图片不显示</h2><p>需要挂上vpn</p>
+<p>同样的还要Onedrive</p>
+<h1 id="word"><a href="#word" class="headerlink" title="word"></a>word</h1><h2 id="去掉非页眉线"><a href="#去掉非页眉线" class="headerlink" title="去掉非页眉线"></a><strong>去掉非页眉线</strong></h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022223619.png" alt="img"></p>
+<h2 id="去掉页眉线"><a href="#去掉页眉线" class="headerlink" title="去掉页眉线"></a><strong>去掉页眉线</strong></h2><p>双击 删除页眉</p>
+<h2 id="公式加标号"><a href="#公式加标号" class="headerlink" title="公式加标号"></a><strong>公式加标号</strong></h2><p>后面加#（序号数）然后回车</p>
+<h2 id="在word中如何将两张图片合在一起"><a href="#在word中如何将两张图片合在一起" class="headerlink" title="在word中如何将两张图片合在一起"></a><strong>在word中如何将两张图片合在一起</strong></h2><ul>
+<li>1、首先在第一张图片上【右键】-【设置图片格式】-【版式】-【衬于文字下方】-【确定】；然后在第二张照片中执行同样的操作；</li>
+<li>2、然后选取图片，点第一张图片，按住键盘的【ctrl】键，然后点击第二张图片，松开【ctrl】键 ；（全选操作）</li>
+<li>3、然后在照片上点击【右键】-【组合】。</li>
+<li>4、然后截图</li>
+</ul>
+<h2 id="word插入图片不显示"><a href="#word插入图片不显示" class="headerlink" title="word插入图片不显示"></a><strong>word插入图片不显示</strong></h2><p>段落单倍行距word段落最后一行字体间距太大的</p>
+<p>解决方法 ：第一种可能性是此段落的末尾缺少一个“回车符”，可以直接将光标定位在段落末尾，点击键盘“Enter”键即可。</p>
+<p>word-视图-单页多页</p>
+<p>doc文件不能用公式</p>
+<p><strong>页码：</strong>下一页–插入页码从1开始（设置页码格式）–设置页码格式底部–链接去掉–删前面页的页码目录–需要设置几级标题</p>
+<h2 id="word上有一条横线怎么删除"><a href="#word上有一条横线怎么删除" class="headerlink" title="word上有一条横线怎么删除"></a><strong>word上有一条横线怎么删除</strong></h2><p>—–&gt;取消格式</p>
+<p>word的帮助很有用00:36</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_">如何</a><a target="_blank" rel="noopener" href="http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_">删除Word</a><a target="_blank" rel="noopener" href="http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_">的</a><a target="_blank" rel="noopener" href="http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_">分隔符</a><a target="_blank" rel="noopener" href="http://www.baidu.com/link?url=mTUjo51DkMxoZAtBDlmboPMp3j2g9_ODKyGXIFPBwkf9mXGOKCj-2ESAFQYiULjYv9q9NVvCpnRNlOj2l6gd3NIGwSR4PIf28ROAcaMRfN_">？</a>1.打开需要处理的文档，在菜单栏中点击“文件”，在下方找到“选项”。2.在弹出的“选项”对话框中，切换到“显示”选项卡，勾选“显示所有格式标记”。3.这样就能看到分节符了，选中分节符，按下“Delete键”就可以删除了。</p>
+<h2 id="为什么word行距设为固定值，但行距看起来不一样"><a href="#为什么word行距设为固定值，但行距看起来不一样" class="headerlink" title="为什么word行距设为固定值，但行距看起来不一样?"></a><strong>为什么word行距设为固定值，但行距看起来不一样?</strong></h2><p>网格线取消掉</p>
+<p>ppt取消所有动画效果:<a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1672468635987877707.html%E5%8A%A8%E7%94%BB-&gt;%E5%8A%A8%E7%94%BB%E7%AA%97%E6%A0%BC">https://zhidao.baidu.com/question/1672468635987877707.html动画-&gt;动画窗格</a></p>
+<h1 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h1><p>安装的时候记得版本问题 window默认安装的2.0 要么升级</p>
+<h1 id="DEEPL"><a href="#DEEPL" class="headerlink" title="DEEPL"></a>DEEPL</h1><p>问题描述：使用DeepL翻译出来的文档是只读模式，显示不订阅pro版本之前都是不能编辑。</p>
+<p>解决方法：将文档另存为.xml文档，然后右键用记事本打开，CTRL+F查找：w:documentProtection,，找到之后删除这一段完整标签&lt;，保存，之后修改文档后缀名为.doc，打开之后发现文档已经可以编辑了。</p>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p><strong>Anaconda安装路径</strong></p>
+<p><strong>Anaconda安装路径</strong>\Scripts</p>
+<p><strong>Anaconda安装路径</strong>\Library\bin</p>
+<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><p>免安装mysql教程:<a target="_blank" rel="noopener" href="https://www.jb51.net/article/168321.htm%E7%99%BB%E5%BD%95mysql%E5%90%8E%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%88%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81%E4%B8%BA%E7%A9%BA%EF%BC%89">https://www.jb51.net/article/168321.htm登录mysql后，修改密码（默认密码为空）</a></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dz77dz/article/details/117705850">https://blog.csdn.net/dz77dz/article/details/117705850</a></p>
+<pre><code class="plain">（1）以管理员身份打开“命令行窗口”，输入mysql -uroot -p并按下回车键
+（2）在弹出Enter password: 时，继续按下回车键，即可登录mysql
+（3）输入命令use mysql;
+（4）输入命令ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;; （注意末尾要有分号）
+（5）输入命令flush privileges;
+（6）输入命令exit;——————————————-原文链接：https://blog.csdn.net/dz77dz/article/details/117705850
+</code></pre>
+<p>linux安装的话有一些不一样</p>
+<pre><code class="plain">mysql&gt; set global validate_password_policy=low;             //将密码级别改为弱
+mysql&gt; set global validate_password_length=6;               //将密码长度改为6
+
+/*
+    执行完之后,我们可以将刚才设置的混合密码
+    改为自己想要的数字密码或英文密码了
+*/
+mysql&gt; alter user  &#39;用户名&#39;@&#39;localhost&#39; identified by &#39;123456&#39;; //改密码方式一
+mysql&gt; alter user  USER()  identified by &#39;123456&#39;;              //改密码方式二
+</code></pre>
+<p><strong>mysq|安装出现应用程序无法正常启动(oxc000007b)的解决方案</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022224373.png" alt="img"></p>
+<p>参考文章及软件下载链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/vbcom/article/details/7245186">https://blog.csdn.net/vbcom/article/details/7245186</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46093574/article/details/120351228">https://blog.csdn.net/qq_46093574/article/details/120351228</a></p>
+<p>原因缺少C++库——成功！</p>
+<p><strong>navicate如何把sql文件导出?</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022224428.png" alt="img"></p>
+<p><strong>navicat怎么导入sql数据库文件</strong></p>
+<ol>
+<li>打开Navicat，并连接数据库</li>
+<li>鼠标右键“localhost”，点击“新建数据库”。</li>
+<li>输入数据库名称，字符集选择“utf8”，排序规则选择“ utf8 general ci”，点击“确定”。</li>
+<li>双击新建好的“数据库”。右键点击“运行SQL文件”。</li>
+<li>导入SQL文件，点击开始。</li>
+<li>右击表点刷新。</li>
+</ol>
+<h2 id="1、navicat安装"><a href="#1、navicat安装" class="headerlink" title="1、navicat安装"></a>1、navicat安装</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/445988662">https://zhuanlan.zhihu.com/p/445988662</a></p>
+<h1 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h1><p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1198768105/article/details/122952639">https://blog.csdn.net/qq1198768105/article/details/122952639</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/roy8666/article/details/124504994">https://blog.csdn.net/roy8666/article/details/124504994</a></p>
+<pre><code class="plain">进入目录
+cd /usr/local
+新建nginx文件夹
+mkdir nginx
+进入Nginx
+cd /usr/local/nginx
+安装
+ wget http://nginx.org/download/nginx-1.19.0.tar.gz
+解压
+tar -xvf nginx-1.19.0.tar.gz
+进入文件
+cd /nginx-1.10.2
+安装依赖
+yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel
+添加模块
+./configure --with-http_stub_status_module --with-http_ssl_module
+//执行make命令
+make
+//执行make install命令
+make install
+后面一大堆不知道有没有用，先不写了吧
+……………………
+启动Nginx
+./nginx
+报端口占用错误
+**Nginx [emerg]: bind() to 0.0.0.0:80 failed (98: Address already in use)**
+干掉此程序
+sudo fuser -k 80/tcp
+fuser -k 80/tcp
+</code></pre>
+<p>正向：客户端到服务器；反向：服务器到客户端；</p>
+<p>正向代理：帮助客户端访问服务器；反向代理：帮助服务器提供服务；</p>
+<h1 id="vue项目创建"><a href="#vue项目创建" class="headerlink" title="vue项目创建"></a>vue项目创建</h1><h2 id="1、安装node-js"><a href="#1、安装node-js" class="headerlink" title="1、安装node.js"></a>1、安装node.js</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_57210034/article/details/124823972">https://blog.csdn.net/qq_57210034/article/details/124823972</a></p>
+<p>官网安装16版本，在nodejs<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%A0%B9%E7%9B%AE%E5%BD%95&spm=1001.2101.3001.7020">根目录</a>,创建node_global，node_cache文件夹</p>
+<p>然后以-管理员身份- 打开cmd，配置路径：</p>
+<p>（步骤：win——输入框——cmd——右键——以管理员身份运行）</p>
+<pre><code class="plain">npm config set prefix &quot;D:\Program Files\nodejs\node_global&quot;
+npm config set cache &quot;D:\Program Files\nodejs\node_cache&quot;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022225120.png" alt="img"> npm config set registry <a target="_blank" rel="noopener" href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org/</a> 第一个命令是使用npm的淘宝镜像， npm config set sass_binary_site <a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/node-sass/">https://npm.taobao.org/mirrors/node-sass/</a> 配置node-sass为淘宝镜像 cnpm install -g @tarojs&#x2F;cli 使用cnpm全局安装taro，将会生成一个taro 命令。taro-cli 包位于 Taro 工程的 packages 目录下，主要负责项目初始化、编译、构建等 查看taro是否安装完毕 taro -V</p>
+<p>安装vue脚手架，我也不知道怎么安装好的，最开始安装低版本的Node安装没问题，后来升级node之后，根据系统提示更新了cli，结果失败，一直没安装上，解决方法：按照如下文章，试试？然后卸载再安装，成功了！</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43762239/article/details/120333879">https://blog.csdn.net/qq_43762239/article/details/120333879</a></p>
+<pre><code class="plain">npm install -g vue-cli
+npm uninstall -g vue-cli
+</code></pre>
+<p>问题：最新版npm : 无法将“npm”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查</p>
+<p>vscode用管理员打开</p>
+<p>问题：npm ERR! missing script: dev</p>
+<p>npm install</p>
+<h1 id="java"><a href="#java" class="headerlink" title="java"></a>java</h1><h2 id="java环境配置"><a href="#java环境配置" class="headerlink" title="java环境配置"></a>java环境配置</h2><p>系统变量里面双击path，新建，浏览目录，找到自己jdk的安装路径下面的bin</p>
+<p>C:\Program Files\Java\jdk1.8.0_231\bin    &#x2F;&#x2F;举例</p>
+<p>再把配的环境放到移动到最上面</p>
+<p>然后使用cmd用java -version进行验证（必须version，v的话识别不到）</p>
+<h2 id="idea配置jdk"><a href="#idea配置jdk" class="headerlink" title="idea配置jdk"></a>idea配置jdk</h2><p>选中对应jdk即可  bin的上一级目录</p>
+<p>如果出现没有编译输出文件夹 那就新建一个 基本环境就好啦</p>
+<h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/l32273/article/details/123684435">https://blog.csdn.net/l32273/article/details/123684435</a></p>
+<p>右侧边栏没有出现maven, 还有一种可能就是pom.xml文件没有识别, idea觉得这个项目就不是个maven项目，导致idea无法加载依赖包。因此上述三种方法都没有用， 解决办法: 右键pom.xml文件, 点击” add as maven project “</p>
+<p><strong>idea配置maven依赖下载路径（否则下载从中央仓库，白配了）</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022225425.png" alt="img"></p>
+<h1 id="idea"><a href="#idea" class="headerlink" title="idea"></a>idea</h1><h2 id="translation插件"><a href="#translation插件" class="headerlink" title="translation插件"></a>translation插件</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Lin_1214/article/details/120323971">https://blog.csdn.net/Lin_1214/article/details/120323971</a></p>
+<p>抽取方法快捷键</p>
+<p>ctrl+alt+m</p>
+<h2 id="Codelf"><a href="#Codelf" class="headerlink" title="Codelf"></a>Codelf</h2><p>变量命名神器</p>
+<p><a target="_blank" rel="noopener" href="https://unbug.github.io/codelf/">https://unbug.github.io/codelf/</a></p>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h2><p>安装后配置下名字邮箱就行了</p>
+<h2 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h2><p>为了能上传到Github</p>
+<h2 id="项目上传到github"><a href="#项目上传到github" class="headerlink" title="项目上传到github"></a>项目上传到github</h2><p>b站视频</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1V54y1n7Wn/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ef87b66d94d47349af5013c20ac7b73d">https://www.bilibili.com/video/BV1V54y1n7Wn/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ef87b66d94d47349af5013c20ac7b73d</a></p>
+<p>新建一个repository</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022225686.png" alt="img"></p>
+<p>按照安装命令进行操作，切换到对应项目路径，git add那里改成git add .</p>
+<p>不想上传的可以 gitignore</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306022226550.png" alt="img"></p>
+<p>echo “# blog-project” &gt;&gt; README.md 这个可以不写 意思是追加到read.me上 建议自己建一个readme写内容</p>
+<p>如果要修改项目再上传 add commit push就行</p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><h3 id="上传到一个新仓库"><a href="#上传到一个新仓库" class="headerlink" title="上传到一个新仓库"></a>上传到一个新仓库</h3><p>先github创一个仓库 respositorty</p>
+<p>在本地文件里面打开git bash 然后执行下面的命令</p>
+<pre><code class="plain">echo &quot;# dqwd&quot; &gt;&gt; README.md  #创建readme文件
+git init
+git add .
+git commit -m &quot;first commit&quot;
+git branch -M main  //好像是和git checkout -b一样
+#直接复制新建仓库的地址
+git remote add origin git@github.com:ResetDing/dqwd.git
+git push -u origin main
+</code></pre>
+<h3 id="把新文件上传到已有仓库"><a href="#把新文件上传到已有仓库" class="headerlink" title="把新文件上传到已有仓库"></a>把新文件上传到已有仓库</h3><pre><code class="plain">//master分支上
+git init
+git remote add origin git@github.com:ResetDing/test.git#直接github里面code下面ssh复制地址
+git add .
+git commit -m &quot;first commit&quot;
+//获取github的分支
+git fetch
+//切换到远程你想切换的那个分支:（比如我想切换的是main分支为例 其他的你可以origin/XXX）
+git checkout remotes/origin/main
+现在可以看到自己的分支是一串数字字母
+这时新建并切换到你想看的那个分支
+git checkout main
+将master分支合并到main分支上
+git merge master --allow-unrelated-histories
+//推送
+git push -u origin main
+</code></pre>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><pre><code class="plain">//新键分支并切换
+git checkout -b
+</code></pre>
+<h1 id="idea-1"><a href="#idea-1" class="headerlink" title="idea"></a>idea</h1><p>新建一个idea页面 maven配置居然会变</p>
+<h1 id="python办公操作"><a href="#python办公操作" class="headerlink" title="python办公操作"></a>python办公操作</h1><h2 id="需求：csdn文章-gt-pdf"><a href="#需求：csdn文章-gt-pdf" class="headerlink" title="需求：csdn文章-&gt;pdf"></a>需求：csdn文章-&gt;pdf</h2><ul>
+<li>1 <strong>csdn文章转为markdown文件</strong></li>
+</ul>
+<p>具体操作见我的github</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/viacheung/csdn_article-to-markdown">https://github.com/viacheung/csdn_article-to-markdown</a></p>
+<ul>
+<li>2 批量改名文件名（根据某一信息截断）</li>
+</ul>
+<p>所有文件都有juc三个字母 我只想要juc后面的信息作为我的文件名 </p>
+<p>也就是：XXXXjucXXX -&gt; jucXXX</p>
+<p>具体代码操作如下：</p>
+<pre><code class="plain">import os
+import re
+# 文件路径
+filesDir = &quot;D:\Desktop\csdn-is---mark-down-master\_posts&quot;
+fileNameList = os.listdir(filesDir)
+for filename in fileNameList:
+    (name, suffix) = filename.split(&#39;Juc&#39;)
+    print(&quot;开始改名。。。&quot;)
+    newFilename = suffix
+    os.rename(os.path.join(filesDir, filename), os.path.join(filesDir, newFilename))
+    print(&quot;改名完毕！&quot;)
+    print(&quot;======================================================================================&quot;)
+</code></pre>
+<ul>
+<li>3 合并markdown为一个文件</li>
+</ul>
+<p>windows打开对应文件命令行 执行</p>
+<p>type *.markdown &gt; res.md</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42532128/article/details/119411991">https://blog.csdn.net/qq_42532128/article/details/119411991</a></p>
+<ul>
+<li>4 最后typora直接导出Pdf即可</li>
+</ul>
+<h1 id="finalshell"><a href="#finalshell" class="headerlink" title="finalshell"></a>finalshell</h1><h3 id="第一次连接时"><a href="#第一次连接时" class="headerlink" title="第一次连接时"></a>第一次连接时</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44701472/article/details/107063368">https://blog.csdn.net/qq_44701472/article/details/107063368</a></p>
+<p>先创建再连接 不要在之前的连接基础上改Ip</p>
+<h3 id="撤销代码运行"><a href="#撤销代码运行" class="headerlink" title="撤销代码运行"></a>撤销代码运行</h3><p>ctrl z</p>
+<h1 id="chatGbt配置"><a href="#chatGbt配置" class="headerlink" title="chatGbt配置"></a><strong>chatGbt配置</strong></h1><p><a target="_blank" rel="noopener" href="https://new.oneok.store/#shop">https://new.oneok.store/#shop</a></p>
+<p>直接付款 然后有个密钥 </p>
+<p>账号密码如下 直接进chargbt登录</p>
+<p><a href="mailto:nmvdjttwre@outlook.com">nmvdjttwre@outlook.com</a>ZrS91VQL</p>
+<h1 id="zym梯子"><a href="#zym梯子" class="headerlink" title="zym梯子"></a>zym梯子</h1><p><a target="_blank" rel="noopener" href="https://sockboom.tv/">https://sockboom.tv</a></p>
+<p>基于这个教程完成</p>
+<h1 id="图床教程"><a href="#图床教程" class="headerlink" title="图床教程"></a>图床教程</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45260582/article/details/129152892">https://blog.csdn.net/weixin_45260582/article/details/129152892</a></p>
+<p>中间的DSN加速可以不用管</p>
+<p>token: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</p>
+<h2 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1. 下载PicGo"></a>1. 下载PicGo</h2><p>地址：<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">Molunerfinn&#x2F;PicGo</a>，往下滑（见下图），正常安装即可。</p>
+<p>setup-版本-x64.exe</p>
+<h2 id="2-GitHub步骤"><a href="#2-GitHub步骤" class="headerlink" title="2. GitHub步骤"></a>2. GitHub步骤</h2><ul>
+<li><strong>新建仓库</strong></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/95dcb922b85fb32f0a12d33fb143cbe3.png" alt="img"></p>
+<ul>
+<li><strong>填写相关信息</strong></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/33e060985e818ed68a0621337dde00b5.png" alt="img"></p>
+<ul>
+<li><strong>进入个人设置</strong></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/4b83e4a4f9d70275cd80d29a4793e202.png" alt="img"></p>
+<ul>
+<li><strong>选择开发者设置</strong><img src="https://cdn.nlark.com/yuque/0/2023/png/226907/1685716728321-f466943f-1891-4af2-9285-cdd7fb6c2b75.png" alt="img"></li>
+</ul>
+<hr>
+<ul>
+<li><strong>选择个人访问token，创建新的token</strong><img src="https://cdn.nlark.com/yuque/0/2023/png/226907/1685716728720-6fbe7ebc-2326-4544-b6a6-7375199ccac4.png" alt="img"></li>
+</ul>
+<hr>
+<ul>
+<li><strong>填写相关信息</strong><img src="https://raw.githubusercontent.com/viacheung/img/main/image/dfe94e7fe0e6aa0081651f80ebdeb0ee.png" alt="img"></li>
+</ul>
+<hr>
+<ul>
+<li><strong>复制密钥保存好</strong><img src="https://cdn.nlark.com/yuque/0/2023/png/226907/1685716728349-886006ff-3af9-4ac0-b214-6b526e0d1336.png" alt="img"></li>
+</ul>
+<h2 id="3-PicGo配置GitHub图床"><a href="#3-PicGo配置GitHub图床" class="headerlink" title="3. PicGo配置GitHub图床"></a>3. PicGo配置GitHub图床</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/56a6915b1968aaa30eff070b2e49994d.png" alt="img"></p>
+<h2 id="4-Typora配置PicGo"><a href="#4-Typora配置PicGo" class="headerlink" title="4. Typora配置PicGo"></a>4. Typora配置PicGo</h2><ul>
+<li><strong>进入偏好设置</strong><img src="https://raw.githubusercontent.com/viacheung/img/main/image/02c3e8b1eb022b19121ee9eb94e54fc3.png" alt="img"></li>
+</ul>
+<hr>
+<ul>
+<li><strong>选择图像配置PicGo</strong><img src="https://raw.githubusercontent.com/viacheung/img/main/image/82b020ba4d6d79376ba8f22ca21f14d7.png" alt="img"></li>
+</ul>
+<h2 id="5-验证成功"><a href="#5-验证成功" class="headerlink" title="5. 验证成功"></a>5. 验证成功</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/2a536172bbc202cc1f1885491b090a34.png" alt="img"></p>
+<h2 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h2><p>2021-08-17 19:29:25 [PicGo ERROR] ——Error Stack Begin—— StatusCodeError: 401 - {“message”:”Bad credentials”,”documentation_url”:”<a target="_blank" rel="noopener" href="https://docs.github.com/rest&quot;%7D">https://docs.github.com/rest&quot;}</a> at new StatusCodeError (D:\PicGo\resources\app.asar\node_modules\request-promise-core\lib\errors.js:32:15) at Request.plumbing.callback (D:\PicGo\resources\app.asar\node_modules\request-promise-core\lib\plumbing.js:104:33) at Request.RP$callback [as _callback] (D:\PicGo\resources\app.asar\node_modules\request-promise-core\lib\plumbing.js:46:31) at Request.self.callback (D:\PicGo\resources\app.asar\node_modules\request\request.js:185:22) at Request.emit (events.js:200:13) at Request.<anonymous> (D:\PicGo\resources\app.asar\node_modules\request\request.js:1161:10) at Request.emit (events.js:200:13) at IncomingMessage.<anonymous> (D:\PicGo\resources\app.asar\node_modules\request\request.js:1083:12) at Object.onceWrapper (events.js:288:20) at IncomingMessage.emit (events.js:205:15) ——-Error Stack End——-</anonymous></anonymous></p>
+<p>解决：生成新token</p>
+<h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><h2 id="查找端口号8080占用情况"><a href="#查找端口号8080占用情况" class="headerlink" title="查找端口号8080占用情况"></a><strong>查找端口号8080占用情况</strong></h2><p>C:\Users\viacheung&gt;tasklist|findstr “8080“</p>
+<p>C:\Users\viacheung&gt;netstat -aon|findstr “8080” </p>
+<p>TCP 0.0.0.0:8080 0.0.0.0:0 LISTENING 14400 </p>
+<p>TCP 172.27.31.33:53144 157.255.192.102:8080 ESTABLISHED 20996 </p>
+<p>TCP [::]:8080 [::]:0 LISTENING 14400</p>
+<p><strong>找对应进程</strong></p>
+<p>C:\Users\viacheung&gt;tasklist|findstr “14400”</p>
+<p>java.exe 14400 Console 1 176,948 K</p>
+<p><strong>终止进程</strong></p>
+<p>C:\Users\viacheung&gt;taskkill &#x2F;f &#x2F;t &#x2F;im java.exe</p>
+<p>成功: 已终止 PID 18984 (属于 PID 14400 子进程)的进程。</p>
+<p>成功: 已终止 PID 14400 (属于 PID 30536 子进程)的进程。C:\Users\viacheung&gt;改设备时间是个好方法 删库的东西是个好东西</p>
+<h2 id="查找本机Ip地址"><a href="#查找本机Ip地址" class="headerlink" title="查找本机Ip地址"></a>查找本机Ip地址</h2><p>cmd输入ipconfig</p>
+<p>192.168.10.106</p>
+<h1 id="快捷键-2"><a href="#快捷键-2" class="headerlink" title="快捷键"></a>快捷键</h1><p>Ctrl+Tab 同一页面切换Alt+Tab 不同页面切换</p>
+<p>win+mspaint表示画图远程桌面连接-输入想连计算机端口号，再输入电脑账户密码即可连接win+s 打开搜索框Shutdown -s -t 3000定时关机快捷键：<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/6c67b1d6c533056787bb1ea7.html">https://jingyan.baidu.com/article/6c67b1d6c533056787bb1ea7.html</a></p>
+<p>F11 全屏</p>
+<p>搜索计算器-&gt;程序员选项</p>
+<h1 id="matlab"><a href="#matlab" class="headerlink" title="matlab"></a>matlab</h1><pre><code class="plain">矩阵分点乘
+先plot 后label什么的
+文件名不能和函数名重复
+主页-布局调整
+</code></pre>
+<h2 id="删文件"><a href="#删文件" class="headerlink" title="删文件"></a>删文件</h2><p>双击安装包删除 program Files x86programData里面也要删去文件夹NIMBUSROM字体不错啊</p>
+<p>vscode添加库：ctrl+&#96;调出终端，然后pip install 库名修改系统时间会导致打不开某些网页</p>
+<p>360网络修复很牛逼</p>
+<p>jdk版本免安装在系统变量里改%JAVA_HOME%文件路径即可idea打不开,双击没反应的解决方案—因为有中文路径git vi编辑器，进入后按i编辑，在esc，然后冒号，sq退出</p>
+<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a><strong>前端</strong></h1><p>在老的HTML版本，如果需要在HTML页面中声明一段js脚本，需要做<script type="text/javascript">的声明，表明在</p>
+<script type="text/javascript"></script>
+
+</p><p>中添加的文本是js脚本；document.form.action,表单分向提交,javascript提交表单同一个表单可以根据用户的选择，提交给不同的后台处理程序。即，表单的分向提交。如，在编写论坛程序时，如果我们希望实现用户在发送贴子的时候，既发送提交功能又有预览功能时，就会遇到上述问题。即，当用户点击提交按钮时，我们希望表单提交给"提交"处理程序；而当用户点击预览按钮时，我们希望表单提交给"预览"处理程序。那么，如何实现上述功能呢？下面代码可以很好的解决这个问题。</p>
+<p>confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。如果访问者点击"确定"，此方法返回true，否则返回false</p>
+<p>getSession()参数为true时，若存在会话，则返回该会话，否则新建一个会话；actionaction规定了提交表单时发送表单数据的目的地,也即将数据发到哪里,例如action="login.php".methodmethod规定了发送方式,常用的为get和post,涉及到用户隐私时,为了安全起见通常都采用post方式.namename表单的名字,如果是在js中想要获取form的dom对象,直接使用name属性值即可,例如</p>
+<!-- 和都 <%-- 表示注释getId() 方法的作用非常简单，就是取得正在运行线程的唯一标识。hidden隐藏域在页面中对于用户是不可见的，在表单插入中隐藏域的目的在于收集和发送信息，以利于被处理表单的程序所使用注：隐藏只是在网页页面上不显示输入框，但是虽然隐藏了，还是具有form传值功能。一般用来传值，而不必让用户看到href 属性规定链接的目标：onclick 事件会在元素被点击时发生。scope:colspan设置当前单元格横跨的列数。col 规定单元格是列的表头。row 规定单元格是行的表头。colgroup 规定单元格是列组的表头。rowgroup 规定单元格是行组的表头。
+
+
+  -->
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" title="软件配置">http://viacheung.github.io/2023/06/04/软件配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E6%A8%A1%E6%8B%9F/" rel="prev" title="模拟">
+      <i class="fa fa-chevron-left"></i> 模拟
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="next" title="设计模式">
+      设计模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Google"><span class="nav-number">1.</span> <span class="nav-text">Google</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E7%99%BB%E5%BD%95%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">无法登录的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub"><span class="nav-number">2.</span> <span class="nav-text">GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E6%A0%B7%E5%88%A0%E9%99%A4Github%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.1.</span> <span class="nav-text">怎样删除Github中的项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B5%E8%84%91"><span class="nav-number">3.</span> <span class="nav-text">电脑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E8%84%91%E7%AE%A1%E5%AE%B6%E6%A1%8C%E9%9D%A2%E6%95%B4%E7%90%86%E4%B8%8D%E9%94%99"><span class="nav-number">3.1.</span> <span class="nav-text">电脑管家桌面整理不错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">3.2.</span> <span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typora"><span class="nav-number">4.</span> <span class="nav-text">typora</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE-1"><span class="nav-number">4.1.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E8%A7%A3%E5%86%B3Typora%E7%AC%94%E8%AE%B0%E5%9C%A8%E5%8F%A6%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E4%B8%8A%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">1、解决Typora笔记在另一台电脑上无法显示图片的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E9%AB%98%E4%BA%AE%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.3.</span> <span class="nav-text">2、高亮设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%A4%96%E9%93%BE%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="nav-number">4.4.</span> <span class="nav-text">3、外链图片不显示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#word"><span class="nav-number">5.</span> <span class="nav-text">word</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%BB%E6%8E%89%E9%9D%9E%E9%A1%B5%E7%9C%89%E7%BA%BF"><span class="nav-number">5.1.</span> <span class="nav-text">去掉非页眉线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%BB%E6%8E%89%E9%A1%B5%E7%9C%89%E7%BA%BF"><span class="nav-number">5.2.</span> <span class="nav-text">去掉页眉线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E5%8A%A0%E6%A0%87%E5%8F%B7"><span class="nav-number">5.3.</span> <span class="nav-text">公式加标号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8word%E4%B8%AD%E5%A6%82%E4%BD%95%E5%B0%86%E4%B8%A4%E5%BC%A0%E5%9B%BE%E7%89%87%E5%90%88%E5%9C%A8%E4%B8%80%E8%B5%B7"><span class="nav-number">5.4.</span> <span class="nav-text">在word中如何将两张图片合在一起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#word%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="nav-number">5.5.</span> <span class="nav-text">word插入图片不显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#word%E4%B8%8A%E6%9C%89%E4%B8%80%E6%9D%A1%E6%A8%AA%E7%BA%BF%E6%80%8E%E4%B9%88%E5%88%A0%E9%99%A4"><span class="nav-number">5.6.</span> <span class="nav-text">word上有一条横线怎么删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88word%E8%A1%8C%E8%B7%9D%E8%AE%BE%E4%B8%BA%E5%9B%BA%E5%AE%9A%E5%80%BC%EF%BC%8C%E4%BD%86%E8%A1%8C%E8%B7%9D%E7%9C%8B%E8%B5%B7%E6%9D%A5%E4%B8%8D%E4%B8%80%E6%A0%B7"><span class="nav-number">5.7.</span> <span class="nav-text">为什么word行距设为固定值，但行距看起来不一样?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu"><span class="nav-number">6.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DEEPL"><span class="nav-number">7.</span> <span class="nav-text">DEEPL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python"><span class="nav-number">8.</span> <span class="nav-text">python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">8.1.</span> <span class="nav-text">环境变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql"><span class="nav-number">9.</span> <span class="nav-text">mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81navicat%E5%AE%89%E8%A3%85"><span class="nav-number">9.1.</span> <span class="nav-text">1、navicat安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx%E5%AE%89%E8%A3%85"><span class="nav-number">10.</span> <span class="nav-text">nginx安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA"><span class="nav-number">11.</span> <span class="nav-text">vue项目创建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85node-js"><span class="nav-number">11.1.</span> <span class="nav-text">1、安装node.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java"><span class="nav-number">12.</span> <span class="nav-text">java</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#java%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">12.1.</span> <span class="nav-text">java环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#idea%E9%85%8D%E7%BD%AEjdk"><span class="nav-number">12.2.</span> <span class="nav-text">idea配置jdk</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maven"><span class="nav-number">13.</span> <span class="nav-text">maven</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#idea"><span class="nav-number">14.</span> <span class="nav-text">idea</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#translation%E6%8F%92%E4%BB%B6"><span class="nav-number">14.1.</span> <span class="nav-text">translation插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Codelf"><span class="nav-number">14.2.</span> <span class="nav-text">Codelf</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git"><span class="nav-number">15.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E5%AE%89%E8%A3%85"><span class="nav-number">15.1.</span> <span class="nav-text">git安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AESSH"><span class="nav-number">15.2.</span> <span class="nav-text">配置SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0github"><span class="nav-number">15.3.</span> <span class="nav-text">项目上传到github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%93%8D"><span class="nav-number">15.4.</span> <span class="nav-text">实操</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E5%88%B0%E4%B8%80%E4%B8%AA%E6%96%B0%E4%BB%93%E5%BA%93"><span class="nav-number">15.4.1.</span> <span class="nav-text">上传到一个新仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%8A%E6%96%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E5%B7%B2%E6%9C%89%E4%BB%93%E5%BA%93"><span class="nav-number">15.4.2.</span> <span class="nav-text">把新文件上传到已有仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="nav-number">15.4.3.</span> <span class="nav-text">其他命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#idea-1"><span class="nav-number">16.</span> <span class="nav-text">idea</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E5%8A%9E%E5%85%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">17.</span> <span class="nav-text">python办公操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9Acsdn%E6%96%87%E7%AB%A0-gt-pdf"><span class="nav-number">17.1.</span> <span class="nav-text">需求：csdn文章-&gt;pdf</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#finalshell"><span class="nav-number">18.</span> <span class="nav-text">finalshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%9E%E6%8E%A5%E6%97%B6"><span class="nav-number">18.0.1.</span> <span class="nav-text">第一次连接时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C"><span class="nav-number">18.0.2.</span> <span class="nav-text">撤销代码运行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chatGbt%E9%85%8D%E7%BD%AE"><span class="nav-number">19.</span> <span class="nav-text">chatGbt配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zym%E6%A2%AF%E5%AD%90"><span class="nav-number">20.</span> <span class="nav-text">zym梯子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B"><span class="nav-number">21.</span> <span class="nav-text">图床教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BDPicGo"><span class="nav-number">21.1.</span> <span class="nav-text">1. 下载PicGo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-GitHub%E6%AD%A5%E9%AA%A4"><span class="nav-number">21.2.</span> <span class="nav-text">2. GitHub步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-PicGo%E9%85%8D%E7%BD%AEGitHub%E5%9B%BE%E5%BA%8A"><span class="nav-number">21.3.</span> <span class="nav-text">3. PicGo配置GitHub图床</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Typora%E9%85%8D%E7%BD%AEPicGo"><span class="nav-number">21.4.</span> <span class="nav-text">4. Typora配置PicGo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F"><span class="nav-number">21.5.</span> <span class="nav-text">5. 验证成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98"><span class="nav-number">21.6.</span> <span class="nav-text">遇到问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux"><span class="nav-number">22.</span> <span class="nav-text">linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E7%AB%AF%E5%8F%A3%E5%8F%B78080%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5"><span class="nav-number">22.1.</span> <span class="nav-text">查找端口号8080占用情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E6%9C%AC%E6%9C%BAIp%E5%9C%B0%E5%9D%80"><span class="nav-number">22.2.</span> <span class="nav-text">查找本机Ip地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE-2"><span class="nav-number">23.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matlab"><span class="nav-number">24.</span> <span class="nav-text">matlab</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E6%96%87%E4%BB%B6"><span class="nav-number">24.1.</span> <span class="nav-text">删文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">25.</span> <span class="nav-text">前端</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="RPC">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/RPC/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230416164720582.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/04e5b3e5f9e14cd689323d3a833e7c12~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A4536%3A0%3A0%3A0.awebp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/d6e935a5-fd5b-4cc8-8674-0441d04f8a27.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306041807280.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/018310a6-6f6d-40db-b0dc-13487d4e6c6f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/d0580b98-2bf5-4340-ad24-4ade48707cc2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1545973609449.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1545977832954.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1545978062568.png">
+<meta property="article:published_time" content="2023-06-04T10:03:19.000Z">
+<meta property="article:modified_time" content="2023-06-04T10:14:36.965Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/RPC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>RPC | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/RPC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RPC
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 18:03:19 / 修改时间：18:14:36" itemprop="dateCreated datePublished" datetime="2023-06-04T18:03:19+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png" alt="image-20230604180538472" style="zoom:50%;">
+
+<span id="more"></span>
+
+<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p>总结</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/28e48e5f9c73">https://www.jianshu.com/p/28e48e5f9c73</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/javaguide/p/rpc.html">https://www.cnblogs.com/javaguide/p/rpc.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/discuss/965487?type=2&amp;order=1&amp;pos=423&amp;page=1&amp;channel=-1&amp;source_id=discuss_center_2_nctrack">https://ac.nowcoder.com/discuss/965487?type=2&amp;order=1&amp;pos=423&amp;page=1&amp;channel=-1&amp;source_id=discuss_center_2_nctrack</a></p>
+<p>具体讲解</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40856284/category_10138756.html">https://blog.csdn.net/qq_40856284/category_10138756.html</a></p>
+<p>面试教程</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wwxy1995/article/details/113781493">https://blog.csdn.net/wwxy1995/article/details/113781493</a></p>
+<p>面试问题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37787662/article/details/124626953?spm=1001.2101.3001.6650.2&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-124626953-blog-113781493.235%5Ev29%5Epc_relevant_default_base3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-124626953-blog-113781493.235%5Ev29%5Epc_relevant_default_base3&amp;utm_relevant_index=3">https://blog.csdn.net/m0_37787662/article/details/124626953?spm=1001.2101.3001.6650.2&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-124626953-blog-113781493.235%5Ev29%5Epc_relevant_default_base3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-124626953-blog-113781493.235%5Ev29%5Epc_relevant_default_base3&amp;utm_relevant_index=3</a></p>
+<h1 id="简历"><a href="#简历" class="headerlink" title="简历"></a>简历</h1><p>1、基于选择器和虚拟节点，实现一致性哈希算法进行负载均衡，降低节点的数据迁移</p>
+<p>2、使用 Zookeeper 作为注册中心，实现持久化节点的创建、子节点列表的获取、节点变化时的自动更新<br>3、采用Netty简化网络传输过程，实现了Channel的缓存化和消息的发送、接收与动态响应等<br>4、使用Kyro进行序列化与反序列化，用ThreadLocal存储Kyro实例解决了线程不安全的问题<br>5、通过JDK动态代理调用远程方法，使用 CompletableFuture 包装接受服务端返回结果  </p>
+<h1 id="整体"><a href="#整体" class="headerlink" title="整体"></a>整体</h1><h2 id="整体服务调用链路是怎样的？"><a href="#整体服务调用链路是怎样的？" class="headerlink" title="整体服务调用链路是怎样的？"></a>整体服务调用链路是怎样的？</h2><p><strong>客户端</strong> （Client）:服务调用方（服务消费者）</p>
+<p><strong>客户端存根</strong> （Client Stub）:存放服务端地址信息，将客户端的请求参数数据信息打包成网络消息，再通过网络传输发送给服务端</p>
+<p><strong>服务端存根</strong> （Server Stub）:接收客户端发送过来的请求消息并进行解包，然后再调用本地服务进行处理</p>
+<p><strong>服务端</strong> （Server）:服务的真正提供者</p>
+<p>服务消费者（client客户端）通过调用本地服务的方式调用需要消费的服务；</p>
+<p>客户端存根（client stub）接收到调用请求后负责将方法、入参等信息序列化（组装）成能够进行网络传输的消息体；</p>
+<p>客户端存根（client stub）找到远程的服务地址，并且将消息通过网络发送给服务端；</p>
+<p>服务端存根（server stub）收到消息后进行解码（反序列化操作）；</p>
+<p>服务端存根（server stub）根据解码结果调用本地的服务进行相关处理；</p>
+<p>本地服务执行具体业务逻辑并将处理结果返回给服务端存根（server stub）；</p>
+<p>服务端存根（server stub）将返回结果重新打包成消息（序列化）并通过网络发送至消费方；</p>
+<p>客户端存根（client stub）接收到消息，并进行解码（反序列化）；</p>
+<p>服务消费方得到最终结果</p>
+<h1 id="我的"><a href="#我的" class="headerlink" title="我的"></a>我的</h1><p>RpcRequest</p>
+<pre><code>public class RpcRequest implements Serializable &#123;
+    private static final long serialVersionUID = 1905122041950251207L;//序列化版本
+    private String requestId;//请求Id
+    private String interfaceName;//接口名
+    private String methodName;//方法名
+    private Object[] parameters;//参数
+    private Class&lt;?&gt;[] paramTypes;//参数类型
+    private String version;//版本号
+    private String group;//一个接口多个实现类的问他
+</code></pre>
+<p>上面是data</p>
+<p>根据负载均衡算法从zookeeper里面找到对应服务名称的一个服务地址，构造rpcMessage对象，data属性就是上面的rpcRequest，然后是序列化方式、压缩方式、消息类型，发送这个对象，添加一个监听器</p>
+<p>用completableFuture接收channel的返回值</p>
+<p>服务端启动的时候就会把自己注册到zookeeper，同时getData(),拿到rpcRequest（rpcRequest.getRpcServiceName()是接口、组、版本号）,获取具体实现类名，方法名，调用方法得到结果，封装到RPCMessage,</p>
+<h2 id="总体流程（待丰富）"><a href="#总体流程（待丰富）" class="headerlink" title="总体流程（待丰富）"></a>总体流程（待丰富）</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230416164720582.png" alt="image-20230416164720582"></p>
+<p>自己画画</p>
+<p>1、client以本地调用方式调用远程服务（）</p>
+<p>2、客户端stub接受到调用将类、方法、参数组装为能进行网络传输的消息体：RPCRequest</p>
+<p>3、客户端Stub (client stub)找到远程服务的地址，并将消息发送到服务提供端;</p>
+<p>4．服务端Stub (桩)收到消息将消息反序列化为Java对象:RpcRequest ;</p>
+<p>5．服务端Stub(桩)根据RpcRequest 中的类、方法、方法参数等信息调用本地的方法;</p>
+<p>6．服务端Stub(桩）得到方法执行结果并将组装成能够进行网络传输的消息体:RpcResponse(序列化)发送至消费方;<br>7．客户端Stub (client stub）接收到消息并将消息反序列化为Java对象:RpcResponse，这样也就得到了最终结果。over!</p>
+<h1 id="RPC相关"><a href="#RPC相关" class="headerlink" title="RPC相关"></a>RPC相关</h1><h2 id="RPC框架有哪些"><a href="#RPC框架有哪些" class="headerlink" title="RPC框架有哪些"></a>RPC框架有哪些</h2><p>Dubbo：Java Golang等语言；提供了从服务定义、服务发现、服务通信到流量管控等几乎所有的服务治理能力，支持Triple 协议(基于HTTP&#x2F;2之上定义的下一代 RPC通信协议)、应用级服务发现、Dubbo <strong>Mesh</strong>(Dubbo3赋予了很多云原生友好的新特性）等特性。</p>
+<p>Motan:精简版Dubbo </p>
+<p>gRPC:面向移动应用，改进了通信层设计（protoBuf，灵活高效的数据格式），但没有服务治理功能，需要依赖腾讯北极星、</p>
+<p>总结：</p>
+<p>1、跨语言调用的话还是grpc 如果是java的话就dubbo</p>
+<p>2、gRPC和Thrift只提供了最基本的RPC框架功能，缺乏一系列配套的服务化组件和服务治理功能的支撑。<br>Dubbo 不论是从功能完善程度、生态系统还是社区活跃度来说都是最优秀的。</p>
+<h2 id="为什么要有RPC"><a href="#为什么要有RPC" class="headerlink" title="为什么要有RPC"></a>为什么要有RPC</h2><p>1、http接口是在接口不多、系统与系统交互较少的情况下，解决信息孤岛初期常使用的一种通信手段；优点就是简单、直接、开发方便。利用现成的http协议进行传输。但是如果是一个大型的网站，内部子系统较多、接口非常多的情况下，RPC框架的好处就显示出来了，首先就是长链接，不必每次通信都要像http一样去3次握手什么的，减少了网络开销；其次就是RPC框架一般都有注册中心，有丰富的监控管理；发布、下线接口、动态扩展等，对调用方来说是无感知、统一化的操作。第三个来说就是安全性。最后就是最近流行的服务化架构、服务化治理，RPC框架是一个强力的支撑。</p>
+<p>2、socket只是一个简单的网络通信方式，只是创建通信双方的通信通道，而要实现rpc的功能，还需要对其进行封装，以实现更多的功能。</p>
+<p>3、RPC一般配合netty框架、spring自定义注解来编写轻量级框架，其实netty内部是封装了socket的，较新的jdk的IO一般是NIO，即非阻塞IO，在高并发网站中，RPC的优势会很明显</p>
+<h2 id="什么是RPC"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h2><p>RPC（Remote Procedure Call Protocol）远程过程调用协议，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。简言之，RPC使得程序能够像访问本地系统资源一样，去访问远端系统资源。比较关键的一些方面包括：通讯协议、序列化、资源（接口）描述、服务框架、性能、语言支持等</p>
+<h2 id="RPC组件和调用过程"><a href="#RPC组件和调用过程" class="headerlink" title="RPC组件和调用过程"></a>RPC组件和调用过程</h2><p>一个基本的RPC架构里面应该至少包含以下4个组件： </p>
+<p>1、客户端（Client）:服务调用方（服务消费者）<br> 2、客户端存根（Client Stub）:存放服务端地址信息，将客户端的请求参数数据信息打包成网络消息，再通过网络传输发送给服务端<br> 3、服务端存根（Server Stub）:接收客户端发送过来的请求消息并进行解包，然后再调用本地服务进行处理</p>
+<p>4、服务端（Server）:服务的真正提供者</p>
+<p>具体调用过程：<br> 1、服务消费者（client客户端）通过调用本地服务的方式调用需要消费的服务；（当客户端调用远程服务时，它实际上是通过代理对象来调用的）<br> 2、客户端存根（client stub）接收到调用请求后负责将方法、入参等信息序列化（组装）成能够进行网传输的消息体；（序列化 编码 ）<br> 3、客户端存根（client stub）（通过zookeeper负载均衡 服务端注册 客户端服务发现）找到远程的服务地址，并且将消息通过网络发送给服务端；<br> 4、服务端存根（server stub）收到消息后进行解码（反序列化操作）；<br> 5、服务端存根（server stub）根据解码结果调用本地的服务进行相关处理；<br> 6、本地服务执行具体业务逻辑并将处理结果返回给服务端存根（server stub）；<br> 7、服务端存根（server stub）将返回结果重新打包成消息（序列化）并通过网络发送至消费方；<br> 8、客户端存根（client stub）接收到消息，并进行解码（反序列化）；<br> 9、服务消费方得到最终结果；<br> 而RPC框架的实现目标则是将上面的第2-10步完好地封装起来，也就是把调用、编码&#x2F;解码的过程给封装起来，让用户感觉上像调用本地服务一样的调用远程服务。</p>
+<h2 id="RPC框架需要解决的问题？"><a href="#RPC框架需要解决的问题？" class="headerlink" title="RPC框架需要解决的问题？"></a>RPC框架需要解决的问题？</h2><blockquote>
+<p>1、如何确定客户端和服务端之间的通信协议？<br>2、如何更高效地进行网络通信？<br>3、服务端提供的服务如何暴露给客户端？<br>4、客户端如何发现这些暴露的服务？<br>5、如何更高效地对请求对象和响应结果进行序列化和反序列化操作？</p>
+</blockquote>
+<h2 id="RPC使用了哪些关键技术？"><a href="#RPC使用了哪些关键技术？" class="headerlink" title="RPC使用了哪些关键技术？"></a>RPC使用了哪些关键技术？</h2><blockquote>
+<ul>
+<li>1、动态代理 生成Client Stub（客户端存根）和Server Stub（服务端存根）的时候需要用到Java动态代理技术，可以使用JDK提供的原生的动态代理机制，也可以使用开源的：CGLib代理，Javassist字节码生成技术。</li>
+<li>2、序列化和反序列化 在网络中，所有的数据都将会被转化为字节进行传送，所以为了能够使参数对象在网络中进行传输，需要对这些参数进行序列化和反序列化操作。 序列化：把对象转换为字节序列的过程称为对象的序列化，也就是编码的过程。反序列化：把字节序列恢复为对象的过程称为对象的反序列化，也就是解码的过程。 目前比较高效的开源序列化框架：如Kryo、FastJson和Protobuf等。<br>反序列化：把字节序列恢复为对象的过程称为对象的反序列化，也就是解码的过程。 目前比较高效的开源序列化框架：如Kryo、FastJson和Protobuf等。</li>
+<li>3、NIO通信 出于并发性能的考虑，传统的阻塞式 IO 显然不太合适，因此我们需要异步的 IO，即 NIO。Java 提供了 NIO 的解决方案，Java 7 也提供了更优秀的 NIO.2 支持。可以选择Netty或者MINA来解决NIO数据传输的问题。</li>
+<li>4、服务注册中心 可选：Redis、Zookeeper、Consul 、Etcd。一般使用ZooKeeper提供服务注册与发现功能，解决单 点故障以及分布式部署的问题(注册中心)。</li>
+</ul>
+</blockquote>
+<h2 id="RPC的实现原理架构图"><a href="#RPC的实现原理架构图" class="headerlink" title="RPC的实现原理架构图"></a>RPC的实现原理架构图</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/04e5b3e5f9e14cd689323d3a833e7c12~tplv-k3u1fbpfcp-zoom-in-crop-mark%3A4536%3A0%3A0%3A0.awebp" alt="image.png"></p>
+<p>也就是说两台服务器A，B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数&#x2F;方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。 比如说，A服务器想调用B服务器上的一个方法：</p>
+<ul>
+<li>1、建立通信 首先要解决通讯的问题：即A机器想要调用B机器，首先得建立起通信连接。主要是通过在客户端和服务器之间建立TCP连接，远程过程调用的所有交换的数据都在这个连接里传输。连接可以是按需连接，调用结束后就断掉，也可以是长连接，多个远程过程调用共享同一个连接。<br>通常这个连接可以是按需连接（需要调用的时候就先建立连接，调用结束后就立马断掉），也可以是长连接（客户端和服务器建立起连接之后保持长期持有，不管此时有无数据包的发送，可以配合心跳检测机制定期检测建立的连接是否存活有效），多个远程过程调用共享同一个连接。</li>
+<li>2、服务寻址 要解决寻址的问题，也就是说，A服务器上的应用怎么告诉底层的RPC框架，如何连接到B服务器（如主机或IP地址）以及特定的端口，方法的名称名称是什么。通常情况下我们需要提供B机器（主机名或IP地址）以及特定的端口，然后指定调用的方法或者函数的名称以及入参出参等信息，这样才能完成服务的一个调用。可靠的寻址方式（主要是提供服务的发现）是RPC的实现基石，比如可以采用Redis或者Zookeeper来注册服务等等。</li>
+<li>2.1、从服务提供者的角度看： 当服务提供者启动的时候，需要将自己提供的服务注册到指定的注册中心，以便服务消费者能够通过服务注册中心进行查找；当服务提供者由于各种原因致使提供的服务停止时，需要向注册中心注销停止的服务；服务的提供者需要定期向服务注册中心发送心跳检测，服务注册中心如果一段时间未收到来自服务提供者的心跳后，认为该服务提供者已经停止服务，则将该服务从注册中心上去掉。</li>
+<li>2.2、从调用者的角度看： 服务的调用者启动的时候根据自己订阅的服务向服务注册中心查找服务提供者的地址等信息；当服务调用者消费的服务上线或者下线的时候，注册中心会告知该服务的调用者；服务调用者下线的时候，则取消订阅。</li>
+<li>3、网络传输</li>
+<li>3.1、序列化 当A机器上的应用发起一个RPC调用时，调用方法和其入参等信息需要通过底层的网络协议如TCP传输到B机器，由于网络协议是基于二进制的，所有我们传输的参数数据都需要先进行序列化（Serialize）或者编组（marshal）成二进制的形式才能在网络中进行传输。然后通过寻址操作和网络传输将序列化或者编组之后的二进制数据发送给B机器。</li>
+<li>3.2、反序列化 当B机器接收到A机器的应用发来的请求之后，又需要对接收到的参数等信息进行反序列化操作（序列化的逆操作），即将二进制信息恢复为内存中的表达方式，然后再找到对应的方法（寻址的一部分）进行本地调用（一般是通过生成代理Proxy去调用, 通常会有JDK动态代理、CGLIB动态代理、Javassist生成字节码技术等），之后得到调用的返回值。</li>
+<li>4、服务调用 B机器进行本地调用（通过代理Proxy和反射调用）之后得到了返回值，此时还需要再把返回值发送回A机器，同样也需要经过序列化操作，然后再经过网络传输将二进制数据发送回A机器，而当A机器接收到这些返回值之后，则再次进行反序列化操作，恢复为内存中的表达方式，最后再交给A机器上的应用进行相关处理（一般是业务逻辑处理操作）。 通常，经过以上四个步骤之后，一次完整的RPC调用算是完成了，另外可能因为网络抖动等原因需要重试等。</li>
+</ul>
+<h2 id="微服务之间如何进行通信？"><a href="#微服务之间如何进行通信？" class="headerlink" title="微服务之间如何进行通信？"></a>微服务之间如何进行通信？</h2><p><strong>参考答案</strong>：</p>
+<ul>
+<li><strong>单体项目</strong>时：<strong>一次服务调用</strong>发生在<strong>同一台机器</strong>上的<strong>同一个进程内部</strong>，也就是说调用发生在本机内部，因此也被叫作本地方法调用。</li>
+<li><strong>微服务项目</strong>时：<strong>服务提供者</strong>和<strong>服务消费者</strong>运行在<strong>两台不同物理机上的不同进程内</strong>，它们之间的调用相比于本地方法调用，可称之为远程方法调用，简称 RPC</li>
+</ul>
+<h2 id="RPC了解多少？都有哪些？"><a href="#RPC了解多少？都有哪些？" class="headerlink" title="RPC了解多少？都有哪些？"></a><strong>RPC了解多少？都有哪些？</strong></h2><p><strong>参考答案</strong>：RPC全称称： Remote Procedure Calls 远程服务调用，是进行服务之间相互调用的。</p>
+<p><strong>受限语言</strong>的开源 RPC 框架</p>
+<ul>
+<li><strong>Dubbo</strong>：<strong>阿里</strong>2011年开源，仅支持 Java 语言。(<strong>官方文档</strong>：<a href="https://hd.nowcoder.com/link.html?target=https://dubbo.apache.org/zh/docs/">https://dubbo.apache.org/zh/docs/</a>)</li>
+<li><strong>Motan</strong>：<strong>微博</strong>2016 年开源，仅支持 Java 语言。(<strong>Github地址</strong>：<a href="https://hd.nowcoder.com/link.html?target=https://github.com/weibocom/motan">https://github.com/weibocom/motan</a>)</li>
+<li><strong>Tars</strong>：<strong>腾讯</strong>2017 年开源，仅支持 C++ 语言。(<strong>官方文档</strong>：<a href="https://hd.nowcoder.com/link.html?target=https://tarscloud.github.io/TarsDocs/installation/source.html">https://tarscloud.github.io/TarsDocs/installation/source.html</a>)</li>
+<li><strong>Spring Cloud Feigh</strong>：国外 Pivotal 公司 2014 年对外开源的 RPC 框架，仅支持 Java 语言(Github:<a href="https://hd.nowcoder.com/link.html?target=https://github.com/OpenFeign/feign">https://github.com/OpenFeign/feign)【后面又出现了SpringCloud</a>【后面又出现了SpringCloud) Alibaba， Spring-Cloud-Alibaba 项目由阿里巴巴的开源组件和多个阿里云产品组成，旨在实现和公开众所周知的 Spring 框架模式和抽象，为使用阿里巴巴产品的 Java 开发者带来 Spring-Boot 和 Spring-Cloud 的好处。 】</li>
+</ul>
+<p><strong>跨语言平台</strong>的开源 RPC 框架主要有以下几种。</p>
+<ul>
+<li><strong>GRPC</strong>：<strong>Google</strong> 2015 年开源，支持多种语言。(官方文档：<a href="https://hd.nowcoder.com/link.html?target=https://grpc.io/docs/">https://grpc.io/docs/</a>)</li>
+<li><strong>Thrift</strong>：最初<strong>Facebook</strong> 开发的内部框架，2007 年贡献给了 Apache 基金，成为 Apache 开源项目之一，支持多种语言。<br><img src="https://raw.githubusercontent.com/viacheung/img/main/image/d6e935a5-fd5b-4cc8-8674-0441d04f8a27.png" alt="Dubbo架构"></li>
+</ul>
+<h2 id="RPC包含哪些部分？"><a href="#RPC包含哪些部分？" class="headerlink" title="RPC包含哪些部分？"></a><strong>RPC包含哪些部分？</strong></h2><p><strong>参考答案</strong>：一个RPC框架要包含</p>
+<ul>
+<li>客户端和服务端建立网络连接模块( <strong>server</strong>模块、<strong>client</strong>模块 )</li>
+<li>服务端<strong>处理请求模块</strong></li>
+<li><strong>协议</strong>模块</li>
+<li><strong>序列化</strong>和<strong>反序列</strong>模块。</li>
+</ul>
+<h2 id="设计一个RPC会考虑哪些问题？"><a href="#设计一个RPC会考虑哪些问题？" class="headerlink" title="设计一个RPC会考虑哪些问题？"></a><strong>设计一个RPC会考虑哪些问题？</strong></h2><p><strong>参考答案</strong>：设计一个RPC框架，可以从PRC包含的几个模块去考虑，对每一个模块分别进行设计。</p>
+<ul>
+<li><strong>客户端</strong>和<strong>服务端如何建立网络连接</strong>？</li>
+<li><strong>服务端</strong>如何<strong>处理请求</strong>？</li>
+<li><strong>数据传输</strong>采用什么<strong>协议</strong>？</li>
+<li><strong>数据</strong>该如何<strong>序列化</strong>和<strong>反序列化</strong>？</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306041807280.png" alt="gRPC架构"></p>
+<h1 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h1><h2 id="Kryo原理"><a href="#Kryo原理" class="headerlink" title="Kryo原理"></a>Kryo原理</h2><p>序列化是指将对象转换为字节流的过程，以便在网络上传输或存储。Kryo是一个高效的Java序列化框架，它能够将Java对象快速且高效地序列化为二进制数据，并能够将这些二进制数据快速地反序列化为Java对象。</p>
+<p>Kryo的序列化过程分为两个阶段：注册阶段和序列化阶段。在注册阶段，Kryo会扫描整个Java类路径，将所有需要序列化的类注册到Kryo的注册中心中，以便在序列化时快速地查找类信息。在序列化阶段，Kryo会将Java对象序列化为二进制数据，其中包含了对象的类型、属性名和属性值等信息。在反序列化时，Kryo会根据二进制数据中包含的类型信息，将二进制数据快速地反序列化为Java对象。</p>
+<p>Kryo序列化的原理主要包括以下几个方面：</p>
+<ol>
+<li>注册机制：Kryo通过注册机制将Java类的信息保存在注册中心中，以便在序列化和反序列化时快速地查找类信息。Kryo的注册机制采用了类似于Java序列化中的 serialVersionUID的机制来保证序列化和反序列化的兼容性。</li>
+<li>缓存机制：Kryo在序列化和反序列化时会使用缓存来提高性能。在序列化时，Kryo会将序列化过的对象保存在缓存中，以便在序列化其他对象时能够快速地查找已经序列化过的对象。在反序列化时，Kryo会使用缓存来避免反复创建Java对象，从而提高性能。</li>
+<li>指令集：Kryo使用一套指令集来实现序列化和反序列化。这套指令集包括了对象类型、字段名和字段值等信息，以便在序列化和反序列化时能够准确地还原Java对象。</li>
+</ol>
+<p>总的来说，Kryo序列化的原理主要包括了注册机制、缓存机制和指令集等方面，这些机制和原理都为Kryo的高效性能提供了保障。</p>
+<h2 id="netty-bytebuf工作原理"><a href="#netty-bytebuf工作原理" class="headerlink" title="netty bytebuf工作原理"></a>netty bytebuf工作原理</h2><p><code>ByteBuf</code>是Netty中提供的一个字节缓冲区实现，它的工作原理与Java NIO中的<code>Buffer</code>类有些不同，具体来说，<code>ByteBuf</code>有以下几个特点：</p>
+<ol>
+<li>引用计数：<code>ByteBuf</code>采用了引用计数机制来管理内存，当一个<code>ByteBuf</code>对象被创建时，它会在堆内存或者直接内存中分配一段连续的内存空间，并将它的引用计数初始化为1。当<code>ByteBuf</code>被传递给其他对象时，其引用计数会增加；当<code>ByteBuf</code>不再被使用时，其引用计数会减少，当引用计数为0时，<code>ByteBuf</code>会被释放掉。这种机制可以避免内存泄漏和重复释放的问题。</li>
+<li>可扩展：<code>ByteBuf</code>的大小是可以动态扩展的，当写入的数据超过了缓冲区的容量时，<code>ByteBuf</code>会自动扩展容量，并将原有的数据复制到新的内存空间中，这种机制可以避免缓冲区溢出的问题。</li>
+<li>零拷贝：<code>ByteBuf</code>支持零拷贝，即在传输数据时可以避免数据的复制，减少内存的开销和提高性能。</li>
+</ol>
+<p>与Java NIO中的<code>Buffer</code>类相比，<code>ByteBuf</code>的主要区别如下：</p>
+<ol>
+<li><code>ByteBuf</code>采用了引用计数机制，避免了内存泄漏和重复释放的问题，而<code>Buffer</code>则没有引用计数机制。</li>
+<li><code>ByteBuf</code>的容量是可以动态扩展的，而<code>Buffer</code>的容量是固定的。</li>
+<li><code>ByteBuf</code>支持零拷贝，可以避免数据的复制，而<code>Buffer</code>则需要通过复制将数据从内核空间复制到用户空间。</li>
+</ol>
+<p>综上所述，<code>ByteBuf</code>相比于<code>Buffer</code>具有更多的优势，能够更好地支持高性能网络应用程序的开发。</p>
+<h2 id="序列化与反序列的方式有哪些？"><a href="#序列化与反序列的方式有哪些？" class="headerlink" title="序列化与反序列的方式有哪些？"></a><strong>序列化与反序列的方式有哪些？</strong></h2><p><strong>参考答案</strong>： 常用的序列化方式分为两类</p>
+<ul>
+<li>文本类如 XML&#x2F;JSON 等</li>
+<li>二进制类如 PB&#x2F;Thrift 等</li>
+</ul>
+<h2 id="有哪些序列化协议？"><a href="#有哪些序列化协议？" class="headerlink" title="有哪些序列化协议？"></a><strong>有哪些序列化协议？</strong></h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/018310a6-6f6d-40db-b0dc-13487d4e6c6f.png" alt="参考答案"></p>
+<h2 id="为什么要进行序列化和反序列化？"><a href="#为什么要进行序列化和反序列化？" class="headerlink" title="为什么要进行序列化和反序列化？"></a><strong>为什么要进行序列化和反序列化？</strong></h2><p><strong>参考答案</strong>：为什么需要序列化和反序列化，有下面几点原因。</p>
+<ul>
+<li>解决内存中<strong>数据结构</strong>到<strong>字节序列的映射过程中</strong>，如何保留各个结构和字段间的关系而生的技术 。</li>
+<li>解决<strong>异构系统的数据传输</strong>，比如大小端、远端的持久存储；</li>
+<li><strong>压缩数据，加快网络传输</strong>。【 网络传输耗时一方面取决于网络带宽大小，另一方面取决于数据传输量。想加快网络传输，要么提高带宽，要么减小数据传输量，而对数据进行编码的主要目的就是减小数据传输量。比如一部高清电影原始大小为 30GB，如果经过特殊编码格式处理，可以减小到 3GB，同样是 100MB&#x2F;s 的网速，下载时间可以从 300s 减小到 30s。 】</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/d0580b98-2bf5-4340-ad24-4ade48707cc2.png" alt="Thrift架构"></p>
+<h2 id="为什么选用Kyro"><a href="#为什么选用Kyro" class="headerlink" title="为什么选用Kyro"></a>为什么选用Kyro</h2><p>变长存储特性，字节码生成机制，运行速度快，占用较少的字节码体积，专门针对java</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>这是一个使用 Kryo 序列化和反序列化 Java 对象的类，为了解决 Kryo 线程不安全的问题，使用 ThreadLocal 为每个线程创建一个独立的 Kryo 实例，保证了线程安全性。</p>
+<p><strong>初始化</strong></p>
+<p>KryoSerializer 类实现了Serializer 接口</p>
+<p>为了解决 Kryo 线程不安全的问题，使用 ThreadLocal 为每个线程创建一个独立的 Kryo 实例，保证了线程安全性。withInitial（）用lamba表达式new了一个kyro实例并注册了RpcResponse 和 RpcRequest 两个类。</p>
+<p>ByteArrayOutputStream :用于存储序列化后的字节数组</p>
+<p>Output : Kryo 序列化库的 Output 对象，将其构造函数中传入的 ByteArrayOutputStream 对象作为参数，以便将序列化后的数据写入 ByteArrayOutputStream 中。</p>
+<p><strong>serialize</strong></p>
+<ol>
+<li>创建一个 ByteArrayOutputStream 和 Output 实例，Output 用于将序列化的对象写入 ByteArrayOutputStream 中。</li>
+<li>获取当前线程的kyro实例</li>
+<li>kryo 将 obj 对象（传入的rpcrequest）序列化成字节数组并写入 Output 中。</li>
+<li>remove清除当前线程的 Kryo 实例</li>
+<li>将 ByteArrayOutputStream 中的数据转换为字节数组并返回。</li>
+</ol>
+<p><strong>deserialize</strong></p>
+<ol>
+<li>创建一个 ByteArrayInputStream 和 Input 实例，Input 从 ByteArrayInputStream 中读取反序列化的对象。</li>
+<li>获取当前线程的 Kryo 实例</li>
+<li>从 Input 中读取字节数组并反序列化成对象。</li>
+<li>清除当前线程的 Kryo 实例。</li>
+<li>将反序列化后的对象强制类型转换为指定的类型并返回。</li>
+</ol>
+<p><strong>为什么用kyro？</strong></p>
+<p>变长存储特性，字节码生成机制，运行速度快，占用较少的字节码体积，专门针对java</p>
+<p><strong>为什么用ThreadLocal？</strong></p>
+<p>key是当前线程，value是kryo实例，防止多个服务调用之间会造成kyro线程不安全的问题，每个线程存一份kyro，多个线程互不影响  </p>
+<pre><code class="java">@Slf4j
+public class KryoSerializer implements Serializer &#123;
+
+    /**
+     * Because Kryo is not thread safe. So, use ThreadLocal to store Kryo objects
+     * 这是一个使用 Kryo 序列化和反序列化 Java 对象的类，为了解决 Kryo 线程不安全的问题，使用 ThreadLocal 为每个线程创建一个独立的 Kryo 实例，保证了线程安全性。
+     */
+    private final ThreadLocal&lt;Kryo&gt; kryoThreadLocal = ThreadLocal.withInitial(() -&gt; &#123;
+        Kryo kryo = new Kryo();
+//        注册了 RpcResponse 和 RpcRequest 两个类。
+        kryo.register(RpcResponse.class);
+        kryo.register(RpcRequest.class);
+        return kryo;
+    &#125;);
+
+    @Override
+    public byte[] serialize(Object obj) &#123;
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//             创建一个 ByteArrayOutputStream 和 Output 实例，Output 将序列化的对象写入 ByteArrayOutputStream 中。
+             Output output = new Output(byteArrayOutputStream)) &#123;
+//            获取当前线程的 Kryo 实例
+            Kryo kryo = kryoThreadLocal.get();
+            //   kryo 将 obj 对象序列化成字节数组并写入 Output 中。
+            kryo.writeObject(output, obj);
+            kryoThreadLocal.remove();//清除当前线程的 Kryo 实例
+//            将 ByteArrayOutputStream 中的数据转换为字节数组并返回。
+            return output.toBytes();
+        &#125; catch (Exception e) &#123;
+            throw new SerializeException(&quot;Serialization failed&quot;);
+        &#125;
+    &#125;
+
+    @Override
+    public &lt;T&gt; T deserialize(byte[] bytes, Class&lt;T&gt; clazz) &#123;
+//        创建一个 ByteArrayInputStream 和 Input 实例，Input 从 ByteArrayInputStream 中读取反序列化的对象。
+        try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+             Input input = new Input(byteArrayInputStream)) &#123;
+            Kryo kryo = kryoThreadLocal.get();//获取当前线程的 Kryo 实例。
+            // byte-&gt;Object:从byte数组中反序列化出对对象
+            Object o = kryo.readObject(input, clazz);
+            kryoThreadLocal.remove();//清除当前线程的 Kryo 实例
+            return clazz.cast(o);//将反序列化后的对象强制类型转换为指定的类型并返回。
+        &#125; catch (Exception e) &#123;
+            throw new SerializeException(&quot;Deserialization failed&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">//具体理解下这段代码：
+ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+Output output = new Output(byteArrayOutputStream)
+</code></pre>
+<p>ByteArrayOutputStream :用于存储序列化后的字节数组</p>
+<p>Output : Kryo 序列化库的 Output 对象，将其构造函数中传入的 ByteArrayOutputStream 对象作为参数，以便将序列化后的数据写入 ByteArrayOutputStream 中。</p>
+<p>这样，通过 Output 对象，可以将需要序列化的对象写入到 ByteArrayOutputStream 缓冲区中。具体来说，通过调用 Output 对象的 writeObject() 方法，将需要序列化的对象写入 ByteArrayOutputStream 缓冲区中。</p>
+<p>在这段代码中，由于 Output 对象是通过 ByteArrayOutputStream 对象构造而来的，因此 Output 对象将序列化后的数据写入了 ByteArrayOutputStream 缓冲区中，而非其他输出流。同时，由于 ByteArrayOutputStream 对象是一个字节数组输出流，因此序列化后的数据会被存储在内存中的字节数组中。这个字节数组可以通过调用 ByteArrayOutputStream 的 toBytes() 方法获取。</p>
+<p>需要注意的是，在使用完 Output 对象后，需要调用其 close() 方法关闭，以释放底层资源。在这里，由于使用了 try-with-resources 语句块，因此 Output 对象会在使用完毕后自动关闭，无需手动调用 close() 方法。</p>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="负载均衡了解哪些-dubbo的四种策略"><a href="#负载均衡了解哪些-dubbo的四种策略" class="headerlink" title="负载均衡了解哪些(dubbo的四种策略)"></a>负载均衡了解哪些(dubbo的四种策略)</h2><ol>
+<li>随机负载均衡(Random Load Balance)：随机选择一个可用的服务提供者进行调用。实现简单，适合轻度负载情况下使用。</li>
+<li>轮询负载均衡(Round Robin Load Balance)：将请求轮流分配给每个可用的服务提供者，保证每个服务提供者都能被调用到。适合负载均衡比较均衡的情况下使用。</li>
+<li>最少活跃调用数负载均衡(Least Active Load Balance)：统计每个服务提供者的活跃调用数，将请求分发到活跃调用数最小的服务提供者。适合并发量较大、负载不均衡的情况下使用。</li>
+<li><strong>一致性哈希负载均衡</strong>(Consistent Hash Load Balance)：将每个服务提供者映射到哈希环上，将请求根据哈希值映射到环上的某个服务提供者，从而实现负载均衡。适合服务提供者数量变化较大的情况下使用。</li>
+</ol>
+<h2 id="Dubbo为什么推荐基于随机的负载均衡？"><a href="#Dubbo为什么推荐基于随机的负载均衡？" class="headerlink" title="Dubbo为什么推荐基于随机的负载均衡？"></a>Dubbo为什么推荐基于随机的负载均衡？</h2><p>Dubbo是一种高性能的分布式服务框架，提供了负载均衡的功能来平衡分布式系统中的负载。Dubbo推荐基于随机的负载均衡算法，原因如下：</p>
+<ol>
+<li>随机的负载均衡算法可以避免单点故障。与基于权重的负载均衡算法相比，基于随机的负载均衡算法不依赖于权重，因此不会因为权重调整不当而导致单点故障。</li>
+<li>随机的负载均衡算法可以避免负载集中。基于随机的负载均衡算法会在所有服务提供者之间随机分配请求，从而避免某些服务提供者因为负载过高而导致系统不稳定的情况。</li>
+<li>随机的负载均衡算法可以提高系统的吞吐量。基于随机的负载均衡算法可以在所有服务提供者之间随机分配请求，从而使系统能够更好地利用资源，提高系统的吞吐量。</li>
+</ol>
+<p>总的来说，Dubbo推荐基于随机的负载均衡算法，因为它可以避免单点故障、避免负载集中、提高系统的吞吐量等优点。当然，在特定的场景下，基于权重的负载均衡算法或其他负载均衡算法也可能更适合，需要根据具体情况进行选择。</p>
+<p><strong>我用一致性Hash主要是</strong></p>
+<p>一致性hash算法可以保证当机器增加或者减少时，节点之间的数据迁移只限于两个节点之间，不会造成全局的网络问题。</p>
+<h2 id="一致性哈希在某节点宕机时怎么保证一致性的"><a href="#一致性哈希在某节点宕机时怎么保证一致性的" class="headerlink" title="一致性哈希在某节点宕机时怎么保证一致性的"></a>一致性哈希在某节点宕机时怎么保证一致性的</h2><p>具体来说，当某个节点宕机时，一致性哈希算法会将该节点上的所有数据重新映射到其他节点上，从而保证数据的一致性。这个过程可以分为以下几个步骤：</p>
+<ol>
+<li>确定宕机节点：当某个节点宕机时，需要先确定它所在的节点。</li>
+<li>删除节点：将宕机节点从哈希环上删除。</li>
+<li>重新映射数据：将宕机节点上的所有数据重新映射到离它最近的节点上。</li>
+</ol>
+<p>需要注意的是，在一致性哈希算法中，节点的加入和退出都会影响数据的分布，因此在节点加入或退出时，需要重新计算数据的映射关系。</p>
+<p>为了提高一致性哈希算法的可靠性，可以采取以下措施：</p>
+<ol>
+<li>虚拟节点：通过增加虚拟节点的方式来提高节点的数量，从而减小节点宕机对数据分布的影响。</li>
+<li>备份节点：在节点加入时，可以将数据复制到其他节点上，从而提高数据的冗余度，增加系统的可靠性。</li>
+</ol>
+<p>综上所述，一致性哈希算法在某节点宕机时会将它上面的数据重新映射到其他节点上，从而保证数据的一致性。为了提高算法的可靠性，可以采取虚拟节点和备份节点等措施。</p>
+<h2 id="一致性哈希算法"><a href="#一致性哈希算法" class="headerlink" title="一致性哈希算法"></a>一致性哈希算法</h2><ul>
+<li>如果Redis被当做缓存使用，使用一致性哈希实现动态扩容缩容。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903750860013576">https://juejin.cn/post/6844903750860013576</a></p>
+<p>一致性hash算法可以保证当机器增加或者减少时，节点之间的数据迁移只限于两个节点之间，不会造成全局的网络问题。</p>
+<ol>
+<li>传统hash算法增减服务器会导致大量key重定向到其他服务器</li>
+<li>一致性hash算法有一个0-2^31的圆环(哈希值是32位无符号整形）值为Key的数据隶属于顺时针方向第一个服务器</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1545973609449.png" alt="RedisServicee4"></p>
+<ol start="3">
+<li>当宕机和扩展服务器只会影响一部分数据</li>
+</ol>
+<img src="https://raw.githubusercontent.com/viacheung/img/main/image/1545977832954.png" alt="哈希环" style="zoom:33%;">
+
+<img src="https://raw.githubusercontent.com/viacheung/img/main/image/1545978062568.png" alt="虚拟节点" style="zoom: 33%;">
+
+<ol start="3">
+<li>如果节点太少,会导致数据倾斜,也就是hash范围差距大 那么可以引入了<strong>虚拟节点机制</strong>，即对每个节点计算多个哈希值，每个计算结果位置都放置在对应节点中，这些节点<strong>称为虚拟节点</strong>。</li>
+</ol>
+<ul>
+<li>如果Redis被当做一个持久化存储使用，必须使用固定的keys-to-nodes映射关系，节点的数量一旦确定不能变化。否则的话(即Redis节点需要动态变化的情况），必须使用可以在运行时进行数据再平衡的一套系统，而当前只有Redis集群可以做到这样。</li>
+</ul>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><p>代码具体怎么实现的？</p>
+<p>维护了一个ConcurrentHashMap类型的选择器集合，键为服务名称 rpcServiceName，值为选择器selector</p>
+<p>接收一个服务地址列表 serviceAddresses 和一个 RpcRequest 对象 rpcRequest，计算 serviceAddresses 的身份哈希码，通过 rpcRequest 中的服务名称构造出 rpcServiceName。然后从 selectors 中获取与 rpcServiceName 对应的一致性哈希选择器 ConsistentHashSelector（每个一致性哈希选择器对应一个服务），如果该选择器不存在或者哈希码不匹配，则创建一个新的一致性哈希选择器（），并将key为serviceName，value为selector放入 selectors（缓存） 中。最后，调用一致性哈希选择器的 select 方法选择一个服务地址。</p>
+<p><strong>选择器实现</strong>：</p>
+<p>再说下这个选择器的内部实现 ，维护了一个存储虚拟节点的 TreeMap （保证有序），key是hash值，value 是一个服务地址；（为什么？如果节点太少,会导致数据倾斜,也就是hash范围差距大，那么此时可以引入了<strong>虚拟节点机制</strong>，即对每个节点计算多个哈希值，每个计算结果位置都放置在对应节点中，这些节点<strong>称为虚拟节点</strong>。）</p>
+<p><strong>选择器初始化</strong>：</p>
+<p>遍历所有服务地址，为每个服务地址创建多个虚拟节点，使用 md5 算法出当前服务地址字符串的摘要数组，从 md5摘要中取出 4 个子段，并计算子段的哈希值，然后将虚拟节点的哈希值和服务地址的映射关系存储到 TreeMap 中</p>
+<p>针对每一个ip地址创建（replicaNumber &#x2F; 4）个重复节点，针对每个一个重复节点将其等间隔的分布在环形hash空间上（4个） 将虚拟节点的哈希值和服务地址的映射关系存储到 TreeMap 中 </p>
+<p>同时缓存了之前计算的 serviceAddresses 的身份哈希码</p>
+<p><strong>select方法</strong>：</p>
+<p>计算 RPC 服务名的 MD5 摘要数组，计算md5摘要哈希值并在TreeMap里面选择一个服务地址，找到虚拟节点中第一个哈希值大于等于指定哈希值的节点，如果不存在该节点，则选择环上的第一个节点，返回该节点对应的服务地址；</p>
+<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><h2 id="JDK动态代理机制是怎么实现的（反射，再底层原理不太清楚）"><a href="#JDK动态代理机制是怎么实现的（反射，再底层原理不太清楚）" class="headerlink" title="JDK动态代理机制是怎么实现的（反射，再底层原理不太清楚）"></a>JDK动态代理机制是怎么实现的（反射，再底层原理不太清楚）</h2><p>在RPC中，JDK动态代理机制通常用于实现远程方法调用。具体来说，当客户端调用远程服务时，它实际上是通过代理对象来调用的。代理对象在本地接收方法调用，并将其转发到远程服务器。服务器上的远程对象处理请求，并将结果返回给代理对象，代理对象将结果传递回客户端。</p>
+<p>JDK动态代理机制是通过Java反射机制来实现的。它可以在运行时动态地创建代理类和代理对象，而无需在编译时指定代理类。代理类实现了与委托类相同的接口，并在方法调用时将请求转发到委托对象。</p>
+<p>具体来说，JDK动态代理机制是通过以下步骤实现的：</p>
+<p>​	1.定义一个接口及其实现类;<br>​	2.自定义InvocationHandler并重写invoke方法，在invoke 方法中我们会调用原生方法(被代理类的方法) 并自定义一些处理逻辑;<br>​	3.通过Proxy . newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces ，InvocationHandler h)方法创建代理对象;（这是一个代理对象的工厂类，构造参数包括目标类的类加载器；代理需要实现的接口，可有多个；代理对象对应自定义的InvocationHandler）,然后调用原生方法，这里Handler起作用，实际上调用的是invoke方法，然后Invoke前后都可以对方法进行增强</p>
+<p>总的来说，JDK动态代理机制是一种灵活的方式来实现RPC，它可以根据需要创建代理对象，而无需在编译时指定代理类。同时，它还可以将远程方法调用与本地方法调用结合起来，从而提高了系统的性能和可扩展性。</p>
+<p><strong>网络传输细节都被封装在了invoke( )方法中。</strong></p>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>静态代理中，我们对目标对象的每个方法的增强都是手动完成的<br>(比如接口，一旦新增加方法，目标对象和代理对象都要进行修改)，要对每个目标类都单独写一个代理类)。<br>静态代理实现步骤:<br>1.定义一个接口及其实现类;<br>2.创建一个代理类同样实现这个接口<br>3.将目标对象注入进代理类,然后在代理类的对应方法调用目标类中的对应方法。这样的话，我们就可以通过代理类屏蔽对目标对象的访问，并且可以在目标方法执行前后做一些自己想做的事情。</p>
+<h2 id="动态代理-1"><a href="#动态代理-1" class="headerlink" title="动态代理"></a>动态代理</h2><p>动态代理更加灵活。不需要针对每个目标类都单独创建一个代理类 ，并且也不需要我们必须实现接口，我们可以直接代理实现类( CGLIB动态代理机制）。<br>从JVM角度来说，动态代理是在运行时动态生成类字节码，并加载到JVM中的。<br>说到动态代理，Spring AOP、RPC 框架应该是两个不得不的提的，它们的实现都依赖了动态代理。</p>
+<h3 id="JDK动态代理使用步骤"><a href="#JDK动态代理使用步骤" class="headerlink" title="JDK动态代理使用步骤"></a>JDK动态代理使用步骤</h3><p>1.定义一个接口及其实现类;<br>2.自定义InvocationHandler并重写invoke方法，在invoke 方法中我们会调用原生方法(被代理类的方法) 并自定义一些处理辑;<br>3.通过Proxy . newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces ，InvocationHandler h)方法创建代理对象;（这是一个代理对象的工厂类，构造参数包括目标类的类加载器；代理需要实现的接口，可有多个；代理对象对应自定义的InvocationHandler）,然后调用原生方法，这里Handler起作用，实际上调用的是invoke方法，然后Invoke前后都可以对方法进行增强</p>
+<p>invoke方法处理逻辑：</p>
+<pre><code>1、创建远程方法请求对象，调用rpcRequestTransport.sendRpcRequest(rpcRequest)
+拿到响应结果。
+2、检查响应结果是否正确，如果响应结果为null，抛出调用失败的异常，如果请求ID与响应ID不匹配，抛出请求与响应不匹配的异常， 如果响应结果状态码为null或者不是成功状态，抛出调用失败的异常
+3、返回远程方法调用的结果
+</code></pre>
+<h3 id="CGLIB"><a href="#CGLIB" class="headerlink" title="CGLIB"></a>CGLIB</h3><p>JDK动态代理有个问题，只能代理实现了接口的类。可以用CGLIB动态代理机制来避免。</p>
+<p>Spring中的AOP模块中:如果目标对象实现了接口，则默认采用JDK动态代理，否则采用CGLIB动态代理。<br>在CGLIB动态代理机制中MethodInterceptor 接口和Enhancer<br>类是核心。<br>需要自定义MethodInterceptor 并重写intercept方法，intercept 用于拦截增强被代理类的方法。</p>
+<pre><code class="java">public interface MethodInterceptor
+extends Callback&#123;
+//拦截被代理类中的方法
+public object intercept(object obj, java.lang. reflect. Method method, 0bject[] args,MethodProxy proxy) throws Throwable;
+&#125;
+</code></pre>
+<ol>
+<li><p>obj :被代理的对象( 需要增强的对象)</p>
+</li>
+<li><p>method :被拦截的方法( 需要增强的方法)</p>
+</li>
+<li><p>args:方法入参</p>
+</li>
+<li><p>methodProxy :用于调用原始方法</p>
+</li>
+</ol>
+<p>可以通过Enhancer 类来动态获取被代理类，当代理类调用方法的时候，实际调用的是MethodInterceptor中的intercept 方法。</p>
+<p>CGLIB动态代理类使用步骤<br>1.定义一个类（导入依赖）;<br>2.自定义MethodInterceptor 并写intercept 方法，intercept 用于拦截增强被代理类的方法,和JDK动态代理中的invoke 方法类似;同样的在调用原始方法（methodProxy）之前之后可以增强<br>3.通过Enhancer类的create() 创建代理类;（包括设置类加载器、设置被代理类、方法拦截器）</p>
+<p>4.最后获取代理类并调用原生方法</p>
+<h3 id="JDK动态代理和CGLIB动态代理对比"><a href="#JDK动态代理和CGLIB动态代理对比" class="headerlink" title="JDK动态代理和CGLIB动态代理对比"></a>JDK动态代理和CGLIB动态代理对比</h3><ol>
+<li><p>JDK动态代理只能只能代理实现了接口的类,而CGLIB可以代理未实现任何接口的类。另外,CGLIB动态代理是通过生成一个被代理类的子类来拦截被代理类的方法调用，因此不能代理声明为final类型的类和方法。</p>
+</li>
+<li><p>就二者的效率来说，大部分情况都是JDK动态代理更优秀,随着JDK版本的升级,这个优势更加明显</p>
+</li>
+</ol>
+<h3 id="静态代理和动态代理的对比"><a href="#静态代理和动态代理的对比" class="headerlink" title="静态代理和动态代理的对比"></a>静态代理和动态代理的对比</h3><p>1、灵活性:动态代理更加灵活,不需要必须实现接口，可以直接代理实现类,并且可以不需要针对每个目标类都创建一个代理类。 另外，静态代理中，接口一旦新增加方法，目标对象和代理对象都要进行修改，这是非常麻烦的! </p>
+<p>2、JVM层面:静态代理在编译时就将接口、实现类、代理类这些都变成了一个个实际的class文件。而动态代理是在运行时动态生成类字节码，并加载到JVM中的。</p>
+<h2 id="反射可以访问private方法和属性吗？如何访问？"><a href="#反射可以访问private方法和属性吗？如何访问？" class="headerlink" title="反射可以访问private方法和属性吗？如何访问？"></a>反射可以访问private方法和属性吗？如何访问？</h2><p>通过 setAccessible(true)</p>
+<h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="JDK动态代理使用步骤-1"><a href="#JDK动态代理使用步骤-1" class="headerlink" title="JDK动态代理使用步骤"></a>JDK动态代理使用步骤</h3><p>1.定义一个接口及其实现类;<br>2.自定义InvocationHandler并重写invoke方法，在invoke 方法中我们会调用原生方法(被代理类的方法) 并自定义一些处理逻辑;</p>
+<p>invoke方法处理逻辑：</p>
+<pre><code>1、创建远程方法请求对象，调用rpcRequestTransport.sendRpcRequest(rpcRequest)
+拿到响应结果。
+2、根据传输方式发送远程方法请求，并获取响应结果
+3、检查响应结果是否正确，如果响应结果为null，抛出调用失败的异常，如果请求ID与响应ID不匹配，抛出请求与响应不匹配的异常， 如果响应结果状态码为null或者不是成功状态，抛出调用失败的异常
+4、返回远程方法调用的结果
+</code></pre>
+<p>3.通过Proxy . newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces ，InvocationHandler h)方法创建代理对象;（这是一个代理对象的工厂类，构造参数包括目标类的类加载器；代理需要实现的接口，可有多个；代理对象对应自定义的InvocationHandler）,然后调用原生方法，这里Handler起作用，实际上调用的是invoke方法，然后Invoke前后都可以对方法进行增强</p>
+<h1 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h1><h2 id="介绍一下服务注册中心怎么做的？"><a href="#介绍一下服务注册中心怎么做的？" class="headerlink" title="介绍一下服务注册中心怎么做的？"></a>介绍一下服务注册中心怎么做的？</h2><p>Zookeeper是一个分布式的开源服务注册中心，它提供了一个高可用的协调服务，用于协调和管理分布式系统中的各种服务和节点。Zookeeper提供了一个统一的命名空间，用于存储和管理分布式系统中的各种服务和节点，同时还提供了一个高可用的集群环境，以保证系统的可靠性和稳定性。</p>
+<p>Zookeeper的主要功能之一是服务注册和发现。在分布式系统中，通常需要注册服务和节点，并使其他节点能够发现它们。Zookeeper提供了一个统一的命名空间，用于存储和管理分布式系统中的各种服务和节点。在Zookeeper中，每个服务或节点都被表示为一个节点，节点可以具有子节点。每个节点都有一个唯一的路径和数据，其中路径用于标识节点，数据用于存储有关节点的信息。</p>
+<p>当一个节点或服务启动时，它可以将自己注册到Zookeeper中，并在节点下创建一个临时节点。这个节点将包含有关服务或节点的信息。其他节点可以查询Zookeeper以查找特定服务或节点的信息。在这种方式下，节点和服务可以动态地加入和退出系统，而不需要人工干预。</p>
+<p>Zookeeper还提供了watch机制，用于监视节点和数据的变化。当节点或数据发生变化时，Zookeeper会通知所有相关的节点。这使得系统可以动态地响应变化，同时避免了轮询的开销。</p>
+<p>总之，服务注册中心（Zookeeper）通过提供统一的命名空间和watch机制，使得分布式系统中的节点和服务可以动态地加入和退出系统，并且可以动态地响应变化，从而提高了系统的可靠性和灵活性。</p>
+<h2 id="为什么选zookeeper？"><a href="#为什么选zookeeper？" class="headerlink" title="为什么选zookeeper？"></a>为什么选zookeeper？</h2><h2 id="如果你节点宕机，zookeeper如何感知？"><a href="#如果你节点宕机，zookeeper如何感知？" class="headerlink" title="如果你节点宕机，zookeeper如何感知？"></a>如果你节点宕机，zookeeper如何感知？</h2><p>zookee提供了“心跳检测”功能，它会定时间各个服务提供者发送一个请求 (实际上建立的是一个socket长连接) . 如果长期没有响应，服务中心就认为该服务提供者已经“挂了”。并将其删除。</p>
+<p>默认的是服务提供者和zookeeper不会断开连接(创建的是永久节点) .否则应该将服务创建成临时节点，客户端和zookper建立会话后，他们之间的连接有个过期时间限制，客户端也就是服务提供者会定时向zookeeper发送心跳请求来延缓过期时间(crud操作也会延缓过期时间)，同时zookeeper会定期扫描哪些连接已经过期,如果发现这个session过期会删除这个连接中创建的临时节点</p>
+<h2 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h2><p>ZK_REGISTER_ROOT_PATH（根路径） + “&#x2F;“ + rpcServiceName（服务名称） + inetSocketAddress.toString()（服务地址）;</p>
+<p>我们定义了两个接口ServiceDiscovery.java 和ServiceRegistry.java ，这两个接口分别定义了服务发现和服务注册行为。</p>
+<p>接下来，我们使用zookeeper作为注册中心的实现方式，并实现了这两个接口。</p>
+<p>当我们的服务被注册进zookeeper的时候，我们将完整的服务名称rpcServiceName (classname+group+version)作为根节点（一个根节点(rpcServiceName) 可能会对应多个服务地址(相同服务被部署多份的情况)），子节点是对应的服务地址(ip+端口号)。</p>
+<p>class name :服务接口名也就是类名比如: github. javaguide . HelloService 。<br>version : 服务版本。主要是为后续不兼容升级提供可能<br>group :服务所在的组。主要用于处理一个接口有多 个类实现的情况。</p>
+<p>如果我们要获得某个服务对应的地址的话，就直接根据完整的服务名称来获取到其下的所有子节点，然后通过具体的负载均衡策略取出一个就可以了。相关代码如下在ZkServiceDiscovery. java中已经给出。</p>
+<p>CuratorUtils:</p>
+<p>一些属性</p>
+<pre><code class="java">    private static final int BASE_SLEEP_TIME = 1000; //定义基本等待时间为1000毫秒
+    private static final int MAX_RETRIES = 3; //定义最大重试次数为3次
+    public static final String ZK_REGISTER_ROOT_PATH = &quot;/my-rpc&quot;; //定义服务注册的根路径为/my-rpc
+    private static final Map&lt;String, List&lt;String&gt;&gt; SERVICE_ADDRESS_MAP = new ConcurrentHashMap&lt;&gt;(); //定义一个线程安全的Map用于存储每个服务的地址列表
+    private static final Set&lt;String&gt; REGISTERED_PATH_SET = ConcurrentHashMap.newKeySet(); //定义一个线程安全的Set用于存储已经注册过的路径
+    private static CuratorFramework zkClient; //定义一个CuratorFramework类型的客户端对象
+    private static final String DEFAULT_ZOOKEEPER_ADDRESS = &quot;127.0.0.1:2181&quot;; //定义默认的Zookeeper服务器地址为127.0.0.1:2181
+</code></pre>
+<p>createPersistentNode:用于创建持久化节点</p>
+<pre><code>判断节点是否已经存在，如果存在则直接返回,如果节点不存在，则使用指定的路径(传入的)创建一个持久化节点,将已注册的路径加入到REGISTERED_PATH_SET中，以便后续检查
+</code></pre>
+<p>getChildrenNodes:用于获取指定节点下的所有子节点</p>
+<pre><code>根据SERVICE_ADDRESS_MAP判断是否已经获取过该节点的子节点列表,如果已经获取过，直接返回之前获取到的子节点列表，没有的话，声明一个空列表，用于存放获取到的子节点列表，拼接出目标节点的完整路径，获取指定节点下的所有子节点列表，将获取到的子节点列表缓存起来，便于下次快速获取，给该节点注册一个监听器(registerWatcher)，用于在节点发生变化时自动更新子节点列表，返回获取到的子节点列表
+</code></pre>
+<p>clearRegistry：清空注册表的数据</p>
+<pre><code>并行处理已注册路径的流,for each循环遍历路径，如果路径以传入的服务端的IP地址和端口号结尾，则删除该路径
+</code></pre>
+<p>getZkClient：获取ZooKeeper客户端</p>
+<pre><code>1、检查用户是否设置了 ZooKeeper 地址，如果 zkClient 已经启动，则直接返回。
+2、设置重试策略。最多重试 3 次，并会增加重试之间的休眠时间。
+3、 创建 zkClient 实例，启动 zkClient，等待 30 秒直到连接到 ZooKeeper
+</code></pre>
+<p>registerWatcher：在节点发生变化时自动更新子节点列表</p>
+<pre><code>通过拼接ZooKeeper注册根路径和服务名称得到服务路径，然后创建了一个PathChildrenCache对象，用于监听服务路径下的子节点变化，并将其添加到服务路径的监听器列表中。当服务路径下的子节点发生变化时，PathChildrenCacheListener对象会被回调，获取服务路径下所有子节点的路径（List&lt;String&gt;），将服务名称与服务地址的映射关系存入服务地址映射表中。最终通过启动PathChildrenCache对象实现监听服务地址的更新。
+</code></pre>
+<pre><code>//注册
+public void registerService(String rpcServiceName, InetSocketAddress inetSocketAddress) &#123;
+    // 创建服务节点路径
+    String servicePath = CuratorUtils.ZK_REGISTER_ROOT_PATH（根路径） + &quot;/&quot; + rpcServiceName（服务名称） + inetSocketAddress.toString()（服务地址）;
+    // 获取Zookeeper客户端
+    CuratorFramework zkClient = CuratorUtils.getZkClient();
+    // 创建持久化节点
+    CuratorUtils.createPersistentNode(zkClient, servicePath);
+&#125;
+</code></pre>
+<pre><code>//发现
+public InetSocketAddress lookupService(RpcRequest rpcRequest) &#123;
+    String rpcServiceName = rpcRequest.getRpcServiceName();
+    CuratorFramework zkClient = CuratorUtils.getZkClient();
+    // 获取服务的地址列表
+    List&lt;String&gt; serviceUrlList = CuratorUtils.getChildrenNodes(zkClient, rpcServiceName);
+    if (CollectionUtil.isEmpty(serviceUrlList)) &#123;
+        // 若地址列表为空，则服务未找到，抛出异常
+        throw new RpcException(RpcErrorMessageEnum.SERVICE_CAN_NOT_BE_FOUND, rpcServiceName);
+    &#125;
+    // 使用负载均衡算法，从地址列表中选取一个服务地址
+    String targetServiceUrl = loadBalance.selectServiceAddress(serviceUrlList, rpcRequest);
+    log.info(&quot;Successfully found the service address:[&#123;&#125;]&quot;, targetServiceUrl);
+    //分隔符 Ip  port
+    String[] socketAddressArray = targetServiceUrl.split(&quot;:&quot;);//host:port
+    String host = socketAddressArray[0];
+    int port = Integer.parseInt(socketAddressArray[1]);
+    // 返回服务的 InetSocketAddress 对象
+    return new InetSocketAddress(host, port);
+&#125;
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>注册思路：</strong></p>
+<p>首先创建服务节点路径（根路径+服务名称+服务地址（ip端口）），获取Zookeeper客户端，创建持久化节点</p>
+<p><strong>创建持久化节点部分</strong>：</p>
+<p>根据REGISTERED_PATH_SET（ConcurrentHashMap.newKeySet(); 定义一个线程安全的Set用于存储已经注册过的路径）判断节点是否已经存在，如果存在则直接返回,如果节点不存在，则使用指定的路径(传入的)创建一个持久化节点,将已注册的路径加入到REGISTERED_PATH_SET中，以便后续检查</p>
+<p><strong>发现部分：</strong></p>
+<p>根据zookeeper客户端和服务名称，调用getChildrenNodes获取指定结点下（该服务名称下的）所有子节点</p>
+<p><strong>getChildrenNodes部分</strong>：</p>
+<p>根据SERVICE_ADDRESS_MAP（currentHashMap  线程安全的Map用于存储每个服务的地址列表 ）的Containskey方法判断是否已经获取过该节点的子节点列表,如果已经获取过，直接返回之前获取到的子节点列表，没有的话，声明一个空列表，用于存放获取到的子节点列表，拼接出目标节点的完整路径，获取指定节点下的所有子节点列表，将获取到的子节点列表缓存起来，便于下次快速获取，同时给该节点注册一个监听器(registerWatcher)，用于在节点发生变化时自动更新子节点列表，返回获取到的子节点列表</p>
+<p><strong>registerWatcher部分</strong>：（在节点发生变化时自动更新子节点列表）</p>
+<p>getChildrenNodes部分，给serviceName结点注册了一个监听器，传入了serviceName参数，通过拼接ZooKeeper注册根路径和服务名称得到服务路径，创建了一个PathChildrenCache对象，用于监听服务路径下的子节点变化，并将其添加到服务路径的监听器列表中。与此同时，创建了一个PathChildrenCacheListener对象，当服务路径下的子节点发生变化时，PathChildrenCacheListener对象会被回调，获取服务路径下所有子节点的路径（List<String>），将服务名称与服务地址的映射关系存入服务地址映射表SERVICE_ADDRESS_MAP中。最终通过启动PathChildrenCache对象实现监听服务地址的更新。</String></p>
+<h2 id="Zookeeper有几种角色？"><a href="#Zookeeper有几种角色？" class="headerlink" title="Zookeeper有几种角色？"></a>Zoo<a target="_blank" rel="noopener" href="https://blog.csdn.net/jump/super-jump/word?word=keep">keep</a>er有几种角色？</h2><ol>
+<li>Leader（领导者）：ZooKeeper集群中的一个节点被选举为Leader，它负责处理所有客户端请求的响应，并且负责管理集群中所有的数据副本，包括数据的读取、写入和删除等操作。</li>
+<li>Follower（跟随者）：ZooKeeper集群中的节点可以是Follower，它们负责接收客户端请求并将请求转发给Leader进行处理，同时也负责同步Leader上的数据副本。</li>
+<li>Observer（观察者）：ZooKeeper集群中的节点可以是Observer，它们与Follower的角色类似，但是Observer不参与Leader选举过程，也不参与数据同步，只接收客户端请求并将请求转发给Leader进行处理。</li>
+<li>Client（客户端）：ZooKeeper的客户端可以是任何需要协调的分布式系统，客户端向ZooKeeper发送请求来进行数据操作，例如创建、读取、写入和删除等操作。</li>
+</ol>
+<p>在ZooKeeper中，Leader和Follower的角色是比较重要的，因为它们共同组成了ZooKeeper集群的核心。Leader负责处理所有客户端请求并管理所有数据副本，Follower则负责接收客户端请求并同步Leader上的数据副本。Observer的角色则比较轻量级，它可以帮助扩展集群的读取性能，而不会对集群的写入性能造成影响。</p>
+<h2 id="Zookeeper集群节点宕机了怎么发现剔除的？"><a href="#Zookeeper集群节点宕机了怎么发现剔除的？" class="headerlink" title="Zookeeper集群节点宕机了怎么发现剔除的？"></a>Zoo<a target="_blank" rel="noopener" href="https://blog.csdn.net/jump/super-jump/word?word=keep">keep</a>er集群节点宕机了怎么发现剔除的？</h2><p>当ZooKeeper集群中的节点宕机时，需要通过一定的机制来发现并剔除宕机的节点，以保证集群的正常运行。ZooKeeper使用了心跳机制来检测节点的存活状态，具体操作如下：</p>
+<ol>
+<li>每个节点定时向集群中的其他节点发送心跳请求，并在心跳请求中包含自己的状态信息，例如节点的ID、版本号等。</li>
+<li>如果某个节点长时间未收到其他节点的心跳请求，则会将该节点标记为失效状态，并开始进行选举以选出新的Leader节点。</li>
+<li>在Leader节点宕机的情况下，其他节点将会发起选举，选举出新的Leader节点，并重新分配所有数据副本。</li>
+<li>如果某个节点在集群中被剔除，其他节点将会收到该节点失效的通知，并在自己的数据结构中将该节点剔除。</li>
+</ol>
+<p>在ZooKeeper中，集群中的每个节点都会维护一个与其他节点的连接，并定期进行心跳检测，以确保节点的存活状态。如果某个节点失效，则其他节点将会通过检测到该节点长时间未发送心跳请求来判断节点的状态，并进行相应的处理。同时，ZooKeeper还提供了一些工具和API，可以用来查看集群中节点的状态信息，以及手动进行节点的管理和剔除操作。</p>
+<h2 id="dubbo不足，以及优化方向？（语言支持）"><a href="#dubbo不足，以及优化方向？（语言支持）" class="headerlink" title="dubbo不足，以及优化方向？（语言支持）"></a>dubbo不足，以及优化方向？（语言支持）</h2><ol>
+<li>配置复杂：Dubbo的配置相对比较复杂，需要开发者对Dubbo的各个组件及其配置参数有一定的了解，这对于初学者来说可能会造成一定的困难。</li>
+<li>集成难度较大：Dubbo的集成需要开发者在应用程序中添加一定的代码和依赖，这会增加代码量和部署难度。</li>
+<li>性能瓶颈：在高并发场景下，Dubbo可能会存在性能瓶颈。例如，Dubbo的默认通信协议是基于TCP的，这在连接数较高的情况下可能会导致网络负载过大，从而影响性能。</li>
+</ol>
+<p>为了优化Dubbo的性能和使用体验，可以从以下方面入手：</p>
+<ol>
+<li>配置简化：Dubbo可以通过使用注解、配置文件等方式来简化配置，让开发者更方便地使用Dubbo。例如，使用Spring Boot集成Dubbo可以通过自动配置来简化配置。</li>
+<li>集成便捷性：可以考虑将Dubbo的集成与应用程序的构建和部署过程整合在一起，例如使用容器化技术来部署Dubbo服务。</li>
+<li>性能优化：可以通过更换通信协议、使用线程池等方式来优化Dubbo的性能。例如，使用Netty替代Dubbo默认的通信协议可以提高性能，同时使用线程池来处理请求可以减少线程切换带来的开销。</li>
+<li>容错机制：Dubbo提供了多种容错机制，可以在服务调用失败时自动切换到备用服务节点，从而提高系统的可用性。可以针对具体的业务需求选择合适的容错机制来保证系统的可靠性。</li>
+</ol>
+<p>总之，Dubbo作为一个成熟的分布式服务框架，已经具备了很多优秀的特性和功能。为了提高Dubbo的使用体验和性能，我们需要根据具体的业务需求来选择合适的优化方向。</p>
+<h2 id="netty高性能主要依赖了哪些特性？"><a href="#netty高性能主要依赖了哪些特性？" class="headerlink" title="netty高性能主要依赖了哪些特性？"></a>netty高性能主要依赖了哪些特性？</h2><p>Netty高性能主要依赖以下几个特性：</p>
+<ol>
+<li>异步非阻塞I&#x2F;O：Netty采用了基于NIO的异步非阻塞I&#x2F;O模型，可以有效地利用系统资源，提高程序的并发处理能力。</li>
+<li>Reactor模式：Netty采用了Reactor模式，通过一个主线程来监听所有的I&#x2F;O事件，并通过多个工作线程来处理这些事件，从而充分利用多核CPU，并减少线程上下文切换的开销。</li>
+<li>零拷贝技术：Netty支持零拷贝技术，可以避免在进行数据传输时将数据从内核空间复制到用户空间，从而提高数据传输的效率。</li>
+<li>内存池：Netty采用了内存池技术，可以减少内存的分配和回收次数，从而降低内存管理的开销，提高程序的性能。</li>
+<li>可插拔的编解码器：Netty提供了可插拔的编解码器，可以根据不同的业务需求选择不同的编解码器来实现数据的序列化和反序列化，从而提高数据传输的效率。</li>
+</ol>
+<p>综上所述，Netty高性能主要依赖于异步非阻塞I&#x2F;O、Reactor模式、零拷贝技术、内存池和可插拔的编解码器等特性，这些特性可以有效地提高程序的性能和可扩展性，使得Netty成为一个高性能的通信框架。</p>
+<h2 id="CGLib-底层"><a href="#CGLib-底层" class="headerlink" title="CGLib 底层"></a>CGLib 底层</h2><h3 id="一个类有方法a和方法b，两个方法都被代理，方法a中调用了方法b，被代理后调用a方法，a方法中调用的是被代理的方法b还是普通方法b？（求大神解答）"><a href="#一个类有方法a和方法b，两个方法都被代理，方法a中调用了方法b，被代理后调用a方法，a方法中调用的是被代理的方法b还是普通方法b？（求大神解答）" class="headerlink" title="一个类有方法a和方法b，两个方法都被代理，方法a中调用了方法b，被代理后调用a方法，a方法中调用的是被代理的方法b还是普通方法b？（求大神解答）"></a>一个类有方法a和方法b，两个方法都被代理，方法a中调用了方法b，被代理后调用a方法，a方法中调用的是被代理的方法b还是普通方法b？（求大神解答）</h3><p>如果一个类有方法a和方法b，两个方法都被代理，而且被代理的方法中调用了另一个方法b，那么在被代理后调用a方法时，a方法中调用的是被代理的方法b，而不是普通方法b。</p>
+<p>这是因为代理会把原始对象的所有方法都代理一遍，包括方法a和方法b，代理的实现通常是在原始对象方法的基础上增加一些额外的操作或逻辑。所以，当方法a中调用方法b时，代理会拦截这个调用，并转发给被代理的方法b，从而保证被代理的方法b能够正常执行代理增加的逻辑或操作。</p>
+<p>JDK动态代理有个问题，只能代理实现了接口的类。可以用CGLIB动态代理机制来避免。</p>
+<p>Spring中的AOP模块中:如果目标对象实现了接口，则默认采用JDK动态代理，否则采用CGLIB动态代理。<br>在CGLIB动态代理机制中MethodInterceptor 接口和Enhancer<br>类是核心。<br>需要自定义MethodInterceptor 并重写intercept方法，intercept 用于拦截增强被代理类的方法。</p>
+<pre><code class="java">public interface MethodInterceptor
+extends Callback&#123;
+//拦截被代理类中的方法
+public object intercept(object obj, java.lang. reflect. Method method, 0bject[] args,MethodProxy proxy) throws Throwable;
+&#125;
+</code></pre>
+<ol>
+<li><p>obj :被代理的对象( 需要增强的对象)</p>
+</li>
+<li><p>method :被拦截的方法( 需要增强的方法)</p>
+</li>
+<li><p>args:方法入参</p>
+</li>
+<li><p>methodProxy :用于调用原始方法</p>
+</li>
+</ol>
+<p>可以通过Enhancer 类来动态获取被代理类，当代理类调用方法的时候，实际调用的是MethodInterceptor中的intercept 方法。</p>
+<p>CGLIB动态代理类使用步骤<br>1.定义一个类（导入依赖）;<br>2.自定义MethodInterceptor 并写intercept 方法，intercept 用于拦截增强被代理类的方法,和JDK动态代理中的invoke 方法类似;同样的在调用原始方法（methodProxy）之前之后可以增强<br>3.通过Enhancer类的create() 创建代理类;（包括设置类加载器、设置被代理类、方法拦截器）</p>
+<p>4.最后获取代理类并调用原生方法</p>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><p>套接字socket&#x3D;ip+port</p>
+<p>进行通信，至少需要一对套接字，Socket:客户端    ServerSocket：用于服务端</p>
+<p>通信过程：</p>
+<p>1．建立服务端并且监听客户端请求<br>2．客户端请求，服务端和客户端建立连接</p>
+<p>3．两端之间可以传递数据<br>4．关闭资源</p>
+<p>服务器端:<br>1．创建ServerSocket对象并且绑定地址（ip）和端口号(port): server.bind(new InetSocketAddress(host，port))<br>2．通过accept()方法监听客户端请求<br>3．连接建立后，通过输入流读取客户端发送的请求信息</p>
+<p>4．通过输出流向客户端发送响应信息<br>5．关闭相关资源</p>
+<p>客户端:<br>1.创建 Socket对象并且连接指定的服务器的地址（ip）和端口号(port): socket.connect(inetSocketAddress)<br>2．连接建立后，通过输出流向服务器端发送请求信息</p>
+<p>3．通过输入流获取服务器响应的信息<br>4．关闭相关资源</p>
+<p>问题：</p>
+<p>accept方法是阻塞的，一次只能处理一个客户端</p>
+<p>可以用线程池解决 但是本质还是BIO（同步阻塞）</p>
+<h1 id="Netty传输"><a href="#Netty传输" class="headerlink" title="Netty传输"></a>Netty传输</h1><h2 id="select、poll-和-epoll-之间的区别"><a href="#select、poll-和-epoll-之间的区别" class="headerlink" title="select、poll 和 epoll 之间的区别?"></a>select、poll 和 epoll 之间的区别?</h2><p>（1）select：时间复杂度 O(n)</p>
+<p>select 仅仅知道有 I&#x2F;O 事件发生，但并不知道是哪几个流，所以只能<strong>无差别轮询所有流</strong>，找出能读出数据或者写入数据的流，并对其进行操作。所以 select 具有 O(n) 的无差别轮询复杂度，同时处理的流越多，无差别轮询时间就越长。</p>
+<p>（2）poll：时间复杂度 O(n)</p>
+<p>poll 本质上和 select 没有区别，它将用户传入的数组拷贝到内核空间，然后查询每个 fd 对应的设备状态， 但是它<strong>没有最大连接数的限制</strong>，原因是它是基于<strong>链表</strong>来存储的。</p>
+<p>（3）epoll：时间复杂度 O(1)</p>
+<p>epoll 可以理解为 event poll，不同于忙轮询和无差别轮询，epoll 会把哪个流发生了怎样的 I&#x2F;O 事件通知我们。所以说 epoll 实际上是事件驱动（每个事件关联上 fd）的。</p>
+<blockquote>
+<p>select，poll，epoll 都是 IO 多路复用的机制。I&#x2F;O 多路复用就是通过一种机制监视多个描述符，&#x3D;&#x3D;<strong>一旦某个描述符就绪（一般是读就绪或者写就绪）</strong>&#x3D;&#x3D;，就通知程序进行相应的读写操作。但 select，poll，epoll 本质上都是同步 I&#x2F;O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步 I&#x2F;O 则无需自己负责进行读写，异步 I&#x2F;O 的实现会负责把数据从内核拷贝到用户空间。</p>
+</blockquote>
+<h2 id="为什么选用Netty来做通信框架？"><a href="#为什么选用Netty来做通信框架？" class="headerlink" title="为什么选用Netty来做通信框架？"></a>为什么选用<a target="_blank" rel="noopener" href="https://blog.csdn.net/jump/super-jump/word?word=Netty">Netty</a>来做通信框架？</h2><ol>
+<li>高性能：Netty是一个基于NIO的框架，相比于传统的BIO，在处理高并发连接时能够更好地利用系统资源，提高程序的性能。Netty的线程模型采用的是事件驱动的方式，可以充分利用多核CPU，同时减少线程上下文切换的开销。</li>
+<li>易扩展：Netty提供了许多现成的组件和模块，可以轻松构建各种类型的应用程序。同时，Netty的架构设计非常灵活，可以根据不同的业务需求进行定制化开发。</li>
+<li>协议支持：Netty支持各种主流的网络协议，包括TCP、UDP、HTTP、WebSocket等。同时，Netty也提供了很多针对特定协议的编解码器和处理器，可以帮助开发者快速实现业务逻辑。</li>
+<li>社区活跃：Netty是一个开源的框架，拥有庞大的社区支持，开发者可以从社区中获得各种类型的帮助和支持。同时，Netty也在不断地更新和升级，保证了框架的可靠性和稳定性。</li>
+</ol>
+<p>综上所述，Netty是一个高性能、易扩展、协议支持丰富、社区活跃的通信框架，非常适合在分布式系统中作为RPC通信框架使用。</p>
+<h2 id="还知道其他网络通信框架？"><a href="#还知道其他网络通信框架？" class="headerlink" title="还知道其他网络通信框架？"></a>还知道其他网络通信框架？</h2><p>Dubbo：Java Golang等语言；提供了从服务定义、服务发现、服务通信到流量管控等几乎所有的服务治理能力，支持Triple 协议(基于HTTP&#x2F;2之上定义的下一代 RPC通信协议)、应用级服务发现、Dubbo <strong>Mesh</strong>(Dubbo3赋予了很多云原生友好的新特性）等特性。</p>
+<p>Motan:精简版Dubbo </p>
+<p>gRPC:面向移动应用，改进了通信层设计（protoBuf，灵活高效的数据格式），但没有服务治理功能，需要依赖腾讯北极星、</p>
+<p>总结：</p>
+<p>1、跨语言调用的话还是grpc 如果是java的话就dubbo</p>
+<p>2、gRPC和Thrift只提供了最基本的RPC框架功能，缺乏一系列配套的服务化组件和服务治理功能的支撑。<br>Dubbo 不论是从功能完善程度、生态系统还是社区活跃度来说都是最优秀的。</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><pre><code>NettyClient. java
+</code></pre>
+<p>1、初始化一些资源</p>
+<pre><code class="java">//    ServiceDiscovery实例，用于服务发现
+    private final ServiceDiscovery serviceDiscovery;
+    // UnprocessedRequests实例，用于存放未处理的请求  建议限制map容器大小,避免未处理请求过多ooM
+    private final UnprocessedRequests unprocessedRequests;
+    // ChannelProvider实例，用于缓存已经建立连接的Channel  key：服务地址  value:channel
+    private final ChannelProvider channelProvider;
+    // Bootstrap实例，用于客户端的引导
+    private final Bootstrap bootstrap;
+    // EventLoopGroup实例，用于处理I/O操作的线程池
+    private final EventLoopGroup eventLoopGroup;
+</code></pre>
+<p>2、连接服务端</p>
+<p><strong>doConnect</strong>() :用于连接服务端 ( 目标方法所在的服务器)并返回对应的Channel </p>
+<p>创建一个completableFuture接受结果，bootstrap连接服务端的地址，（ChannelFuture的作用是用来保存Channel异步操作的结果）（当做了一个I&#x2F;O操作并有后续任务的时候用addListener(ChannelFutureListener)的方式来获得通知，结果是成功<code>、</code>失败这两种状态）</p>
+<p>如果成功的话，completableFuture调用complete把channel的数据当作返回值，调用get()获取返回值</p>
+<pre><code>bootstrap.connect(inetSocketAddress).addListener((ChannelFutureListener) future
+</code></pre>
+<p><strong>sendRpcRequest</strong>() : 传输rpc请求( RpcRequest ) 到服务端</p>
+<p>根据服务端地址获取服务，getChannel方法获取地址相关channel，判断是否处于活跃状态，不活跃的话，抛出一个非法状态异常；活跃的话，将当前请求的RequestId和结果resultFuture放入一个未处理请求的Map中；创建一个RpcMessage对象，用于存储当前请求的相关信息，包括请求的数据和序列化方式；向服务器发送当前请求的RpcMessage对象，同样，用addListener((ChannelFutureListener)添加一个监听器，在请求发送成功记录日志，失败的话关闭客户端的channel，并使用异常信息将结果resultFuture标记为已完成但是发生异常。</p>
+<p><strong>getChannel</strong>：  获取channel</p>
+<p>从channelProvider里面找缓存，找到的话直接返回，找不到的话通过doConnect获取channel，然后存到channelProvider缓存里面</p>
+<pre><code>UnprocessedRequests .java
+</code></pre>
+<p><strong>NettyRpcClientHandler</strong>：读取从服务端返回消息；Netty心跳机制相关。保证客户端和服务端的连接不被断掉,避免重连。</p>
+<p><strong>ChannelProvider</strong></p>
+<p>维护了一个channelMap，底层是ConcurrentHashMap做的</p>
+<p>get从Map里面拿，如果不空且channel活跃，返回chanel，否则删除（remove）key</p>
+<p>set调用put方法</p>
+<p>使用ConcurrentHashMap对channel进行缓存化，</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p><strong>channal缓存</strong></p>
+<p>通过负载均衡找到服务端地址，调用doconnet方法连接服务端，返回对应的channel，后续发送rpc请求消息就是通过channel传输，考虑到后面可能有相同服务调用，对channel做了缓存，底层是ConcurrentHashMap，key是服务地址，value是channel，get的时候为空的话调用doconnect获得channel并存进去</p>
+<p><strong>消息的发送：</strong></p>
+<p>负载均衡获取服务地址，getChannel方法获取地址相关channel，判断是否处于活跃状态，不活跃的话，抛出一个非法状态异常；活跃的话，将当前请求的RequestId和结果resultFuture放入一个未处理请求的Map中；创建一个RpcMessage对象，用于存储当前请求的相关信息，包括请求的数据和序列化方式；向服务器发送当前请求的RpcMessage对象，同样，用addListener((ChannelFutureListener)添加一个监听器，在请求发送成功记录日志，失败的话关闭客户端的channel，并使用异常信息将结果resultFuture标记为已完成但是发生异常。</p>
+<p><strong>消息的接受与动态响应：</strong></p>
+<p>1、检查接收到的消息是否是RpcMessage类型的，是的话，打印接收到的消息日志信息，并构造RpcMessage<br>2、获取消息类型，判断是心跳请求消息还是RPC请求消息，如果是心跳请求消息，构造心跳响应消息，并设置数据为PONG，如果是RPC请求消息，获取RPC请求并处理，返回处理结果；</p>
+<p>3、同时构造RPC响应消息，如果连接可写，构造成功的RPC响应消息，如果连接不可写，构造失败的RPC响应消息，发送RPC响应消息，并在发送失败时关闭连接，最后确保ByteBuf被释放，否则可能会出现内存泄漏；</p>
+<p>4、如果连接处于空闲状态（即没有数据传输）或者当捕获到异常时，关闭连接</p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p><strong>NettyRpcServer</strong></p>
+<p>注册服务（通过RpcServiceConfig里面的version group service进行注册）</p>
+<ol>
+<li><p>启动服务时</p>
+<p>1.1  创建一个Boss线程组和一个Worker线程组（主从），Boss线程组用于监听端口，Worker线程组用于处理请求</p>
+<p>1.2  此外还创建了一个服务处理线程组，用于处理RPC请求。</p>
+<p>1.2 设置服务器的通道类型为 NIO。</p>
+<p>1.3 通过设置TCP_NODE LAY（开启了 Nagle 算法，该算法的作用是尽可能的发送大数据快，减少网络传输，控制是否启用 Nagle 算法）</p>
+<p>1.4 SO_KEEPALIVE（开启 TCP 底层心跳机制 服务端与zookeeper）</p>
+<p>1.5 SO_BACKLOG（表示系统用于临时存放已完成三次握手的请求的队列的最大长度,如果连接建立频繁，服务器处理创建新连接较慢，可以适当调大这个参数1.6 当客户端第一次进行请求时才会进行初始化，然后将处理器添加到管道（30 秒之内没有收到客户端请求的话就关闭连接）中，对消息进行编解码和处理。</p>
+</li>
+<li><p>然后绑定端口，同步等待绑定成功，等待服务端监听端口关闭。</p>
+</li>
+<li><p>关闭服务：当服务端关闭时，通过调用shutdownGracefully()方法关闭线程组。</p>
+</li>
+</ol>
+<p><strong>NettyRpcServerHandler</strong></p>
+<p>1、检查接收到的消息是否是RpcMessage类型的，是的话，打印接收到的消息日志信息，并构造RpcMessage<br>2、获取消息类型，判断是心跳请求消息还是RPC请求消息，如果是心跳请求消息，构造心跳响应消息，并设置数据为PONG，如果是RPC请求消息，获取RPC请求并处理，返回处理结果；</p>
+<p>3、同时构造RPC响应消息，如果连接可写，构造成功的RPC响应消息，如果连接不可写，构造失败的RPC响应消息，发送RPC响应消息，并在发送失败时关闭连接，最后确保ByteBuf被释放，否则可能会出现内存泄漏；</p>
+<p>4、如果连接处于空闲状态（即没有数据传输）或者当捕获到异常时，关闭连接</p>
+<h2 id="服务端处理请求些方式？NIO-BIO-AIO"><a href="#服务端处理请求些方式？NIO-BIO-AIO" class="headerlink" title="服务端处理请求些方式？NIO BIO AIO"></a><strong>服务端处理请求些方式？NIO BIO AIO</strong></h2><p><strong>参考答案</strong>：服务端接收到客户端的请求后，常见的处理方式有三种，分别是BIO、NIO和AIO。</p>
+<ul>
+<li><strong>同步阻塞方式</strong>（BIO）：客户端发一次请求，服务端生成一个对应线程去处理。当客户端同时发起的请求很多时，服务端需要创建多个线程去处理每一个请求，当达到了系统最大的线程数时，新来的请求就无法处理了。</li>
+<li><strong>同步非阻塞方式</strong> (NIO)：客户端发一次请求，服务端并不是每次都创建一个新线程来处理，而是通过 I&#x2F;O 多路复用技术进行处理。就是把多个 I&#x2F;O 的阻塞复用到同一个 select 的阻塞上，从而使系统在单线程的情况下可以同时处理多个客户端请求。这种方式的优势是开销小，不用为每个请求创建一个线程，可以节省系统开销。</li>
+<li><strong>异步非阻塞方式</strong>（AIO）：客户端发起一个 I&#x2F;O 操作然后立即返回，等 I&#x2F;O 操作真正完成以后，客户端会得到 I&#x2F;O 操作完成的通知，此时客户端只需要对数据进行处理就好了，不需要进行实际的 I&#x2F;O 读写操作，因为真正的 I&#x2F;O 读取或者写入操作已经由内核完成了。这种方式的优势是客户端无需等待，不存在阻塞等待问题。</li>
+</ul>
+<blockquote>
+<p><strong>使用场景</strong><br>BIO 适用于连接数比较小的业务场景，这样的话不至于系统中没有可用线程去处理请求。这种方式写的程序也比较简单直观，易于理解。</p>
+<p>NIO 适用于连接数比较多并且请求消耗比较轻的业务场景，比如聊天服务器。这种方式相比 BIO，相对来说编程比较复杂。</p>
+<p>AIO 适用于连接数比较多而且请求消耗比较重的业务场景，比如涉及 I&#x2F;O 操作的相册服务器。这种方式相比另外两种，编程难度最大，程序也不易于理解。 【<strong>来自网络</strong>】</p>
+</blockquote>
+<h2 id="传输协议"><a href="#传输协议" class="headerlink" title="传输协议"></a>传输协议</h2><p><strong>RpcMessageEncoder</strong></p>
+<p>该方法的输入参数有三个：ChannelHandlerContext、RpcMessage 和 ByteBuf，分别表示上下文信息、待编码的消息和编码后的消息。</p>
+<p>1、向ByteBuf对象写入魔数、写入版本号、留出空间写入全长（out.writerIndex(out.writerIndex() + 4)）、写入消息类型、写入序列化方式、写入压缩方式、写入请求编号（AtomicInteger进行自增操作，保证线程安全）AtomicInteger进行自增操作getAndIncrement、这些信息可以从 RpcMessage 中获取。<br>2、之后，代码计算消息体的字节数组长度，如果是心跳消息则不需要对消息体进行序列化和压缩，否则需要使用序列化方式和压缩方式对消息体进行序列化和压缩。序列化和压缩方式均可以从 RpcMessage 中获取。最终，将压缩后的消息体写入 ByteBuf 对象中。<br>3、接下来，将 ByteBuf 的写指针移到全长字段位置，写入计算得到的全长，最后将写指针复位到最后的位置。</p>
+<p><strong>RpcMessageDecoder.decode</strong></p>
+<p><strong>RpcMessageDecoder.decodeFrame</strong></p>
+<p>该方法是一个解码器，用于将ByteBuf解码为RpcMessage对象。方法具体实现如下：</p>
+<ol>
+<li>检查魔数是否正确：调用checkMagicNumber方法检查接收到的消息的魔数是否和定义的魔数一致。</li>
+<li>检查协议版本是否正确：调用checkVersion方法检查接收到的消息的协议版本是否和定义的版本一致。</li>
+<li>读取消息总长度：从ByteBuf中读取4个字节来获取消息的总长度。</li>
+<li>构建RpcMessage对象：从ByteBuf中读取5个字节，分别为消息类型、编解码类型、压缩类型、请求ID，然后构建RpcMessage对象并返回。</li>
+<li>如果是心跳请求消息类型，设置消息数据为Ping，并返回RpcMessage对象。</li>
+<li>如果是心跳响应消息类型，设置消息数据为Pong，并返回RpcMessage对象。</li>
+<li>计算消息体长度：从消息总长度中减去消息头的长度，得到消息体的长度。</li>
+<li>如果消息体长度大于0，读取消息体内容：从ByteBuf中读取消息体的字节数组，并根据压缩类型解压缩字节数组。</li>
+<li>反序列化消息体：根据编解码类型和消息类型，使用ExtensionLoader获取相应的序列化器和反序列化出RpcRequest或RpcResponse对象。</li>
+<li>将反序列化得到的RpcRequest或RpcResponse对象设置为RpcMessage的data属性。</li>
+<li>返回RpcMessage对象。</li>
+</ol>
+<p>注意：该方法的实现中，必须按照指定的顺序依次读取ByteBuf中的字节，并且要保证字节的正确性。</p>
+<h1 id="通过注解注册-x2F-消费服务"><a href="#通过注解注册-x2F-消费服务" class="headerlink" title="通过注解注册&#x2F;消费服务"></a>通过注解注册&#x2F;消费服务</h1><p>定义两个注解:<br>RcpService : 注册服务<br>RpcReference：消费服务</p>
+<p>我们的实现需要BeanPostProcessor接口并重写 postProcessBeforeInitialization()方法和postProcessAfterInitialization()方法。<br>Spring bean在实例化之前会调用postProcessBeforeInitialization() 方法，在Spring bean实例化之后会调用postProcessAfterInitialization()方法。</p>
+<p>被我们使用RpcService 和RpcReference注解的类都算是Spring Bean。<br>我们可以在postProcessBeforeInitialization() 方法中去判断类上是否有RpcService注解。<br>如果有的话，就取出group 和version的值。然后，再调用ServiceProvider 的publishService()方法发布服务即可!<br>我们可以在postProcessAfterInitialization() 方法中遍历类的属性上是否有RpcReference注解。如果有的话,我们就通过反射将这个属性赋值即可!</p>
+<h1 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a><code>CompletableFuture</code></h1><p>在RPC中使用<code>CompletableFuture</code>包装接受服务端返回结果有以下几个好处：</p>
+<ol>
+<li>异步处理：<code>CompletableFuture</code>可以<strong>帮助我们异步处理服务端返回结果</strong>，避免在客户端等待服务端响应时阻塞线程，提高应用的并发性能。</li>
+<li>可组合：<code>CompletableFuture</code><strong>支持链式调用和组合</strong>，可以方便地将多个异步任务组合在一起，实现复杂的异步业务逻辑。</li>
+<li>异常处理：<code>CompletableFuture</code><strong>可以捕获异步任务中的异常</strong>，便于我们进行异常处理，提高代码的健壮性。</li>
+<li>超时控制：<code>CompletableFuture</code><strong>支持设置超时时间</strong>，可以在服务端响应超时时及时进行处理，避免因服务端响应慢而导致客户端请求超时。</li>
+</ol>
+<p>综上所述，使用<code>CompletableFuture</code>包装接受服务端返回结果可以帮助我们更好地实现异步处理、异常处理、超时控制等功能，提高应用的性能和健壮性。</p>
+<h1 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h1><h2 id="javaspi"><a href="#javaspi" class="headerlink" title="javaspi"></a>javaspi</h2><p>Java内置的SPI通过java.util.ServiceLoader类解析classPath和jar包的META-INF&#x2F;services&#x2F;目录 下的以接口全限定名命名的文件，并加载该文件中指定的接口实现类，以此完成调用。</p>
+<h2 id="springspi"><a href="#springspi" class="headerlink" title="springspi"></a>springspi</h2><p>Java SPI是一个服务提供接口对应一个配置文件，配置文件中存放当前接口的所有实现类，多个服务提供接口对应多个配置文件，所有配置都在services目录下；</p>
+<p>Spring factories SPI是一个spring.factories配置文件存放多个接口及对应的实现类，以接口全限定名作为key，实现类作为value来配置，多个实现类用逗号隔开，仅spring.factories一个配置文件。</p>
+<h2 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h2><p>比如说我们想要实现自己的负载均衡策略，我们创建对应的实现类 <code>XxxLoadBalance</code> 实现 <code>LoadBalance</code> 接口或者 <code>AbstractLoadBalance</code> 类。</p>
+<p>我们将这个实现类的路径写入到<code>resources</code> 目录下的 <code>META-INF/dubbo/org.apache.dubbo.rpc.cluster.LoadBalance</code>文件中即可。</p>
+<h1 id="负载均衡-1"><a href="#负载均衡-1" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>在 Dubbo 中，所有负载均衡实现类均继承自 <code>AbstractLoadBalance</code>，该类实现了 <code>LoadBalance</code> 接口，并封装了一些公共的逻辑。</p>
+<h4 id="RandomLoadBalance"><a href="#RandomLoadBalance" class="headerlink" title="RandomLoadBalance"></a>RandomLoadBalance</h4><p>根据权重随机选择（对加权随机算法的实现）。这是Dubbo默认采用的一种负载均衡策略。</p>
+<p><code> RandomLoadBalance</code> 具体的实现原理非常简单，假如有两个提供相同服务的服务器 S1,S2，S1的权重为7，S2的权重为3。</p>
+<p>我们把这些权重值分布在坐标区间会得到：S1-&gt;[0, 7) ，S2-&gt;[7, 10)。我们生成[0, 10) 之间的随机数，随机数落到对应的区间，我们就选择对应的服务器来处理请求。</p>
+<h4 id="LeastActiveLoadBalance"><a href="#LeastActiveLoadBalance" class="headerlink" title="LeastActiveLoadBalance"></a>LeastActiveLoadBalance</h4><p><code>LeastActiveLoadBalance</code> 直译过来就是<strong>最小活跃数负载均衡</strong>。</p>
+<p>这个名字起得有点不直观，不仔细看官方对活跃数的定义，你压根不知道这玩意是干嘛的。</p>
+<p>我这么说吧！初始状态下所有服务提供者的活跃数均为 0（每个服务提供者的中特定方法都对应一个活跃数，我在后面的源码中会提到），每收到一个请求后，对应的服务提供者的活跃数 +1，当这个请求处理完之后，活跃数 -1。</p>
+<p>因此，<strong>Dubbo 就认为谁的活跃数越少，谁的处理速度就越快，性能也越好，这样的话，我就优先把请求给活跃数少的服务提供者处理。</strong></p>
+<p><strong>如果有多个服务提供者的活跃数相等怎么办？</strong></p>
+<p>很简单，那就再走一遍 <code>RandomLoadBalance</code> 。</p>
+<h3 id="ConsistentHashLoadBalance"><a href="#ConsistentHashLoadBalance" class="headerlink" title="ConsistentHashLoadBalance"></a>ConsistentHashLoadBalance</h3><p> <code>ConsistentHashLoadBalance</code> 中没有权重的概念，具体是哪个服务提供者处理请求是由你的请求的参数决定的，也就是说相同参数的请求总是发到同一个服务提供者。</p>
+<p>另外，Dubbo 为了避免数据倾斜问题（节点不够分散，大量请求落到同一节点），还引入了虚拟节点的概念。通过虚拟节点可以让节点更加分散，有效均衡各个节点的请求量</p>
+<h4 id="RoundRobinLoadBalance"><a href="#RoundRobinLoadBalance" class="headerlink" title="RoundRobinLoadBalance"></a>RoundRobinLoadBalance</h4><p>加权轮询负载均衡。比较精确吧 权重比值就是处理请求比值，但是随机负载均衡的话可能权重大的请求会很多</p>
+<h1 id="为什么不用Jdk自带序列化"><a href="#为什么不用Jdk自带序列化" class="headerlink" title="为什么不用Jdk自带序列化"></a>为什么不用Jdk自带序列化</h1><p>一般我们不会直接使用 JDK 自带的序列化方式。主要原因有两个：</p>
+<ol>
+<li><strong>不支持跨语言调用</strong> : 如果调用的是其他语言开发的服务的时候就不支持了。</li>
+<li><strong>性能差</strong> ：相比于其他序列化框架性能更低，主要原因是序列化之后的字节数组体积较大，导致传输成本加大。</li>
+</ol>
+<h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><h3 id="ZooKeeper-特点"><a href="#ZooKeeper-特点" class="headerlink" title="ZooKeeper 特点"></a>ZooKeeper 特点</h3><ul>
+<li><strong>顺序一致性：</strong> 从同一客户端发起的事务请求，最终将会严格地按照顺序被应用到 ZooKeeper 中去。</li>
+<li><strong>原子性：</strong> 所有事务请求的处理结果在整个集群中所有机器上的应用情况是一致的，也就是说，要么整个集群中所有的机器都成功应用了某一个事务，要么都没有应用。</li>
+<li><strong>单一系统映像 ：</strong> 无论客户端连到哪一个 ZooKeeper 服务器上，其看到的服务端数据模型都是一致的。</li>
+<li><strong>可靠性：</strong> 一旦一次更改请求被应用，更改的结果就会被持久化，直到被下一次更改覆盖</li>
+</ul>
+<h3 id="ZooKeeper-应用场景"><a href="#ZooKeeper-应用场景" class="headerlink" title="ZooKeeper 应用场景"></a>ZooKeeper 应用场景</h3><p>ZooKeeper 概览中，我们介绍到使用其通常被用于实现诸如数据发布&#x2F;订阅、负载均衡、命名服务、分布式协调&#x2F;通知、集群管理、Master 选举、分布式锁和分布式队列等功能。</p>
+<p>下面选 3 个典型的应用场景来专门说说：</p>
+<ol>
+<li><strong>命名服务</strong> ：可以通过 ZooKeeper 的顺序节点生成全局唯一 ID。</li>
+<li><strong>数据发布&#x2F;订阅</strong> ：通过 <strong>Watcher 机制</strong> 可以很方便地实现数据发布&#x2F;订阅。当你将数据发布到 ZooKeeper 被监听的节点上，其他机器可通过监听 ZooKeeper 上节点的变化来实现配置的动态更新。</li>
+<li><strong>分布式锁</strong> ： 通过创建唯一节点获得分布式锁，当获得锁的一方执行完相关代码或者是挂掉之后就释放锁。分布式锁的实现也需要用到 <strong>Watcher 机制</strong> ，我在 <a target="_blank" rel="noopener" href="https://javaguide.cn/distributed-system/distributed-lock.html">分布式锁详解open in new window</a> 这篇文章中有详细介绍到如何基于 ZooKeeper 实现分布式锁</li>
+</ol>
+<h3 id="会话（Session）"><a href="#会话（Session）" class="headerlink" title="会话（Session）"></a>会话（Session）</h3><p>Session 可以看作是 ZooKeeper 服务器与客户端的之间的一个 TCP 长连接，通过这个连接，客户端能够通过心跳检测与服务器保持有效的会话，也能够向 ZooKeeper 服务器发送请求并接受响应，同时还能够通过该连接接收来自服务器的 Watcher 事件通知。</p>
+<p>Session 有一个属性叫做：<code>sessionTimeout</code> ，<code>sessionTimeout</code> 代表会话的超时时间。当由于服务器压力太大、网络故障或是客户端主动断开连接等各种原因导致客户端连接断开时，只要在<code>sessionTimeout</code>规定的时间内能够重新连接上集群中任意一台服务器，那么之前创建的会话仍然有效。</p>
+<p>另外，在为客户端创建会话之前，服务端首先会为每个客户端都分配一个 <code>sessionID</code>。由于 <code>sessionID</code>是 ZooKeeper 会话的一个重要标识，许多与会话相关的运行机制都是基于这个 <code>sessionID</code> 的，因此，无论是哪台服务器为客户端分配的 <code>sessionID</code>，都务必保证全局唯一。</p>
+<hr>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>第一阶段：当要执行一个分布式事务的时候，事务发起者首先向协调者发起事务请求，然后协调者会给所有参与者发送 <code>prepare</code> 请求（其中包括事务内容）告诉参与者你们需要执行事务了，如果能执行我发的事务内容那么就先执行但不提交，执行后请给我回复。然后参与者收到 <code>prepare</code> 消息后，他们会开始执行事务（但不提交），并将 <code>Undo</code> 和 <code>Redo</code> 信息记入事务日志中，之后参与者就向协调者反馈是否准备好了。</p>
+<p>第二阶段：第二阶段主要是协调者根据参与者反馈的情况来决定接下来是否可以进行事务的提交操作，即提交事务或者回滚事务。</p>
+<p>比如这个时候 <strong>所有的参与者</strong> 都返回了准备好了的消息，这个时候就进行事务的提交，协调者此时会给所有的参与者发送 <strong><code>Commit</code> 请求</strong> ，当参与者收到 <code>Commit</code> 请求的时候会执行前面执行的事务的 <strong>提交操作</strong> ，提交完毕之后将给协调者发送提交成功的响应。</p>
+<p>而如果在第一阶段并不是所有参与者都返回了准备好了的消息，那么此时协调者将会给所有参与者发送 <strong>回滚事务的 <code>rollback</code> 请求</strong>，参与者收到之后将会 <strong>回滚它在第一阶段所做的事务处理</strong> ，然后再将处理情况返回给协调者，最终协调者收到响应后便给事务发起者返回处理失败的结果。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li><strong>单点故障问题</strong>，如果协调者挂了那么整个系统都处于不可用的状态了。</li>
+<li><strong>阻塞问题</strong>，即当协调者发送 <code>prepare</code> 请求，参与者收到之后如果能处理那么它将会进行事务的处理但并不提交，这个时候会一直占用着资源不释放，如果此时协调者挂了，那么这些资源都不会再释放了，这会极大影响性能。</li>
+<li><strong>数据不一致问题</strong>，比如当第二阶段，协调者只发送了一部分的 <code>commit</code> 请求就挂了，那么也就意味着，收到消息的参与者会进行事务的提交，而后面没收到的则不会进行事务提交，那么这时候就会产生数据不一致性问题。</li>
+</ul>
+<h3 id="3PC（三阶段提交）"><a href="#3PC（三阶段提交）" class="headerlink" title="3PC（三阶段提交）"></a>3PC（三阶段提交）</h3><hr>
+<h1 id="待删除"><a href="#待删除" class="headerlink" title="待删除"></a>待删除</h1><h2 id="Netty使用kyro序列化传输对象实战"><a href="#Netty使用kyro序列化传输对象实战" class="headerlink" title="Netty使用kyro序列化传输对象实战"></a>Netty使用kyro序列化传输对象实战</h2><h2 id="传输实体类"><a href="#传输实体类" class="headerlink" title="传输实体类"></a>传输实体类</h2><p>客户端请求实体类（String interfaceName  String methodName）</p>
+<p>服务端响应实体类(String message)</p>
+<h2 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h2><h3 id="初始化客户端"><a href="#初始化客户端" class="headerlink" title="初始化客户端"></a>初始化客户端</h3><p>初始化相关资源，eventLoopGroup(线程池，包含一组eventLoop实例，每个实例负责处理一个或多个IO操作) 和bootstrap（负责启动和配置Netty客户端的各种参数，如协议、编码、解码、I&#x2F;O模型）等，bootstrap指定实例使用的eventLoopGroup、channel类型、日志处理器、编码器解码器等</p>
+<p>然后对之前创建的<code>Bootstrap</code>实例进行了一系列配置，包括设置事件循环组（.group(eventLoopGroup)）、指定通道类型(.channel(NioSocketChannel))、添加日志处理器、设置连接超时时间(超过一定时间断掉)、添加空闲状态处理器（如果15秒之内没有发送数据给服务端的话，就发送一次心跳请求）、编解码器（添加编码器，用于将RPC请求编码为二进制数据；添加解码器，用于将二进制数据解码为RPC响应）和自定义的<code>ChannelHandler</code>（添加自定义的ChannelHandler）。</p>
+<h3 id="客户端-2"><a href="#客户端-2" class="headerlink" title="客户端"></a>客户端</h3><p>sendMessage()方法</p>
+<p>1.首先初始化了一个Bootstrap<br>2.通过 Bootstrap 对象连接服务端<br>3.通过 Channel 向服务端发送消息RpcRequest<br>4.发送成功后，阻塞等待，直到Channel关闭<br>5.拿到服务端返回的结果RpcResponse</p>
+<h2 id="定义ChannelHandler处理服务端消息"><a href="#定义ChannelHandler处理服务端消息" class="headerlink" title="定义ChannelHandler处理服务端消息"></a>定义ChannelHandler处理服务端消息</h2><p>NettyClientHandler用于读取服务端发送过来的RpcResponse 消息对象，并将 RpcResponse 消息对象保存到AttributeMap 上，AttributeMap 可以看作是一 个Channel 的共享数据源。<br>这样的话，我们就能通过channel和key将数据读取出来。</p>
+<p>AttributeMap的key是AttributeKey（“rpcResponse”）, value是Attribute(response)</p>
+<p>Channel实现了AttributeMap 接口(AttributeMap是一个接口，类似于Map数据结构)。每个Channel上的AttributeMap 属于共享数据。 AttributeMap 的结构，和Map很像，我们可以把key看作是AttributeKey, value 看作是Attribute，我们可以根据 AttributeKey 找到对应的Attribute</p>
+<pre><code class="java">public interface AttributeMap &#123;
+    &lt;T&gt; Attribute&lt;T&gt; attr(AttributeKey&lt;T&gt; key);//可以理解为map的get
+    &lt;T&gt; boolean hasAttr(AttributeKey&lt;T&gt; key);//containsKey
+&#125;
+</code></pre>
+<h2 id="服务端-1"><a href="#服务端-1" class="headerlink" title="服务端"></a>服务端</h2><h3 id="初始化服务端"><a href="#初始化服务端" class="headerlink" title="初始化服务端"></a>初始化服务端</h3><p>NettyServer主要作用就是开启了一个服务端用于接受客户端的请求并处理。</p>
+<ol>
+<li>启动服务：启动服务时，创建一个Boss线程组和一个Worker线程组（主从），Boss线程组用于监听端口，Worker线程组用于处理请求，此外还创建了一个服务处理线程组，用于处理RPC请求。通过设置TCP_NODELAY（开启了 Nagle 算法，该算法的作用是尽可能的发送大数据快，减少网络传输）、SO_KEEPALIVE（开启 TCP 底层心跳机制）和SO_BACKLOG（表示系统用于临时存放已完成三次握手的请求的队列的最大长度,如果连接建立频繁，服务器处理创建新连接较慢，可以适当调大这个参数）等参数，优化了服务端的网络性能。当客户端第一次进行请求时才会进行初始化，然后将处理器添加到管道（30 秒之内没有收到客户端请求的话就关闭连接）中，对消息进行编解码和处理。</li>
+<li>关闭服务：当服务端关闭时，通过调用shutdownGracefully()方法关闭线程组。</li>
+</ol>
+<p>总体来说，这段代码实现了一个简单的RPC框架，提供了服务的注册和远程调用功能，可以方便地进行分布式开发。</p>
+<h2 id="能聊聊gRPC和dubbo这两类框架区别？"><a href="#能聊聊gRPC和dubbo这两类框架区别？" class="headerlink" title="能聊聊gRPC和dubbo这两类框架区别？"></a>能聊聊gRPC和dubbo这两类框架区别？</h2><h2 id="有没有考虑过服务治理相关的事情吗（还没有）"><a href="#有没有考虑过服务治理相关的事情吗（还没有）" class="headerlink" title="有没有考虑过服务治理相关的事情吗（还没有）"></a>有没有考虑过服务治理相关的事情吗（还没有）</h2><h2 id="RPC项目中有做单元测试吗？（没有）"><a href="#RPC项目中有做单元测试吗？（没有）" class="headerlink" title="RPC项目中有做单元测试吗？（没有）"></a>RPC<a target="_blank" rel="noopener" href="https://blog.csdn.net/jump/super-jump/word?word=%E9%A1%B9%E7%9B%AE">项目</a>中有做单元测试吗？（没有）</h2><h1 id="模拟面试"><a href="#模拟面试" class="headerlink" title="模拟面试"></a>模拟面试</h1><h2 id="一致性哈希"><a href="#一致性哈希" class="headerlink" title="一致性哈希"></a>一致性哈希</h2><p>代码具体怎么实现的？</p>
+<p>维护了一个ConcurrentHashMap类型的选择器集合，键为服务名称 rpcServiceName，值为选择器selector</p>
+<p>接收一个服务地址列表 serviceAddresses 和一个 RpcRequest 对象 rpcRequest，计算 serviceAddresses 的身份哈希码，通过 rpcRequest 中的服务名称构造出 rpcServiceName。然后从 selectors 中获取与 rpcServiceName 对应的一致性哈希选择器 ConsistentHashSelector（每个一致性哈希选择器对应一个服务），如果该选择器不存在或者哈希码不匹配，则创建一个新的一致性哈希选择器（），并将key为serviceName，value为selector放入 selectors（缓存） 中。最后，调用一致性哈希选择器的 select 方法选择一个服务地址。</p>
+<p><strong>选择器实现</strong>：</p>
+<p>再说下这个选择器的内部实现 ，维护了一个存储虚拟节点的 TreeMap （保证有序），key是hash值，value 是一个服务地址；（为什么？如果节点太少,会导致数据倾斜,也就是hash范围差距大，那么此时可以引入了<strong>虚拟节点机制</strong>，即对每个节点计算多个哈希值，每个计算结果位置都放置在对应节点中，这些节点<strong>称为虚拟节点</strong>。）</p>
+<p><strong>选择器初始化</strong>：</p>
+<p>遍历所有服务地址，为每个服务地址创建多个虚拟节点，使用 md5 算法出当前服务地址字符串的摘要数组，从 md5摘要中取出 4 个子段，并计算子段的哈希值，然后将虚拟节点的哈希值和服务地址的映射关系存储到 TreeMap 中</p>
+<p>针对每一个ip地址创建（replicaNumber &#x2F; 4）个重复节点，针对每个一个重复节点将其等间隔的分布在环形hash空间上（4个） 将虚拟节点的哈希值和服务地址的映射关系存储到 TreeMap 中 </p>
+<p>同时缓存了之前计算的 serviceAddresses 的身份哈希码</p>
+<p><strong>select方法</strong>：</p>
+<p>计算 RPC 服务名的 MD5 摘要数组，计算md5摘要哈希值并在TreeMap里面选择一个服务地址，找到虚拟节点中第一个哈希值大于等于指定哈希值的节点，如果不存在该节点，则选择环上的第一个节点，返回该节点对应的服务地址；</p>
+<h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><p><strong>注册思路：</strong></p>
+<p>首先创建服务节点路径（根路径+服务名称+服务地址（ip端口）），获取Zookeeper客户端，创建持久化节点</p>
+<p><strong>创建持久化节点部分</strong>：</p>
+<p>根据REGISTERED_PATH_SET（ConcurrentHashMap.newKeySet(); 定义一个线程安全的Set用于存储已经注册过的路径）判断节点是否已经存在，如果存在则直接返回,如果节点不存在，则使用指定的路径(传入的)创建一个持久化节点,将已注册的路径加入到REGISTERED_PATH_SET中，以便后续检查</p>
+<p><strong>发现部分：</strong></p>
+<p>根据zookeeper客户端和服务名称，调用getChildrenNodes获取指定结点下（该服务名称下的）所有子节点</p>
+<p><strong>getChildrenNodes部分</strong>：</p>
+<p>根据SERVICE_ADDRESS_MAP（currentHashMap 线程安全的Map用于存储每个服务的地址列表 ）的Containskey方法判断是否已经获取过该节点的子节点列表,如果已经获取过，直接返回之前获取到的子节点列表，没有的话，声明一个空列表，用于存放获取到的子节点列表，拼接出目标节点的完整路径，获取指定节点下的所有子节点列表，将获取到的子节点列表缓存起来，便于下次快速获取，同时给该节点注册一个监听器(registerWatcher)，用于在节点发生变化时自动更新子节点列表，返回获取到的子节点列表</p>
+<p><strong>registerWatcher部分</strong>：（在节点发生变化时自动更新子节点列表）</p>
+<p>getChildrenNodes部分，给serviceName结点注册了一个监听器，传入了serviceName参数，通过拼接ZooKeeper注册根路径和服务名称得到服务路径，创建了一个PathChildrenCache对象，用于监听服务路径下的子节点变化，并将其添加到服务路径的监听器列表中。与此同时，创建了一个PathChildrenCacheListener对象，当服务路径下的子节点发生变化时，PathChildrenCacheListener对象会被回调，获取服务路径下所有子节点的路径（List<String>），将服务名称与服务地址的映射关系存入服务地址映射表SERVICE_ADDRESS_MAP中。最终通过启动PathChildrenCache对象实现监听服务地址的更新。</String></p>
+<h2 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h2><p><strong>channal缓存</strong></p>
+<p>通过负载均衡找到服务端地址，调用doconnet方法连接服务端，返回对应的channel，后续发送rpc请求消息就是通过channel传输，考虑到后面可能有相同服务调用，对channel做了缓存，底层是ConcurrentHashMap，key是服务地址，value是channel，get的时候为空的话调用doconnect获得channel并存进去</p>
+<p><strong>消息的发送：</strong></p>
+<p>负载均衡获取服务地址，getChannel方法获取地址相关channel，判断是否处于活跃状态，不活跃的话，抛出一个非法状态异常；活跃的话，将当前请求的RequestId和结果resultFuture放入一个未处理请求的Map中；创建一个RpcMessage对象，用于存储当前请求的相关信息，包括请求的数据和序列化方式；向服务器发送当前请求的RpcMessage对象，同样，用addListener((ChannelFutureListener)添加一个监听器，在请求发送成功记录日志，失败的话关闭客户端的channel，并使用异常信息将结果resultFuture标记为已完成但是发生异常。</p>
+<p><strong>消息的接受与动态响应：</strong></p>
+<p>1、检查接收到的消息是否是RpcMessage类型的，是的话，打印接收到的消息日志信息，并构造RpcMessage2、获取消息类型，判断是心跳请求消息还是RPC请求消息，如果是心跳请求消息，构造心跳响应消息，并设置数据为PONG，如果是RPC请求消息，获取RPC请求并处理，返回处理结果；</p>
+<p>3、同时构造RPC响应消息，如果连接可写，构造成功的RPC响应消息，如果连接不可写，构造失败的RPC响应消息，发送RPC响应消息，并在发送失败时关闭连接，最后确保ByteBuf被释放，否则可能会出现内存泄漏；</p>
+<p>4、如果连接处于空闲状态（即没有数据传输）或者当捕获到异常时，关闭连接</p>
+<h2 id="kyro"><a href="#kyro" class="headerlink" title="kyro"></a>kyro</h2><p>这是一个使用 Kryo 序列化和反序列化 Java 对象的类，为了解决 Kryo 线程不安全的问题，使用 ThreadLocal 为每个线程创建一个独立的 Kryo 实例，保证了线程安全性。</p>
+<p><strong>初始化</strong></p>
+<p>KryoSerializer 类实现了Serializer 接口</p>
+<p>为了解决 Kryo 线程不安全的问题，使用 ThreadLocal 为每个线程创建一个独立的 Kryo 实例，保证了线程安全性。withInitial（）用lamba表达式new了一个kyro实例并注册了RpcResponse 和 RpcRequest 两个类。</p>
+<p>ByteArrayOutputStream :用于存储序列化后的字节数组</p>
+<p>Output : Kryo 序列化库的 Output 对象，将其构造函数中传入的 ByteArrayOutputStream 对象作为参数，以便将序列化后的数据写入 ByteArrayOutputStream 中。</p>
+<p><strong>serialize</strong></p>
+<ol>
+<li>创建一个 ByteArrayOutputStream 和 Output 实例，Output 用于将序列化的对象写入 ByteArrayOutputStream 中。</li>
+<li>获取当前线程的kyro实例</li>
+<li>kryo 将 obj 对象（传入的rpcrequest）序列化成字节数组并写入 Output 中。</li>
+<li>remove清除当前线程的 Kryo 实例</li>
+<li>将 ByteArrayOutputStream 中的数据转换为字节数组并返回。</li>
+</ol>
+<p><strong>deserialize</strong></p>
+<ol>
+<li>创建一个 ByteArrayInputStream 和 Input 实例，Input 从 ByteArrayInputStream 中读取反序列化的对象。</li>
+<li>获取当前线程的 Kryo 实例</li>
+<li>从 Input 中读取字节数组并反序列化成对象。</li>
+<li>清除当前线程的 Kryo 实例。</li>
+<li>将反序列化后的对象强制类型转换为指定的类型并返回。</li>
+</ol>
+<p><strong>为什么用kyro？</strong></p>
+<p>变长存储特性，字节码生成机制，运行速度快，占用较少的字节码体积，专门针对java</p>
+<p><strong>为什么用ThreadLocal？</strong></p>
+<p>key是当前线程，value是kryo实例，防止多个服务调用之间会造成kyro线程不安全的问题，每个线程存一份kyro，多个线程互不影响 </p>
+<h2 id="动态代理-2"><a href="#动态代理-2" class="headerlink" title="动态代理"></a>动态代理</h2><p>1.定义一个接口及其实现类;2.自定义InvocationHandler并重写invoke方法，在invoke 方法中我们会调用原生方法(被代理类的方法) 并自定义一些处理逻辑;</p>
+<p>invoke方法处理逻辑：</p>
+<pre><code class="plain">1、创建远程方法请求对象，调用rpcRequestTransport.sendRpcRequest(rpcRequest)
+拿到响应结果。
+2、根据传输方式发送远程方法请求，并获取响应结果
+3、检查响应结果是否正确，如果响应结果为null，抛出调用失败的异常，如果请求ID与响应ID不匹配，抛出请求与响应不匹配的异常， 如果响应结果状态码为null或者不是成功状态，抛出调用失败的异常
+4、返回远程方法调用的结果
+</code></pre>
+<p>3.通过Proxy . newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces ，InvocationHandler h)方法创建代理对象;（这是一个代理对象的工厂类，构造参数包括目标类的类加载器；代理需要实现的接口，可有多个；代理对象对应自定义的InvocationHandler）,然后调用原生方法，这里Handler起作用，实际上调用的是invoke方法，然后Invoke前后都可以对方法进行增强</p>
+<h2 id="CompletableFuture-1"><a href="#CompletableFuture-1" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h2><p>在RPC中使用CompletableFuture包装接受服务端返回结果有以下几个好处：</p>
+<ol>
+<li>异步处理：CompletableFuture可以<strong>帮助我们异步处理服务端返回结果</strong>，避免在客户端等待服务端响应时阻塞线程，提高应用的并发性能。</li>
+<li>可组合：CompletableFuture<strong>支持链式调用和组合</strong>，可以方便地将多个异步任务组合在一起，实现复杂的异步业务逻辑。</li>
+<li>异常处理：CompletableFuture<strong>可以捕获异步任务中的异常</strong>，便于我们进行异常处理，提高代码的健壮性。</li>
+<li>超时控制：CompletableFuture<strong>支持设置超时时间</strong>，可以在服务端响应超时时及时进行处理，避免因服务端响应慢而导致客户端请求超时。</li>
+</ol>
+<p>综上所述，使用CompletableFuture包装接受服务端返回结果可以帮助我们更好地实现异步处理、异常处理、超时控制等功能，提高应用的性能和健壮性。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/RPC/" title="RPC">http://viacheung.github.io/2023/06/04/RPC/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="字符串">
+      <i class="fa fa-chevron-left"></i> 字符串
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E8%AF%86%E8%8F%87/" rel="next" title="识菇">
+      识菇 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%96%99"><span class="nav-number">1.</span> <span class="nav-text">资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8E%86"><span class="nav-number">2.</span> <span class="nav-text">简历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E4%BD%93"><span class="nav-number">3.</span> <span class="nav-text">整体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%AF%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">整体服务调用链路是怎样的？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E7%9A%84"><span class="nav-number">4.</span> <span class="nav-text">我的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E6%B5%81%E7%A8%8B%EF%BC%88%E5%BE%85%E4%B8%B0%E5%AF%8C%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">总体流程（待丰富）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RPC%E7%9B%B8%E5%85%B3"><span class="nav-number">5.</span> <span class="nav-text">RPC相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E6%A1%86%E6%9E%B6%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">5.1.</span> <span class="nav-text">RPC框架有哪些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89RPC"><span class="nav-number">5.2.</span> <span class="nav-text">为什么要有RPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRPC"><span class="nav-number">5.3.</span> <span class="nav-text">什么是RPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E7%BB%84%E4%BB%B6%E5%92%8C%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">5.4.</span> <span class="nav-text">RPC组件和调用过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E6%A1%86%E6%9E%B6%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">5.5.</span> <span class="nav-text">RPC框架需要解决的问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E4%BD%BF%E7%94%A8%E4%BA%86%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%EF%BC%9F"><span class="nav-number">5.6.</span> <span class="nav-text">RPC使用了哪些关键技术？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="nav-number">5.7.</span> <span class="nav-text">RPC的实现原理架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E9%97%B4%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%80%9A%E4%BF%A1%EF%BC%9F"><span class="nav-number">5.8.</span> <span class="nav-text">微服务之间如何进行通信？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91%EF%BC%9F%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">5.9.</span> <span class="nav-text">RPC了解多少？都有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E9%83%A8%E5%88%86%EF%BC%9F"><span class="nav-number">5.10.</span> <span class="nav-text">RPC包含哪些部分？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AARPC%E4%BC%9A%E8%80%83%E8%99%91%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">5.11.</span> <span class="nav-text">设计一个RPC会考虑哪些问题？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kryo%E5%8E%9F%E7%90%86"><span class="nav-number">6.1.</span> <span class="nav-text">Kryo原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netty-bytebuf%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">6.2.</span> <span class="nav-text">netty bytebuf工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">6.3.</span> <span class="nav-text">序列化与反序列的方式有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%8F%E5%88%97%E5%8C%96%E5%8D%8F%E8%AE%AE%EF%BC%9F"><span class="nav-number">6.4.</span> <span class="nav-text">有哪些序列化协议？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%9F"><span class="nav-number">6.5.</span> <span class="nav-text">为什么要进行序列化和反序列化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8Kyro"><span class="nav-number">6.6.</span> <span class="nav-text">为什么选用Kyro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">6.7.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">7.</span> <span class="nav-text">负载均衡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%BA%86%E8%A7%A3%E5%93%AA%E4%BA%9B-dubbo%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%AD%96%E7%95%A5"><span class="nav-number">7.1.</span> <span class="nav-text">负载均衡了解哪些(dubbo的四种策略)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8E%A8%E8%8D%90%E5%9F%BA%E4%BA%8E%E9%9A%8F%E6%9C%BA%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%9F"><span class="nav-number">7.2.</span> <span class="nav-text">Dubbo为什么推荐基于随机的负载均衡？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E5%9C%A8%E6%9F%90%E8%8A%82%E7%82%B9%E5%AE%95%E6%9C%BA%E6%97%B6%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84"><span class="nav-number">7.3.</span> <span class="nav-text">一致性哈希在某节点宕机时怎么保证一致性的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">7.4.</span> <span class="nav-text">一致性哈希算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">7.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">8.</span> <span class="nav-text">动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%88%E5%8F%8D%E5%B0%84%EF%BC%8C%E5%86%8D%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E4%B8%8D%E5%A4%AA%E6%B8%85%E6%A5%9A%EF%BC%89"><span class="nav-number">8.1.</span> <span class="nav-text">JDK动态代理机制是怎么实现的（反射，再底层原理不太清楚）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">8.2.</span> <span class="nav-text">静态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-1"><span class="nav-number">8.3.</span> <span class="nav-text">动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">8.3.1.</span> <span class="nav-text">JDK动态代理使用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CGLIB"><span class="nav-number">8.3.2.</span> <span class="nav-text">CGLIB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AF%B9%E6%AF%94"><span class="nav-number">8.3.3.</span> <span class="nav-text">JDK动态代理和CGLIB动态代理对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">8.3.4.</span> <span class="nav-text">静态代理和动态代理的对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AEprivate%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7%E5%90%97%EF%BC%9F%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%EF%BC%9F"><span class="nav-number">8.4.</span> <span class="nav-text">反射可以访问private方法和属性吗？如何访问？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">8.5.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">8.5.1.</span> <span class="nav-text">JDK动态代理使用步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-number">9.</span> <span class="nav-text">注册中心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="nav-number">9.1.</span> <span class="nav-text">介绍一下服务注册中心怎么做的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89zookeeper%EF%BC%9F"><span class="nav-number">9.2.</span> <span class="nav-text">为什么选zookeeper？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%8A%82%E7%82%B9%E5%AE%95%E6%9C%BA%EF%BC%8Czookeeper%E5%A6%82%E4%BD%95%E6%84%9F%E7%9F%A5%EF%BC%9F"><span class="nav-number">9.3.</span> <span class="nav-text">如果你节点宕机，zookeeper如何感知？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">9.4.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">9.5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper%E6%9C%89%E5%87%A0%E7%A7%8D%E8%A7%92%E8%89%B2%EF%BC%9F"><span class="nav-number">9.6.</span> <span class="nav-text">Zookeeper有几种角色？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9%E5%AE%95%E6%9C%BA%E4%BA%86%E6%80%8E%E4%B9%88%E5%8F%91%E7%8E%B0%E5%89%94%E9%99%A4%E7%9A%84%EF%BC%9F"><span class="nav-number">9.7.</span> <span class="nav-text">Zookeeper集群节点宕机了怎么发现剔除的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo%E4%B8%8D%E8%B6%B3%EF%BC%8C%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91%EF%BC%9F%EF%BC%88%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%EF%BC%89"><span class="nav-number">9.8.</span> <span class="nav-text">dubbo不足，以及优化方向？（语言支持）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netty%E9%AB%98%E6%80%A7%E8%83%BD%E4%B8%BB%E8%A6%81%E4%BE%9D%E8%B5%96%E4%BA%86%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">9.9.</span> <span class="nav-text">netty高性能主要依赖了哪些特性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CGLib-%E5%BA%95%E5%B1%82"><span class="nav-number">9.10.</span> <span class="nav-text">CGLib 底层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%B1%BB%E6%9C%89%E6%96%B9%E6%B3%95a%E5%92%8C%E6%96%B9%E6%B3%95b%EF%BC%8C%E4%B8%A4%E4%B8%AA%E6%96%B9%E6%B3%95%E9%83%BD%E8%A2%AB%E4%BB%A3%E7%90%86%EF%BC%8C%E6%96%B9%E6%B3%95a%E4%B8%AD%E8%B0%83%E7%94%A8%E4%BA%86%E6%96%B9%E6%B3%95b%EF%BC%8C%E8%A2%AB%E4%BB%A3%E7%90%86%E5%90%8E%E8%B0%83%E7%94%A8a%E6%96%B9%E6%B3%95%EF%BC%8Ca%E6%96%B9%E6%B3%95%E4%B8%AD%E8%B0%83%E7%94%A8%E7%9A%84%E6%98%AF%E8%A2%AB%E4%BB%A3%E7%90%86%E7%9A%84%E6%96%B9%E6%B3%95b%E8%BF%98%E6%98%AF%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95b%EF%BC%9F%EF%BC%88%E6%B1%82%E5%A4%A7%E7%A5%9E%E8%A7%A3%E7%AD%94%EF%BC%89"><span class="nav-number">9.10.1.</span> <span class="nav-text">一个类有方法a和方法b，两个方法都被代理，方法a中调用了方法b，被代理后调用a方法，a方法中调用的是被代理的方法b还是普通方法b？（求大神解答）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Socket"><span class="nav-number">10.</span> <span class="nav-text">Socket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Netty%E4%BC%A0%E8%BE%93"><span class="nav-number">11.</span> <span class="nav-text">Netty传输</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#select%E3%80%81poll-%E5%92%8C-epoll-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">11.1.</span> <span class="nav-text">select、poll 和 epoll 之间的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8Netty%E6%9D%A5%E5%81%9A%E9%80%9A%E4%BF%A1%E6%A1%86%E6%9E%B6%EF%BC%9F"><span class="nav-number">11.2.</span> <span class="nav-text">为什么选用Netty来做通信框架？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%98%E7%9F%A5%E9%81%93%E5%85%B6%E4%BB%96%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%A1%86%E6%9E%B6%EF%BC%9F"><span class="nav-number">11.3.</span> <span class="nav-text">还知道其他网络通信框架？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">11.4.</span> <span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">11.5.</span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">11.6.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82%E4%BA%9B%E6%96%B9%E5%BC%8F%EF%BC%9FNIO-BIO-AIO"><span class="nav-number">11.7.</span> <span class="nav-text">服务端处理请求些方式？NIO BIO AIO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="nav-number">11.8.</span> <span class="nav-text">传输协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%B3%A8%E8%A7%A3%E6%B3%A8%E5%86%8C-x2F-%E6%B6%88%E8%B4%B9%E6%9C%8D%E5%8A%A1"><span class="nav-number">12.</span> <span class="nav-text">通过注解注册&#x2F;消费服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CompletableFuture"><span class="nav-number">13.</span> <span class="nav-text">CompletableFuture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPI"><span class="nav-number">14.</span> <span class="nav-text">SPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#javaspi"><span class="nav-number">14.1.</span> <span class="nav-text">javaspi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springspi"><span class="nav-number">14.2.</span> <span class="nav-text">springspi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dubbo"><span class="nav-number">14.3.</span> <span class="nav-text">dubbo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-1"><span class="nav-number">15.</span> <span class="nav-text">负载均衡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RandomLoadBalance"><span class="nav-number">15.0.0.1.</span> <span class="nav-text">RandomLoadBalance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LeastActiveLoadBalance"><span class="nav-number">15.0.0.2.</span> <span class="nav-text">LeastActiveLoadBalance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConsistentHashLoadBalance"><span class="nav-number">15.0.1.</span> <span class="nav-text">ConsistentHashLoadBalance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RoundRobinLoadBalance"><span class="nav-number">15.0.1.1.</span> <span class="nav-text">RoundRobinLoadBalance</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Jdk%E8%87%AA%E5%B8%A6%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">16.</span> <span class="nav-text">为什么不用Jdk自带序列化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zookeeper"><span class="nav-number">17.</span> <span class="nav-text">zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ZooKeeper-%E7%89%B9%E7%82%B9"><span class="nav-number">17.0.1.</span> <span class="nav-text">ZooKeeper 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZooKeeper-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">17.0.2.</span> <span class="nav-text">ZooKeeper 应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%EF%BC%88Session%EF%BC%89"><span class="nav-number">17.0.3.</span> <span class="nav-text">会话（Session）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4"><span class="nav-number">17.0.4.</span> <span class="nav-text">两阶段提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">17.0.5.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3PC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89"><span class="nav-number">17.0.6.</span> <span class="nav-text">3PC（三阶段提交）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%85%E5%88%A0%E9%99%A4"><span class="nav-number">18.</span> <span class="nav-text">待删除</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty%E4%BD%BF%E7%94%A8kyro%E5%BA%8F%E5%88%97%E5%8C%96%E4%BC%A0%E8%BE%93%E5%AF%B9%E8%B1%A1%E5%AE%9E%E6%88%98"><span class="nav-number">18.1.</span> <span class="nav-text">Netty使用kyro序列化传输对象实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">18.2.</span> <span class="nav-text">传输实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-1"><span class="nav-number">18.3.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">18.3.1.</span> <span class="nav-text">初始化客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-2"><span class="nav-number">18.3.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89ChannelHandler%E5%A4%84%E7%90%86%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B6%88%E6%81%AF"><span class="nav-number">18.4.</span> <span class="nav-text">定义ChannelHandler处理服务端消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-1"><span class="nav-number">18.5.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">18.5.1.</span> <span class="nav-text">初始化服务端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E8%81%8A%E8%81%8AgRPC%E5%92%8Cdubbo%E8%BF%99%E4%B8%A4%E7%B1%BB%E6%A1%86%E6%9E%B6%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">18.6.</span> <span class="nav-text">能聊聊gRPC和dubbo这两类框架区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%B2%A1%E6%9C%89%E8%80%83%E8%99%91%E8%BF%87%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E7%9B%B8%E5%85%B3%E7%9A%84%E4%BA%8B%E6%83%85%E5%90%97%EF%BC%88%E8%BF%98%E6%B2%A1%E6%9C%89%EF%BC%89"><span class="nav-number">18.7.</span> <span class="nav-text">有没有考虑过服务治理相关的事情吗（还没有）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E5%81%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%90%97%EF%BC%9F%EF%BC%88%E6%B2%A1%E6%9C%89%EF%BC%89"><span class="nav-number">18.8.</span> <span class="nav-text">RPC项目中有做单元测试吗？（没有）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95"><span class="nav-number">19.</span> <span class="nav-text">模拟面试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C"><span class="nav-number">19.1.</span> <span class="nav-text">一致性哈希</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper"><span class="nav-number">19.2.</span> <span class="nav-text">Zookeeper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty"><span class="nav-number">19.3.</span> <span class="nav-text">Netty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kyro"><span class="nav-number">19.4.</span> <span class="nav-text">kyro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-2"><span class="nav-number">19.5.</span> <span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CompletableFuture-1"><span class="nav-number">19.6.</span> <span class="nav-text">CompletableFuture</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

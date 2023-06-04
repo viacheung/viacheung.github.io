@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="项目魔方天地项目介绍主要包括魔方教程的发布、展示、检索、评论，用户的登录注册等。 在这其中加入了一些中间件进行优化，最后做了上线部署。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="魔方天地">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="项目魔方天地项目介绍主要包括魔方教程的发布、展示、检索、评论，用户的登录注册等。 在这其中加入了一些中间件进行优化，最后做了上线部署。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230413011206981.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230404225216774.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230322004403008.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230322005426563.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230320181343651.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230321165330147.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230329011433967.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/QFR%7D%7D83L%60%5T_PO3GGRG@NR.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230323114926875.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1460000039258685">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/20200722164307306.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/f9b5747185ff4e03a3a8301be50def8f.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb5881bbb1d4~tplv-t2oaga2asx-watermark.awebp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb5881a19fec~tplv-t2oaga2asx-watermark.awebp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb5881fb4a1b~tplv-t2oaga2asx-watermark.awebp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb588215b298~tplv-t2oaga2asx-watermark.awebp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230325004307581.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/727602-20200108091329888-1880681145.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/727602-20200108091722601-747710174.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/727602-20200108091915241-1598228624.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230322145324052.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/zp1p1bdlat.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410163310797.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410163455042.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230320181343651.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230316152438763.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230316152350542.png">
+<meta property="article:published_time" content="2023-06-04T10:16:57.000Z">
+<meta property="article:modified_time" content="2023-06-04T10:21:07.326Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230413011206981.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>魔方天地 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          魔方天地
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 18:16:57 / 修改时间：18:21:07" itemprop="dateCreated datePublished" datetime="2023-06-04T18:16:57+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h2 id="魔方天地"><a href="#魔方天地" class="headerlink" title="魔方天地"></a>魔方天地</h2><h3 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h3><p>主要包括魔方教程的发布、展示、检索、评论，用户的登录注册等。 在这其中加入了一些中间件进行优化，最后做了上线部署。<span id="more"></span></p>
+<p>以下是该项目的主要特点和功能：</p>
+<ol>
+<li>从用户系统：支持用户注册、登录，用户可以发布教程帖子、评论。</li>
+<li>帖子管理：支持帖子的发布、编辑和删除等操作，帖子内容可以包含图片（七牛云）。</li>
+<li>分类和标签：帖子可以被分配到不同的分类和标签，方便用户查找和阅读。</li>
+<li>搜索：支持关键词搜索功能。</li>
+</ol>
+<p>以上就是我项目的主要内容</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230413011206981.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230404225216774.png" alt="img"></p>
+<p><strong>服务器配置和QPS：</strong></p>
+<p>2核CPU&#x2F;4G内存&#x2F;3M公网宽带</p>
+<p>QPS： 600 cpu使用率 3%</p>
+<p>总结：服务器并发性能大部分情况受限于带宽，在带宽足够大的情况下，如果CPU使用达到50% - 80%以上，需要拓展服务器内存。</p>
+<p>挂了怎么办</p>
+<p>tomcat 默认连接数200改成800就没问题了</p>
+<p><strong>线上出现fullgc问题如何排查？</strong></p>
+<p>问题：线上出现fullgc报警，每5分钟一次</p>
+<p>原因：</p>
+<p>1、System.gc </p>
+<p>2、minnorGc时老年代可用空间小于新时代对象大小且没有开启空间分配担保策略，或者开启了但是老年代中最大连续可用空间是小于了历次晋升到老年代中的平均大小，就会fullGc</p>
+<p>3、大对象</p>
+<p>4、长期持有某个引用</p>
+<p>5、老年代、方法区爆</p>
+<p>排查：</p>
+<p>1、之前就设定好 -XX:HeapDumpBeforeFullGC（fullGc保存dump） -XX:HeapDumpPath&#x3D;保存dump文件的文件绝对路径</p>
+<p>2、导出dump文件，通过JDK自带的jvisualvm工具分析或者下载三方软件jprofiler来分析dump文件即可</p>
+<p>3、最重要的一点，要把fullgc发生时刻的dump文件和正常没有发生fullgc时间的dump文件都下载到本地，然后对比观察分析方便找到问题的原因 </p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230322004403008.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230322005426563.png" alt="img"></p>
+<h3 id="1、JWT-token-redis"><a href="#1、JWT-token-redis" class="headerlink" title="1、JWT+token+redis"></a>1、JWT+token+redis</h3><h4 id="登录整体流程："><a href="#登录整体流程：" class="headerlink" title="登录整体流程："></a><strong>登录整体流程：</strong></h4><p>1、前端传入账密，检查参数是否合法，只要账密一个为空，报参数错误的信息</p>
+<p>2、用传入的用户密码（比如123）用一个加密盐（可以放数据库也可以写死，我这里是写死）做一个加密，目的为了不让数据库用户密码泄露，然后根据用户名和密码去user表中查询 是否存在</p>
+<p>3、如果不存在 报账户密码不存在错误</p>
+<p>4、如果存在 ，使用jwt 生成token 返回给前端</p>
+<p>​		AB部分用A指定的HS256算法加一个随便指定密钥进行加密生成token</p>
+<p>5、token放入redis当中，redis（String，String，time，单位） token：（TOKEN_token，对象转为Json字符串，1，day ） redis操作：keys *</p>
+<h4 id="后续登录"><a href="#后续登录" class="headerlink" title="后续登录"></a><strong>后续登录</strong></h4><p>登录认证的时候 经过登录拦截器preHandle</p>
+<p>1、康康是不是访问controller的方法 不是的话就不用拦截了（访问静态资源 默认去classpath下的static目录去查询）</p>
+<p>2、Authorization拿到Token，先认证token字符串是否合法</p>
+<p>3、再去redis认证是否存在，过期了直接重新登录</p>
+<p>4、redis拿到的用户信息存到ThreadLocal，进行用户信息的缓存（比如写评论操作用到） </p>
+<p>5、最后remove()</p>
+<h4 id="用户jwt鉴权流程"><a href="#用户jwt鉴权流程" class="headerlink" title="用户jwt鉴权流程"></a>用户jwt鉴权流程</h4><p>(JSON WEB TOKEN)</p>
+<p><strong>签发</strong></p>
+<p>jwt 有三部分组成：A.B.C</p>
+<p>A：Header，{“type”:”JWT”,”alg”:”HS256”} 固定 <strong>定义生成签名算法以及Token的类型</strong> alg表示签名算法HS256</p>
+<p>B：playload，存放实际需要传递的信息，比如，用户id，过期时间等等，可以被解密，不能存放敏感信息（因为playload默认不加密）</p>
+<p>AB两部分都用Base64URL 算法转成字符串（ Base64 编码格式）</p>
+<p>C: 签证，对前面两部分的签名；</p>
+<p>首先，需要指定一个密钥（secret）。这个密钥只有服务器才知道，不能泄露给用户。然后，使用 Header 里面指定的签名算法（默认是 HMAC SHA256&#x3D;&#x3D; HS256），再加上一个密钥，secret（自己指定）按照下面的公式产生签名。</p>
+<p>token&#x3D;HMACSHA256( base64UrlEncode(header) + “.” + base64UrlEncode(payload), secret)算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用”点”（ . ）分隔，就可以返回给用户。</p>
+<pre><code class="plain">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+//可以在 jwt.io 这个网站上对其 JWT 进行解码
+</code></pre>
+<p><strong>验证</strong></p>
+<p>通过secret密钥进行解密，验证C部分 是否合法；</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230320181343651.png" alt="img"></p>
+<ol>
+<li>用户使用用户名密码来请求服务器</li>
+<li>服务器进行验证用户的信息3.服务器通过验证，发送给用户一个token（header.payload(id 电话号码啥的).签证）4.客户端存储token，并在每次请求时附送上这个token值（Authorization里面，放在cokie里面不能跨域）</li>
+<li>服务端验证token值，并返回数据，从中也可获取用户相关信息</li>
+</ol>
+<h4 id="如何防止-JWT-被篡改？"><a href="#如何防止-JWT-被篡改？" class="headerlink" title="如何防止 JWT 被篡改？"></a>如何防止 JWT 被篡改？</h4><p>有了签名之后，即使 JWT 被泄露或者截获，黑客也没办法同时篡改 Signature、Header、Payload。</p>
+<p>这是为什么呢？因为服务端拿到 JWT 之后，会解析出其中包含的 Header、Payload 以及 Signature 。服务端会根据 Header、Payload、密钥再次生成一个 Signature。拿新生成的 Signature 和 JWT 中的 Signature 作对比，如果一样就说明 Header 和 Payload 没有被修改。</p>
+<p>不过，如果服务端的秘钥也被泄露的话，黑客就可以同时篡改 Signature、Header、Payload 了。黑客直接修改了 Header 和 Payload 之后，再重新生成一个 Signature 就可以了，这样服务端拿到解析出来Header、Payload 再用泄露的密钥进行生成，是和黑客生成的一样的；</p>
+<p><strong>密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。</strong></p>
+<h4 id="如何加强-JWT-的安全性？"><a href="#如何加强-JWT-的安全性？" class="headerlink" title="如何加强 JWT 的安全性？"></a>如何加强 JWT 的安全性？</h4><ol>
+<li>使用安全系数高的加密算法。</li>
+<li>使用成熟的开源库，没必要造轮子。</li>
+<li>JWT 存放在 localStorage 中而不是 Cookie 中，避免 CSRF 风险。</li>
+<li>一定不要将隐私信息存放在 Payload 当中。</li>
+<li>密钥一定保管好，一定不要泄露出去。JWT 安全的核心在于签名，签名安全的核心在密钥。</li>
+<li>Payload 要加入 exp （JWT 的过期时间），永久有效的 JWT 不合理。并且，JWT 的过期时间不易过长。</li>
+</ol>
+<h4 id="JWT优势"><a href="#JWT优势" class="headerlink" title="JWT优势"></a>JWT优势</h4><h5 id="1、-有效避免了-CSRF-攻击"><a href="#1、-有效避免了-CSRF-攻击" class="headerlink" title="1、 有效避免了 CSRF 攻击"></a>1、 有效避免了 CSRF 攻击</h5><p>总结来说就一句话：<strong>使用 JWT 进行身份验证不需要依赖 Cookie ，因此可以避免 CSRF 攻击(CSRF 攻击需要依赖 Cookie)。</strong></p>
+<h5 id="2、XSS攻击呢？"><a href="#2、XSS攻击呢？" class="headerlink" title="2、XSS攻击呢？"></a>2、XSS攻击呢？</h5><p>常见的避免 XSS 攻击的方式是过滤掉请求中存在 XSS 攻击风险的可疑字符串。</p>
+<h5 id="3、适合移动端、跨语言"><a href="#3、适合移动端、跨语言" class="headerlink" title="3、适合移动端、跨语言"></a>3、适合移动端、跨语言</h5><h5 id="4、单点登录友好"><a href="#4、单点登录友好" class="headerlink" title="4、单点登录友好"></a>4、单点登录友好</h5><h5 id="5、无状态-减轻服务端压力"><a href="#5、无状态-减轻服务端压力" class="headerlink" title="5、无状态 减轻服务端压力"></a>5、无状态 减轻服务端压力</h5><h4 id="JWT-身份认证常见问题及解决办法"><a href="#JWT-身份认证常见问题及解决办法" class="headerlink" title="JWT 身份认证常见问题及解决办法"></a>JWT 身份认证常见问题及解决办法</h4><h5 id="注销登录等场景下-JWT-还有效"><a href="#注销登录等场景下-JWT-还有效" class="headerlink" title="注销登录等场景下 JWT 还有效"></a>注销登录等场景下 JWT 还有效</h5><h6 id="1、将-JWT-存入内存数据库"><a href="#1、将-JWT-存入内存数据库" class="headerlink" title="1、将 JWT 存入内存数据库"></a><strong>1、将 JWT 存入内存数据库</strong></h6><p>redis 里面删除</p>
+<p><strong>2、黑名单机制</strong></p>
+<p>Redis 维护一个黑名单，每次使用 JWT 进行请求的话都会先判断这个 JWT 是否存在于黑名单中。</p>
+<p><strong>3、修改密钥 (Secret)</strong></p>
+<p>直接修改对应用户的密钥</p>
+<p>危害：1 如果是分布式项目 还要同步 2 多端的话 一端退出 另一端也退出了</p>
+<p><strong>4、保持令牌的有效期限短并经常轮换</strong></p>
+<p>但需要经常登录 </p>
+<h4 id="数据库账号密码"><a href="#数据库账号密码" class="headerlink" title="数据库账号密码"></a>数据库账号密码</h4><p>用一个加密slat实现</p>
+<h4 id="jwt退出登录-x2F-修改密码时如何使原来的token失效"><a href="#jwt退出登录-x2F-修改密码时如何使原来的token失效" class="headerlink" title="jwt退出登录&#x2F;修改密码时如何使原来的token失效"></a>jwt退出登录&#x2F;修改密码时如何使原来的token失效</h4><p>删除redis里面的token即可</p>
+<h4 id="用redis和不用的区别"><a href="#用redis和不用的区别" class="headerlink" title="用redis和不用的区别"></a>用redis和不用的区别</h4><p>1、<strong>用redis可以直接使jwt失效或者延期，方便</strong></p>
+<p>2、多个子系统可以访问redis数据库</p>
+<p>就单点登录里的token而言，单点登录是为了实现一次登录其他相互信任的系统不用登陆就可访问的效果，既然如此就不止一个系统，每个系统的数据存在不同的数据库中，A系统不可以访问B系统的数据库，若将token存在于A系统数据库中，B系统登录时就访问不到token，但是所有系统都可以访问redis缓存数据库，而且token具有时效性，而redis天然支持设置过期时长【set（key,value,毫秒值）】</p>
+<p>3、<strong>而且redis响应速度很快</strong></p>
+<p>登录时把jwt存进redis，设置成2倍的jwt有效期。登出删除redis保存的jwt。</p>
+<h4 id="如何防止jwt-token被窃取"><a href="#如何防止jwt-token被窃取" class="headerlink" title="如何防止jwt token被窃取"></a><strong>如何防止jwt token被窃取</strong></h4><p>1、采用更安全的传输协议https</p>
+<p>2、加密传输 （jwt默认不加密）</p>
+<p>3、代码层面也可以做安全检测，比如ip地址发生变化，MAC地址发生变化等等，可以要求重新登录</p>
+<p>4、使用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%A7%81%E9%92%A5&spm=1001.2101.3001.7020">私钥</a>加密生成token 公钥解密获取token中的信息</p>
+<p>1）系统不能把jwt作为唯一的身份识别条件，不然被别人拿到了jwt就相当于获得了所有相关账户的权限，但对于这一点我还在学习中。2）存储jwt、传输的方式应该再加强。</p>
+<p>private static final String slat &#x3D; “mszlu!@#”;&#x2F;&#x2F;加密盐 因为数据库不能给人看密码  每次都用这一个字符串用来加密</p>
+<h4 id="token过期了怎么办？"><a href="#token过期了怎么办？" class="headerlink" title="token过期了怎么办？"></a>token过期了怎么办？</h4><p>我的项目是<strong>token不过期、redis记录过期</strong></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7126708538440679460">https://juejin.cn/post/7126708538440679460</a></p>
+<h4 id="如何踢人下线"><a href="#如何踢人下线" class="headerlink" title="如何踢人下线"></a>如何踢人下线</h4><p>直接把token和存入redis里，验证有无token即可。踢人下线直接清除redis中的token。和笔者的思路是类似的。</p>
+<h3 id="2、ThreadLocal保存用户信息"><a href="#2、ThreadLocal保存用户信息" class="headerlink" title="2、ThreadLocal保存用户信息"></a>2、ThreadLocal保存用户信息</h3><p><strong>目的</strong></p>
+<p>方便鉴权，查询是否在线，减少数据库读操作</p>
+<p>token:sysUser</p>
+<p>不想用session(服务器存储 分布式)</p>
+<p>文章发布 需要用户id，直接拿，评论也是一样，<strong>方便</strong></p>
+<p>request获取？ 但是从设计上、代码分层上来说，</p>
+<p>并发问题</p>
+<p>降低redis使用？</p>
+<p><strong>redis中可以获取用户信息，但是因为redis中的key是token，要先拿到token才能拿到用户信息，但是token不是每个类中都存在，想在每个类都获取到用户信息</strong></p>
+<p>一般我们需要获取当前用户信息，放到缓存？每次解析token，然后传递？我们可以使用ThreadLocal来解决。将用户信息保存在线程中，当请求结束后我们在把保存的信息清除掉。这样我们才开发的时候就可以直接从全局的ThreadLocal中很方便的获取用户信息。当前线程在任何地方需要时，都可以使用 </p>
+<p><strong>步骤</strong></p>
+<ul>
+<li>创建ThreadLocal类，在其中设置相关的添加、获取以及删除方法。</li>
+<li>创建登录拦截器，重写其中的preHandle()（ThreadLocal.put()）和afterCompletion()(不用了手动remove)方法。</li>
+<li>webmvcConfig里面注册拦截器（告诉springmvc我们要拦截谁） 排除登录注册这种就行 其他都需要登录</li>
+</ul>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>Thread类中，有个ThreadLocal.ThreadLocalMap 的成员变量。ThreadLocalMap内部维护了Entry数组，每个Entry代表一个完整的对象，key是ThreadLocal本身，value是ThreadLocal的泛型对象值（我这个项目里面，key是Thread本身，value是用户对象）</p>
+<p>并发多线程场景下，每个线程Thread，在往ThreadLocal里设置值的时候，都是往自己的ThreadLocalMap里存，读也是以某个ThreadLocal作为引用，在自己的map里找对应的key，从而可以实现了<strong>线程隔离</strong>。</p>
+<h4 id="为什么不直接用线程id作为ThreadLocalMap的key呢？"><a href="#为什么不直接用线程id作为ThreadLocalMap的key呢？" class="headerlink" title="为什么不直接用线程id作为ThreadLocalMap的key呢？"></a>为什么不直接用线程id作为ThreadLocalMap的key呢？</h4><p>同一个线程，用了两个ThreadLocal成员变量的话。如果用线程id作为ThreadLocalMap的key，怎么区分哪个ThreadLocal成员变量呢？因此还是需要使用ThreadLocal作为Key来使用。每个ThreadLocal对象，都可以由threadLocalHashCode属性<strong>唯一区分</strong>的，每一个ThreadLocal对象都可以由这个对象的名字唯一区分</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230321165330147.png" alt="img"></p>
+<h4 id="弱引用导致的内存泄漏呢？"><a href="#弱引用导致的内存泄漏呢？" class="headerlink" title="弱引用导致的内存泄漏呢？"></a>弱引用导致的内存泄漏呢？</h4><p>ThreadLocalMap使用ThreadLocal的<strong>弱引用</strong>作为key，当ThreadLocal变量被手动设置为null，即一个ThreadLocal没有外部强引用来引用它，当系统GC时，ThreadLocal一定会被回收。这样的话，ThreadLocalMap中就会出现key为null的Entry，就没有办法访问这些key为null的Entry的value，如果当前线程再迟迟不结束的话(比如线程池的核心线程)，这些key为null的Entry的value就会一直存在一条强引用链：Thread变量 -&gt; Thread对象 -&gt; ThreaLocalMap -&gt; Entry -&gt; value -&gt; Object 永远无法回收，造成内存泄漏。</p>
+<p>实际上，ThreadLocalMap的设计中已经考虑到这种情况。所以也加上了一些防护措施：即在ThreadLocal的get,set,remove方法，都会清除线程ThreadLocalMap里所有key为null的value。</p>
+<h4 id="key是弱引用，GC回收会影响ThreadLocal的正常工作嘛？"><a href="#key是弱引用，GC回收会影响ThreadLocal的正常工作嘛？" class="headerlink" title="key是弱引用，GC回收会影响ThreadLocal的正常工作嘛？"></a>key是弱引用，GC回收会影响ThreadLocal的正常工作嘛？</h4><p>不会的，因为有ThreadLocal变量引用着它，是不会被GC回收的，除非手动把ThreadLocal变量设置为null</p>
+<h4 id="ThreadLocal内存泄漏的demo"><a href="#ThreadLocal内存泄漏的demo" class="headerlink" title="ThreadLocal内存泄漏的demo"></a>ThreadLocal内存泄漏的demo</h4><p>用线程池，<strong>一直往里面放对象</strong></p>
+<p>因为我们使用了线程池，线程池有很长的生命周期，因此线程池会一直持有tianLuoClass(ThreadLocal泛型值)对象的value值，即使设置tianLuoClass &#x3D; null;引用还是存在的</p>
+<h4 id="为什么弱引用"><a href="#为什么弱引用" class="headerlink" title="为什么弱引用"></a>为什么弱引用</h4><p>当ThreadLocal的对象被回收了，因为ThreadLocalMap持有ThreadLocal的弱引用，即使没有手动remove删除，ThreadLocal也会被回收。value则在下一次ThreadLocalMap调用set,get，remove的时候会被清除。</p>
+<h4 id="InheritableThreadLocal保证父子线程间的共享数据"><a href="#InheritableThreadLocal保证父子线程间的共享数据" class="headerlink" title="InheritableThreadLocal保证父子线程间的共享数据"></a>InheritableThreadLocal保证父子线程间的共享数据</h4><p>在子线程中，是可以获取到父线程的 InheritableThreadLocal 类型变量的值，但是不能获取到 ThreadLocal 类型变量的值（因为ThreadLocal是线程隔离）。</p>
+<p>在Thread类中，除了成员变量threadLocals之外，还有另一个成员变量：inheritableThreadLocals。</p>
+<p>当parent的inheritableThreadLocals不为null时，就会将parent的inheritableThreadLocals，赋值给前线程的inheritableThreadLocals。说白了，就是如果当前线程的inheritableThreadLocals不为null，就从父线程哪里拷贝过来一个过来，类似于另外一个ThreadLocal，但是数据从父线程那里来的。有兴趣的小伙伴们可以在去研究研究源码~</p>
+<h4 id="ThreadLocal的应用场景和使用注意点"><a href="#ThreadLocal的应用场景和使用注意点" class="headerlink" title="ThreadLocal的应用场景和使用注意点"></a>ThreadLocal的应用场景和使用注意点</h4><p>ThreadLocal的<strong>很重要一个注意点</strong>，就是使用完，要手动调用remove()。</p>
+<p>而ThreadLocal的应用场景主要有以下这几种：</p>
+<ul>
+<li>使用日期工具类，当用到SimpleDateFormat，使用ThreadLocal保证线性安全</li>
+<li>全局存储用户信息（用户信息存入ThreadLocal，那么当前线程在任何地方需要时，都可以使用）</li>
+<li>保证同一个线程，获取的数据库连接Connection是同一个，使用ThreadLocal来解决线程安全的问题</li>
+<li>使用MDC保存日志信息。</li>
+</ul>
+<h4 id="ThreadLocal特点"><a href="#ThreadLocal特点" class="headerlink" title="ThreadLocal特点"></a>ThreadLocal特点</h4><p><strong>线程并发</strong>：在多线程并发场景下使用</p>
+<p><strong>传递数据：</strong>可以通过ThreadLocal在同一线程,不同组件中传递公共变量(保存每个线程的数据,在需要的地方可以直接获取, 避免参数直接传递带来的代码耦合问题)</p>
+<p><strong>线程隔离</strong>：每个线程的变量都是独立的, 不会互相影响</p>
+<h4 id="ThreadLocal-和Synchronized"><a href="#ThreadLocal-和Synchronized" class="headerlink" title="ThreadLocal 和Synchronized"></a>ThreadLocal 和Synchronized</h4><p>ThreadLocal模式与Synchronized关键字都用于处理多线程并发访问变量的问题</p>
+<p>ThreadLocal：以空间换取时间的思想, 为每一个线程都提供了一份变量的副本, 从而实现同访问而 互相不干扰。 多线程中让每个线程之间的数据相互隔离</p>
+<p>Synchronized：以时间换取空间的思想，只提供了一份变量, 让不同的线程排队访问。多个线程之间访问资源的同步</p>
+<h4 id="ThreadLocal不能解决共享变量的线程安全问题"><a href="#ThreadLocal不能解决共享变量的线程安全问题" class="headerlink" title="ThreadLocal不能解决共享变量的线程安全问题"></a>ThreadLocal不能解决共享变量的线程安全问题</h4><p>子线程访问父线程的共享变量时候，是“引用传递”，多个子线程访问的话所以线程不安全</p>
+<ul>
+<li>每个线程独享一份new出来的实例 -&gt; 线程安全</li>
+<li>多个线程共享一份“引用类型”实例 -&gt; 线程不安全</li>
+</ul>
+<h4 id="ThreadLocal与Thread同步机制的比较"><a href="#ThreadLocal与Thread同步机制的比较" class="headerlink" title="ThreadLocal与Thread同步机制的比较"></a>ThreadLocal与Thread同步机制的比较</h4><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230329011433967.png" alt="img"></p>
+<h4 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h4><p>线性探测法顾名思义，就是解决冲突的函数是一个线性函数，最直接的就是在TreadLocal的代码中也用的是这样一个解决冲突的函数。</p>
+<p> f(x)&#x3D; x+1</p>
+<p>但是要注意的是TreadLocal中，是一个环状的探测，如果到达边界就会直接跨越边界到另一头去。</p>
+<p>线性探测法的优点：</p>
+<ol>
+<li>不用额外的空间（对比拉链法，需要额外链表）</li>
+<li>探测序列具有局部性，可以利用系统缓存，减少IO（连续的内存地址）</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>耗费时间&gt;O(1)（最差O(n)）</li>
+<li>冲突增多——以往的冲突会导致后续的连环冲突(时间复杂度趋近O(n))</li>
+</ol>
+<p>之前我们说过，线性探测法有个问题是，一旦发生碰撞，很可能之后每次都会产生碰撞，导致连环撞车。而使用0x61c88647这个值做一个hash的增长值就可以从一定程度上解决这个问题让生成出来的值较为均匀地分布在2的幂大小的数组中。也就是说当我们用0x61c88647作为步长累加为每个ThreadLocal分配各自的ID也就是threadLocalHashCode再与2的幂取模，得到的结果分布很均匀。</p>
+<p>0x61c88647选取其实是与斐波那契散列有关，这个就是数学知识了，这里不展开。</p>
+<h3 id="3、日志记录放入线程池"><a href="#3、日志记录放入线程池" class="headerlink" title="3、日志记录放入线程池"></a>3、日志记录放入线程池</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>不能让记录日志出现失误影响用户的登录 写日志到磁盘里面会有IO的耗时，拖慢主线程时间</p>
+<p>为了出现错误时候的排查</p>
+<p>记录日志录入数据库时，脱离主线程，实现异步插入，这样不会拖延主线程的执行时间ps：记录日志，可以写在业务逻辑中，也可以利用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=aop&spm=1001.2101.3001.7020">aop</a>自动记录。 </p>
+<h4 id="我的线程池参数？"><a href="#我的线程池参数？" class="headerlink" title="我的线程池参数？"></a>我的线程池参数？</h4><h5 id="一些参数"><a href="#一些参数" class="headerlink" title="一些参数"></a>一些参数</h5><p>衡量系统性能如何，主要指标系统的（QPS&#x2F;TPS）</p>
+<p>QPS：每秒能够处理请求&#x2F;事务的数量</p>
+<p>TPS：每秒能够处理事务的数量</p>
+<p>并发数：系统同时处理的请求&#x2F;事务的数量</p>
+<p>响应时间：就是平均处理一个请求&#x2F;事务需要时长</p>
+<p>QPS&#x2F;TPS &#x3D; 并发数&#x2F;响应时间（和两者都有关）</p>
+<h5 id="通用公式"><a href="#通用公式" class="headerlink" title="通用公式"></a>通用公式</h5><p>最佳线程数目 &#x3D; （（线程等待时间+线程CPU时间）&#x2F;线程CPU时间 ）* CPU数目</p>
+<h5 id="CPU密集-amp-amp-IO密集"><a href="#CPU密集-amp-amp-IO密集" class="headerlink" title="CPU密集&amp;&amp;IO密集"></a>CPU密集&amp;&amp;IO密集</h5><p>cpu密集：设为cpu核数+1，cpu都是满荷工作，加线程反而有上下文切换，多出的这一个线程是为了，当密集型的线程由于偶尔的内存页失效或其他原因导致阻塞时，这个额外的线程也能确保 CPU 的时钟周期不会被浪费，从而保证 CPU 的利用率。</p>
+<p>IO密集：线程数 &#x3D; CPU 核心数 * (1 + IO 耗时&#x2F; CPU 耗时)，和任务的平均等待时间相关，主要就是利用了被浪费掉的阻塞时间，还有一种公式CPU核数&#x2F;(1-阻塞系数) 阻塞系数在0.8~0.9之间</p>
+<p>最多线程数：2G&#x2F;100M&#x3D;2048</p>
+<p>以上只是一个公式，线程数设置多大，是根据我们自身的业务和QPS这些，需要自己去压力测试，设置一个合理的数值。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/QFR%7D%7D83L%60%5T_PO3GGRG@NR.png" alt="img"></p>
+<h4 id="关于异步"><a href="#关于异步" class="headerlink" title="关于异步"></a>关于异步</h4><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230323114926875.png" alt="img"></p>
+<p>如果是注册这类的功能不适合异步，肯定要同步的，注册成功才返回成功。我这个上传视频到OSS要异步的原因是因为用户要先把视频发到我的云服务器中，云服务器再去接收到的视频放到阿里云OSS中，是两个步骤。如果要两个操作成功才返回给用户上传成功的话太久了。所以在用户上传视频到云服务器成功后就可以返回成功信息给用户了，后面服务器再自己把视频上传到OSS（这个过程挺慢的）。具体逻辑还不够完善（主要是钱没到位）。不是什么情况下都可以用异步处理的。要一个操作设计多个步骤，并且后续的步骤都和用户没什么关系的情况下才会考虑要不要异步处理（可以提供用户体验，不用一直等）。比如银行的某些代付交易，在上游的数据检查完成正常后就会直接返回上游交易成功，用户直接就看到了交易结果，后续的调用银行核心记账这些操作其实还在跑，可能几秒甚至几分钟后才是真正的交易完成。</p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>1.配置<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BA%BF%E7%A8%8B%E6%B1%A0&spm=1001.2101.3001.7020">线程池</a>（ThreadPoolTaskExecutor）2.自定义一个异步任务管理器3.自定义任务4.指定地点处，调用执行任务管理器，传入指定的任务</p>
+<h4 id="execute-vs-submit"><a href="#execute-vs-submit" class="headerlink" title="execute() vs submit()"></a>execute() vs submit()</h4><p>都是提交任务到线程池</p>
+<ul>
+<li><strong>execute()</strong> <strong>方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否；</strong></li>
+<li><strong>submit()方法用于提交需要返回值的任务。线程池会返回一个future类型的对象，通过这个future对象可以判断任务是否执行成功</strong>，并且可以通过future的get()方法来获取返回值，get()方法会阻塞当前线程直到任务完成，而使用 get（long timeout，TimeUnit unit）方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。</li>
+</ul>
+<h4 id="为什么要用线程池？"><a href="#为什么要用线程池？" class="headerlink" title="为什么要用线程池？"></a>为什么要用线程池？</h4><p>资源消耗–重复利用 响应速度—立即执行 可管理性—线程池统一分配</p>
+<ul>
+<li><strong>降低资源消耗。</strong> 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li><strong>提高响应速度。</strong> 当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
+<li><strong>提高线程的可管理性。</strong> 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
+</ul>
+<h4 id="如何创建线程池"><a href="#如何创建线程池" class="headerlink" title="如何创建线程池"></a>如何创建线程池</h4><p>1、构造⽅法</p>
+<p>2、通过 Executor 框架的⼯具类 Executors 来实现 </p>
+<p>三种ThreadPoolExecutor:</p>
+<p>fixedThreadPool() 固定线程数</p>
+<p>SingleThreadExecutor 只有一个线程</p>
+<p>CachedThreadPool 根据情况调整 数量不固定</p>
+<h4 id="ThreadPoolExecutor-类分析"><a href="#ThreadPoolExecutor-类分析" class="headerlink" title="ThreadPoolExecutor 类分析"></a>ThreadPoolExecutor 类分析</h4><h4 id="ThreadPoolExecutor-构造函数七大参数分析"><a href="#ThreadPoolExecutor-构造函数七大参数分析" class="headerlink" title="ThreadPoolExecutor 构造函数七大参数分析"></a>ThreadPoolExecutor 构造函数七大参数分析</h4><hr>
+<ul>
+<li><p>corePoolSize ： 核心线程大小。线程池一直运行，核心线程就不会停止。</p>
+</li>
+<li><p>maximumPoolSize ：线程池最大线程数量。非核心线程数量&#x3D;maximumPoolSize-corePoolSize</p>
+</li>
+<li><p>keepAliveTime ：非核心线程的心跳时间。如果非核心线程在keepAliveTime内没有运行任务，非核心线程会消亡。</p>
+</li>
+<li><p>workQueue ：阻塞队列。ArrayBlockingQueue，LinkedBlockingQueue等，用来存放线程任务。</p>
+</li>
+<li><p>defaultHandler ：饱和策略。ThreadPoolExecutor类中一共有4种饱和策略。通过实现RejectedExecutionHandler接口。饱和策略</p>
+</li>
+<li><ul>
+<li>AbortPolicy ： 线程任务丢弃报错。默认饱和策略。</li>
+<li>DiscardPolicy ： 线程任务直接丢弃不报错。</li>
+<li>DiscardOldestPolicy ： 将workQueue<strong>队首任务丢弃</strong>，将最新线程任务重新加入队列执行。</li>
+<li>CallerRunsPolicy ：线程池之外的线程直接调用run方法执行。</li>
+</ul>
+</li>
+<li><p>ThreadFactory ：线程工厂。新建线程工厂。</p>
+</li>
+</ul>
+<h4 id="线程池原理分析"><a href="#线程池原理分析" class="headerlink" title="线程池原理分析"></a>线程池原理分析</h4><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1460000039258685" alt="img"></p>
+<ol>
+<li>线程池执行execute&#x2F;submit方法向线程池添加任务，当任务小于核心线程数corePoolSize，线程池中肯定可以创建新的线程。</li>
+<li>当任务大于核心线程数corePoolSize，看看阻塞队列满了没，没满的话，就向阻塞队列添加任务，如果满的话，看看任务数和最大线程数的关系，如果还小于最大线程数的话，那我创建非核心线程。</li>
+<li>如果线程数量大于maximumPoolSize，说明当前设置线程池中线程已经处理不了了，就会执行饱和策略。</li>
+</ol>
+<h4 id="常见java线程池"><a href="#常见java线程池" class="headerlink" title="常见java线程池"></a>常见java线程池</h4><p><strong>1、newCachedThreadPool</strong></p>
+<p>创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</p>
+<p>这种类型的线程池特点是：</p>
+<p>工作线程的创建数量几乎没有限制(其实也有限制的,数目为Interger. MAX_VALUE), 这样可灵活的往线程池中添加线程。</p>
+<p><strong>不足</strong>：这种方式虽然可以根据业务场景自动的扩展线程数来处理我们的业务，但是最多需要多少个线程同时处理缺是我们无法控制的；</p>
+<p><strong>优点</strong>：如果当第二个任务开始，第一个任务已经执行结束，那么第二个任务会复用第一个任务创建的线程，并不会重新创建新的线程，提高了线程的复用率；</p>
+<p><strong>2、newFixedThreadPool</strong></p>
+<p>创建一个指定工作线程数量的线程池。每当提交一个任务就创建一个工作线程，如果工作线程数量达到线程池初始的最大数，则将提交的任务存入到队列中。</p>
+<p><strong>缺点：</strong>它具有线程池提高程序效率和节省创建线程时所耗的开销的优点。但是，在线程池空闲时，即线程池中没有可运行任务时，它不会释放工作线程，还会占用一定的系统资源。</p>
+<p><strong>优点</strong>：newFixedThreadPool的线程数是可以进行控制的，因此我们可以通过控制最大线程来使我们的服务器打到最大的使用率，同事又可以保证及时流量突然增大也不会占用服务器过多的资源。</p>
+<p><strong>3、newSingleThreadExecutor</strong></p>
+<p>创建一个单线程化的Executor，只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。如果这个线程异常结束，会有另一个取代它，保证顺序执行。单工作线程最大的特点是可保证顺序地执行各个任务，并且在任意给定的时间不会有多个线程是活动的。</p>
+<p><strong>4、newScheduleThreadPool</strong></p>
+<p>创建一个定长的线程池，而且支持定时的以及周期性的任务执行，支持定时及周期性任务执行。</p>
+<h4 id="线程池常用的阻塞队列有哪些"><a href="#线程池常用的阻塞队列有哪些" class="headerlink" title="线程池常用的阻塞队列有哪些?"></a>线程池常用的阻塞队列有哪些?</h4><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/20200722164307306.png" alt="img"></p>
+<p>表格左侧是线程池，右侧为它们对应的阻塞队列，可以看到 5 种线程池对应了 3 种阻塞队列</p>
+<ol>
+<li>LinkedBlockingQueue （针对FixedThreadPool 和 SingleThreadExector），容量为 Integer.MAX_VALUE。 可以认为<strong>是无界队列</strong>。由于 线程池的线程数是固定的，所以没有办法增加特别多的线程来处理任务，因此需要这样一个没有容量限制的阻塞队列来存放任务。由于线程池的任务队列永远不会放满，所以线程池只会创建核心线程数量的线程，所以此时的最大线程数对线程池来说没有意义，因为并不会触发生成多于核心线程数的线程。</li>
+<li>SynchronousQueue 第二种阻塞队列是 SynchronousQueue，对应的线程池是 CachedThreadPool。线程池 CachedThreadPool 的最大线程数是 Integer 的最大值，可以理解为线程数是可以无限扩展的。CachedThreadPool 和上一种线程池 FixedThreadPool 的情况恰恰相反，FixedThreadPool 的情况是阻塞队列的容量是无限的，而这里 CachedThreadPool 是线程数可以无限扩展，所以 CachedThreadPool 线程池并不需要一个任务队列来存储任务，因为一旦有任务被提交就直接转发给线程或者创建新线程来执行，而不需要另外保存它们。 我们自己创建使用 SynchronousQueue 的线程池时，如果不希望任务被拒绝，那么就<strong>需要注意设置最大线程数要尽可能大一些，以免发生任务数大于最大线程数时，没办法把任务放到队列中也没有足够线程来执行任务的情况。</strong></li>
+<li>DelayedWorkQueue 第三种阻塞队列是DelayedWorkQueue，它对应的线程池分别是 ScheduledThreadPool 和 SingleThreadScheduledExecutor，这两种线程池的最大特点就是可以延迟执行任务，比如说一定时间后执行任务或是每隔一定的时间执行一次任务。</li>
+</ol>
+<p>DelayedWorkQueue 的特点是内部元素并不是按照放入的时间排序，而是会按照延迟的时间长短对任务进行排序，内部采用的是“堆”的数据结构。之所以线程池 ScheduledThreadPool 和 SingleThreadScheduledExecutor 选择 DelayedWorkQueue，是因为它们本身正是基于时间执行任务的，而延迟队列正好可以把任务按时间进行排序，方便任务的执行。</p>
+<h4 id="源码中线程池是怎么复用线程的？"><a href="#源码中线程池是怎么复用线程的？" class="headerlink" title="源码中线程池是怎么复用线程的？"></a>源码中线程池是怎么复用线程的？</h4><hr>
+<p>源码中ThreadPoolExecutor中有个内置对象Worker，每个worker都是一个线程，worker线程数量和参数有关，每个worker会while死循环从阻塞队列中取数据，<strong>通过置换worker中Runnable对象，运行其run方法起到线程置换的效果</strong>，这样做的好处是避免多线程频繁线程切换，提高程序运行性能。</p>
+<h4 id="Executor和Executors的区别？"><a href="#Executor和Executors的区别？" class="headerlink" title="Executor和Executors的区别？"></a>Executor和Executors的区别？</h4><p><strong>Executors ：按照需求创建了不同的线程池，来满足业务的需求。</strong></p>
+<p><strong>Executor ：执行线程任务 获得任务执行的状态并且可以获取任务的返回值。</strong></p>
+<p>使用ThreadPoolExecutor 可以创建自定义线程池。Future 表示异步计算的结果，他提供了检查计算是否完成的方法，以等待计算的完成，并可以使用get()方法获取计算的结果</p>
+<h4 id="线程池应用场景"><a href="#线程池应用场景" class="headerlink" title="线程池应用场景"></a>线程池应用场景</h4><p><strong>1、异步发送邮件通知</strong>发送一个任务，然后注入到线程池中异步发送。</p>
+<p><strong>2、心跳请求任务</strong>创建一个任务，然后定时发送请求到线程池中。</p>
+<p>3、如果用户量比较大，导致占用过多的资源，可能会导致我们的服务由于资源不足而宕机；</p>
+<p>3.1 线程池中线程的使用率提升，减少对象的创建、销毁；</p>
+<p>3.2 线程池可以控制线程数，有效的提升<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cvm?from=20065&from_column=20065">服务器</a>的使用资源，避免由于资源不足而发生宕机等问题；</p>
+<h3 id="4、Elasticsearch搜索-同步数据到索引"><a href="#4、Elasticsearch搜索-同步数据到索引" class="headerlink" title="4、Elasticsearch搜索 +同步数据到索引"></a>4、Elasticsearch搜索 +同步数据到索引</h3><h4 id="前言知识"><a href="#前言知识" class="headerlink" title="前言知识"></a>前言知识</h4><p>步骤：</p>
+<p>1、请求参数实体类+返回结果实体类</p>
+<p>2、controller service</p>
+<p>3、准备request、DSL语句，发送请求、解析响应</p>
+<p>4、封装返回</p>
+<p>根据标题和</p>
+<h5 id="索引库操作"><a href="#索引库操作" class="headerlink" title="索引库操作"></a>索引库操作</h5><p>引库操作有哪些？</p>
+<ul>
+<li>创建索引库：PUT &#x2F;索引库名</li>
+<li>查询索引库：GET &#x2F;索引库名</li>
+<li>删除索引库：DELETE &#x2F;索引库名</li>
+<li>添加字段：PUT &#x2F;索引库名&#x2F;_mapping</li>
+</ul>
+<h5 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h5><ul>
+<li><p>创建文档：POST &#x2F;{索引库名}&#x2F;_doc&#x2F;文档id { json文档 }</p>
+</li>
+<li><p>查询文档：GET &#x2F;{索引库名}&#x2F;_doc&#x2F;文档id</p>
+</li>
+<li><p>删除文档：DELETE &#x2F;{索引库名}&#x2F;_doc&#x2F;文档id</p>
+</li>
+<li><p>修改文档：</p>
+</li>
+<li><ul>
+<li>全量修改：PUT &#x2F;{索引库名}&#x2F;_doc&#x2F;文档id { json文档 }</li>
+<li>增量修改：POST &#x2F;{索引库名}&#x2F;_update&#x2F;文档id { “doc”: {字段}}</li>
+</ul>
+</li>
+</ul>
+<h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>排序：</p>
+<p>排序通过热度和最新两个条件进行排序</p>
+<p>高亮：</p>
+<ul>
+<li>高亮是对关键字高亮，因此<strong>搜索条件必须带有关键字</strong>，而不能是范围这样的查询。</li>
+<li>默认情况下，<strong>高亮的字段，必须与搜索指定的字段一致</strong>，否则无法高亮</li>
+<li>如果要对非搜索字段高亮，则需要添加一个属性：required_field_match&#x3D;false</li>
+</ul>
+<p>高亮显示的实现分为两步：</p>
+<ul>
+<li>1）给文档中的所有关键字都添加一个标签，例如<em>标签</em></li>
+<li>2）页面给<em>标签编写CSS样式</em></li>
+</ul>
+<p>高亮的结果与查询的文档结果默认是分离的，并不在一起。</p>
+<p>因此解析高亮的代码需要额外处理：</p>
+<ul>
+<li>第一步：从结果中获取source。hit.getSourceAsString()，这部分是非高亮结果，json字符串。还需要反序列为HotelDoc对象</li>
+<li>第二步：获取高亮结果。hit.getHighlightFields()，返回值是一个Map，key是高亮字段名称，值是HighlightField对象，代表高亮值</li>
+<li>第三步：从map中根据高亮字段名称，获取高亮字段值对象HighlightField</li>
+<li>第四步：从HighlightField中获取Fragments，并且转为字符串。这部分就是真正的高亮字符串了</li>
+<li>第五步：用高亮的结果替换HotelDoc中的非高亮结果</li>
+</ul>
+<pre><code class="plain">GET /hotel/_search
+&#123;
+  &quot;query&quot;: &#123;
+    &quot;match&quot;: &#123;
+      &quot;FIELD&quot;: &quot;TEXT&quot; // 查询条件，高亮一定要使用全文检索查询
+    &#125;
+  &#125;,
+  &quot;highlight&quot;: &#123;
+    &quot;fields&quot;: &#123; // 指定要高亮的字段
+      &quot;FIELD&quot;: &#123;
+        &quot;pre_tags&quot;: &quot;&lt;em&gt;&quot;,  // 用来标记高亮字段的前置标签
+        &quot;post_tags&quot;: &quot;&lt;/em&gt;&quot; // 用来标记高亮字段的后置标签
+      &#125;
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h4><ul>
+<li>hotel-admin对mysql数据库数据完成增、删、改后，发送MQ消息</li>
+<li>hotel-demo监听MQ，接收到消息后完成elasticsearch数据修改</li>
+</ul>
+<p>或者用canal（完全解除服务间耦合，但也增加数据库负担？）</p>
+<ul>
+<li>给mysql开启binlog功能</li>
+<li>mysql完成增、删、改操作都会记录在binlog中</li>
+<li>hotel-demo基于canal监听binlog变化，实时更新elasticsearch中的内容</li>
+</ul>
+<p>步骤：</p>
+<p>1、声明队列交换机名称，以及定义配置类，声明队列、交换机以及绑定关系</p>
+<p>2、发送MQ消息，接受MQ消息，做具体的索引库操作，编写监听器，当有消息来了就执行接受消息做对应业务</p>
+<h4 id="分词器"><a href="#分词器" class="headerlink" title="分词器"></a>分词器</h4><ul>
+<li>ik_max_word细粒度切分，尽可能多地拆分出词语</li>
+<li>ik_smart智能切分，最粗粒度，已经被切分的词语不会再被其他词语占有</li>
+</ul>
+<h4 id="数据同步-1"><a href="#数据同步-1" class="headerlink" title="数据同步"></a>数据同步</h4><p>全量同步增量同步<img src="https://raw.githubusercontent.com/viacheung/img/main/image/f9b5747185ff4e03a3a8301be50def8f.png" alt="img"></p>
+<p># </p>
+<h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><p>1、导包 做配置</p>
+<p>2、配置Document</p>
+<p>先要配置实体和ES的映射，通过在实体类中加入注解的方式来自动映射跟索引，我这里是配置了product索引和实体的映射</p>
+<p>3、使用ElasticsearchRestTemplate</p>
+<p>在Spring启动的时候自动注入了该Bean，它封装了操作Elasticsearch的增删改查API</p>
+<p><em>完全匹配查询条件</em> –&gt; <em>按照阅读量排序</em>—&gt;<em>高亮显示</em>—&gt;分页</p>
+<h4 id="es刷新时间"><a href="#es刷新时间" class="headerlink" title="es刷新时间"></a>es刷新时间</h4><p>1s 为什么要延长 es主要业务写日志</p>
+<h4 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h4><ul>
+<li>将每一个文档(每一条数据)的数据利用算法分词，得到一个个词条</li>
+<li>创建表，每行数据包括词条、词条所在文档id、位置等信息</li>
+<li>因为词条唯一性，可以给词条创建索引，例如hash表结构索引</li>
+</ul>
+<p>倒排索引的<strong>搜索流程</strong>如下（以搜索”华为手机”为例）：</p>
+<p>1）用户输入条件”华为手机”进行搜索。</p>
+<p>2）对用户输入内容<strong>分词</strong>，得到词条：华为、手机。</p>
+<p>3）拿着词条在倒排索引中查找，可以得到包含词条的文档id：1、2、3。</p>
+<p>4）拿着文档id到正向索引中查找具体文档。</p>
+<ul>
+<li>Mysql：擅长事务类型操作，可以确保数据的安全和一致性</li>
+<li>Elasticsearch：擅长海量数据的搜索、分析、计算</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>MySQL</strong></th>
+<th><strong>Elasticsearch</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Table</td>
+<td>Index</td>
+<td>索引(index)，就是文档的集合，类似数据库的表(table)</td>
+</tr>
+<tr>
+<td>Row</td>
+<td>Document</td>
+<td>文档（Document），就是一条条的数据，类似数据库中的行（Row），文档都是JSON格式</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>Field</td>
+<td>字段（Field），就是JSON文档中的字段，类似数据库中的列（Column）</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Mapping</td>
+<td>Mapping（映射）是索引中文档的约束，例如字段类型约束。类似数据库的表结构（Schema）</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>DSL</td>
+<td>DSL是elasticsearch提供的JSON风格的请求语句，用来操作elasticsearch，实现CRUD</td>
+</tr>
+</tbody></table>
+<h3 id="5、阅读评论数放入Redis中"><a href="#5、阅读评论数放入Redis中" class="headerlink" title="5、阅读评论数放入Redis中"></a>5、阅读评论数放入Redis中</h3><p>查看完文章了，新增阅读数，做了一个更新操作，更新时加写锁，阻塞其他的读操作，性能就会比较低（没办法解决，增加阅读数必然要加锁）</p>
+<p>更新增加了此次接口的耗时（考虑减少耗时）如果一旦更新出问题，不能影响查看操作线程池 可以把更新操作扔到 线程池中去执行和主线程就不相关了threadService.updateArticleViewCount(articleMapper, article);</p>
+<p><strong>在这里我们采用redis incr自增实现</strong></p>
+<p>redis<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1&spm=1001.2101.3001.7020">定时任务</a>自增实现阅读数和评论数更新</p>
+<p>阅读数和评论数 ，考虑把阅读数和评论数 增加的时候 放入redis incr自增，使用定时任务 定时把数据固话到数据库当中</p>
+<p><strong>定时任务</strong> ：遍历redis中前缀是VIEW_COUNT的所有key，通过sub<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=String%E6%96%B9%E6%B3%95&spm=1001.2101.3001.7020">String方法</a>获取文章id，获取key存储的阅读数，把文章id和阅读数放入ViewCountQuery对象中，对象放入list集合中，批量更新</p>
+<pre><code class="plain">@Async(&quot;taskExecutor&quot;)
+    @Scheduled(cron = &quot;0 0/5 * * * ?&quot;)
+    @LogAnnotation(module = &quot;定时同步任务&quot;,operator = &quot;文章评论数&quot;)
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_52914401/article/details/124343310?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-124343310-blog-125651961.pc_relevant_recovery_v2&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3">https://blog.csdn.net/m0_52914401/article/details/124343310?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-124343310-blog-125651961.pc_relevant_recovery_v2&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3</a></p>
+<p><strong>评论查询功能如何实现？</strong></p>
+<p>循环查表先查父评论，再根据父评论id和parentId找子评论</p>
+<p>通过父评论找子评论 当前文章id是子评论的parentId字段 ，所以findCommentsByParentId方法找到子评论 ，查到并封装到comment类然后set到Childrens里面，这里面递归调用</p>
+<h3 id="6-1、RabbitMQ解决缓存不一致"><a href="#6-1、RabbitMQ解决缓存不一致" class="headerlink" title="6.1、RabbitMQ解决缓存不一致"></a>6.1、RabbitMQ解决缓存不一致</h3><p>我在教程更新和发布的接口上面定义了缓存（redis存）注解Cache，对常用接口的数据进行缓存，提高响应速度 ，面向切面编程</p>
+<p>问题：会出现数据库更新了但是缓存还没过期，于是用rabbitMQ去做一个更新缓存的操作，更新查看文章详情的缓存，最新文章，文章列表的缓存 不知道参数,解决办法 直接删除缓存</p>
+<p>相当于放到队列里面修改缓存 好处解耦异步</p>
+<h5 id="1、先写缓存再数据库"><a href="#1、先写缓存再数据库" class="headerlink" title="1、先写缓存再数据库"></a>1、先写缓存再数据库</h5><p>—问题：数据库写失败，缓存是脏数据2</p>
+<h5 id="2、先更新数据库再更新缓存"><a href="#2、先更新数据库再更新缓存" class="headerlink" title="2、先更新数据库再更新缓存"></a>2、先更新数据库再更新缓存</h5><p>—问题：</p>
+<p>一、一般只是数据库7操作加事务，所以缓存如果写失败，依然数据不一致</p>
+<p>二、A请求更新数据库后写缓存卡顿，B请求正常双更，然后A再更新缓存，会出现缓存不一致</p>
+<h5 id="3、先删除缓存，后更新数据库"><a href="#3、先删除缓存，后更新数据库" class="headerlink" title="3、先删除缓存，后更新数据库"></a>3、先删除缓存，后更新数据库</h5><p>写请求删除缓存，然后更新数据库卡了，读请求查缓存为空，然后把数据库旧值拿到缓存里面，这样出现了缓存数据库不一致的情况</p>
+<p><strong>解决办法</strong>：延迟双删，等读请求结束后写请求再删除一次，也就是读请求把缓存更新后写缓存再去删除</p>
+<h6 id="答案一：延时双删"><a href="#答案一：延时双删" class="headerlink" title="答案一：延时双删"></a>答案一：延时双删</h6><p>（1）先淘汰缓存 </p>
+<p>（2）再写数据库</p>
+<p>（3）休眠1秒，再次淘汰缓存，这么做，可以将1秒内所造成的缓存脏数据，再次删除。<strong>确保读请求结束，写请求可以删除读请求造成的缓存脏数据</strong>。自行评估自己的项目的读数据业务逻辑的耗时，<strong>写数据的休眠时间则在读数据业务逻辑的耗时基础上，加几百ms即可。</strong></p>
+<p>第二次删除要在读请求把缓存更新后再去删除</p>
+<p>（我的理解：请求A先删缓存再往DB写数据，就算这时B来查数据库，缓存没数据，然后查DB，此时查到的是旧数据，写到缓存，A等待B写完之和再删缓存，这样就缓存一致）</p>
+<p>如果使用的是 Mysql 的<strong>读写分离的架构的话</strong>，那么其实主从同步之间也会有时间差。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb5881bbb1d4~tplv-t2oaga2asx-watermark.awebp" alt="img"></p>
+<p>此时来了两个请求，请求 A（更新操作） 和请求 B（查询操作）</p>
+<ol>
+<li>请求 A 更新操作，删除了 Redis</li>
+<li>请求主库进行更新操作，主库与从库进行同步数据的操作</li>
+<li>请 B 查询操作，发现 Redis 中没有数据</li>
+<li>去从库中拿去数据</li>
+<li>此时同步数据(binlog没写完)还未完成，拿到的数据是旧数据</li>
+</ol>
+<p>此时的解决办法就是如果是对 Redis 进行填充数据的查询数据库操作，那么就强制将其指向主库进行查询。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb5881a19fec~tplv-t2oaga2asx-watermark.awebp" alt="img"></p>
+<h6 id="答案二：-更新与读取操作进行异步串行化"><a href="#答案二：-更新与读取操作进行异步串行化" class="headerlink" title="答案二： 更新与读取操作进行异步串行化"></a>答案二： 更新与读取操作进行异步串行化</h6><p>采用<strong>更新与读取操作进行异步串行化</strong></p>
+<p><strong>异步串行化</strong></p>
+<p>我在系统内部维护n个内存队列，更新数据的时候，根据数据的唯一标识，将该操作路由之后，发送到其中一个jvm内部的内存队列中（对同一数据的请求发送到同一个队列）。读取数据的时候，如果发现数据不在缓存中，并且此时队列里有更新库存的操作，那么将重新读取数据+更新缓存的操作，根据唯一标识路由之后，也将发送到同一个jvm内部的内存队列中。然后每个队列对应一个工作线程，每个工作线程串行地拿到对应的操作，然后一条一条的执行。</p>
+<p>这样的话，<strong>一个数据变更的操作，先执行删除缓存，然后再去更新数据库，但是还没完成更新的时候，如果此时一个读请求过来，读到了空的缓存，那么可以先将缓存更新的请求发送到队列中，此时会在队列中积压，排在刚才更新库的操作之后，然后同步等待缓存更新完成，再读库。</strong></p>
+<p><strong>读操作去重</strong></p>
+<p>多个读库更新缓存的请求串在同一个队列中是没意义的，因此可以做过滤，如果发现队列中已经有了该数据的更新缓存的请求了，那么就不用再放进去了，直接等待前面的更新操作请求完成即可，待那个队列对应的工作线程完成了上一个操作（数据库的修改）之后，才会去执行下一个操作（读库更新缓存），此时会从数据库中读取最新的值，然后写入缓存中。</p>
+<p><strong>如果请求还在等待时间范围内，不断轮询发现可以取到值了，那么就直接返回；如果请求等待的时间超过一定时长，那么这一次直接从数据库中读取当前的旧值。</strong>（返回旧值不是又导致缓存和数据库不一致了么？那至少可以减少这个情况发生，因为等待超时也不是每次都是，几率很小吧。这里我想的是，如果超时了就直接读旧值，这时候仅仅是读库后返回而不放缓存）</p>
+<h5 id="4、先更新数据库，后删除缓存"><a href="#4、先更新数据库，后删除缓存" class="headerlink" title="4、先更新数据库，后删除缓存"></a>4、先更新数据库，后删除缓存</h5><p><strong>情况</strong>：这一种情况也会出现问题，比如更新数据库成功了，但是在删除缓存的阶段出错了没有删除成功，那么此时再读取缓存的时候每次都是错误的数据了。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb5881fb4a1b~tplv-t2oaga2asx-watermark.awebp" alt="img"></p>
+<p>有多种解决方案：</p>
+<p>1、同步，并发大的时候，影响性能</p>
+<p>2、异步，线程池</p>
+<p>3、 mq,consumer</p>
+<p>此时解决方案就是利用消息队列进行<strong>删除的补偿</strong>。具体的业务逻辑用语言描述如下：</p>
+<ol>
+<li>请求 A 先对数据库进行更新操作</li>
+<li>在对 Redis 进行删除操作的时候发现报错，删除失败</li>
+<li>此时将Redis 的 key 作为消息体发送到消息队列中</li>
+<li>系统接收到消息队列发送的消息后再次对 Redis 进行删除操作，一般设定5次，只要5次里面有一次成功，就返回成功，失败的话，放入死信交换机</li>
+</ol>
+<p>但是这个方案会有一个缺点就是会对业务代码造成大量的侵入，深深的耦合在一起，所以这时会有一个优化的方案，我们知道对 Mysql 数据库更新操作后在binlog 日志中我们都能够找到相应的操作，那么我们可以订阅 Mysql 数据库的 binlog 日志对缓存进行操作。</p>
+<p>也就是canal，当写数据库时，binlog变化，mq订阅Binlog，后续操作和mq删缓存一样。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1735bb588215b298~tplv-t2oaga2asx-watermark.awebp" alt="img"></p>
+<h3 id="6、RabbitMQ消息队列实现ES和数据库的数据同步"><a href="#6、RabbitMQ消息队列实现ES和数据库的数据同步" class="headerlink" title="6、RabbitMQ消息队列实现ES和数据库的数据同步"></a>6、RabbitMQ消息队列实现ES和数据库的数据同步</h3><p>主要是增删改帖子</p>
+<p>这里用的Direct队列</p>
+<ul>
+<li>Fanout交换机将消息路由给每一个与之绑定的队列</li>
+<li>Direct交换机根据RoutingKey判断路由给哪个队列</li>
+<li>如果多个队列具有相同的RoutingKey，则与Fanout功能类似</li>
+</ul>
+<h4 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h4><p>1、导包：spring-boot-starter-amqp</p>
+<p>SpringAMQP是基于RabbitMQ封装的一套模板，并且还利用SpringBoot对其实现了自动装配，使用起来非常方便。</p>
+<p>2、添加配置</p>
+<pre><code class="plain">spring:
+rabbitmq:
+host: localhost
+port: 5672
+username: admin
+password: 123456
+virtual-host: myHost
+</code></pre>
+<p>3、<em>RabbitMQ的配置</em> 声明Exchange、Queue、RoutingKey</p>
+<p>4、生产者对应的增删改里面发送消息</p>
+<p>所谓的生产者就是我们数据库的服务方，当我们对数据库的数据进行增删改的时候，我们应该像消息队列发送消息来通知ES我们进行了增删改操作，以便ES进行数据的同步。</p>
+<p>5、消费者MQListener监听消息</p>
+<p>所谓的消费者就是ES服务的操作方，通过实时的对消息队列的监听，通过消息队列对应的key值来进行选择服务的调用，不同的key调用不同的服务，获取服务方传输的数据，然后进行数据的同步。</p>
+<h3 id="7、死信交换机"><a href="#7、死信交换机" class="headerlink" title="7、死信交换机"></a>7、死信交换机</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>实现消息的延迟投递，避免消息丢失或无限制的重试 </p>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>当你在消费消息时，如果队列里的消息出现以下情况1，<strong>消息被否定确认</strong>，使用 channel.basicNack 或channel.basicReject ，并且此时requeue 属性被设置为false。2，消息在队列的<strong>存活时间超过设置的TTL时间</strong>。3，消息队列的<strong>消息数量已经超过最大队列长度</strong>。</p>
+<p>那么该消息将成为“死信”。“死信”消息会被RabbitMQ进行特殊处理，如果配置了死信队列信息，那么该消息将会被丢进死信队列中，如果没有配置，则该消息将会被丢弃。</p>
+<h4 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h4><p>大概可以分为以下步骤：</p>
+<p>1，配置业务队列，绑定到业务交换机上2，为业务队列配置死信交换机和路由key3，为死信交换机配置死信队列</p>
+<p>为每个需要使用死信的业务队列配置一个死信交换机，这里同一个项目的死信交换机可以共用一个，然后为每个业务队列分配一个单独的路由key。</p>
+<p>有了死信交换机和路由key后，接下来，就像配置业务队列一样，配置死信队列，然后绑定在死信交换机上。也就是说，死信队列并不是什么特殊的队列，只不过是绑定在死信交换机上的队列。死信交换机也不是什么特殊的交换机，只不过是用来接受死信的交换机，所以可以为任何类型【Direct、Fanout、Topic】。一般来说，会为每个业务队列分配一个独有的路由key，并对应的配置一个死信队列进行监听，也就是说，一般会为每个重要的业务队列配置一个死信队列。</p>
+<h4 id="死信消息变化"><a href="#死信消息变化" class="headerlink" title="死信消息变化"></a>死信消息变化</h4><p>如果队列配置了参数 x-dead-letter-routing-key 的话，“死信”的路由key将会被替换成该参数对应的值。如果没有设置，则保留该消息原有的路由key。</p>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>确保未被正确消费的消息不被丢弃（更新删除修改帖子）</p>
+<p><strong>发生消费异常可能原因：</strong></p>
+<ol>
+<li>消息信息本身存在错误</li>
+<li>处理过程中参数校验异常</li>
+<li>网络波动导致的查询异常等等</li>
+</ol>
+<p>当发生异常时，当然不能每次通过日志来获取原消息，然后让运维帮忙重新投递消息（没错，以前就是这么干的&#x3D; &#x3D;）。通过配置死信队列，可以让未正确处理的消息暂存到另一个队列中，待后续排查清楚问题后，编写相应的处理代码来处理死信消息，这样比手工恢复数据要好太多了。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>死信队列其实并没有什么神秘的地方，不过是绑定在死信交换机上的普通队列，而死信交换机也只是一个普通的交换机，不过是用来专门处理死信的交换机。</p>
+<p>总结一下死信消息的生命周期：</p>
+<p>1，业务消息被投入业务队列2，消费者消费业务队列的消息，由于处理过程中发生异常，于是进行了nck或者reject操作3，被nck或reject的消息由RabbitMQ投递到死信交换机中4，死信交换机将消息投入相应的死信队列5，死信队列的消费者消费死信消息———————————————</p>
+<h3 id="8、RabbitMQ消息丢失、幂等性"><a href="#8、RabbitMQ消息丢失、幂等性" class="headerlink" title="8、RabbitMQ消息丢失、幂等性"></a>8、RabbitMQ消息丢失、幂等性</h3><h4 id="1）生产者弄丢了数据"><a href="#1）生产者弄丢了数据" class="headerlink" title="1）生产者弄丢了数据"></a><strong>1）生产者弄丢了数据</strong></h4><p>生产者将数据发送到rabbitmq的时候，可能因为网络问题导致数据就在半路给搞丢了。</p>
+<p><strong>1.1 使用事务（不推荐）</strong></p>
+<p>生产者发送数据前开启事务，然后发送消息，如果消息没有成功被rabbitmq接收到，那么生产者会收到异常报错，此时就可以回滚事务（channel.txRollback），然后重试发送消息；如果收到了消息，那么可以提交事务（channel.txCommit）。但开始rabbitmq事务机制，吞吐量会下来，因为太耗性能。</p>
+<p><strong>1.2 发送回执确认（推荐）</strong></p>
+<p>在生产者那里设置开启confirm模式之后，你每次写的消息都会分配一个唯一的id，然后如果写入了rabbitmq中，rabbitmq会给你回传一个<strong>ack</strong>消息，告诉你说这个消息ok了。如果rabbitmq没能处理这个消息，会回调你一个<strong>nack</strong>接口，告诉你这个消息接收失败，你可以重试。</p>
+<p>但如果RabbitMQ服务端正常接收到了，把ack信息发送给生产者，结果这时网断了：</p>
+<p>可以结合这个机制自己在内存里维护每个消息id的状态，如果超过一定时间还没接收到这个消息的回调，那么你可以重发。（消费者就要处理幂等问题，多次接收到同一条消息）</p>
+<p><strong>区别</strong></p>
+<p>事务机制是同步的，你提交一个事务之后会阻塞在那儿，但是confirm机制是异步的，你发送个消息之后就可以发送下一个消息，然后那个消息rabbitmq接收了之后会异步回调你一个接口通知你这个消息接收到了。</p>
+<p>所以一般在生产者这块避免数据丢失，都是用confirm机制的。</p>
+<h4 id="2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化"><a href="#2）RabbitMQ弄丢了数据-开启RabbitMQ的数据持久化" class="headerlink" title="2）RabbitMQ弄丢了数据(开启RabbitMQ的数据持久化)"></a><strong>2）RabbitMQ弄丢了数据(开启RabbitMQ的数据持久化)</strong></h4><p><strong>原因</strong>：rabbitmq自己挂了，恢复之后会自动读取之前存储的数据。但如果rabbitmq还没持久化，就挂了，也可能导致数据丢失</p>
+<p><strong>解决</strong>：跟生产者那边的confirm机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者ack了，所以哪怕是在持久化到磁盘之前，rabbitmq挂了，数据丢了，生产者收不到ack，生产者重发即可。</p>
+<p><strong>具体实现：</strong></p>
+<p>1、创建queue的时候将其设置为持久化，这样就可以保证rabbitmq持久化queue的元数据。</p>
+<p>2、发送消息的时候将消息的deliveryMode设置为2，就是将消息设置为持久化的</p>
+<p>这样rabbitmq哪怕是挂了，再次重启，也会从磁盘上重启恢复queue，恢复这个queue里的数据。</p>
+<h4 id="3）消费端弄丢了数据"><a href="#3）消费端弄丢了数据" class="headerlink" title="3）消费端弄丢了数据"></a><strong>3）消费端弄丢了数据</strong></h4><p>主要是因为你消费的时候，刚消费到，还没处理，结果进程挂了比如重启了，那么就尴尬了，RabbitMQ认为你都消费了，这数据就丢了。或者消费者拿到数据之后挂了，这时候需要MQ重新指派另一个消费者去执行任务</p>
+<p>这个时候得用RabbitMQ提供的ack机制，也是一种处理完成发送回执确认的机制。如果MQ等待一段时间后你没有发送过来处理完成 那么RabbitMQ就认为你还没处理完，这个时候RabbitMQ会把这个消费分配给别的consumer去处理，消息是不会丢的。</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000019125512">https://segmentfault.com/a/1190000019125512</a></p>
+<h4 id="8-4-多线程vsMQ"><a href="#8-4-多线程vsMQ" class="headerlink" title="8.4 多线程vsMQ"></a>8.4 多线程vsMQ</h4><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230325004307581.png" alt="img"></p>
+<h4 id="8-5-解耦、异步、削峰。"><a href="#8-5-解耦、异步、削峰。" class="headerlink" title="8.5 解耦、异步、削峰。"></a>8.5 解耦、异步、削峰。</h4><p>使用MQ的场景很多，主要有三个：解耦、异步、削峰。</p>
+<ul>
+<li>解耦：比如原来B系统是拿A系统的日志消息插入到数据库，现在有C要在硬盘中增加文件类型的日志，D要把日志通过邮件的方式发送给指定的人。那么，我没不需要去改A，将消息放到MQ中，其它的服务直接从MQ中获取消息并处理即可。这就是解耦，它的好处是提高系统灵活性，扩展性。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/727602-20200108091329888-1880681145.png" alt="img"></p>
+<ul>
+<li>异步：可以将一些非核心流程，如日志，短信，邮件等，通过MQ的方式异步去处理。这样做的好处是缩短主流程的响应时间，提升用户体验。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/727602-20200108091722601-747710174.png" alt="img"></p>
+<ul>
+<li>削峰：MQ的本质就是业务的排队。面对突然到来的高并发，削峰的好处就是避免高并发压垮系统的关键组件，如某个核心服务或数据库等。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/727602-20200108091915241-1598228624.png" alt="img"></p>
+<p>后面请求积压在MQ里面 不过是短暂的</p>
+<h4 id="8-6-消息队列的缺点"><a href="#8-6-消息队列的缺点" class="headerlink" title="8.6 消息队列的缺点"></a>8.6 消息队列的缺点</h4><p>1、 系统可用性降低</p>
+<p>系统引入的外部依赖越多，越容易挂掉。</p>
+<p>2、 系统复杂度提高</p>
+<p>加入了消息队列，要多考虑很多方面的问题，比如：一致性问题、如何保证消息不被重复消费、如何保证消息可靠性传输等。因此，需要考虑的东西更多，复杂性增大。</p>
+<p>3、 一致性问题</p>
+<p>A 系统处理完了直接返回成功了，人都以为你这个请求就成功了；但是问题是，要是 BCD 三个系统那里，BD 两个系统写库成功了，结果 C 系统写库失败了，这就数据不一致了。</p>
+<h4 id="8-7-如何解决幂等性？"><a href="#8-7-如何解决幂等性？" class="headerlink" title="8.7 如何解决幂等性？"></a>8.7 如何解决幂等性？</h4><h5 id="出现消息重复消费的情况"><a href="#出现消息重复消费的情况" class="headerlink" title="出现消息重复消费的情况"></a>出现消息重复消费的情况</h5><p>消费者在消费完成一条消息之后会向MQ回复一个ACK 来告诉MQ这条消息已经消费了。假如当消费者消费完数据后，准备回执ACK时，系统挂掉了，MQ是不知道该条消息已经被消费了。所以重启之后MQ会再次发送该条消息，导致消息被重复消费，如果此时没有做幂等性处理，可能就会导致数据错误等问题。</p>
+<h5 id="如何保证消息队列消费的幂等性"><a href="#如何保证消息队列消费的幂等性" class="headerlink" title="如何保证消息队列消费的幂等性"></a><strong>如何保证消息队列消费的幂等性</strong></h5><p>1、给每个消息加一个全局唯一ID，消费者消费消息时根据这个ID去redis当中查询之前是否消费过。如果没有消费过，就进行消费并将这个消息的ID写入到redis当中。如果已经消费过了，就无需再次消费了。</p>
+<p>2、如果只是为了单纯的写入数据库，可以利用主键的唯一性来保证数据不会重复插入，重复插入只会报错，但不会出现脏数据。3、<strong>（评论阅读数）</strong>消费数据只是为了缓存到redis当中，这种情况就是直接往redis中set value了，天然的幂等性。</p>
+<h4 id="8-8-生产者消息运转的流程"><a href="#8-8-生产者消息运转的流程" class="headerlink" title="8.8 生产者消息运转的流程"></a>8.8 生产者消息运转的流程</h4><ol>
+<li>Producer先连接到Broker,建立连接Connection,开启一个信道(Channel)。</li>
+<li>Producer声明一个交换器并设置好相关属性。</li>
+<li>Producer声明一个队列并设置好相关属性。</li>
+<li>Producer通过路由键将交换器和队列绑定起来。</li>
+<li>Producer发送消息到Broker,其中包含路由键、交换器等信息。</li>
+<li>相应的交换器根据接收到的路由键查找匹配的队列。</li>
+<li>如果找到，将消息存入对应的队列，如果没有找到，会根据生产者的配置丢弃或者退回给生产者。</li>
+<li>关闭信道。</li>
+<li>管理连接。</li>
+</ol>
+<h4 id="消费者接收消息过程？"><a href="#消费者接收消息过程？" class="headerlink" title="消费者接收消息过程？"></a>消费者接收消息过程？</h4><ol>
+<li>Consumer先连接到Broker,建立连接Connection,开启一个信道(Channel)。</li>
+<li>向Broker请求消费响应的队列中消息，可能会设置响应的回调函数。</li>
+<li>等待Broker回应并投递相应队列中的消息，接收消息。</li>
+<li>消费者确认收到的消息,ack。</li>
+<li>RabbitMq从队列中删除已经确定的消息。</li>
+<li>关闭信道。</li>
+<li>关闭连接。</li>
+</ol>
+<h4 id="生产者如何将消息可靠投递到RabbitMQ？"><a href="#生产者如何将消息可靠投递到RabbitMQ？" class="headerlink" title="生产者如何将消息可靠投递到RabbitMQ？"></a>生产者如何将消息可靠投递到RabbitMQ？</h4><ol>
+<li>Producer发送消息给MQ</li>
+<li>MQ将消息持久化后，发送Ack消息给Producer，此处有可能因为网络问题导致Ack消息无法发送到Producer，那么Producer在等待超时后，会重传消息；</li>
+<li>Producer收到Ack消息后，认为消息已经投递成功</li>
+</ol>
+<h4 id="RabbitMQ如何将消息可靠投递到消费者？"><a href="#RabbitMQ如何将消息可靠投递到消费者？" class="headerlink" title="RabbitMQ如何将消息可靠投递到消费者？"></a>RabbitMQ如何将消息可靠投递到消费者？</h4><ol>
+<li>MQ将消息push给Consumer（或Consumer来pull消息）</li>
+<li>Consumer得到消息并做完业务逻辑</li>
+<li>Consumer发送Ack消息给MQ，通知MQ删除该消息，此处有可能因为网络问题导致Ack失败，那么Consumer会重复消息，这里就引出消费幂等的问题；</li>
+<li>MQ将已消费的消息删除。</li>
+</ol>
+<p>消息幂等</p>
+<p>根据业务特性，选取业务中唯一的某个属性，比如订单号作为区分消息是否重复的属性。在进行插入订单之前，先从数据库查询一下该订单号的数据是否存在，如果存在说明是重复消费，如果不存在则插入。伪代码如下：</p>
+<h3 id="9、消息队列产生严重消息堆积怎么处理？"><a href="#9、消息队列产生严重消息堆积怎么处理？" class="headerlink" title="9、消息队列产生严重消息堆积怎么处理？"></a>9、消息队列产生严重消息堆积怎么处理？</h3><h4 id="9-1-原因"><a href="#9-1-原因" class="headerlink" title="9.1 原因"></a>9.1 原因</h4><p>Consumer 出问题，没有及时发现，或者故障恢复需要较长的时间，导致大量消息积压在 MQ 中。</p>
+<h4 id="9-2-后果"><a href="#9-2-后果" class="headerlink" title="9.2 后果"></a>9.2 后果</h4><p><strong>消息被丢弃</strong>例如 RabbitMQ 有一个消息过期时间 TTL，过期的消息会被扔掉，这样消息就彻底没有了。</p>
+<p><strong>磁盘满了</strong>如果堆积量太大，可能导致磁盘空间不足，那么新消息就进不来了。</p>
+<p><strong>海量消息待处理</strong>如果消息没过期，并且磁盘空间也够用，那么就是产生海量消息等待被消费，Consumer 的噩梦。</p>
+<h4 id="预防措施"><a href="#预防措施" class="headerlink" title="预防措施"></a>预防措施</h4><p>生产者减少发布频率</p>
+<p>考虑使用队列最大长度限制</p>
+<h4 id="9-3-已出事故的解决措施"><a href="#9-3-已出事故的解决措施" class="headerlink" title="9.3 已出事故的解决措施"></a>9.3 已出事故的解决措施</h4><h5 id="情况1：堆积的消息还需要使用"><a href="#情况1：堆积的消息还需要使用" class="headerlink" title="情况1：堆积的消息还需要使用"></a>情况1：堆积的消息还需要使用</h5><p><strong>方案1：简单修复</strong></p>
+<p>修复consumer的问题，让他恢复消费速度，然后等待几个小时消费完毕</p>
+<p><strong>方案2：复杂修复</strong></p>
+<p>临时紧急扩容了，具体操作步骤和思路如下：</p>
+<p>1）先修复consumer的问题，确保其恢复消费速度2）新建一个topic，partition是原来的10倍，临时建立好原先10倍或者20倍的queue数量3）然后写一个临时的分发数据的consumer程序，这个程序部署上去消费积压的数据，消费之后不做耗时的处理，直接均匀轮询写入临时建立好的10倍数量的queue4）接着临时征用10倍的机器来部署consumer，每一批consumer消费一个临时queue的数据5）这种做法相当于是临时将queue资源和consumer资源扩大10倍，以正常的10倍速度来消费数据6）等快速消费完积压数据之后，得恢复原先部署架构，重新用原先的consumer机器来消费消息</p>
+<h5 id="情况2：堆积的消息不需要使用"><a href="#情况2：堆积的消息不需要使用" class="headerlink" title="情况2：堆积的消息不需要使用"></a>情况2：堆积的消息不需要使用</h5><p>删除消息即可。</p>
+<h3 id="10、nginx-docker"><a href="#10、nginx-docker" class="headerlink" title="10、nginx+docker"></a>10、nginx+docker</h3><h4 id="部署静态资源"><a href="#部署静态资源" class="headerlink" title="部署静态资源"></a>部署静态资源</h4><p>Nginx可以作为静态web服务器来部署静态资源。静态资源指在服务端真实存在并且能够直接展示的一些文件，比如常见的html页面、css文件、js文件、图片、视频等资源。</p>
+<p>相对于Tomcat，Nginx处理静态资源的能力更加高效，所以在生产环境下，一般都会将静态资源部署到Nginx中。</p>
+<p>将静态资源部署到Nginx非常简单，只需要将文件复制到Nginx安装目录下的html目录中即可。</p>
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>反向代理服务器位于用户与目标服务器之间，但是对于用户而言，反向代理服务器就相当于目标服务器，即用户直接访问反向代理服务器就可以获得目标服务器的资源，反向代理服务器负责将请求转发给目标服务器。</p>
+<p>用户<strong>不需要知道目标服务器的地址</strong>，也无须在用户端作任何设定。</p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><p>早期的网站流量和业务功能都比较简单，单台服务器就可以满足基本需求，但是随着互联网的发展，业务流量越来越大并且业务逻辑也越来越复杂，单台服务器的性能及单点故障问题就凸显出来了，因此需要多台服务器组成应用集群，进行性能的水平扩展以及避免单点故障出现。</p>
+<ul>
+<li>应用集群:将同一应用部署到多台机器上，组成应用集群，接收负载均衡器分发的请求，进行业务处理并返回响应数据</li>
+<li>负载均衡器:将用户请求根据对应的负载均衡算法分发到应用集群中的一台服务器进行处理</li>
+</ul>
+<h3 id="我遇到的问题"><a href="#我遇到的问题" class="headerlink" title="我遇到的问题"></a>我遇到的问题</h3><h4 id="1、前后端交互问题"><a href="#1、前后端交互问题" class="headerlink" title="1、前后端交互问题"></a>1、前后端交互问题</h4><p>后端用的id是雪花算法生成的分布式id，用Long存储的，但前端js存储数据，JS的整数最大只支持53位，Long 64位，会出现溢出，为了防止精度丢失，使用fastjson的ToStringSerializer注解，让系统序列化时，保留相关精度。（@Jsonserialize(using &#x3D; Tostringserializer.class)）</p>
+<p>总的来说雪花算法有以下几个优点:</p>
+<p>1、能满足高并发分布式系统环境下ID不重复</p>
+<p>2、基于时间戳，可以保证基本有序递增</p>
+<p>3、不依赖第三方的库或者中间件</p>
+<p>4、生成效率高</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230322145324052.png" alt="img"></p>
+<h4 id="2、跨域问题"><a href="#2、跨域问题" class="headerlink" title="2、跨域问题"></a>2、跨域问题</h4><h5 id="Nginx跨域实现"><a href="#Nginx跨域实现" class="headerlink" title="Nginx跨域实现"></a>Nginx跨域实现</h5><p>首先大家要搞清楚什么是跨域，为什么会有跨域情况的出现。哪些情况属于跨域？</p>
+<p>跨域：由于浏览器的同源策略，即属于不同域的页面之间不能相互访问各自的页面内容注：同源策略，单说来就是同协议，同<a target="_blank" rel="noopener" href="https://cloud.tencent.com/act/pro/domain-sales?from=20065&from_column=20065">域名</a>，同端口</p>
+<h5 id="跨域场景"><a href="#跨域场景" class="headerlink" title="跨域场景"></a>跨域场景</h5><p>出于安全考虑（比如csrf攻击），浏览器一般会禁止进行跨域访问</p>
+<p>但是因为有时有相应需求，需要允许跨域访问，这时，我们就需要将跨域访问限制打开。 启动一个web服务，端口是8081</p>
+<p>然后再开启一个web服务&#x2F;前端服务都可以。端口是8082，然后再8082的服务中通过ajax来访问8081的服务，这就不满足同源策略，就会出现跨域问题</p>
+<p>1、前后端分离</p>
+<p>2、niginx</p>
+<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><p>1、对于前后端</p>
+<p>配置类WebMVCConfig 实现了 WebMvcConfigurer</p>
+<p>在方法addCorsMappings里面配置需要允许跨域的域名</p>
+<pre><code class="plain">@Override
+    public void addCorsMappings(CorsRegistry registry) &#123;
+//        //跨域配置
+        registry.addMapping(&quot;/**&quot;).allowedOrigins(&quot;https://blog.mszlu.com&quot;,&quot;http://blog1.mszlu.com&quot;,&quot;http://localhost:8080&quot;);
+    &#125;
+</code></pre>
+<h5 id="2、Nginx"><a href="#2、Nginx" class="headerlink" title="2、Nginx"></a>2、Nginx</h5><p>首先配置Nginx的反向代理方式</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/zp1p1bdlat.png" alt="img"></p>
+<p>8082的服务访问Nginx，出现了跨域问题</p>
+<p>Nginx配置跨域解决</p>
+<pre><code class="plain">location / &#123;  
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;
+    add_header Access-Control-Allow-Headers &#39;DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization&#39;;
+
+    if ($request_method = &#39;OPTIONS&#39;) &#123;
+        return 204;
+&#125;
+proxy_pass http://192.168.12.1:8081;
+&#125;
+</code></pre>
+<h6 id="Access-Control-Allow-Origin"><a href="#Access-Control-Allow-Origin" class="headerlink" title="Access-Control-Allow-Origin"></a>Access-Control-Allow-Origin</h6><p>服务器默认是不被允许跨域的。给Nginx服务器配置Access-Control-Allow-Origin *后，表示服务器可以接受所有的请求源（Origin）,即接受所有跨域的请求。</p>
+<h6 id="Access-Control-Allow-Headers"><a href="#Access-Control-Allow-Headers" class="headerlink" title="Access-Control-Allow-Headers"></a>Access-Control-Allow-Headers</h6><p>是为了防止出现以下错误：</p>
+<p>Request header field Content-Type is not allowed by Access-Control-Allow-Headers in preflight response.</p>
+<p>这个错误表示当前请求Content-Type的值不被支持。其实是我们发起了”application&#x2F;json”的类型请求导致的。这里涉及到一个概念：预检请求（preflight request）,请看下面”预检请求”的介绍。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410163310797.png" alt="img"></p>
+<h5 id="预检请求（preflight-request）"><a href="#预检请求（preflight-request）" class="headerlink" title="预检请求（preflight request）"></a>预检请求（preflight request）</h5><p>跨域资源共享(CORS)标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站有权限访问哪些资源。对那些可能对服务器数据产生副作用的HTTP 请求方法，浏览器必须首先发起一个预检请求（preflight request），从而获知服务端是否允许该跨域请求。服务器确认允许之后，才发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（包括 Cookies 和 HTTP 认证相关数据）。 </p>
+<h6 id="Access-Control-Allow-Methods"><a href="#Access-Control-Allow-Methods" class="headerlink" title="Access-Control-Allow-Methods"></a>Access-Control-Allow-Methods</h6><p>是为了防止出现以下错误：</p>
+<p>Content-Type is not allowed by Access-Control-Allow-Headers in preflight response.</p>
+<h6 id="给OPTIONS-添加-204的返回"><a href="#给OPTIONS-添加-204的返回" class="headerlink" title="给OPTIONS 添加 204的返回"></a>给OPTIONS 添加 204的返回</h6><p>是为了处理在发送POST请求时Nginx依然拒绝访问的错误,发送”预检请求”时，需要用到方法 OPTIONS ,所以服务器需要允许该方法。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230410163455042.png" alt="img"></p>
+<h4 id="3、部署问题"><a href="#3、部署问题" class="headerlink" title="3、部署问题"></a>3、部署问题</h4><p>阿里云服务器 centos系统 </p>
+<p>mysql容器运行起来之后，需要通过docker inspect mysql查看其ip地址，查到的ip（172.17.0.2）需要放到项目配置文件里</p>
+<p>同时记得要在阿里云的安全组里面加以添加80 8888 8889 3306的安全组规则</p>
+<p>Dockerfile：本项目中将程序的jar包构建成镜像，使其能够作为容器启动，可以从一个基础镜像来构建，这样构建一个服务就很容易了</p>
+<h2 id="蘑菇识别"><a href="#蘑菇识别" class="headerlink" title="蘑菇识别"></a>蘑菇识别</h2><p>上传图片到根目录：根目录 input文件夹存一下这个图片，然后python identify.py 路径+图片名称 识别出结果 各个种类的预测百分率（字符串） 对字符串进行一个处理</p>
+<p>取前三，返回一个封装结果，同时还支持详细查询蘑菇的描述</p>
+<h2 id="论坛知识点（业务）"><a href="#论坛知识点（业务）" class="headerlink" title="论坛知识点（业务）"></a>论坛知识点（业务）</h2><h3 id="文章列表"><a href="#文章列表" class="headerlink" title="文章列表"></a>文章列表</h3><p>通过传入的PageParams对象进行查询 调用service -&gt; mapper -&gt;xml-&gt;sql的select查询语句 ，传参包括分类，标签，年月（查询范围）返回IPage对象，copyList转化格式</p>
+<h3 id="最热标签"><a href="#最热标签" class="headerlink" title="最热标签"></a>最热标签</h3><p>SELECT tag_id FROM ms_article_tag group by tag_id order by count(*) desc limit #{limit}</p>
+<p>找ms_article_tag表查出对应article最多的tagid 然后再根据tagid查tag，封装到tagvo里面 返回名称＋头像</p>
+<h3 id="最热文章"><a href="#最热文章" class="headerlink" title="最热文章"></a>最热文章</h3><p>sevice层里面直接调用LambdaQueryWrapper<Article><em>查询条件构造器</em> lamda表达式 链式查询 </Article></p>
+<pre><code class="plain">LambdaQueryWrapper&lt;Article&gt; queryWrapper = new LambdaQueryWrapper&lt;&gt;();
+        queryWrapper.orderByDesc(Article::getViewCounts);
+        queryWrapper.select(Article::getId,Article::getTitle);
+        queryWrapper.last(&quot;limit &quot; + limit);
+        List&lt;Article&gt; articles = articleMapper.selectList(queryWrapper);
+        return Result.success(copyList(articles,false,false));
+</code></pre>
+<h3 id="最新文章"><a href="#最新文章" class="headerlink" title="最新文章"></a>最新文章</h3><p>一样只是</p>
+<p> queryWrapper.orderByDesc(Article::getCreateDate);</p>
+<h3 id="文章归档"><a href="#文章归档" class="headerlink" title="文章归档"></a>文章归档</h3><p> select year(create_date) as year,month(create_date) as month,count(*) as count from ms_article group by year,month</p>
+<p>按照年月查询</p>
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>用户jwt鉴权流程</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230320181343651.png" alt="img"></p>
+<ol>
+<li>用户使用用户名密码来请求服务器</li>
+<li>服务器进行验证用户的信息3.服务器通过验证，发送给用户一个token（header.payload(id 电话号码啥的).签证）4.客户端存储token，并在每次请求时附送上这个token值</li>
+<li>服务端验证token值，并返回数据</li>
+</ol>
+<p>jwt token生成和校验</p>
+<p>使用私钥加密生成token 公钥解密获取token中的信息</p>
+<p><strong>如何防止jwt token被窃取</strong></p>
+<p>1、采用更安全的传输协议https</p>
+<p>2、加密传输</p>
+<p>3、代码层面也可以做安全检测，比如ip地址发生变化，MAC地址发生变化等等，可以要求重新登录</p>
+<p>4、使用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%A7%81%E9%92%A5&spm=1001.2101.3001.7020">私钥</a>加密生成token 公钥解密获取token中的信息</p>
+<p>jwt 有三部分组成：A.B.C</p>
+<p>A：Header，{“type”:”JWT”,”alg”:”HS256”} 固定 <strong>定义生成签名算法以及Token的类型</strong></p>
+<p>B：playload，存放实际需要传递的信息，比如，用户id，过期时间等等，可以被解密，不能存放敏感信息</p>
+<p>C: 签证，A和B加上秘钥 加密而成，只要秘钥不丢失，可以认为是安全的。</p>
+<p>jwt 验证，主要就是验证C部分 是否合法。</p>
+<p>private static final String slat &#x3D; “mszlu!@#”;&#x2F;&#x2F;加密盐 因为数据库不能给人看密码  每次都用这一个字符串用来加密</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230316152438763.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230316152350542.png" alt="img"></p>
+<h3 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h3><p>不管是controller层还是service，dao层，都有可能报异常，如果是预料中的异常，可以直接捕获处理，如果是意料之外的异常，需要统一进行处理，进行记录，并给用户提示相对比较友好的信息。</p>
+<pre><code class="plain">package com.mszlu.blog.handler;
+
+import com.mszlu.blog.vo.Result;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+//对加了@Controller注解的方法进行拦截处理 AOP的实现
+@ControllerAdvice
+public class AllExceptionHandler &#123;
+    //进行异常处理，处理Exception.class的异常
+    @ExceptionHandler(Exception.class)
+    @ResponseBody //返回json数据
+    public Result doException(Exception ex)&#123;
+        ex.printStackTrace();
+        return Result.fail(-999,&quot;系统异常&quot;);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="编辑发表博客"><a href="#编辑发表博客" class="headerlink" title="编辑发表博客"></a>编辑发表博客</h3><p>写文章需要 三个接口：</p>
+<ol>
+<li>获取所有文章类别</li>
+<li>获取文章标签</li>
+<li>发布文章 POST</li>
+</ol>
+<p>下拉框文章类别、文章类别</p>
+<p>1.发布文章 目的 构建Article对象</p>
+<p>2.作者id 当前的 登录用户</p>
+<p>3．标签要将标签加入到关联列表当中</p>
+<p>4.body 内容存储</p>
+<p>上传图片：七牛云</p>
+<h3 id="Security集成"><a href="#Security集成" class="headerlink" title="Security集成"></a>Security集成</h3><p><strong>登录认证</strong></p>
+<p>SecurityConfig配置类，硬编码，也就是在访问后台权限管理之前搞一个登录认证访问main.html的时候跳转login.html</p>
+<pre><code class="plain">//当用户登录的时候，springSecurity 就会将请求 转发到此
+    //根据用户名 查找用户，不存在 抛出异常，存在 将用户名，密码，授权列表 组装成springSecurity的User对象 并返回
+</code></pre>
+<p>剩下的认证 就由框架帮我们完成</p>
+<p><strong>权限认证</strong></p>
+<p>根据用户职能让其干对应的事情</p>
+<p>admission表里面，每个用户对应一个权限路径，当用户访问的时候，拿到其权限路径和访问路径对比，相等就放行</p>
+<p>只要你这个用户其中的一个权限路径是和requestURI一样的就🆗</p>
+<h3 id="博客的评论与点赞"><a href="#博客的评论与点赞" class="headerlink" title="博客的评论与点赞"></a>博客的评论与点赞</h3><p>rocketmq</p>
+<p>导依赖 做配置 </p>
+<p>@RocketMQMessageListener 发送一条消息给rocketmq 当前文章更新了，更新一下缓存吧 得到redisKey，更新查看文章详情的缓存</p>
+<h3 id="怎么分页的？"><a href="#怎么分页的？" class="headerlink" title="怎么分页的？"></a>怎么分页的？</h3><p>定义一个配置类，然后定义MyBatisPlus拦截器并将其设置为Spring管控的bean</p>
+<p>先创建MyBatisPlus的拦截器栈，再初始化了分页拦截器，并添加到拦截器栈中。如果后期开发其他功能，需要添加全新的拦截器，按照第二行的格式继续add进去新的拦截器就可以了。</p>
+<pre><code class="plain">@Configuration
+//扫包，将此包下的接口生成代理实现类，并且注册到spring容器中
+@MapperScan(&quot;com.mszlu.blog.dao&quot;)
+public class MybatisPlusConfig
+</code></pre>
+<p>跨域问题？</p>
+<p>比如论坛项目中评论是如何存储的？怎么展示所有的评论？</p>
+<p>项目中框架或者中间件的使用细节。项目里怎么用ES的，ES怎么支持搜索的？缓存和DB是如何结合使用的？</p>
+<p>2.1. 项日存在哪些问题，你准备怎么解决？2.2. 项目的具体功能点如何优化？如论坛项目，查询评论是在DB里扫表查询吗？想要查询更快可以做哪些优化？2.3. 项目中最有挑战的模块是哪个，你是怎么解决的？项目要增大10倍的qps，你会怎么设计？2.5. 项目上线后出现线上问题怎么解决？如频繁fullGc，定时任务失败怎么办？为什么做这个项目，技术选型为什么是这样的？</p>
+<p>登录怎么做的？单点登录说说你的理解？</p>
+<p>说说项目中的闪光点和亮点？</p>
+<h3 id="项目挑战？"><a href="#项目挑战？" class="headerlink" title="项目挑战？"></a>项目挑战？</h3><h2 id="SpringSecurity"><a href="#SpringSecurity" class="headerlink" title="SpringSecurity"></a>SpringSecurity</h2><h3 id="压测"><a href="#压测" class="headerlink" title="压测"></a>压测</h3><p>jmeter</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37679452/article/details/103895809">https://blog.csdn.net/m0_37679452/article/details/103895809</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/" title="魔方天地">http://viacheung.github.io/2023/06/04/魔方天地/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E8%AF%86%E8%8F%87/" rel="prev" title="识菇">
+      <i class="fa fa-chevron-left"></i> 识菇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/" rel="next" title="防雷防电检测系统">
+      防雷防电检测系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0"><span class="nav-number">1.1.</span> <span class="nav-text">魔方天地</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.1.</span> <span class="nav-text">项目介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81JWT-token-redis"><span class="nav-number">1.1.2.</span> <span class="nav-text">1、JWT+token+redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">登录整体流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E7%99%BB%E5%BD%95"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">后续登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7jwt%E9%89%B4%E6%9D%83%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">用户jwt鉴权流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2-JWT-%E8%A2%AB%E7%AF%A1%E6%94%B9%EF%BC%9F"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">如何防止 JWT 被篡改？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E5%BC%BA-JWT-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9F"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">如何加强 JWT 的安全性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JWT%E4%BC%98%E5%8A%BF"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">JWT优势</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81-%E6%9C%89%E6%95%88%E9%81%BF%E5%85%8D%E4%BA%86-CSRF-%E6%94%BB%E5%87%BB"><span class="nav-number">1.1.2.6.1.</span> <span class="nav-text">1、 有效避免了 CSRF 攻击</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81XSS%E6%94%BB%E5%87%BB%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.2.6.2.</span> <span class="nav-text">2、XSS攻击呢？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E9%80%82%E5%90%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%E3%80%81%E8%B7%A8%E8%AF%AD%E8%A8%80"><span class="nav-number">1.1.2.6.3.</span> <span class="nav-text">3、适合移动端、跨语言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E5%8F%8B%E5%A5%BD"><span class="nav-number">1.1.2.6.4.</span> <span class="nav-text">4、单点登录友好</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81%E6%97%A0%E7%8A%B6%E6%80%81-%E5%87%8F%E8%BD%BB%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8E%8B%E5%8A%9B"><span class="nav-number">1.1.2.6.5.</span> <span class="nav-text">5、无状态 减轻服务端压力</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JWT-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">JWT 身份认证常见问题及解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%A8%E9%94%80%E7%99%BB%E5%BD%95%E7%AD%89%E5%9C%BA%E6%99%AF%E4%B8%8B-JWT-%E8%BF%98%E6%9C%89%E6%95%88"><span class="nav-number">1.1.2.7.1.</span> <span class="nav-text">注销登录等场景下 JWT 还有效</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1%E3%80%81%E5%B0%86-JWT-%E5%AD%98%E5%85%A5%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.1.2.7.1.1.</span> <span class="nav-text">1、将 JWT 存入内存数据库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">数据库账号密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jwt%E9%80%80%E5%87%BA%E7%99%BB%E5%BD%95-x2F-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E6%97%B6%E5%A6%82%E4%BD%95%E4%BD%BF%E5%8E%9F%E6%9D%A5%E7%9A%84token%E5%A4%B1%E6%95%88"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">jwt退出登录&#x2F;修改密码时如何使原来的token失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8redis%E5%92%8C%E4%B8%8D%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.2.10.</span> <span class="nav-text">用redis和不用的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2jwt-token%E8%A2%AB%E7%AA%83%E5%8F%96"><span class="nav-number">1.1.2.11.</span> <span class="nav-text">如何防止jwt token被窃取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#token%E8%BF%87%E6%9C%9F%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">1.1.2.12.</span> <span class="nav-text">token过期了怎么办？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%B8%A2%E4%BA%BA%E4%B8%8B%E7%BA%BF"><span class="nav-number">1.1.2.13.</span> <span class="nav-text">如何踢人下线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81ThreadLocal%E4%BF%9D%E5%AD%98%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.3.</span> <span class="nav-text">2、ThreadLocal保存用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E7%94%A8%E7%BA%BF%E7%A8%8Bid%E4%BD%9C%E4%B8%BAThreadLocalMap%E7%9A%84key%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">为什么不直接用线程id作为ThreadLocalMap的key呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%B1%E5%BC%95%E7%94%A8%E5%AF%BC%E8%87%B4%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">弱引用导致的内存泄漏呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key%E6%98%AF%E5%BC%B1%E5%BC%95%E7%94%A8%EF%BC%8CGC%E5%9B%9E%E6%94%B6%E4%BC%9A%E5%BD%B1%E5%93%8DThreadLocal%E7%9A%84%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C%E5%98%9B%EF%BC%9F"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">key是弱引用，GC回收会影响ThreadLocal的正常工作嘛？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84demo"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">ThreadLocal内存泄漏的demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">为什么弱引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InheritableThreadLocal%E4%BF%9D%E8%AF%81%E7%88%B6%E5%AD%90%E7%BA%BF%E7%A8%8B%E9%97%B4%E7%9A%84%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.3.7.</span> <span class="nav-text">InheritableThreadLocal保证父子线程间的共享数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">1.1.3.8.</span> <span class="nav-text">ThreadLocal的应用场景和使用注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.3.9.</span> <span class="nav-text">ThreadLocal特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal-%E5%92%8CSynchronized"><span class="nav-number">1.1.3.10.</span> <span class="nav-text">ThreadLocal 和Synchronized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal%E4%B8%8D%E8%83%BD%E8%A7%A3%E5%86%B3%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.3.11.</span> <span class="nav-text">ThreadLocal不能解决共享变量的线程安全问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal%E4%B8%8EThread%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.1.3.12.</span> <span class="nav-text">ThreadLocal与Thread同步机制的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95"><span class="nav-number">1.1.3.13.</span> <span class="nav-text">线性探测法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E6%94%BE%E5%85%A5%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.1.4.</span> <span class="nav-text">3、日志记录放入线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0%EF%BC%9F"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">我的线程池参数？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.4.2.1.</span> <span class="nav-text">一些参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.4.2.2.</span> <span class="nav-text">通用公式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CPU%E5%AF%86%E9%9B%86-amp-amp-IO%E5%AF%86%E9%9B%86"><span class="nav-number">1.1.4.2.3.</span> <span class="nav-text">CPU密集&amp;&amp;IO密集</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%BC%82%E6%AD%A5"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">关于异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#execute-vs-submit"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">execute() vs submit()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">为什么要用线程池？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.1.4.7.</span> <span class="nav-text">如何创建线程池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor-%E7%B1%BB%E5%88%86%E6%9E%90"><span class="nav-number">1.1.4.8.</span> <span class="nav-text">ThreadPoolExecutor 类分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%83%E5%A4%A7%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-number">1.1.4.9.</span> <span class="nav-text">ThreadPoolExecutor 构造函数七大参数分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="nav-number">1.1.4.10.</span> <span class="nav-text">线程池原理分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81java%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.1.4.11.</span> <span class="nav-text">常见java线程池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B8%B8%E7%94%A8%E7%9A%84%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">1.1.4.12.</span> <span class="nav-text">线程池常用的阻塞队列有哪些?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E4%B8%AD%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%98%AF%E6%80%8E%E4%B9%88%E5%A4%8D%E7%94%A8%E7%BA%BF%E7%A8%8B%E7%9A%84%EF%BC%9F"><span class="nav-number">1.1.4.13.</span> <span class="nav-text">源码中线程池是怎么复用线程的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executor%E5%92%8CExecutors%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.1.4.14.</span> <span class="nav-text">Executor和Executors的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.4.15.</span> <span class="nav-text">线程池应用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81Elasticsearch%E6%90%9C%E7%B4%A2-%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%E5%88%B0%E7%B4%A2%E5%BC%95"><span class="nav-number">1.1.5.</span> <span class="nav-text">4、Elasticsearch搜索 +同步数据到索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">前言知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">索引库操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.5.1.2.</span> <span class="nav-text">文档操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">数据同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E8%AF%8D%E5%99%A8"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">分词器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5-1"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">数据同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">1.1.5.6.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#es%E5%88%B7%E6%96%B0%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.5.7.</span> <span class="nav-text">es刷新时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95"><span class="nav-number">1.1.5.8.</span> <span class="nav-text">倒排索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E9%98%85%E8%AF%BB%E8%AF%84%E8%AE%BA%E6%95%B0%E6%94%BE%E5%85%A5Redis%E4%B8%AD"><span class="nav-number">1.1.6.</span> <span class="nav-text">5、阅读评论数放入Redis中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1%E3%80%81RabbitMQ%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-number">1.1.7.</span> <span class="nav-text">6.1、RabbitMQ解决缓存不一致</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E5%85%88%E5%86%99%E7%BC%93%E5%AD%98%E5%86%8D%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.1.7.0.1.</span> <span class="nav-text">1、先写缓存再数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E5%85%88%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%8D%E6%9B%B4%E6%96%B0%E7%BC%93%E5%AD%98"><span class="nav-number">1.1.7.0.2.</span> <span class="nav-text">2、先更新数据库再更新缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E5%85%88%E5%88%A0%E9%99%A4%E7%BC%93%E5%AD%98%EF%BC%8C%E5%90%8E%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.1.7.0.3.</span> <span class="nav-text">3、先删除缓存，后更新数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%94%E6%A1%88%E4%B8%80%EF%BC%9A%E5%BB%B6%E6%97%B6%E5%8F%8C%E5%88%A0"><span class="nav-number">1.1.7.0.3.1.</span> <span class="nav-text">答案一：延时双删</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%94%E6%A1%88%E4%BA%8C%EF%BC%9A-%E6%9B%B4%E6%96%B0%E4%B8%8E%E8%AF%BB%E5%8F%96%E6%93%8D%E4%BD%9C%E8%BF%9B%E8%A1%8C%E5%BC%82%E6%AD%A5%E4%B8%B2%E8%A1%8C%E5%8C%96"><span class="nav-number">1.1.7.0.3.2.</span> <span class="nav-text">答案二： 更新与读取操作进行异步串行化</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81%E5%85%88%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%90%8E%E5%88%A0%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">1.1.7.0.4.</span> <span class="nav-text">4、先更新数据库，后删除缓存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81RabbitMQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0ES%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5"><span class="nav-number">1.1.8.</span> <span class="nav-text">6、RabbitMQ消息队列实现ES和数据库的数据同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4-2"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E6%AD%BB%E4%BF%A1%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-number">1.1.9.</span> <span class="nav-text">7、死信交换机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.9.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.9.2.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4-3"><span class="nav-number">1.1.9.3.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%BB%E4%BF%A1%E6%B6%88%E6%81%AF%E5%8F%98%E5%8C%96"><span class="nav-number">1.1.9.4.</span> <span class="nav-text">死信消息变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.9.5.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.9.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81RabbitMQ%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1%E3%80%81%E5%B9%82%E7%AD%89%E6%80%A7"><span class="nav-number">1.1.10.</span> <span class="nav-text">8、RabbitMQ消息丢失、幂等性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%89%E7%94%9F%E4%BA%A7%E8%80%85%E5%BC%84%E4%B8%A2%E4%BA%86%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">1）生产者弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%89RabbitMQ%E5%BC%84%E4%B8%A2%E4%BA%86%E6%95%B0%E6%8D%AE-%E5%BC%80%E5%90%AFRabbitMQ%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">1.1.10.2.</span> <span class="nav-text">2）RabbitMQ弄丢了数据(开启RabbitMQ的数据持久化)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%89%E6%B6%88%E8%B4%B9%E7%AB%AF%E5%BC%84%E4%B8%A2%E4%BA%86%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.10.3.</span> <span class="nav-text">3）消费端弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-%E5%A4%9A%E7%BA%BF%E7%A8%8BvsMQ"><span class="nav-number">1.1.10.4.</span> <span class="nav-text">8.4 多线程vsMQ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-%E8%A7%A3%E8%80%A6%E3%80%81%E5%BC%82%E6%AD%A5%E3%80%81%E5%89%8A%E5%B3%B0%E3%80%82"><span class="nav-number">1.1.10.5.</span> <span class="nav-text">8.5 解耦、异步、削峰。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-6-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.10.6.</span> <span class="nav-text">8.6 消息队列的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-7-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%B9%82%E7%AD%89%E6%80%A7%EF%BC%9F"><span class="nav-number">1.1.10.7.</span> <span class="nav-text">8.7 如何解决幂等性？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0%E6%B6%88%E6%81%AF%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.1.10.7.1.</span> <span class="nav-text">出现消息重复消费的情况</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%B6%88%E8%B4%B9%E7%9A%84%E5%B9%82%E7%AD%89%E6%80%A7"><span class="nav-number">1.1.10.7.2.</span> <span class="nav-text">如何保证消息队列消费的幂等性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-8-%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E6%81%AF%E8%BF%90%E8%BD%AC%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.10.8.</span> <span class="nav-text">8.8 生产者消息运转的流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E6%8E%A5%E6%94%B6%E6%B6%88%E6%81%AF%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.1.10.9.</span> <span class="nav-text">消费者接收消息过程？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E5%A6%82%E4%BD%95%E5%B0%86%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%8A%95%E9%80%92%E5%88%B0RabbitMQ%EF%BC%9F"><span class="nav-number">1.1.10.10.</span> <span class="nav-text">生产者如何将消息可靠投递到RabbitMQ？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RabbitMQ%E5%A6%82%E4%BD%95%E5%B0%86%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%8A%95%E9%80%92%E5%88%B0%E6%B6%88%E8%B4%B9%E8%80%85%EF%BC%9F"><span class="nav-number">1.1.10.11.</span> <span class="nav-text">RabbitMQ如何将消息可靠投递到消费者？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%E3%80%81%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%BA%A7%E7%94%9F%E4%B8%A5%E9%87%8D%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%EF%BC%9F"><span class="nav-number">1.1.11.</span> <span class="nav-text">9、消息队列产生严重消息堆积怎么处理？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.1.11.1.</span> <span class="nav-text">9.1 原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-%E5%90%8E%E6%9E%9C"><span class="nav-number">1.1.11.2.</span> <span class="nav-text">9.2 后果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8E%AA%E6%96%BD"><span class="nav-number">1.1.11.3.</span> <span class="nav-text">预防措施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-%E5%B7%B2%E5%87%BA%E4%BA%8B%E6%95%85%E7%9A%84%E8%A7%A3%E5%86%B3%E6%8E%AA%E6%96%BD"><span class="nav-number">1.1.11.4.</span> <span class="nav-text">9.3 已出事故的解决措施</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%83%85%E5%86%B51%EF%BC%9A%E5%A0%86%E7%A7%AF%E7%9A%84%E6%B6%88%E6%81%AF%E8%BF%98%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.11.4.1.</span> <span class="nav-text">情况1：堆积的消息还需要使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%83%85%E5%86%B52%EF%BC%9A%E5%A0%86%E7%A7%AF%E7%9A%84%E6%B6%88%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.11.4.2.</span> <span class="nav-text">情况2：堆积的消息不需要使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10%E3%80%81nginx-docker"><span class="nav-number">1.1.12.</span> <span class="nav-text">10、nginx+docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">部署静态资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">1.1.12.2.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">1.1.12.3.</span> <span class="nav-text">负载均衡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.13.</span> <span class="nav-text">我遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.13.1.</span> <span class="nav-text">1、前后端交互问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.13.2.</span> <span class="nav-text">2、跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Nginx%E8%B7%A8%E5%9F%9F%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.13.2.1.</span> <span class="nav-text">Nginx跨域实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.13.2.2.</span> <span class="nav-text">跨域场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.13.2.3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81Nginx"><span class="nav-number">1.1.13.2.4.</span> <span class="nav-text">2、Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Access-Control-Allow-Origin"><span class="nav-number">1.1.13.2.4.1.</span> <span class="nav-text">Access-Control-Allow-Origin</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Access-Control-Allow-Headers"><span class="nav-number">1.1.13.2.4.2.</span> <span class="nav-text">Access-Control-Allow-Headers</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%84%E6%A3%80%E8%AF%B7%E6%B1%82%EF%BC%88preflight-request%EF%BC%89"><span class="nav-number">1.1.13.2.5.</span> <span class="nav-text">预检请求（preflight request）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Access-Control-Allow-Methods"><span class="nav-number">1.1.13.2.5.1.</span> <span class="nav-text">Access-Control-Allow-Methods</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BB%99OPTIONS-%E6%B7%BB%E5%8A%A0-204%E7%9A%84%E8%BF%94%E5%9B%9E"><span class="nav-number">1.1.13.2.5.2.</span> <span class="nav-text">给OPTIONS 添加 204的返回</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.13.3.</span> <span class="nav-text">3、部署问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%98%91%E8%8F%87%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">蘑菇识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E5%9D%9B%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%88%E4%B8%9A%E5%8A%A1%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">论坛知识点（业务）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">文章列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%83%AD%E6%A0%87%E7%AD%BE"><span class="nav-number">1.3.2.</span> <span class="nav-text">最热标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%83%AD%E6%96%87%E7%AB%A0"><span class="nav-number">1.3.3.</span> <span class="nav-text">最热文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0"><span class="nav-number">1.3.4.</span> <span class="nav-text">最新文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3"><span class="nav-number">1.3.5.</span> <span class="nav-text">文章归档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95"><span class="nav-number">1.3.6.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">1.3.7.</span> <span class="nav-text">统一异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%8F%91%E8%A1%A8%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.3.8.</span> <span class="nav-text">编辑发表博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security%E9%9B%86%E6%88%90"><span class="nav-number">1.3.9.</span> <span class="nav-text">Security集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%AF%84%E8%AE%BA%E4%B8%8E%E7%82%B9%E8%B5%9E"><span class="nav-number">1.3.10.</span> <span class="nav-text">博客的评论与点赞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%88%86%E9%A1%B5%E7%9A%84%EF%BC%9F"><span class="nav-number">1.3.11.</span> <span class="nav-text">怎么分页的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%8C%91%E6%88%98%EF%BC%9F"><span class="nav-number">1.3.12.</span> <span class="nav-text">项目挑战？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringSecurity"><span class="nav-number">1.4.</span> <span class="nav-text">SpringSecurity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">压测</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
