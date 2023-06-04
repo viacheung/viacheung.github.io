@@ -211,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/JAVA%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%93%88%E5%B8%8C%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -225,7 +225,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/JAVA%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">JAVA基础</a>
+            <a href="/2023/06/04/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="post-title-link" itemprop="url">哈希表</a>
         </h2>
 
         <div class="post-meta">
@@ -239,7 +239,448 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 13:42:37 / 修改时间：13:45:21" itemprop="dateCreated datePublished" datetime="2023-06-04T13:42:37+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 14:12:27 / 修改时间：14:34:56" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:27+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="同构字符串"><a href="#同构字符串" class="headerlink" title="同构字符串"></a>同构字符串</h2><p>给定两个字符串 s 和 t ，判断它们是否是同构的。</p>
+<p>如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。</p>
+<p>每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。</p>
+<pre><code class="plain">class Solution &#123;
+     public boolean isIsomorphic(String s, String t) &#123;
+         Map&lt;Character, Character&gt; map1 = new HashMap&lt;&gt;();
+         Map&lt;Character, Character&gt; map2 = new HashMap&lt;&gt;();
+         for (int i = 0, j = 0; i &lt; s.length(); i++, j++) &#123;
+             if (!map1.containsKey(s.charAt(i))) &#123;
+                 map1.put(s.charAt(i), t.charAt(j)); // map1保存 s[i] 到 t[j]的映射
+             &#125;
+             if (!map2.containsKey(t.charAt(j))) &#123;
+                 map2.put(t.charAt(j), s.charAt(i)); // map2保存 t[j] 到 s[i]的映射
+             &#125;  
+             // 无法映射，返回 false   //之前映射一次了 所以这次不行 例如 a-&gt;b   又遇到a  c 那必然失败
+             if (map1.get(s.charAt(i)) != t.charAt(j) || map2.get(t.charAt(j)) != s.charAt(i)) &#123;
+                 return false;
+             &#125;
+         &#125;
+         return true;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="查找共用字符"><a href="#查找共用字符" class="headerlink" title="查找共用字符"></a>查找共用字符</h2><p>给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ <strong>包括重复字符</strong>），并以数组形式返回。你可以按 <strong>任意顺序</strong> 返回答案。</p>
+<p>思路</p>
+<pre><code class="plain">class Solution &#123;
+     public List&lt;String&gt; commonChars(String[] words) &#123;
+         // 哈希    hash数组存储每个字符对应的在各个字符串里面出现的最小频率    
+         // 输入：words = [&quot;bella&quot;,&quot;label&quot;,&quot;roller&quot;]
+         // hash[1]=0,hash[&#39;l&#39;-&#39;a&#39;]=2
+         // 输出：[&quot;e&quot;,&quot;l&quot;,&quot;l&quot;]   
+         List&lt;String&gt; res=new ArrayList&lt;&gt;();
+         int[] hash=new int[26];
+         //给hash初始化一个最大值
+         Arrays.fill(hash,Integer.MAX_VALUE);
+         for(int i=0;i&lt;words.length;i++)&#123;
+             int[] newhash=new int[26];
+             for(int j=0;j&lt;words[i].length();j++)&#123;
+                 newhash[words[i].charAt(j)-&#39;a&#39;]++;
+             &#125;
+             for(int k=0;k&lt;26;k++)&#123;
+                 hash[k]=Math.min(hash[k],newhash[k]);
+             &#125;
+         &#125;
+         for(int i=0;i&lt;26;i++)&#123;
+             while(hash[i]!=0)&#123;
+                 char c=(char)(&#39;a&#39;+i);//必须指定转的类型
+                 res.add(String.valueOf(c));
+                 hash[i]--;
+             &#125;
+         &#125;
+         return res;
+ 
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="赎金信"><a href="#赎金信" class="headerlink" title="赎金信"></a>赎金信</h2><p>给你两个字符串：ransomNote 和 magazine ，判断 ransomNote 能不能由 magazine 里面的字符构成。</p>
+<p>如果可以，返回 true ；否则返回 false 。</p>
+<p>magazine 中的每个字符只能在 ransomNote 中使用一次。</p>
+<p><strong>官方题解</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221017202244463.png" alt="img"></p>
+<p><strong>我的题解</strong></p>
+<pre><code class="plain">class Solution &#123;
+     //我的思路：先magazine存kv，然后ransomNote找如果没key或者value为0直接返回false，否则magazine对应v-1
+     public boolean canConstruct(String ransomNote, String magazine) &#123;
+         Map&lt;Character,Integer&gt; map=new HashMap&lt;&gt;();
+         for(char c:magazine.toCharArray())&#123;
+             map.put(c,map.getOrDefault(c,0)+1);
+         &#125;
+         for(char d:ransomNote.toCharArray())&#123;  
+             if(!map.containsKey(d)||map.get(d)==0)&#123;
+                 return false;
+             &#125;else&#123;
+                 map.put(d,map.get(d)-1);
+             &#125;
+         &#125;
+         return true;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="四数相加II"><a href="#四数相加II" class="headerlink" title="四数相加II"></a>四数相加II</h2><p><strong>这题和四数之和不一样 四数之和是一个数组里面 用排序+双重for循环+双指针，这个用两次hash就行</strong></p>
+<p>给你四个整数数组nums1、nums2、nums3 和 nums4 ，数组长度都是 n ，请你计算有多少个元组 (i, j, k, l) 能满足：</p>
+<ul>
+<li>0 &lt;&#x3D; i, j, k, l &lt; n</li>
+<li>nums1[i] + nums2[j] + nums3[k] + nums4[l] &#x3D;&#x3D; 0</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221017155818344.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) &#123;
+         Map&lt;Integer, Integer&gt; countAB = new HashMap&lt;Integer, Integer&gt;();
+         for (int u : A) &#123;
+             for (int v : B) &#123;
+                 countAB.put(u + v, countAB.getOrDefault(u + v, 0) + 1);
+             &#125;
+         &#125;
+         int ans = 0;
+         for (int u : C) &#123;
+             for (int v : D) &#123;
+                 if (countAB.containsKey(-u - v)) &#123;
+                     ans += countAB.get(-u - v);
+                 &#125;
+             &#125;
+         &#125;
+         return ans;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h2><p><strong>方法一：****暴力</strong></p>
+<p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。 时间复杂度：O(N2)</p>
+<p><strong>方法二（优先）：哈希表</strong></p>
+<p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
+<p>哈希表：存key 数字 value 下标</p>
+<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
+<p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
+<pre><code class="plain">class Solution &#123;
+     public int[] twoSum(int[] nums, int target) &#123;
+         Map&lt;Integer, Integer&gt; hashtable = new HashMap&lt;Integer, Integer&gt;();
+         for (int i = 0; i &lt; nums.length; ++i) &#123;
+             if (hashtable.containsKey(target - nums[i])) &#123;
+                 return new int[]&#123;hashtable.get(target - nums[i]), i&#125;;
+             &#125;
+             hashtable.put(nums[i], i);
+         &#125;
+         return new int[0];
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="202-快乐数"><a href="#202-快乐数" class="headerlink" title="202. 快乐数"></a>202. 快乐数</h2><p>编写一个算法来判断一个数 n 是不是快乐数。</p>
+<p>「快乐数」 定义为：</p>
+<p>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果这个过程 结果为 1，那么这个数就是快乐数。</p>
+<p><strong>方法一（选这个）</strong>（简单一点）</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165323827.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165445320.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     //简单 求下一个元素
+     private int getNext(int n) &#123;
+         int totalSum = 0;
+         while (n &gt; 0) &#123;
+             int d = n % 10;
+             n = n / 10;
+             totalSum += d * d;
+         &#125;
+         return totalSum;
+     &#125;
+     //hashset存  要么循环要么最后为1
+     public boolean isHappy(int n) &#123;
+         Set&lt;Integer&gt; seen = new HashSet&lt;&gt;();
+         while (n != 1 &amp;&amp; !seen.contains(n)) &#123;
+             seen.add(n);
+             n = getNext(n);
+         &#125;
+         return n == 1;
+     &#125;
+ &#125;
+</code></pre>
+<p><strong>方法二</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165617310.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221016165555141.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+      public int getNext(int n) &#123;
+         int totalSum = 0;
+         while (n &gt; 0) &#123;
+             int d = n % 10;
+             n = n / 10;
+             totalSum += d * d;
+         &#125;
+         return totalSum;
+     &#125;
+ 
+     public boolean isHappy(int n) &#123;
+         int slowRunner = n;
+         int fastRunner = n;
+         while (fastRunner != 1 &amp;&amp; slowRunner != fastRunner) &#123;
+             slowRunner = getNext(slowRunner);
+             fastRunner = getNext(getNext(fastRunner));
+         &#125;
+         return fastRunner == 1;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="349-两个数组的交集"><a href="#349-两个数组的交集" class="headerlink" title="349. 两个数组的交集"></a>349. 两个数组的交集</h2><p>给定两个数组 nums1 和 nums2 ，返回 <em>它们的交集</em> 。输出结果中的每个元素一定是 <strong>唯一</strong> 的。我们可以 <strong>不考虑输出结果的顺序</strong> 。</p>
+<p>我自己的解法</p>
+<pre><code class="plain">class Solution &#123;
+     public int[] intersection(int[] nums1, int[] nums2) &#123;
+         int n=nums1.length;
+         int m=nums2.length;
+         Set&lt;Integer&gt; hashSet=new HashSet&lt;&gt;();
+         Set&lt;Integer&gt; mergeSet=new HashSet&lt;&gt;();
+         //1、利用Set无重复元素的特点 把nums1进行去重
+         for(int i=0;i&lt;n;i++)&#123;
+             hashSet.add(nums1[i]);
+         &#125;
+         //2、判断hashSet里面有么有nums2,有的话把nums2放到Set结果里面
+         for(int i=0;i&lt;m;i++)&#123;
+             if(hashSet.contains(nums2[i]))&#123;
+                 mergeSet.add(nums2[i]);
+             &#125;
+         &#125;
+         //Set转int[]
+         int[] res=new int[mergeSet.size()];
+         int i=0;
+         for(int num:mergeSet)&#123;
+             res[i++]=num;
+         &#125;
+         return res;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="242-有效的字母异位词"><a href="#242-有效的字母异位词" class="headerlink" title="242.有效的字母异位词"></a>242.有效的字母异位词</h2><p>题解：这个比寻找字母异位词起始下标还简单一点 是基础 那个是用滑动窗口，然后每次移动后再去判断 这个都不用 直接算</p>
+<p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</p>
+<p>注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015215819113.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221015215826918.png" alt="img"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/04/%E4%BA%8C%E5%88%86/" class="post-title-link" itemprop="url">二分</a>
+        </h2>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:12:19 / 修改时间：14:34:29" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:19+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="二分排序"><a href="#二分排序" class="headerlink" title="二分排序"></a>二分排序</h1><p>部分有序也可以二分</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>1、记录答案法（推荐这个）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/%E4%BA%8C%E5%88%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">二叉树</a>
+        </h2>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:12:10 / 修改时间：14:33:37" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:10+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><p>完全二叉树： 从满二叉树最后一个结点往前删除</p>
+<p>二叉搜索树：左小右大 带数值</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/%E4%BA%8C%E5%8F%89%E6%A0%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">多线程</a>
+        </h2>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:12:01 / 修改时间：14:32:46" itemprop="dateCreated datePublished" datetime="2023-06-04T14:12:01+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,12 +703,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="面向对象和⾯向过程的区别"><a href="#面向对象和⾯向过程的区别" class="headerlink" title="面向对象和⾯向过程的区别"></a>面向对象和⾯向过程的区别</h2><p>面向过程</p>
-<p>优点：性能高，适合单片机嵌入式开发 </p>
-<p>缺点：没有⾯向对象易维护、易复⽤、易扩展。</p>
+          <h2 id="请简要描述线程与进程的关系-区别及优缺点？"><a href="#请简要描述线程与进程的关系-区别及优缺点？" class="headerlink" title="请简要描述线程与进程的关系,区别及优缺点？"></a>请简要描述线程与进程的关系,区别及优缺点？</h2><p><strong>根本区别</strong>：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/JAVA%E5%9F%BA%E7%A1%80/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -291,7 +730,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/JAVA-API%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -305,7 +744,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/04/JAVA-API%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">JAVA_API基础</a>
+            <a href="/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">动态规划</a>
         </h2>
 
         <div class="post-meta">
@@ -319,7 +758,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 01:18:03 / 修改时间：14:07:18" itemprop="dateCreated datePublished" datetime="2023-06-04T01:18:03+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 14:11:50 / 修改时间：14:32:11" itemprop="dateCreated datePublished" datetime="2023-06-04T14:11:50+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,181 +781,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="比较器"><a href="#比较器" class="headerlink" title="比较器"></a>比较器</h2><p>1、Arrays.sort(points, (a, b) -&gt; Integer.compare(a[0], b[0]));&#x2F;&#x2F;表升序</p>
+          <h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>不用管最优子结构啊和重叠子问题</p>
+<ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li></ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/06/04/JAVA-API%E5%9F%BA%E7%A1%80/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/01/ACM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/01/ACM/" class="post-title-link" itemprop="url">ACM输入输出说明</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-06-01 00:55:00" itemprop="dateCreated datePublished" datetime="2023-06-01T00:55:00+08:00">2023-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-04 11:16:24" itemprop="dateModified" datetime="2023-06-04T11:16:24+08:00">2023-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>nextInt()：读取到空格或回车之后结束本次的int值；同理还有nextDouble() 、nextFloat()、nextInt()</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/06/01/ACM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ViaCheung">
-      <meta itemprop="description" content="el psy congroo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="命运石之门">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">基于hexo的Quiet主题搭建博客教程</a>
-        </h2>
-
-        <div class="post-meta">
-	  <span class="post-time">
-
-	  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-05-01 00:55:00" itemprop="dateCreated datePublished" datetime="2023-05-01T00:55:00+08:00">2023-05-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-04 14:05:47" itemprop="dateModified" datetime="2023-06-04T14:05:47+08:00">2023-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p>搭建博客</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<p>域名绑定</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/#more" rel="contents">
+              <a class="btn" href="/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -538,6 +809,9 @@
 
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -604,14 +878,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

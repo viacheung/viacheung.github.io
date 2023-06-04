@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="常见的集合有哪些？Java集合类主要由两个根接口Collection和Map派生出来的，Collection派生出了三个子接口：List、Set、Queue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA集合">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/JAVA%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="常见的集合有哪些？Java集合类主要由两个根接口Collection和Map派生出来的，Collection派生出了三个子接口：List、Set、Queue">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/226907/1684750974008-15007cd1-0b39-4594-9798-11b0e05a95dc.png">
+<meta property="article:published_time" content="2023-06-04T06:07:53.000Z">
+<meta property="article:modified_time" content="2023-06-04T06:22:43.818Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/226907/1684750974008-15007cd1-0b39-4594-9798-11b0e05a95dc.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/JAVA%E9%9B%86%E5%90%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JAVA集合 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/JAVA%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JAVA集合
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:07:53 / 修改时间：14:22:43" itemprop="dateCreated datePublished" datetime="2023-06-04T14:07:53+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%AB%E8%82%A1/" itemprop="url" rel="index"><span itemprop="name">八股</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="常见的集合有哪些？"><a href="#常见的集合有哪些？" class="headerlink" title="常见的集合有哪些？"></a>常见的集合有哪些？</h2><p>Java集合类主要由两个根接口<strong>Collection</strong>和<strong>Map</strong>派生出来的，Collection派生出了三个子接口：List、Set、Queue<span id="more"></span>（Java5新增的队列），因此Java集合大致也可分成List、Set、Queue、Map四种接口体系。</p>
+<p><strong>注意：Collection是一个接口，Collections是一个工具类，Map不是Collection的子接口</strong>。</p>
+<p>Java集合框架图如下：</p>
+<p>图中，List代表了有序可重复集合，可直接根据元素的索引来访问；Set代表无序不可重复集合，只能根据元素本身来访问；Queue是队列集合。</p>
+<p>Map代表的是存储key-value对的集合，可根据元素的key来访问value。</p>
+<p>上图中淡绿色背景覆盖的是集合体系中常用的实现类，分别是ArrayList、LinkedList、ArrayQueue、HashSet、TreeSet、HashMap、TreeMap等实现类</p>
+<h2 id="线程安全的集合有哪些？线程不安全的呢？"><a href="#线程安全的集合有哪些？线程不安全的呢？" class="headerlink" title="线程安全的集合有哪些？线程不安全的呢？"></a>线程安全的集合有哪些？线程不安全的呢？</h2><p>线程安全的：</p>
+<ul>
+<li>Hashtable：比HashMap多了个线程安全。</li>
+<li>ConcurrentHashMap:是一种高效但是线程安全的集合。</li>
+<li>Vector：比Arraylist多了个同步化机制。</li>
+<li>Stack：栈，也是线程安全的，继承于Vector。</li>
+</ul>
+<p>线性不安全的：</p>
+<ul>
+<li>HashMap</li>
+<li>Arraylist</li>
+<li>LinkedList</li>
+<li>HashSet</li>
+<li>TreeSet</li>
+</ul>
+<h2 id="说说List-Set-Map三者的区别？"><a href="#说说List-Set-Map三者的区别？" class="headerlink" title="说说List,Set,Map三者的区别？"></a>说说List,Set,Map三者的区别？</h2><p>List 有序的、可重复的。Set⽆序的、不可重复的。Map ⽆序的，key不可重复、value 可重复</p>
+<p><strong>HashSet 和 HashMap 区别?</strong></p>
+<p>HashSet的底层其实就是HashMap，只不过我们<strong>HashSet是实现了Set接口并且把数据作为K值，而V值一直使用一个相同的虚值来保存</strong>。</p>
+<p>由于HashMap的K值本身就不允许重复，并且在HashMap中如果K&#x2F;V相同时，会用新的V覆盖掉旧的V，然后返回旧的V，那么在HashSet中执行这一句话始终会返回一个false，导致插入失败，这样就保证了数据的不可重复性。</p>
+<h2 id="Arraylist-与-LinkedList-区别"><a href="#Arraylist-与-LinkedList-区别" class="headerlink" title="Arraylist 与 LinkedList 区别?"></a>Arraylist 与 LinkedList 区别?</h2><p>1、底层一个数组 一个双向链表</p>
+<p>2、增删 和查的效率问题</p>
+<p>3、内存空间，Arraylist 预留空间 LinkedList指针</p>
+<h2 id="说⼀说-ArrayList-的扩容机制吧"><a href="#说⼀说-ArrayList-的扩容机制吧" class="headerlink" title="说⼀说 ArrayList 的扩容机制吧"></a>说⼀说 ArrayList 的扩容机制吧</h2><p>if 容量&#x3D;&#x3D;0，第一次添加元素容量为 10 </p>
+<p>else 会将修改次数 modCount++，并且会将原数组中的元素，拷贝至新数组中，新数组的大小是</p>
+<p>原数组的 1.5 倍</p>
+<h2 id="Array-和-ArrayList-有什么区别？什么时候该应-Array-而不是-ArrayList-呢？"><a href="#Array-和-ArrayList-有什么区别？什么时候该应-Array-而不是-ArrayList-呢？" class="headerlink" title="Array 和 ArrayList 有什么区别？什么时候该应 Array 而不是 ArrayList 呢？"></a>Array 和 ArrayList 有什么区别？什么时候该应 Array 而不是 ArrayList 呢？</h2><ul>
+<li>Array 可以包含基本类型和对象类型，ArrayList 只能包含对象类型。</li>
+<li>Array 大小是固定的，ArrayList 的大小是动态变化的。</li>
+<li>ArrayList 提供了更多的方法和特性，比如：addAll()，removeAll()，iterator() 等等。</li>
+</ul>
+<h2 id="ArrayList-与-Vector-区别？"><a href="#ArrayList-与-Vector-区别？" class="headerlink" title="ArrayList 与 Vector 区别？"></a>ArrayList 与 Vector 区别？</h2><ul>
+<li>Vector是线程安全的，ArrayList不是线程安全的。其中，Vector在关键性的方法前面都加了<strong>synchronized</strong>关键字，来保证线程的安全性。如果有多个线程会访问到集合，那最好是使用 Vector，因为不需要我们自己再去考虑和编写线程安全的代码。</li>
+<li>ArrayList在底层数组不够用时在原来的基础上扩展0.5倍，Vector是扩展1倍，这样ArrayList就有利于节约内存空间。</li>
+</ul>
+<h2 id="HashMap系列"><a href="#HashMap系列" class="headerlink" title="HashMap系列"></a>HashMap系列</h2><h3 id="HashMap-和-HashSet（底层HashMap）区别"><a href="#HashMap-和-HashSet（底层HashMap）区别" class="headerlink" title="HashMap 和 HashSet（底层HashMap）区别"></a>HashMap 和 HashSet（底层HashMap）区别</h3><h3 id="HashSet如何检查重复"><a href="#HashSet如何检查重复" class="headerlink" title="HashSet如何检查重复"></a>HashSet如何检查重复</h3><p>hashcode—equals</p>
+<h3 id="HashMap的底层实现"><a href="#HashMap的底层实现" class="headerlink" title="HashMap的底层实现"></a>HashMap的底层实现</h3><h3 id="HashMap构造函数"><a href="#HashMap构造函数" class="headerlink" title="HashMap构造函数"></a>HashMap构造函数</h3><p>三个 初始容量+默认加载因子</p>
+<p>数组 +链表+红黑树</p>
+<h3 id="HashMap-的扩容方式？"><a href="#HashMap-的扩容方式？" class="headerlink" title="HashMap 的扩容方式？"></a>HashMap 的扩容方式？</h3><p><strong>扩容：</strong></p>
+<p>首先 HashMap 的初始容量是 16，并且每次对原数组长度 * 2 进行扩容，HashMap 在容量超过负载因子所定义的容量之后，就会扩容，默认0.75，构造函数可以调整，无参有参构造</p>
+<p>当链表大于8，如果数组&lt;64 先数组扩容，否则链表转为红黑树</p>
+<p>HashMap扩容：</p>
+<h3 id="HashMap为什么默认加载因子是0-75？"><a href="#HashMap为什么默认加载因子是0-75？" class="headerlink" title="HashMap为什么默认加载因子是0.75？"></a>HashMap为什么默认加载因子是0.75？</h3><p>作为一般规则，默认负载因子（0.75）在时间和空间成本上提供了很好的折衷。较高的值会降低空间开销，但提高查找成本（体现在大多数的HashMap类的操作，包括get和put）。设置初始大小时，应该考虑预计的entry数在map及其负载系数，并且尽量减少rehash操作的次数。如果初始容量大于最大条目数除以负载因子，rehash操作将不会发生</p>
+<h3 id="HashMap-中-key-的存储索引是怎么计算的？"><a href="#HashMap-中-key-的存储索引是怎么计算的？" class="headerlink" title="HashMap 中 key 的存储索引是怎么计算的？"></a>HashMap 中 key 的存储索引是怎么计算的？</h3><p><strong>取key的 hashCode 值、根据 hashcode 计算出hash值（hashcode 异或其右移十六位）、通过取模计算下标</strong></p>
+<h4 id="1、JDK1-8-为什么要-hashcode-异或其右移十六位的值？"><a href="#1、JDK1-8-为什么要-hashcode-异或其右移十六位的值？" class="headerlink" title="1、JDK1.8 为什么要 hashcode 异或其右移十六位的值？"></a>1、JDK1.8 为什么要 hashcode 异或其右移十六位的值？</h4><p>右移后再亦或，高位和低位做了混合，在之后的hash &amp; (length-1) 中高位就也参与进运算了，增加了散列程度。</p>
+<p>由于和 (length -1) 运算，length 绝大多数情况小于 2 的 16 次方。 所以始终是 hashcode 的低 16 位（甚至更低） 参与运算。 但是这样高 16 位是用不到的，为了让得到的下标更加散列，需要让高16位也参与运算，所以就需要低16位和高16位进行 ^ 运算。</p>
+<h4 id="2、为什么-hash-值要与length-1相与？"><a href="#2、为什么-hash-值要与length-1相与？" class="headerlink" title="2、为什么 hash 值要与length-1相与？"></a>2、为什么 hash 值要与length-1相与？</h4><p>位运算快</p>
+<p>充分散列</p>
+<h3 id="HashMap-的put方法流程？"><a href="#HashMap-的put方法流程？" class="headerlink" title="HashMap 的put方法流程？"></a>HashMap 的put方法流程？</h3><ol>
+<li>首先根据 key 的值计算 hash 值，找到该元素在数组中存储的下标；</li>
+<li>如果数组是空的，则调用 resize 进行初始化；</li>
+<li>如果没有哈希冲突直接放在对应的数组下标里；</li>
+<li>如果冲突后，发现该节点是红黑树，则调用equals判断TreeNode是否已存在，如果存在更新之；不存在则直接插入红黑树，++size，超出threshold容量就扩容，然后将这个节点挂在树上；</li>
+<li>如果是链表，则判断Node是否已存在，如果存在更新之；不存在则直接插入链表尾部，判断链表长度，如果大于8则转为红黑树存储，++size，超出threshold容量就扩容； 判断该链表是否大于 8 ，如果大于 8 并且数组容量小于 64，就进行扩容；如果链表节点大于 8 并且数组的容量大于 64，则将这个结构转换为红黑树；</li>
+</ol>
+<h3 id="解决hash冲突的办法有哪些？HashMap用的哪种？"><a href="#解决hash冲突的办法有哪些？HashMap用的哪种？" class="headerlink" title="解决hash冲突的办法有哪些？HashMap用的哪种？"></a>解决hash冲突的办法有哪些？HashMap用的哪种？</h3><p>解决Hash冲突方法有:开放定址法（线性探测法）、再哈希法（多个hash函数算）、链地址法（拉链法）、建立公共溢出区。HashMap中采用的是 链地址法 </p>
+<p>线性探测法和</p>
+<h3 id="HashMap-多线程操作死链问题"><a href="#HashMap-多线程操作死链问题" class="headerlink" title="HashMap 多线程操作死链问题"></a>HashMap 多线程操作死链问题</h3><p>1.7头插会产生，1.8尾插没有了</p>
+<p>线程2完成移动 线程1才开始移动 因此就会产生环形链表</p>
+<h3 id="HashMap为什么线程不安全"><a href="#HashMap为什么线程不安全" class="headerlink" title="HashMap为什么线程不安全"></a>HashMap为什么线程不安全</h3><p>A判断好这个地方没有数据，准备插入的时候，这时候B线程抢夺到时间片，来插入，然后A再插入就把B覆盖了</p>
+<ul>
+<li>多线程下扩容死循环。JDK1.7中的 HashMap 使用头插法插入元素，在多线程的环境下，扩容的时候有可能导致环形链表的出现，形成死循环。因此，JDK1.8使用尾插法插入元素，在扩容时会保持链表元素原本的顺序，不会出现环形链表的问题。</li>
+<li>多线程的put可能导致元素的丢失。多线程同时执行 put 操作，如果计算出来的索引位置是相同的，那会造成前一个 key 被后一个 key 覆盖，从而导致元素的丢失。此问题在JDK 1.7和 JDK 1.8 中都存在。</li>
+<li>put和get并发时，可能导致get为null。线程1执行put时，因为元素个数超出threshold而导致rehash，线程2此时执行get，有可能导致这个问题。此问题在JDK 1.7和 JDK 1.8 中都存在。</li>
+</ul>
+<h3 id="为什么链表长度8树化"><a href="#为什么链表长度8树化" class="headerlink" title="为什么链表长度8树化"></a>为什么链表长度8树化</h3><p>链表阈值和产生冲突概率为泊松分布 选择8是千万分之6 7是十万分之一，差1000倍，降低冲突概率</p>
+<h3 id="退化"><a href="#退化" class="headerlink" title="退化"></a>退化</h3><p>当扩容后链表长度小于等于 6 进行树的退化 长度为6的话链表和红黑树查找效率忽略不计。此时维护红黑树的平衡反而加大开销，所以退化</p>
+<h3 id="红黑树特点"><a href="#红黑树特点" class="headerlink" title="红黑树特点"></a>红黑树特点</h3><p>1.节点是红色或黑色。</p>
+<p>2.根节点是黑色。</p>
+<p>3.每个叶子节点都是黑色的空节点（NIL节点）。</p>
+<p>4 每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</p>
+<p>5.从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</p>
+<p>当插入打破规则可以采取变色或者旋转（左旋转和右旋转）</p>
+<h3 id="红黑树vsAVL"><a href="#红黑树vsAVL" class="headerlink" title="红黑树vsAVL"></a>红黑树vsAVL</h3><p>1、增删性能红黑树好</p>
+<p>2、查询性能AVL好</p>
+<p>3、内存空间红黑树消耗大</p>
+<h3 id="HashMap-的⻓度为什么是2的幂次⽅"><a href="#HashMap-的⻓度为什么是2的幂次⽅" class="headerlink" title="HashMap 的⻓度为什么是2的幂次⽅"></a>HashMap 的⻓度为什么是2的幂次⽅</h3><p>1、2 的幂次可以用 与 的方式进行取余运算，效率更高；</p>
+<p>2）在扩容移动链表节点时，节点在新数组中的位置只可能是原位置 i 或 i + oldCap 旧数组长度，扩容时效率更高</p>
+<h2 id="一般用什么作为HashMap的key"><a href="#一般用什么作为HashMap的key" class="headerlink" title="一般用什么作为HashMap的key?"></a>一般用什么作为HashMap的key?</h2><p>一般用Integer、String 这种不可变类当 HashMap 当 key，而且 String 最为常用。</p>
+<ul>
+<li>因为字符串是不可变的，所以在它创建的时候 hashcode 就被缓存了，不需要重新计算。这就是 HashMap 中的键往往都使用字符串的原因。</li>
+<li>因为获取对象的时候要用到 equals() 和 hashCode() 方法，那么键对象正确的重写这两个方法是非常重要的,这些类已经很规范的重写了 hashCode() 以及 equals() 方法。</li>
+</ul>
+<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><h3 id="ConcurrentHashMap线程安全的具体实现⽅式-x2F-底层具体实现"><a href="#ConcurrentHashMap线程安全的具体实现⽅式-x2F-底层具体实现" class="headerlink" title="ConcurrentHashMap线程安全的具体实现⽅式&#x2F;底层具体实现"></a>ConcurrentHashMap线程安全的具体实现⽅式&#x2F;底层具体实现</h3><p><strong>1.7:</strong> 分段锁 （可重入锁）Segment 数组 + HashEntry 数组 + 链表 </p>
+<p>JDK1.7中的ConcurrentHashMap 是由 Segment 数组结构和 HashEntry 数组结构组成，即ConcurrentHashMap 把哈希桶切分成小数组（Segment ），每个小数组有 n 个 HashEntry 组成。</p>
+<p>其中，Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演锁的角色；HashEntry 用于存储键值对数据。</p>
+<p>首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问，能够实现真正的并发访问。</p>
+<p><strong>1.8</strong> CAS syn</p>
+<p>在数据结构上， JDK1.8 中的ConcurrentHashMap 选择了与 HashMap 相同的<strong>数组+链表+红黑树</strong>结构；在锁的实现上，抛弃了原有的 Segment 分段锁，采用CAS + synchronized实现更加低粒度的锁。</p>
+<p>将锁的级别控制在了更细粒度的哈希桶元素级别，也就是说只需要锁住这个链表头结点（红黑树的根节点），就不会影响其他的哈希桶元素的读写，大大提高了并发度。</p>
+<p>node数组+链表+红黑树</p>
+<p>synchronized 只锁定当前链表或红⿊⼆叉树的⾸节点，这样只要 hash 不冲突，就不会产⽣并发，效率⼜提升 N 倍 </p>
+<h3 id="ConcurrentHashMap-的-put-方法执行逻辑是什么？"><a href="#ConcurrentHashMap-的-put-方法执行逻辑是什么？" class="headerlink" title="ConcurrentHashMap 的 put 方法执行逻辑是什么？"></a>ConcurrentHashMap 的 put 方法执行逻辑是什么？</h3><p><strong>先来看JDK1.7</strong></p>
+<p>首先，会尝试获取锁，如果获取失败，利用自旋获取锁；如果自旋重试的次数超过 64 次，则改为阻塞获取锁。</p>
+<p>获取到锁后：</p>
+<ol>
+<li>将当前 Segment 中的 table 通过 key 的 hashcode 定位到 HashEntry。</li>
+<li>遍历该 HashEntry，如果不为空则判断传入的 key 和当前遍历的 key 是否相等，相等则覆盖旧的 value。</li>
+<li>没有相等的话则需要新建一个 HashEntry 并加入到 Segment 中，同时会先判断是否需要扩容。</li>
+<li>释放 Segment 的锁。</li>
+</ol>
+<p><strong>再来看JDK1.8</strong></p>
+<p>大致可以分为以下步骤：</p>
+<ol>
+<li>根据 key 计算出 hash值。</li>
+<li>判断是否需要进行初始化。</li>
+<li>定位到 Node，拿到首节点 f，判断首节点 f：</li>
+</ol>
+<ul>
+<li><ul>
+<li>如果为 null ，则通过cas的方式尝试添加。</li>
+<li>如果为 f.hash &#x3D; MOVED &#x3D; -1 ，说明其他线程在扩容，参与一起扩容。</li>
+<li>如果都不满足 ，synchronized 锁住 f 节点，判断是链表还是红黑树，遍历插入。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>当在链表长度达到8的时候，数组扩容或者将链表转换为红黑树。</li>
+</ol>
+<h3 id="ConcurrentHashMap-的-get-方法是否要加锁，为什么？"><a href="#ConcurrentHashMap-的-get-方法是否要加锁，为什么？" class="headerlink" title="ConcurrentHashMap 的 get 方法是否要加锁，为什么？"></a>ConcurrentHashMap 的 get 方法是否要加锁，为什么？</h3><p>get 方法不需要加锁。因为 Node 的元素 val 和指针 next 是用 volatile 修饰的，在多线程环境下线程A修改结点的val或者新增节点的时候是对线程B可见的。</p>
+<p>这也是它比其他并发集合比如 Hashtable、用 Collections.synchronizedMap()包装的 HashMap 安全效率高的原因之一。</p>
+<h3 id="ConcurrentHashMap-不支持-key-或者-value-为-null-的原因？"><a href="#ConcurrentHashMap-不支持-key-或者-value-为-null-的原因？" class="headerlink" title="ConcurrentHashMap 不支持 key 或者 value 为 null 的原因？"></a>ConcurrentHashMap 不支持 key 或者 value 为 null 的原因？</h3><p>1、我们先来说value 为什么不能为 null ，因为ConcurrentHashMap是用于多线程的 ，如果map.get(key)得到了 null ，无法判断，是映射的value是 null ，还是没有找到对应的key而为 null ，这就有了二义性。</p>
+<p><strong>追问：说说为什么ConcurrentHashMap判断不了呢？</strong></p>
+<p>此时如果有A、B两个线程，A线程调用ConcurrentHashMap.get(key)方法返回null，但是我们不知道这个null是因为key没有在map中映射还是本身存的value值就是null，此时我们假设有一个key没有在map中映射过，也就是map中不存在这个key，此时我们调用ConcurrentHashMap.containsKey(key)方法去做一个判断，我们期望的返回结果是false。但是恰好在A线程get(key)之后，调用constainsKey(key)方法之前B线程执行了ConcurrentHashMap.put(key,null)，那么当A线程执行完containsKey(key)方法之后我们得到的结果是true，与我们预期的结果就不相符了。</p>
+<p>而用于单线程状态的HashMap却可以用containsKey(key) 去判断到底是否包含了这个 null 。</p>
+<p>2、至于ConcurrentHashMap 中的key为什么也不能为 null 的问题，源码就是这样写的，哈哈。就回答作者Doug不喜欢 null ，所以在设计之初就不允许了 null 的key存在</p>
+<h3 id="get方法不需要加锁与volatile修饰的哈希桶有关吗？"><a href="#get方法不需要加锁与volatile修饰的哈希桶有关吗？" class="headerlink" title="get方法不需要加锁与volatile修饰的哈希桶有关吗？"></a>get方法不需要加锁与volatile修饰的哈希桶有关吗？</h3><p>没有关系。哈希桶table用volatile修饰主要是保证在数组扩容的时候保证可见性。</p>
+<h3 id="ConcurrentHashMap-的并发度是多少？"><a href="#ConcurrentHashMap-的并发度是多少？" class="headerlink" title="ConcurrentHashMap 的并发度是多少？"></a>ConcurrentHashMap 的并发度是多少？</h3><p>jdk1.7里面，程序在运行时能够同时更新ConcurrentHashMap且不产生锁竞争的最大线程数默认是16，这个值可以在构造函数中设置。如果自己设置了并发度，ConcurrentHashMap 会使用大于等于该值的最小的2的幂指数作为实际并发度，也就是比如你设置的值是17，那么实际并发度是32。</p>
+<h3 id="ConcurrentHashMap-迭代器是强一致性还是弱一致性？"><a href="#ConcurrentHashMap-迭代器是强一致性还是弱一致性？" class="headerlink" title="ConcurrentHashMap 迭代器是强一致性还是弱一致性？"></a>ConcurrentHashMap 迭代器是强一致性还是弱一致性？</h3><p><strong>类似快速失败和安全失败</strong></p>
+<p>快速失败就是HashMap 安全失败是Con~</p>
+<p>与HashMap迭代器是强一致性不同，ConcurrentHashMap 迭代器是弱一致性。</p>
+<p>ConcurrentHashMap 的迭代器创建后，就会按照哈希表结构遍历每个元素，但在遍历过程中，内部元素可能会发生变化，如果变化发生在已遍历过的部分，迭代器就不会反映出来，而如果变化发生在未遍历过的部分，迭代器就会发现并反映出来，这就是弱一致性。</p>
+<p>这样迭代器线程可以使用原来老的数据，而写线程也可以并发的完成改变，更重要的，这保证了多个线程并发执行的连续性和扩展性，是性能提升的关键。想要深入了解的小伙伴，可以看这篇文章[为什么ConcurrentHashMap 是弱一致的](<a target="_blank" rel="noopener" href="http://ifeve.com/ConcurrentHashMap">http://ifeve.com/ConcurrentHashMap</a> -weakly-consistent&#x2F;)</p>
+<h3 id="JDK1-7与JDK1-8-中ConcurrentHashMap-的区别？"><a href="#JDK1-7与JDK1-8-中ConcurrentHashMap-的区别？" class="headerlink" title="JDK1.7与JDK1.8 中ConcurrentHashMap 的区别？"></a>JDK1.7与JDK1.8 中ConcurrentHashMap 的区别？</h3><ul>
+<li>数据结构：取消了Segment分段锁的数据结构，取而代之的是数组+链表+红黑树的结构。</li>
+<li>保证线程安全机制：JDK1.7采用Segment的分段锁机制实现线程安全，其中segment继承自ReentrantLock。JDK1.8 采用CAS+Synchronized保证线程安全。</li>
+<li>锁的粒度：原来是对需要进行数据操作的Segment加锁，现调整为对每个数组元素加锁（Node）。</li>
+<li>链表转化为红黑树:定位结点的hash算法简化会带来弊端,Hash冲突加剧,因此在链表节点数量大于8时，会将链表转化为红黑树进行存储。</li>
+<li>查询时间复杂度：从原来的遍历链表O(n)，变成遍历红黑树O(logN)。</li>
+</ul>
+<h3 id="ConcurrentHashMap-和Hashtable的效率哪个更高？为什么？"><a href="#ConcurrentHashMap-和Hashtable的效率哪个更高？为什么？" class="headerlink" title="ConcurrentHashMap 和Hashtable的效率哪个更高？为什么？"></a>ConcurrentHashMap 和Hashtable的效率哪个更高？为什么？</h3><p>ConcurrentHashMap 的效率要高于Hashtable，因为<strong>Hashtable给整个哈希表加了一把大锁从而实现线程安全</strong>。而ConcurrentHashMap 的锁粒度更低，在JDK1.7中采用分段锁实现线程安全，在JDK1.8 中采用CAS+Synchronized实现线程安全。</p>
+<h3 id="说一下Hashtable的锁机制"><a href="#说一下Hashtable的锁机制" class="headerlink" title="说一下Hashtable的锁机制 ?"></a>说一下Hashtable的锁机制 ?</h3><p>Hashtable是使用Synchronized来实现线程安全的，给整个哈希表加了一把大锁，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只能阻塞等待需要的锁被释放，在竞争激烈的多线程场景中性能就会非常差！</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/226907/1684750974008-15007cd1-0b39-4594-9798-11b0e05a95dc.png" alt="img"></p>
+<h3 id="多线程下安全的操作-map还有其他方法吗？"><a href="#多线程下安全的操作-map还有其他方法吗？" class="headerlink" title="多线程下安全的操作 map还有其他方法吗？"></a>多线程下安全的操作 map还有其他方法吗？</h3><p>还可以使用Collections.synchronizedMap方法，对方法进行加同步锁</p>
+<p>如果传入的是 HashMap 对象，其实也是对 HashMap 做的方法做了一层包装，里面使用对象锁来保证多线程场景下，线程安全，本质也是对 HashMap 进行全表锁。<strong>在竞争激烈的多线程环境下性能依然也非常差，不推荐使用！</strong></p>
+<h2 id="⽐较-HashSet、-LinkedHashSet-和-TreeSet-三者的异同"><a href="#⽐较-HashSet、-LinkedHashSet-和-TreeSet-三者的异同" class="headerlink" title="⽐较 HashSet、 LinkedHashSet 和 TreeSet 三者的异同"></a>⽐较 HashSet、 LinkedHashSet 和 TreeSet 三者的异同</h2><p>HashSet 是 Set 接⼝的主要实现类 ， HashSet 的底层是 HashMap ，线程不安全的，可以存储 null 值；LinkedHashSet 按照添加的顺序遍历；TreeSet 底层红⿊树</p>
+<h2 id="如何选⽤集合"><a href="#如何选⽤集合" class="headerlink" title="如何选⽤集合?"></a>如何选⽤集合?</h2><p>Map</p>
+<p>collection：set list</p>
+<h2 id="collection框架中实现比较要怎么做？"><a href="#collection框架中实现比较要怎么做？" class="headerlink" title="collection框架中实现比较要怎么做？"></a>collection框架中实现比较要怎么做？</h2><p>第一种，实体类实现Comparable接口，并实现 compareTo(T t) 方法，称为内部比较器。</p>
+<p>第二种，创建一个外部比较器，这个外部比较器要实现Comparator接口的 compare(T t1, T t2)方法。</p>
+<h2 id="Iterator-和-ListIterator-有什么区别？"><a href="#Iterator-和-ListIterator-有什么区别？" class="headerlink" title="Iterator 和 ListIterator 有什么区别？"></a>Iterator 和 ListIterator 有什么区别？</h2><ul>
+<li>遍历。使用Iterator，可以遍历所有集合，如Map，List，Set；但只能在向前方向上遍历集合中的元素。</li>
+</ul>
+<p>使用ListIterator，只能遍历List实现的对象，但可以向前和向后遍历集合中的元素。</p>
+<ul>
+<li>添加元素。Iterator无法向集合中添加元素；而，ListIteror可以向集合添加元素。</li>
+<li>修改元素。Iterator无法修改集合中的元素；而，ListIterator可以使用set()修改集合中的元素。</li>
+<li>索引。Iterator无法获取集合中元素的索引；而，使用ListIterator，可以获取集合中元素的索引。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/JAVA%E9%9B%86%E5%90%88/" title="JAVA集合">http://viacheung.github.io/2023/06/04/JAVA集合/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/JAVA%E5%9F%BA%E7%A1%80/" rel="prev" title="JAVA基础">
+      <i class="fa fa-chevron-left"></i> JAVA基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E6%8F%92%E4%BB%B6/" rel="next" title="插件">
+      插件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9B%86%E5%90%88%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">常见的集合有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%91%A2%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">线程安全的集合有哪些？线程不安全的呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4List-Set-Map%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">说说List,Set,Map三者的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arraylist-%E4%B8%8E-LinkedList-%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Arraylist 与 LinkedList 区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E2%BC%80%E8%AF%B4-ArrayList-%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6%E5%90%A7"><span class="nav-number">5.</span> <span class="nav-text">说⼀说 ArrayList 的扩容机制吧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-%E5%92%8C-ArrayList-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%AF%A5%E5%BA%94-Array-%E8%80%8C%E4%B8%8D%E6%98%AF-ArrayList-%E5%91%A2%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">Array 和 ArrayList 有什么区别？什么时候该应 Array 而不是 ArrayList 呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-%E4%B8%8E-Vector-%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">ArrayList 与 Vector 区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap%E7%B3%BB%E5%88%97"><span class="nav-number">8.</span> <span class="nav-text">HashMap系列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-%E5%92%8C-HashSet%EF%BC%88%E5%BA%95%E5%B1%82HashMap%EF%BC%89%E5%8C%BA%E5%88%AB"><span class="nav-number">8.1.</span> <span class="nav-text">HashMap 和 HashSet（底层HashMap）区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E9%87%8D%E5%A4%8D"><span class="nav-number">8.2.</span> <span class="nav-text">HashSet如何检查重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">8.3.</span> <span class="nav-text">HashMap的底层实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">8.4.</span> <span class="nav-text">HashMap构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-%E7%9A%84%E6%89%A9%E5%AE%B9%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">8.5.</span> <span class="nav-text">HashMap 的扩容方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E4%B8%BA%E4%BB%80%E4%B9%88%E9%BB%98%E8%AE%A4%E5%8A%A0%E8%BD%BD%E5%9B%A0%E5%AD%90%E6%98%AF0-75%EF%BC%9F"><span class="nav-number">8.6.</span> <span class="nav-text">HashMap为什么默认加载因子是0.75？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-%E4%B8%AD-key-%E7%9A%84%E5%AD%98%E5%82%A8%E7%B4%A2%E5%BC%95%E6%98%AF%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E7%9A%84%EF%BC%9F"><span class="nav-number">8.7.</span> <span class="nav-text">HashMap 中 key 的存储索引是怎么计算的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81JDK1-8-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81-hashcode-%E5%BC%82%E6%88%96%E5%85%B6%E5%8F%B3%E7%A7%BB%E5%8D%81%E5%85%AD%E4%BD%8D%E7%9A%84%E5%80%BC%EF%BC%9F"><span class="nav-number">8.7.1.</span> <span class="nav-text">1、JDK1.8 为什么要 hashcode 异或其右移十六位的值？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-hash-%E5%80%BC%E8%A6%81%E4%B8%8Elength-1%E7%9B%B8%E4%B8%8E%EF%BC%9F"><span class="nav-number">8.7.2.</span> <span class="nav-text">2、为什么 hash 值要与length-1相与？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-%E7%9A%84put%E6%96%B9%E6%B3%95%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">8.8.</span> <span class="nav-text">HashMap 的put方法流程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81%E7%9A%84%E5%8A%9E%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9FHashMap%E7%94%A8%E7%9A%84%E5%93%AA%E7%A7%8D%EF%BC%9F"><span class="nav-number">8.9.</span> <span class="nav-text">解决hash冲突的办法有哪些？HashMap用的哪种？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9C%E6%AD%BB%E9%93%BE%E9%97%AE%E9%A2%98"><span class="nav-number">8.10.</span> <span class="nav-text">HashMap 多线程操作死链问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="nav-number">8.11.</span> <span class="nav-text">HashMap为什么线程不安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A68%E6%A0%91%E5%8C%96"><span class="nav-number">8.12.</span> <span class="nav-text">为什么链表长度8树化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%8C%96"><span class="nav-number">8.13.</span> <span class="nav-text">退化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%E7%89%B9%E7%82%B9"><span class="nav-number">8.14.</span> <span class="nav-text">红黑树特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91vsAVL"><span class="nav-number">8.15.</span> <span class="nav-text">红黑树vsAVL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-%E7%9A%84%E2%BB%93%E5%BA%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF2%E7%9A%84%E5%B9%82%E6%AC%A1%E2%BD%85"><span class="nav-number">8.16.</span> <span class="nav-text">HashMap 的⻓度为什么是2的幂次⽅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E7%94%A8%E4%BB%80%E4%B9%88%E4%BD%9C%E4%B8%BAHashMap%E7%9A%84key"><span class="nav-number">9.</span> <span class="nav-text">一般用什么作为HashMap的key?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">10.</span> <span class="nav-text">ConcurrentHashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E2%BD%85%E5%BC%8F-x2F-%E5%BA%95%E5%B1%82%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">10.1.</span> <span class="nav-text">ConcurrentHashMap线程安全的具体实现⽅式&#x2F;底层具体实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E7%9A%84-put-%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E9%80%BB%E8%BE%91%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">10.2.</span> <span class="nav-text">ConcurrentHashMap 的 put 方法执行逻辑是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E7%9A%84-get-%E6%96%B9%E6%B3%95%E6%98%AF%E5%90%A6%E8%A6%81%E5%8A%A0%E9%94%81%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">10.3.</span> <span class="nav-text">ConcurrentHashMap 的 get 方法是否要加锁，为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E4%B8%8D%E6%94%AF%E6%8C%81-key-%E6%88%96%E8%80%85-value-%E4%B8%BA-null-%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="nav-number">10.4.</span> <span class="nav-text">ConcurrentHashMap 不支持 key 或者 value 为 null 的原因？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get%E6%96%B9%E6%B3%95%E4%B8%8D%E9%9C%80%E8%A6%81%E5%8A%A0%E9%94%81%E4%B8%8Evolatile%E4%BF%AE%E9%A5%B0%E7%9A%84%E5%93%88%E5%B8%8C%E6%A1%B6%E6%9C%89%E5%85%B3%E5%90%97%EF%BC%9F"><span class="nav-number">10.5.</span> <span class="nav-text">get方法不需要加锁与volatile修饰的哈希桶有关吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E7%9A%84%E5%B9%B6%E5%8F%91%E5%BA%A6%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-number">10.6.</span> <span class="nav-text">ConcurrentHashMap 的并发度是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%98%AF%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E8%BF%98%E6%98%AF%E5%BC%B1%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F"><span class="nav-number">10.7.</span> <span class="nav-text">ConcurrentHashMap 迭代器是强一致性还是弱一致性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK1-7%E4%B8%8EJDK1-8-%E4%B8%ADConcurrentHashMap-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">10.8.</span> <span class="nav-text">JDK1.7与JDK1.8 中ConcurrentHashMap 的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E5%92%8CHashtable%E7%9A%84%E6%95%88%E7%8E%87%E5%93%AA%E4%B8%AA%E6%9B%B4%E9%AB%98%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">10.9.</span> <span class="nav-text">ConcurrentHashMap 和Hashtable的效率哪个更高？为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8BHashtable%E7%9A%84%E9%94%81%E6%9C%BA%E5%88%B6"><span class="nav-number">10.10.</span> <span class="nav-text">说一下Hashtable的锁机制 ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%93%8D%E4%BD%9C-map%E8%BF%98%E6%9C%89%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E5%90%97%EF%BC%9F"><span class="nav-number">10.11.</span> <span class="nav-text">多线程下安全的操作 map还有其他方法吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%BD%90%E8%BE%83-HashSet%E3%80%81-LinkedHashSet-%E5%92%8C-TreeSet-%E4%B8%89%E8%80%85%E7%9A%84%E5%BC%82%E5%90%8C"><span class="nav-number">11.</span> <span class="nav-text">⽐较 HashSet、 LinkedHashSet 和 TreeSet 三者的异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E2%BD%A4%E9%9B%86%E5%90%88"><span class="nav-number">12.</span> <span class="nav-text">如何选⽤集合?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#collection%E6%A1%86%E6%9E%B6%E4%B8%AD%E5%AE%9E%E7%8E%B0%E6%AF%94%E8%BE%83%E8%A6%81%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="nav-number">13.</span> <span class="nav-text">collection框架中实现比较要怎么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterator-%E5%92%8C-ListIterator-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">14.</span> <span class="nav-text">Iterator 和 ListIterator 有什么区别？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

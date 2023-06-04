@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="经验不用管最优子结构啊和重叠子问题  确定dp数组（dp table）以及下标的含义 确定递推公式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="经验不用管最优子结构啊和重叠子问题  确定dp数组（dp table）以及下标的含义 确定递推公式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/robot_maze.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/uniquebstn3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/96_fig1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221130155936419.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150710208.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150646521.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150558700.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150756755.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202151645851.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221005155841234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221005155958315.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927211913746.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927211950883.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927212012322.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927212808445.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927162714859.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927162801928.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927162834656.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220926192627869.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220926193642785.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220926193754486.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220921173922046.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220924110440818.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220908161610143.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220908161656999.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220911163343582.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/20210117171307407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221212145752902.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221212153240813.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221120164413694.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230404174638522.png">
+<meta property="article:published_time" content="2023-06-04T06:11:50.000Z">
+<meta property="article:modified_time" content="2023-06-04T06:32:11.344Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/robot_maze.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>动态规划 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          动态规划
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:11:50 / 修改时间：14:32:11" itemprop="dateCreated datePublished" datetime="2023-06-04T14:11:50+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>不用管最优子结构啊和重叠子问题</p>
+<ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式<span id="more"></span></li>
+<li>dp数组如何初始化（递推公式决定了dp数组要如何初始化）</li>
+<li>确定遍历顺序</li>
+<li>举例推导dp数组</li>
+</ol>
+<p><strong>如何debug</strong></p>
+<p><em>做动规的题目，写代码之前一定要把状态转移在dp数组的上具体情况模拟一遍，心中有数，确定最后推出的是想要的结果</em>。</p>
+<p>然后再写代码，如果代码没通过就打印dp数组，看看是不是和自己预先推导的哪里不一样。如果打印出来和自己预先模拟推导是一样的，那么就是自己的递归公式、初始化或者遍历顺序有问题了。如果和自己预先模拟推导的不一样，那么就是代码实现细节有问题。</p>
+<ul>
+<li>这道题目我举例推导状态转移公式了么？</li>
+<li>我打印dp数组的日志了么？</li>
+<li>打印出来了dp数组和我想的一样么？</li>
+</ul>
+<p><strong>动态规划的三大步骤</strong></p>
+<p>利用历史记录，来避免重复计算。而这些历史记录，我们得需要一些变量来保存，一般是用一维数组或者<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22article%22,%22sourceId%22:%2291582909%22%7D">二维数组</a>来保存。 第一步骤：定义数组元素的含义，用一个数组，来保存历史数组，假设用一维数组 dp[] 你的 dp[i] 是代表什么意思？</p>
+<p>第二步骤：找出数组元素之间的关系式 第三步骤：找出<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E5%88%9D%E5%A7%8B%E5%80%BC&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22article%22,%22sourceId%22:%2291582909%22%7D">初始值</a>。</p>
+<p><strong>什么时候用二维数组？</strong></p>
+<p>涉及到数组和”和“的问题，考虑用二维数组 ，比如目标和这道题：</p>
+<p>定义二维数组 dp，其中 dp<a target="_blank" rel="noopener" href="https://www.yuque.com/yunanyizhihua/nw82a7/yfg18e2xr2ykmkfh#">i</a> 表示在数组 num的前 i个数中选取元素，使得这些元素之和等于 j 的方案数。</p>
+<p>再比如分割等和子集这道题</p>
+<p>优化步骤：一般这种dp二维数组的每一行的计算只和上一行有关，因此可以使用滚动数组的方式，去掉 dp 的第一个维度，将空间复杂度降低</p>
+<p> else if (i - dp[i - 1] &gt; 0 &amp;&amp; s.charAt(i - dp[i - 1] - 1) &#x3D;&#x3D; ‘(‘) </p>
+<h2 id="斐波那契数"><a href="#斐波那契数" class="headerlink" title="斐波那契数"></a>斐波那契数</h2><p><strong>斐波那契数</strong> （通常用 F(n) 表示）形成的序列称为 <strong>斐波那契数列</strong> 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
+<p>题解:</p>
+<ul>
+<li>dp[i]： 数字值</li>
+<li>和斐波那契数一样，只不过台阶从1开始，因此初始值是int f0&#x3D;1,f1&#x3D;2; i从3开始</li>
+</ul>
+<pre><code class="plain">class Solution &#123;
+     public int fib(int n) &#123;
+         int f0=0,f1=1;
+         if (n &lt; 2) &#123;
+             return n;
+         &#125;
+         for(int i=2;i&lt;=n;i++)&#123;
+             //存一下f0
+             int temp=f0;
+             //改值
+             f0=f1;
+             f1=temp+f1;
+         &#125;
+         return f1;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h2><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>题解:</p>
+<ul>
+<li>dp[i]： 爬到第i层楼梯，有dp[i]种方法</li>
+<li>和斐波那契数一样，只不过台阶从1开始，因此初始值是int f0&#x3D;1,f1&#x3D;2; i从3开始</li>
+</ul>
+<pre><code class="plain">class Solution &#123;
+     public int climbStairs(int n) &#123;
+         if(n&lt;3) return n;
+         int f0=1,f1=2;
+         for(int i=3;i&lt;=n;i++)&#123;
+            int temp=f0;
+             f0=f1;
+             f1=temp+f1;
+         &#125;
+         return f1;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="使用最小花费爬楼梯"><a href="#使用最小花费爬楼梯" class="headerlink" title="使用最小花费爬楼梯"></a>使用最小花费爬楼梯</h2><p>给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。</p>
+<p>你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。</p>
+<p>请你计算并返回达到楼梯顶部的最低花费。</p>
+<pre><code class="plain">//同前面两题一样,初始值 递推公式 temp记录 
+ class Solution &#123;
+     public int minCostClimbingStairs(int[] cost) &#123;
+         int n=cost.length;
+         if(n&lt;2) return 0;
+         int f0=0,f1=0;
+         for(int i=2;i&lt;=n;i++)&#123;
+             int temp=f0;
+             f0=f1;
+             f1=Math.min(f1+cost[i-1],temp+cost[i-2]);
+         &#125;
+         return f1;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="不同路径"><a href="#不同路径" class="headerlink" title="不同路径"></a>不同路径</h2><p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
+<p>问总共有多少条不同的路径？</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/robot_maze.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     public int uniquePaths(int m, int n) &#123;
+         // 定义二维数组  dp[i][j]表示到达此处路径个数
+         int[][] dp=new int[m][n];
+         // 第一行和第一列必为1 填充
+         for(int i=1;i&lt;m;i++)&#123;
+             dp[i][0]=1;
+         &#125;
+         Arrays.fill(dp[0],1);
+         // dp
+         for(int i=1;i&lt;m;i++)&#123;
+             for(int j=1;j&lt;n;j++)&#123;
+                 // 等于上一个和左边的和
+                 dp[i][j]=dp[i-1][j]+dp[i][j-1];
+             &#125;
+         &#125;
+         return dp[m-1][n-1];
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="不同路径-II"><a href="#不同路径-II" class="headerlink" title="不同路径 II"></a>不同路径 II</h2><p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish”）。</p>
+<p>现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？</p>
+<p>网格中的障碍物和空位置分别用 1 和 0 来表示。</p>
+<pre><code class="plain">class Solution &#123;
+     public int uniquePathsWithObstacles(int[][] obstacleGrid) &#123;
+         int m=obstacleGrid.length;
+         int n=obstacleGrid[0].length;
+         int[][] dp= new int[m][n];
+         // 初始化  当遇到障碍物的时候就不再执行循环了   同时正好dp默认值都是0 后面也正好都是0
+         for(int i=0;i&lt;m&amp;&amp;obstacleGrid[i][0]==0;i++)&#123;
+             dp[i][0]=1;
+         &#125;
+         for(int j=0;j&lt;n&amp;&amp;obstacleGrid[0][j]==0;j++)&#123;
+             dp[0][j]=1;
+         &#125; 
+         System.out.println(Arrays.deepToString(dp));
+         // 一般情况下
+         for(int i=1;i&lt;m;i++)&#123;
+             for(int j=1;j&lt;n;j++)&#123;
+                 // int up=obstacleGrid[i-1][j]==1?0:dp[i-1][j];
+                 // int left=obstacleGrid[i][j-1]==1?0:dp[i][j-1];  
+                 // 如果此处是障碍物的话 为0 否则两者相加
+                 dp[i][j]=obstacleGrid[i][j]==1?0:dp[i-1][j]+dp[i][j-1];
+             &#125;
+         &#125;
+         return dp[m-1][n-1];       
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h2><p>给定一个正整数 n ，将其拆分为 k 个 <strong>正整数</strong> 的和（ k &gt;&#x3D; 2 ），并使这些整数的乘积最大化。</p>
+<p>返回 <em>你可以获得的最大乘积</em> 。</p>
+<pre><code class="plain">class Solution &#123;
+     public int integerBreak(int n) &#123;
+         // dp[i]：分拆数字i，可以得到的最大乘积为dp[i]。
+         // 需要n+1个数 因为最后输出dp[n]
+         int[] dp=new int[n+1];
+         // dp0 1无意义 初始值设为dp2
+         dp[2]=1;
+         for(int i=3;i&lt;=n;i++)&#123;
+             // 从1开始拆   拆到一半就行 免得重复
+             for(int j=1;j&lt;=i/2;j++)&#123;
+                 //j * (i - j) 是单纯的把整数拆分为两个数相乘，而j * dp[i - j]是拆分成两个以及两个以上的个数相乘。
+                 dp[i]=Math.max(dp[i],Math.max((i-j)*j,dp[i-j]*j));
+             &#125;
+         &#125;
+         return dp[n];
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="不同的二叉搜索树"><a href="#不同的二叉搜索树" class="headerlink" title="不同的二叉搜索树"></a>不同的二叉搜索树</h2><p>给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 <strong>二叉搜索树</strong> 有多少种？返回满足题意的二叉搜索树的种数。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/uniquebstn3.jpg" alt="img"></p>
+<p>G(n): 长度为 n 的序列能构成的不同二叉搜索树的个数</p>
+<p>初始：G(0)&#x3D;1,G(0)&#x3D;1;</p>
+<p>给定序列 1⋯n，我们选择数字 i 作为根，则根为 i的所有二叉搜索树的集合是左子树集合和右子树集合的笛卡尔积，对于笛卡尔积中的每个元素，加上根节点之后形成完整的二叉搜索树，如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/96_fig1.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221130155936419.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+         public int numTrees(int n) &#123;
+ //            G(n): 长度为 n的序列能构成的不同二叉搜索树的个数。
+ //            F(i,n): 以 i 为根、序列长度为 n 的不同二叉搜索树个数
+ //        G（n)=求和从1到n F(i,n)
+ //           F(i,n)=G（i-1)G(n-i)
+ //        换元：G（n)=求和从1到n G（i-1)G(n-i)
+             int[] G = new int[n + 1];
+             G[0] = 1;
+             G[1] = 1;
+             for (int i = 2; i &lt;= n; i++) &#123;
+                 for (int j = 1; j &lt;= i; j++) &#123;
+                     // 以j作为根结点
+                     G[i] += G[j - 1] * G[i - j];
+                 &#125;
+             &#125;
+             return G[n];
+         &#125;
+     &#125;
+</code></pre>
+<h2 id="01背包理论基础"><a href="#01背包理论基础" class="headerlink" title="01背包理论基础"></a>01背包理论基础</h2><h3 id="二维"><a href="#二维" class="headerlink" title="二维"></a>二维</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150710208.png" alt="img"></p>
+<pre><code class="plain">public static void testweightbagproblem(int[] weight, int[] value, int bagsize)&#123;
+         int wlen = weight.length, value0 = 0;
+         //定义dp数组：dp[i][j]表示背包容量为j时，前i个物品能获得的最大价值
+         int[][] dp = new int[wlen + 1][bagsize + 1];
+         //初始化：背包容量为0时，能获得的价值都为0
+         for (int i = 0; i &lt;= wlen; i++)&#123;
+             dp[i][0] = value0;
+         &#125;
+         //遍历顺序：先遍历物品，再遍历背包容量
+         for (int i = 1; i &lt;= wlen; i++)&#123;
+             for (int j = 1; j &lt;= bagsize; j++)&#123;
+                 if (j &lt; weight[i - 1])&#123;
+                     dp[i][j] = dp[i - 1][j];
+                 &#125;else&#123;
+                     dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - weight[i - 1]] + value[i - 1]);
+                 &#125;
+             &#125;
+         &#125;
+</code></pre>
+<p><strong>二维两个for循环可以调换</strong></p>
+<h3 id="一维"><a href="#一维" class="headerlink" title="一维"></a>一维</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150646521.png" alt="img"></p>
+<pre><code class="plain">public static void testWeightBagProblem(int[] weight, int[] value, int bagWeight)&#123;
+         int wLen = weight.length;
+         //定义dp数组：dp[j]表示背包容量为j时，能获得的最大价值
+         int[] dp = new int[bagWeight + 1];
+         //遍历顺序：先遍历物品，再遍历背包容量
+         for (int i = 0; i &lt; wLen; i++)&#123;
+             //j &gt;= weight[i]为了保证dp[j - weight[i]] 有界
+             for (int j = bagWeight; j &gt;= weight[i]; j--)&#123;
+                 dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);
+             &#125;
+         &#125;
+         //打印dp数组
+         for (int j = 0; j &lt;= bagWeight; j++)&#123;
+             System.out.print(dp[j] + &quot; &quot;);
+         &#125;
+     &#125;
+</code></pre>
+<p><strong>遍历背包容量必须是逆序，原因如下：</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150558700.png" alt="img"></p>
+<p><strong>为何二维不用倒序？</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202150756755.png" alt="img"></p>
+<p><strong>两个for循环可以颠倒吗</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221202151645851.png" alt="img"></p>
+<h2 id="分割等和子集"><a href="#分割等和子集" class="headerlink" title="分割等和子集"></a>分割等和子集</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>给你一个 <strong>只包含正整数</strong> 的 <strong>非空</strong> 数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221005155841234.png" alt="img"></p>
+<p><strong>改进</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221005155958315.png" alt="img"></p>
+<p><strong>我的理解：</strong> 不管j和num[i]的关系 我这个公式一定成立 改进后，行i简化成循环次数，j不变</p>
+<pre><code class="plain">class Solution &#123;
+     public boolean canPartition(int[] nums) &#123;
+         int n = nums.length;
+         if (n &lt; 2) &#123;
+             return false;
+         &#125;
+         int sum = 0, maxNum = 0;
+         for (int num : nums) &#123;
+             sum += num;
+             maxNum = Math.max(maxNum, num);
+         &#125;
+         if (sum % 2 != 0) &#123;
+             return false;
+         &#125;
+         int target = sum / 2;
+         if (maxNum &gt; target) &#123;
+             return false;
+         &#125;
+         boolean[] dp = new boolean[target + 1];
+         dp[0] = true;//目标值为0 不选就行了 因此为true
+         for (int i = 0; i &lt; n; i++) &#123;
+             int num = nums[i];
+             for (int j = target; j &gt;= num; --j) &#123;
+                 dp[j] |= dp[j - num];
+             &#125;
+         &#125;
+         return dp[target];
+     &#125;
+ &#125;
+</code></pre>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>**dp[j]表示 背包总容量是j，最大可以凑成j的子集总和为dp[j]**。</p>
+<p>dp[j]的数值一定是小于等于j的。因为限定了背包容量，最多是正好填满</p>
+<p><strong>如果dp[j] &#x3D;&#x3D; j 说明，集合中的子集总和正好可以凑成总和j，理解这一点很重要。</strong></p>
+<pre><code class="plain">class Solution &#123;
+     public boolean canPartition(int[] nums) &#123;
+         if(nums == null || nums.length == 0) return false;
+         int n = nums.length;
+         int sum = 0;
+         for(int num : nums)&#123;
+             sum += num;
+         &#125;
+         //总和为奇数，不能平分
+         if(sum % 2 != 0) return false;
+         int target = sum / 2;
+         int[] dp = new int[target + 1];
+         for(int i = 0; i &lt; n; i++)&#123;
+             for(int j = target; j &gt;= nums[i]; j--)&#123;
+                 //物品 i 的重量是 nums[i]，其价值也是 nums[i]
+                 dp[j] = Math.max(dp[j], dp[j-nums[i]] + nums[i]);
+             &#125;
+         &#125;
+         return dp[target] == target;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="最后一块石头的重量-II"><a href="#最后一块石头的重量-II" class="headerlink" title="最后一块石头的重量 II"></a>最后一块石头的重量 II</h2><p>有一堆石头，用整数数组 stones 表示。其中 stones[i] 表示第 i 块石头的重量。</p>
+<p>每一回合，从中选出<strong>任意两块石头</strong>，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x &lt;&#x3D; y。那么粉碎的可能结果如下：</p>
+<ul>
+<li>如果 x &#x3D;&#x3D; y，那么两块石头都会被完全粉碎；</li>
+<li>如果 x !&#x3D; y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</li>
+</ul>
+<p>最后，<strong>最多只会剩下一块</strong> 石头。返回此石头 <strong>最小的可能重量</strong> 。如果没有石头剩下，就返回 0。</p>
+<p>题解:</p>
+<p><strong>dp[j]表示容量（这里说容量更形象，其实就是重量）为j的背包，最多可以背dp[j]这么重的石头</strong>。</p>
+<pre><code class="plain">class Solution &#123;
+     public int lastStoneWeightII(int[] stones) &#123;
+         //求总数
+         int sum=0;
+         for(int stone:stones)&#123;
+             sum+=stone;
+         &#125;
+         int target=sum/2;
+         int[] dp=new int[target+1];
+         int n=stones.length;
+         //背包问题，target容量里面最多能放多少重量，这里weight就是value
+         
+         for(int i=0;i&lt;n;i++)&#123;
+             for(int j=target;j&gt;=stones[i];j--)&#123;
+                 dp[j]=Math.max(dp[j],dp[j-stones[i]]+stones[i]);
+             &#125;
+         &#125;
+         //两个一同粉碎
+         return sum-dp[target]*2;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="目标和"><a href="#目标和" class="headerlink" title="目标和"></a>目标和</h2><p>回溯有</p>
+<p>再回归到01背包问题，为什么是01背包呢？ 因为每个物品（题目中的1）只用一次！</p>
+<ol>
+<li>确定dp数组以及下标的含义</li>
+</ol>
+<p>dp[j] 表示：填满j（包括j）这么大容积的包，有dp[j]种方法</p>
+<ol>
+<li>确定递推公式</li>
+</ol>
+<p>有哪些来源可以推出dp[j]呢？</p>
+<p>不考虑nums[i]的情况下，填满容量为j的背包，有dp[j]种方法。</p>
+<p>那么考虑nums[i]的话（只要搞到nums[i]），凑成dp[j]就有dp[j - nums[i]] 种方法。</p>
+<ol>
+<li>dp数组如何初始化</li>
+</ol>
+<p>dp[0] &#x3D; 1，理论上也很好解释，装满容量为0的背包，有1种方法，就是装0件物品。</p>
+<pre><code class="plain">class Solution &#123;
+     public int findTargetSumWays(int[] nums, int target) &#123;
+         int sum=0;
+         // 计算总和
+         for(int num:nums)&#123;
+             sum+=num;
+         &#125;
+         // 设正数值为S ,那么S-(sum-S)=target
+         // 目标值大于sum或者除不尽 return 0
+         if(target&gt;sum||(target+sum)%2==1) return 0;
+         int S=(target+sum)/2;
+         int n=nums.length;
+         // dp[j] 表示：填满j（包括j）这么大容积的包，有dp[j]种方法
+         int[] dp=new int[S+1];
+         dp[0]=1;
+         // 套用01背包(拿或者不拿)
+         for(int i=0;i&lt;n;i++)&#123;
+             for(int j=S;j&gt;=nums[i];j--)&#123;
+                 dp[j]+=dp[j-nums[i]];
+             &#125;
+         &#125;
+        return dp[S];
+     &#125;
+ &#125;自己写的 有待改进 但是现在不想改
+</code></pre>
+<h2 id="零钱兑换"><a href="#零钱兑换" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。</p>
+<p>计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927211913746.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927211950883.png" alt="img"></p>
+<p>在上面的递归树中，我们可以看到许多子问题被多次计算。例如，F(1)F(1)F(1) 被计算了 131313 次。为了避免重复的计算，我们将每个子问题的答案存在一个数组中进行记忆化，如果下次还要计算这个问题的值直接从数组中取出返回即可，这样能保证每个子问题最多只被计算一次。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927212012322.png" alt="img"></p>
+<pre><code class="plain">public class Solution &#123;
+     public int coinChange(int[] coins, int amount) &#123;
+         int max = amount + 1;//必然比dp所有值都大
+         int[] dp = new int[amount + 1];
+         Arrays.fill(dp, max);//填充数组
+         dp[0] = 0;
+         //i是金额，自底向上，即i从1一直算到amount,每个dp[i]通过穷举硬币coins[j]计算dp[i - coins[j]]最小值 最后算出结果 
+         for (int i = 1; i &lt;= amount; i++) &#123;
+             for (int j = 0; j &lt; coins.length; j++) &#123;
+                 if (coins[j] &lt;= i) &#123;
+                     dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                 &#125;
+             &#125;
+         &#125;
+         return dp[amount] &gt; amount ? -1 : dp[amount];
+     &#125;
+ &#125;
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927212808445.png" alt="img"></p>
+<h2 id="戳气球"><a href="#戳气球" class="headerlink" title="戳气球"></a>戳气球</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927162714859.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927162801928.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220927162834656.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     public int maxCoins(int[] nums) &#123;
+         int n = nums.length;
+         //rec是record
+         int[][] rec = new int[n + 2][n + 2];//初始二维数组元素全为0
+         int[] val = new int[n + 2];
+         val[0] = val[n + 1] = 1;//防止nums下标越界
+         for (int i = 1; i &lt;= n; i++) &#123;
+             val[i] = nums[i - 1];
+         &#125;
+         //自底向下
+         for (int i = n - 1; i &gt;= 0; i--) &#123;
+             for (int j = i + 2; j &lt;= n + 1; j++) &#123;
+                 for (int k = i + 1; k &lt; j; k++) &#123;
+                     int sum = val[i] * val[k] * val[j];
+                     //递归
+                     sum += rec[i][k] + rec[k][j];
+                     rec[i][j] = Math.max(rec[i][j], sum);//能得到的最多硬币数  考虑到会有重复的 因此选择打擂台方法
+                 &#125;
+             &#125;
+         &#125;
+         return rec[0][n + 1];
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="最佳买卖股票时机含冷冻期"><a href="#最佳买卖股票时机含冷冻期" class="headerlink" title="最佳买卖股票时机含冷冻期"></a>最佳买卖股票时机含冷冻期</h2><p>给定一个整数数组prices，其中第 prices[i] 表示第 i 天的股票价格 。</p>
+<p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
+<p>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p><strong>思路与算法</strong></p>
+<p>我们用 f[i]表示第 ii天结束之后的「累计最大收益」。根据题目描述，由于我们最多只能同时买入（持有）一支股票，并且卖出股票后有冷冻期的限制，因此我们会有三种不同的状态：</p>
+<pre><code class="plain">我们目前持有一支股票，对应的「累计最大收益」记为 f[i][0]；
+ 
+ 我们目前不持有任何股票，并且处于冷冻期中，对应的「累计最大收益」记为 f[i][1]；
+ 
+ 我们目前不持有任何股票，并且不处于冷冻期中，对应的「累计最大收益」记为 f[i][2]。
+</code></pre>
+<p><strong>这里的「处于冷冻期」指的是在第 i天结束之后的状态。也就是说：如果第 i 天结束之后处于冷冻期，那么第 i+1 天无法买入股票。</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220926192627869.png" alt="img"></p>
+<p>这里自己手推一遍</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220926193642785.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220926193754486.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     public int maxProfit(int[] prices) &#123;
+         if (prices.length == 0) &#123;
+             return 0;
+         &#125;
+ 
+         int n = prices.length;
+         //初始化
+         int f0 = -prices[0];
+         int f1 = 0;
+         int f2 = 0;
+         //滚动数组
+         for (int i = 1; i &lt; n; ++i) &#123;
+             int newf0 = Math.max(f0, f2 - prices[i]);
+             int newf1 = f0 + prices[i];
+             int newf2 = Math.max(f1, f2);
+             f0 = newf0;
+             f1 = newf1;
+             f2 = newf2;
+         &#125;
+ 
+         return Math.max(f1, f2);
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="完全平方数"><a href="#完全平方数" class="headerlink" title="完全平方数"></a>完全平方数</h2><p>给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。</p>
+<p>完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220921173922046.png" alt="img"></p>
+<p>从小到大枚举i，以计算f[i]，最终得到f[n]，j也是从小到大枚举，每次把j当作i的一个平方因子，因此f[i]&#x3D;1+f[ i-j^2 ] 初始条件f(0)&#x3D;0，因此可以一步步把f[i]算出来</p>
+<pre><code class="plain">class Solution &#123;
+     public int numSquares(int n) &#123;
+         int[] f = new int[n + 1];
+         for (int i = 1; i &lt;= n; i++) &#123;
+             int minn = Integer.MAX_VALUE;
+             for (int j = 1; j * j &lt;= i; j++) &#123;
+                 minn = Math.min(minn, f[i - j * j]);//
+             &#125;
+             f[i] = minn + 1;
+         &#125;
+         return f[n];
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="最大正方形"><a href="#最大正方形" class="headerlink" title="最大正方形"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximal-square/">最大正方形</a></h2><p>在一个由 ‘0’ 和 ‘1’ 组成的二维矩阵内，找到只包含 ‘1’ 的最大正方形，并返回其面积。</p>
+<p> dp(i,j)&#x3D;min(dp(i−1,j),dp(i−1,j−1),dp(i,j−1))+1&#x2F;&#x2F;状态转移方程  </p>
+<p>dp(i,j）代表以坐标点(i,j) 为右下角的最大正方形 还要注意如果i j之中有一个为0，那么dp值为0</p>
+<pre><code class="plain">class Solution &#123;
+         public int maximalSquare(char[][] matrix) &#123;
+             int maxSide = 0, row = matrix.length, column = matrix[0].length;
+             if (matrix == null || row == 0 || column == 0) return 0;
+             int[][] dp = new int[row][column];
+             for (int i = 0; i &lt; row; i++) &#123;
+                 for (int j = 0; j &lt; column; j++) &#123;
+                     if (matrix[i][j] == &#39;1&#39;) &#123;
+                         if (i == 0 || j == 0) &#123;
+                             dp[i][j] = 1;
+                         &#125; else &#123;
+                             dp[i][j] = Math.min(Math.min(dp[i - 1][j - 1], dp[i - 1][j]), dp[i][j - 1]) + 1;
+                         &#125;
+                         maxSide = Math.max(maxSide, dp[i][j]);
+                     &#125;
+                 &#125;
+             &#125;
+             return maxSide * maxSide;
+         &#125;
+     &#125;
+</code></pre>
+<h2 id="最长递增子序列-也可greedy-优先这个"><a href="#最长递增子序列-也可greedy-优先这个" class="headerlink" title="最长递增子序列(也可greedy 优先这个)"></a>最长递增子序列(也可greedy 优先这个)</h2><pre><code class="plain">输入：nums = [10,9,2,5,3,7,101,18]
+ 输出：4
+ 解释：最长递增子序列是 [2,3,7,101]，因此长度为 4
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220924110440818.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     public int lengthOfLIS(int[] nums) &#123;
+         if (nums.length == 0) &#123;
+             return 0;
+         &#125;
+         int[] dp = new int[nums.length];
+         dp[0] = 1;
+         int maxans = 1;//最少为1
+         for (int i = 1; i &lt; nums.length; i++) &#123;
+             dp[i] = 1;//以i为结尾 那必然包括自己 所以至少为
+             for (int j = 0; j &lt; i; j++) &#123;
+                 if (nums[i] &gt; nums[j]) &#123;
+                     dp[i] = Math.max(dp[i], dp[j] + 1);//选取以j为结尾的（j从0到i-1）最长序列，然后加1
+                 &#125;
+             &#125;
+             maxans = Math.max(maxans, dp[i]);
+         &#125;
+         return maxans;
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="乘积最大子数组"><a href="#乘积最大子数组" class="headerlink" title="乘积最大子数组"></a>乘积最大子数组</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220908161610143.png" alt="img"></p>
+<pre><code class="plain">class Solution &#123;
+     public int maxProduct(int[] nums) &#123;
+         int maxF=nums[0],minF=nums[0],ans=nums[0];
+         int length=nums.length;
+         for(int i=1;i&lt;length;i++)&#123;
+             int mx=maxF,mn=minF;//每次循环都要重新赋值，因为乘的就是最大最小值
+             maxF=Math.max(nums[i],Math.max(mx*nums[i],mn*nums[i]));//考虑到正负号的原因
+             minF=Math.min(nums[i],Math.min(mx*nums[i],mn*nums[i]));//这个肯定要算，maxF用的上
+             ans=Math.max(ans,maxF);
+         &#125;
+         return ans;
+ 
+     &#125;
+ &#125;
+</code></pre>
+<p><strong>system.arraycopy的作用</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220908161656999.png" alt="img"></p>
+<h2 id="偷窃"><a href="#偷窃" class="headerlink" title="偷窃"></a>偷窃</h2><p>计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220911163343582.png" alt="img"></p>
+<h2 id="岛屿问题"><a href="#岛屿问题" class="headerlink" title="岛屿问题"></a>岛屿问题</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">L200. 岛屿数量</a> （Easy）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a> （Easy）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-of-island/">695. 岛屿的最大面积</a> （Medium）</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/making-a-large-island/">827. 最大人工岛</a> （Hard）</p>
+<p>采用DFS</p>
+<p><strong>基本框架?</strong></p>
+<p>dfs两要素:「<strong>访问相邻结点</strong>」和「<strong>判断 base case</strong>」</p>
+<p><strong>如何避免重复遍历?</strong></p>
+<p>答案是标记已经遍历过的格子</p>
+<p><strong>岛屿数量问题</strong></p>
+<pre><code class="plain">class Solution &#123;
+     public int numIslands(char[][] grid) &#123;
+         int count = 0;
+         for(int i = 0; i &lt; grid.length; i++) &#123;
+             for(int j = 0; j &lt; grid[0].length; j++) &#123;
+                 if(grid[i][j] == &#39;1&#39;)&#123;
+                     dfs(grid, i, j);
+                     count++;
+                 &#125;
+             &#125;
+         &#125;
+         return count;
+     &#125;
+     private void dfs(char[][] grid, int i, int j)&#123;
+         if(i &lt; 0 || j &lt; 0 || i &gt;= grid.length || j &gt;= grid[0].length || grid[i][j] == &#39;0&#39;) return;
+         grid[i][j] = &#39;0&#39;;
+         dfs(grid, i + 1, j);
+         dfs(grid, i, j + 1);
+         dfs(grid, i - 1, j);
+         dfs(grid, i, j - 1);
+     &#125;
+ &#125;
+</code></pre>
+<h2 id="一和零"><a href="#一和零" class="headerlink" title="一和零"></a>一和零</h2><p>给你一个二进制字符串数组 strs 和两个整数 m 和 n 。</p>
+<p>请你找出并返回 strs 的最大子集的长度，该子集中 <strong>最多</strong> 有 m 个 0 和 n 个 1 。</p>
+<p>如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 <strong>子集</strong> 。</p>
+<ul>
+<li>输入：strs &#x3D; [“10”, “0001”, “111001”, “1”, “0”], m &#x3D; 5, n &#x3D; 3</li>
+<li>输出：4</li>
+<li>解释：最多有 5 个 0 和 3 个 1 的最大子集是 {“10”,”0001”,”1”,”0”} ，因此答案是 4 。 其他满足题意但较小的子集包括 {“0001”,”1”} 和 {“10”,”1”,”0”} 。{“111001”} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。</li>
+</ul>
+<pre><code class="plain">class Solution &#123;
+    public int findMaxForm(String[] strs, int m, int n) &#123;
+        // System.out.println(Arrays.toString(res));  
+        int[][] dp=new int[m+1][n+1];
+        // dp[j][k]代表容量为jk的最大子集长度  dp[i][j]：最多有i个0和j个1的strs的最大子集的大小为dp[i][j]。
+        // 依然套用01背包 只是需要二维数组
+        int length=strs.length;
+        for(int i=0;i&lt;length;i++)&#123;
+            int num0=getnum(strs[i])[0];
+            int num1=getnum(strs[i])[1];
+            for(int j=m;j&gt;=num0;j--)&#123;
+                for(int k=n;k&gt;=num1;k--)&#123;
+                    // 递推公式
+                    dp[j][k]=Math.max(dp[j][k],dp[j-num0][k-num1]+1);
+                &#125;
+            &#125;
+        &#125;
+        return dp[m][n];
+    &#125;
+    //获取0 1的数量
+    public int[] getnum(String s)&#123;
+        int num0=0,num1=0;
+        for(int i=0;i&lt;s.length();i++)&#123;
+            if(s.charAt(i)==&#39;0&#39;) num0++;
+            if(s.charAt(i)==&#39;1&#39;) num1++;
+        &#125;
+        return new int[]&#123;num0,num1&#125;;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><p>有N件物品和一个最多能背重量为W的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。<strong>每件物品都有无限个（也就是可以放入背包多次）</strong>，求解将哪些物品装入背包里物品价值总和最大。</p>
+<p>01背包中二维dp数组的两个for遍历的先后循序是可以颠倒了，一维dp数组的两个for循环先后循序一定是先遍历物品，再遍历背包容量（为了保证每个物品仅被添加一次。）</p>
+<p><strong>在完全背包中，对于一维dp数组来说，其实两个for循环嵌套顺序同样无所谓！</strong></p>
+<pre><code class="plain">// 先遍历物品，再遍历背包
+for(int i = 0; i &lt; weight.size(); i++) &#123; // 遍历物品
+    for(int j = weight[i]; j &lt;= bagWeight ; j++) &#123; // 遍历背包容量  j从weight[i]开始 保证递归函数有效
+        dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="零钱兑换-II"><a href="#零钱兑换-II" class="headerlink" title="零钱兑换 II"></a>零钱兑换 II</h2><p>给你一个整数数组 coins 表示不同面额的硬币，另给一个整数 amount 表示总金额。</p>
+<p>请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回 0 。</p>
+<p>假设每一种面额的硬币有无限个。 </p>
+<p>题目数据保证结果符合 32 位带符号整数。</p>
+<pre><code class="plain">class Solution &#123;
+    public int change(int amount, int[] coins) &#123;
+        // dp[i]：凑成i金额有dp[i]组合数
+        int n=coins.length;
+        int[] dp=new int[amount+1];
+        dp[0]=1;//
+        for(int i=0;i&lt;n;i++)&#123;
+            for(int j=coins[i];j&lt;=amount;j++)&#123;
+                dp[j]+=dp[j-coins[i]];
+            &#125;
+        &#125;
+        System.out.println(Arrays.toString(dp));
+        return dp[amount];
+    &#125;
+&#125;
+</code></pre>
+<p>遍历物品在外，遍历背包容量在内——&gt;算的是组合数 只有{1, 5}这种情况</p>
+<p>遍历背包容量在外，遍历物品在内——-&gt;算的是排列数 {1，5} {5，1}都有</p>
+<pre><code class="plain">for (int j = 0; j &lt;= amount; j++) &#123; // 遍历背包容量
+    for (int i = 0; i &lt; coins.size(); i++) &#123; // 遍历物品
+        if (j - coins[i] &gt;= 0) dp[j] += dp[j - coins[i]];
+    &#125;
+&#125;
+</code></pre>
+<p>dp[j] +&#x3D; dp[j - nums[i]]</p>
+<p><strong>注意：求装满背包有几种方法类似的题目，递推公式基本都是这样的</strong>。</p>
+<h2 id="组合总和-Ⅳ"><a href="#组合总和-Ⅳ" class="headerlink" title="组合总和 Ⅳ"></a>组合总和 Ⅳ</h2><p>给你一个由 <strong>不同</strong> 整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。</p>
+<p>题目数据保证答案符合 32 位整数范围。</p>
+<p>dp[0]是递归中一切数值的基础所在，如果dp[0]是0的话，其他数值都是0了。</p>
+<pre><code class="plain">class Solution &#123;
+    public int combinationSum4(int[] nums, int target) &#123;
+    // dp[j]表示总和为j的元素组合个数
+        int[] dp=new int[target+1];
+        dp[0]=1;
+        int n=nums.length;
+        // 两个for循环换一下 注意审题！！！！请注意，顺序不同的序列被视作不同的组合。
+        for(int j=0;j&lt;=target;j++)&#123;
+            for(int i=0;i&lt;n;i++)&#123;
+                if(j&gt;=nums[i])&#123;
+                    dp[j]+=dp[j-nums[i]];
+                &#125;
+            &#125;
+        &#125;
+        return dp[target];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="爬楼梯进阶"><a href="#爬楼梯进阶" class="headerlink" title="爬楼梯进阶"></a>爬楼梯进阶</h2><p><strong>dp[i]：爬到有i个台阶的楼顶，有dp[i]种方法</strong></p>
+<p>遍历顺序：</p>
+<p>这是背包里求排列问题，即：<strong>1、2 步 和 2、1 步都是上三个台阶，但是这两种方法不一样！</strong> 强调顺序就是求排列问题</p>
+<p>所以需将target放在外循环，将nums放在内循环。</p>
+<p>每一步可以走多次，这是完全背包，内循环需要从前向后遍历。</p>
+<pre><code class="plain">public int climbStairs(int n) &#123;
+        int[] dp=new int[n+1];
+        dp[0]=1;
+        int[] weight=&#123;1,2&#125;;
+        for(int i=0;i&lt;=n;i++)&#123;
+            for(int j=0;j&lt;weight.length;j++)&#123;
+                if(i&gt;=weight[j]) dp[i]+=dp[i-weight[j]];
+            &#125;
+        &#125;
+        return dp[n];
+    &#125;
+</code></pre>
+<h2 id="零钱兑换-1"><a href="#零钱兑换-1" class="headerlink" title="零钱兑换"></a>零钱兑换</h2><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。</p>
+<p>计算并返回可以凑成总金额所需的 <strong>最少的硬币个数</strong> 。如果没有任何一种硬币组合能组成总金额，返回 -1 。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<pre><code class="plain">class Solution &#123;
+    public int coinChange(int[] coins, int amount) &#123;
+        // 完全背包 顺序for循环    排列组合无所谓！
+        // dp[j]:        凑成总金额i所需最少硬币个数为dp[j] dp[j]=min (dp[j],dp[j-coins[i]]+1
+        int[] dp=new int[amount+1];//初始化一个大于amount的数字，因为是求最小值 dp值肯定不会大于amount的最多只能amount（都是面值为1的）
+        Arrays.fill(dp,amount+1);
+        dp[0]=0;
+        for(int i=0;i&lt;coins.length;i++)&#123;
+            for(int j=coins[i];j&lt;=amount;j++)&#123;
+                dp[j]=Math.min(dp[j],dp[j-coins[i]]+1);
+            &#125;
+        &#125;
+        return dp[amount]&gt;amount?-1:dp[amount];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="完全平方数-1"><a href="#完全平方数-1" class="headerlink" title="完全平方数"></a>完全平方数</h2><p>给你一个整数 n ，返回 <em>和为</em> <em>n</em> <em>的完全平方数的最少数量</em> 。</p>
+<p><strong>完全平方数</strong> 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。</p>
+<pre><code class="plain">class Solution &#123;
+    public int numSquares(int n) &#123;
+        // 完全背包  dp[j]  和为 j 的完全平方数的最少数量
+        // dp[j]=Math.min(dp[j],dp[j-i^2]);
+        int[] dp=new int[n+1];
+        Arrays.fill(dp,Integer.MAX_VALUE);
+        dp[0]=0;
+        // 先遍历物品 再容量 (顺序无所谓)
+        for(int i=1;i*i&lt;=n;i++)&#123;
+            // int j=i*i根据里面dp[j-i*i]来定
+            for(int j=i*i;j&lt;=n;j++)&#123;
+                dp[j]=Math.min(dp[j],dp[j-i*i]+1);
+            &#125;
+        &#125;
+        return dp[n];
+        
+    &#125;
+&#125;
+</code></pre>
+<h2 id="单词拆分"><a href="#单词拆分" class="headerlink" title="单词拆分"></a>单词拆分</h2><p>给你一个字符串 s 和一个字符串列表 wordDict 作为字典。请你判断是否可以利用字典中出现的单词拼接出 s 。</p>
+<p><strong>注意：</strong>不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用（完全背包）。</p>
+<p>题解：</p>
+<p>组合先物品、排列后物品</p>
+<pre><code class="plain">class Solution &#123;
+    public boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123;
+//dp[i] : 字符串长度为i的话，dp[i]为true，表示可以拆分为一个或多个在字典中出现的单词。
+// dp[j]=dp[i]&amp;&amp;wordDict.contains(s.subString(i,j))
+// 这个是排列 有顺序要求  leetcode =leet+code但不=code+leet   物品遍历在里面  
+// 完全背包   顺序遍历
+        int n=s.length();
+        Set&lt;String&gt; wordDictSet = new HashSet(wordDict);
+        boolean[] dp=new boolean[n+1];
+        dp[0]=true;
+        for(int i=1;i&lt;=n;i++)&#123;
+            for(int j=0;j&lt;i;j++)&#123;
+                if(dp[j]&amp;&amp;wordDictSet.contains(s.substring(j,i)))&#123;
+                    dp[i]=true;
+                    break;
+                &#125;
+            &#125;
+        &#125;
+        return dp[n];
+    &#125;
+&#125;
+</code></pre>
+<p>dp[i] 的状态依靠 dp[j]是否为true，那么dp[0]就是递归的根基，dp[0]一定要为true，否则递归下去后面都都是false了。</p>
+<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><p>有N种物品和一个容量为V 的背包。第i种物品最多有Mi件可用，每件耗费的空间是Ci ，价值是Wi 。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<p>每件物品最多有Mi件可用，把Mi件摊开，其实就是一个01背包问题了。</p>
+<p>了解即可</p>
+<h2 id="背包总结"><a href="#背包总结" class="headerlink" title="背包总结"></a>背包总结</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/20210117171307407.png" alt="img"></p>
+<ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序</li>
+<li>举例推导dp数组</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221212145752902.png" alt="img"></p>
+<p>具体总结看代码随想录</p>
+<h2 id="打家劫舍"><a href="#打家劫舍" class="headerlink" title="打家劫舍"></a>打家劫舍</h2><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，<strong>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警</strong>。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 <strong>不触动警报装置的情况下</strong> ，一夜之内能够偷窃到的最高金额。</p>
+<pre><code class="plain">//之前用的滚动数组 省空间   现在用dp 好理解
+class Solution &#123;
+    public int rob(int[] nums) &#123;
+        // dp[i]表示考虑下标为i能偷到的最高金额
+        int[] dp=new int[nums.length];
+        if(nums.length==0||nums==null) return 0;
+        dp[0]=nums[0];
+        if(nums.length==1) return nums[0];
+        dp[1]=Math.max(nums[0],nums[1]);
+        for(int i=2;i&lt;nums.length;i++)&#123;
+            dp[i]=Math.max(dp[i-1],dp[i-2]+nums[i]);
+        &#125;
+        return dp[nums.length-1];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="打家劫舍-II"><a href="#打家劫舍-II" class="headerlink" title="打家劫舍 II"></a>打家劫舍 II</h2><p>你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 <strong>围成一圈</strong> ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，<strong>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警</strong> 。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 <strong>在不触动警报装置的情况下</strong> ，今晚能够偷窃到的最高金额。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221212153240813.png" alt="img"></p>
+<p>考虑这两种情况取最大值</p>
+<pre><code class="plain">class Solution &#123;
+    public int rob(int[] nums) &#123;
+        //特殊情况
+        int n=nums.length;
+        if(nums==null||n==0) return 0;
+        if(n==1) return nums[0];
+        return Math.max(robAction(nums,0,n-1),robAction(nums,1,n));
+    &#125;
+    //打家1写成一个函数
+    public int robAction(int[] nums,int start,int end)&#123;
+        int x=0,y=0;
+        for(int i=start;i&lt;end;i++)&#123;
+            int temp=x;
+            x=y;
+            y=Math.max(y,temp+nums[i]);
+        &#125;
+        return y;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="打家劫舍-III"><a href="#打家劫舍-III" class="headerlink" title="打家劫舍 III"></a>打家劫舍 III</h2><pre><code class="plain">class Solution &#123;
+    Map&lt;TreeNode, Integer&gt; f = new HashMap&lt;TreeNode, Integer&gt;();
+    Map&lt;TreeNode, Integer&gt; g = new HashMap&lt;TreeNode, Integer&gt;();
+
+    public int rob(TreeNode root) &#123;
+        dfs(root);
+        return Math.max(f.getOrDefault(root, 0), g.getOrDefault(root, 0));
+    &#125;
+
+    public void dfs(TreeNode node) &#123;
+        if (node == null) &#123;
+            return;
+        &#125;
+        dfs(node.left);
+        dfs(node.right);
+        f.put(node, node.val + g.getOrDefault(node.left, 0) + g.getOrDefault(node.right, 0));
+        g.put(node, Math.max(f.getOrDefault(node.left, 0), g.getOrDefault(node.left, 0)) + Math.max(f.getOrDefault(node.right, 0), g.getOrDefault(node.right, 0)));
+    &#125;
+&#125;
+class Solution &#123;
+    public int rob(TreeNode root) &#123;
+        //返回f、g数组
+        int[] rootStatus = dfs(root);
+        //0-&gt;f选择    1-&gt;g未选择
+        return Math.max(rootStatus[0], rootStatus[1]);
+    &#125;
+
+    public int[] dfs(TreeNode node) &#123;
+        if (node == null) &#123;
+            return new int[]&#123;0, 0&#125;;
+        &#125;
+        int[] l = dfs(node.left);
+        int[] r = dfs(node.right);
+        int selected = node.val + l[1] + r[1];
+        int notSelected = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);
+        return new int[]&#123;selected, notSelected&#125;;//必须是new的   否则一直是同一个值 
+    &#125;
+&#125;
+</code></pre>
+<p>我的解法</p>
+<pre><code class="plain">class Solution &#123;
+    public int rob(TreeNode root) &#123;
+        // 二维数组 位置0 表示不偷金额 1表示偷金额
+        // 返回root对应偷不偷的二维数组
+        int[] rootstatus=dfs(root);
+        // root处偷与不偷的最大金额
+        return Math.max(rootstatus[0],rootstatus[1]);
+    &#125;
+    public int[] dfs(TreeNode root)&#123;
+        if(root==null) return new int[]&#123;0,0&#125;;
+        // 左节点
+        int[] l=dfs(root.left);
+        // 右节点
+        int[] r=dfs(root.right);
+        // 偷与不偷值
+        int steal=root.val+l[0]+r[0];
+        int nosteal=Math.max(l[0],l[1])+Math.max(r[0],r[1]);
+        返回
+        return new int[]&#123;nosteal,steal&#125;;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="买卖股票的最佳时机"><a href="#买卖股票的最佳时机" class="headerlink" title="买卖股票的最佳时机"></a>买卖股票的最佳时机</h2><p>给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。</p>
+<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p>
+<p><strong>第一种方法</strong> 维护一个最小值和最大利润 </p>
+<pre><code class="plain">class Solution &#123;
+    public int maxProfit(int[] prices) &#123;
+        int minnum = Integer.MAX_VALUE;
+        int maxsoft = 0;
+        for (int i = 0; i &lt; prices.length; i++) &#123;
+            if (prices[i] &lt; minnum) &#123;
+                minnum = prices[i];
+            &#125; else if (prices[i] - minnum &gt; maxsoft) &#123;
+                maxsoft = prices[i] - minnum;
+            &#125;
+        &#125;
+        return maxsoft;
+
+    &#125;
+&#125;
+</code></pre>
+<p><strong>第二种方法</strong></p>
+<pre><code class="plain">class Solution &#123;
+    public int maxProfit(int[] prices) &#123;
+        // dp0表示不持有股票所得现金
+        // dp1表示持有股票所得现金
+        int dp0=0;
+        int dp1=-prices[0];
+        //滚动数组
+        for(int i=1;i&lt;prices.length;i++)&#123;
+            dp0=Math.max(dp0,dp1+prices[i]);
+            // 因为只能选择某一天买股票 因此从不持有到持有现金肯定是-prices[i]
+            dp1=Math.max(-prices[i],dp1);
+        &#125;
+        return dp0;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="买卖股票的最佳时机-II"><a href="#买卖股票的最佳时机-II" class="headerlink" title="买卖股票的最佳时机 II"></a>买卖股票的最佳时机 II</h2><p>给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。</p>
+<p>在每一天，你可以决定是否购买和&#x2F;或出售股票。你在任何时候 <strong>最多</strong> 只能持有 <strong>一股</strong> 股票。你也可以先购买，然后在 <strong>同一天</strong> 出售。</p>
+<p>返回 <em>你能获得的</em> *<strong>最大*</strong> <em>利润</em> 。</p>
+<p><strong>题解</strong></p>
+<p><em>和I**的区别是可以买多次</em></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20221120164413694.png" alt="img"></p>
+<pre><code class="plain">和I的区别就是dp1的表达式变了一下
+class Solution &#123;
+    public int maxProfit(int[] prices) &#123;
+        //初始值是第一天的 所以i从1开始
+        int dp0=0;
+        int dp1=-prices[0];
+        //滚动数组
+        for(int i=1;i&lt;prices.length;i++)&#123;
+            dp0=Math.max(dp0,dp1+prices[i]);
+            dp1=Math.max(dp0-prices[i],dp1);
+        &#125;
+        return dp0;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="买卖股票的最佳时机-III"><a href="#买卖股票的最佳时机-III" class="headerlink" title="买卖股票的最佳时机 III"></a>买卖股票的最佳时机 III</h2><p>给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 <strong>两笔</strong> 交易。</p>
+<p><strong>注意：</strong>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<pre><code class="plain">class Solution &#123;
+    public int maxProfit(int[] prices) &#123;
+//dp[0]初始状态 dp[1]第一次持有股票  dp[2]第一次不持有  dp[3]第二次持有  dp[4]第二次不持有
+        int[] dp=new int[5];
+        dp[1]=-prices[0];
+        dp[3]=-prices[0];
+        for(int i=1;i&lt;prices.length;i++)&#123;
+            dp[1]=Math.max(dp[1],dp[0]-prices[i]);
+            dp[2]=Math.max(dp[2],dp[1]+prices[i]);
+            dp[3]=Math.max(dp[3],dp[2]-prices[i]);
+            dp[4]=Math.max(dp[4],dp[3]+prices[i]);
+            // dp[n]=Math.max(dp[n],dp[n-1]+-price[i])
+        &#125;
+        return dp[4];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="买卖股票的最佳时机-IV"><a href="#买卖股票的最佳时机-IV" class="headerlink" title="买卖股票的最佳时机 IV"></a>买卖股票的最佳时机 IV</h2><p>给定一个整数数组 prices ，它的第 i 个元素 prices[i] 是一支给定的股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 <strong>k</strong> 笔交易。</p>
+<p><strong>注意：</strong>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p>题解：</p>
+<p>类比前面的题目 其实就是找规律</p>
+<pre><code class="plain">class Solution &#123;
+    public int maxProfit(int k, int[] prices) &#123;
+        int[] dp=new int[2*k+1];
+        for(int i=1;i&lt;=2*k-1;i+=2)&#123;
+            dp[i]=-prices[0];
+        &#125;
+        // 奇数代表持有 偶数代表不持有
+        for(int i=1;i&lt;prices.length;i++)&#123;
+            // 根据奇偶不同 选择+-
+            for(int j=1;j&lt;=2*k;j++)&#123;
+                if(j%2==0)&#123;
+                    dp[j]=Math.max(dp[j],dp[j-1]+prices[i]);
+                &#125;else&#123;
+                    dp[j]=Math.max(dp[j],dp[j-1]-prices[i]);
+                &#125;
+            &#125;
+        &#125;
+        // 肯定是不持有股票 也就是2*k的利润最大
+        return dp[2*k];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最佳买卖股票时机含冷冻期-1"><a href="#最佳买卖股票时机含冷冻期-1" class="headerlink" title="最佳买卖股票时机含冷冻期"></a>最佳买卖股票时机含冷冻期</h2><p>给定一个整数数组prices，其中第 prices[i] 表示第 <em>i</em> 天的股票价格 。</p>
+<p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
+<ul>
+<li>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</li>
+</ul>
+<p><strong>注意：</strong>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<pre><code class="plain">class Solution &#123;
+    public int maxProfit(int[] prices) &#123;
+        int[] dp=new int[3];
+        dp[2]=-prices[0];
+        for(int i=1;i&lt;prices.length;i++)&#123;
+            int new1=Math.max(dp[1],dp[0]);
+            int new0=dp[2]+prices[i];
+            int new2=Math.max(dp[2],dp[1]-prices[i]);
+            dp[0]=new0;
+            dp[1]=new1;
+            dp[2]=new2;
+        &#125;
+        return Math.max(dp[0],dp[1]);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="买卖股票的最佳时机含手续费"><a href="#买卖股票的最佳时机含手续费" class="headerlink" title="买卖股票的最佳时机含手续费"></a>买卖股票的最佳时机含手续费</h2><p>给定一个整数数组 prices，其中 prices[i]表示第 i 天的股票价格 ；整数 fee 代表了交易股票的手续费用。</p>
+<p>你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。</p>
+<p>返回获得利润的最大值。</p>
+<p><strong>注意：</strong>这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。</p>
+<p><strong>题解：</strong> 和买卖股票的最佳时机 II一样，只是多了个手续费</p>
+<p>假设手续费是股票刚入手就交，就是我这种写法，当然卖出交也可以</p>
+<pre><code class="plain">class Solution &#123;
+    public int maxProfit(int[] prices, int fee) &#123;
+        int dp0=0,dp1=-prices[0]-fee;
+        for(int i=1;i&lt;prices.length;i++)&#123;
+            dp0=Math.max(dp0,dp1+prices[i]);//必须是从有股票变成无股票状态才能减去手续费，如果是刚买进股票就付手续费，
+            dp1=Math.max(dp1,dp0-prices[i]-fee);
+        &#125;
+        return dp0;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="股票总结"><a href="#股票总结" class="headerlink" title="股票总结"></a>股票总结</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93.jpg" alt="img"></p>
+<h2 id="最长递增子序列"><a href="#最长递增子序列" class="headerlink" title="最长递增子序列"></a>最长递增子序列</h2><p>给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p>
+<p><strong>子序列</strong> 是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列</p>
+<pre><code class="plain">class Solution &#123;
+    public int lengthOfLIS(int[] nums) &#123;
+// dp[i]以i为结尾的序列的最长严格递增子序列
+        int n=nums.length;
+        int[] dp=new int[n];
+        // 结果至少是1
+        int ans=1;
+        // 利用数组填充全部初始化为1
+        Arrays.fill(dp,1);
+        // 外层循环从1开始内层从0 遍历每个以i结尾的序列的各个元素值，如果元素小于nums[i]，
+        //维护dp[i],dp[j]+1最大值 并在每次内循环结束后维护结果
+        for(int i=1;i&lt;n;i++)&#123;
+            for(int j=0;j&lt;i;j++)&#123;
+                if(nums[j]&lt;nums[i])&#123;
+                    dp[i]=Math.max(dp[i],dp[j]+1);
+                &#125;
+            &#125;
+            ans=Math.max(ans,dp[i]);
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最长连续递增序列"><a href="#最长连续递增序列" class="headerlink" title="最长连续递增序列"></a>最长连续递增序列</h2><p>给定一个未经排序的整数数组，找到最长且 <strong>连续递增的子序列</strong>，并返回该序列的长度。</p>
+<p><strong>连续递增的子序列</strong> 可以由两个下标 l 和 r（l &lt; r）确定，如果对于每个 l &lt;&#x3D; i &lt; r，都有 nums[i] &lt; nums[i + 1] ，那么子序列 [nums[l], nums[l + 1], …, nums[r - 1], nums[r]] 就是连续递增子序列。</p>
+<pre><code class="plain">class Solution &#123;
+    public int findLengthOfLCIS(int[] nums) &#123;
+        // 以i结尾的序列最长递增的子序列
+        int n=nums.length;
+        int[] dp=new int[n];
+        Arrays.fill(dp,1);
+        int ans=1;
+        for(int i=1;i&lt;n;i++)&#123;
+            // 如果大于前一个 则dp+1   并维护最大dp值
+            if(nums[i]&gt;nums[i-1])&#123;
+                dp[i]=dp[i-1]+1;
+                ans=Math.max(ans,dp[i]);
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最长重复子数组"><a href="#最长重复子数组" class="headerlink" title="最长重复子数组"></a>最长重复子数组</h2><p>给两个整数数组 nums1 和 nums2 ，返回 <em>两个数组中</em> *<strong>公共的*</strong> <em>、长度最长的子数组的长度</em> 。</p>
+<pre><code class="plain">class Solution &#123;
+    public int findLength(int[] nums1, int[] nums2) &#123;
+        // dp[i][j] ：以下标i - 1为结尾的A，和以下标j - 1为结尾的B，最长重复子数组长度为dp[i][j]
+        int n1=nums1.length,n2=nums2.length;
+        //因为算的是i-1 j-1 所以多设置一个
+        int[][] dp=new int[n1+1][n2+1];
+        int ans =0;
+        for(int i=1;i&lt;n1+1;i++)&#123;
+            for(int j=1;j&lt;n2+1;j++)&#123;
+                if(nums1[i-1]==nums2[j-1])&#123;
+                    dp[i][j]=dp[i-1][j-1]+1;
+                    ans=Math.max(ans,dp[i][j]);
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;
+//当然可以降为一维 不过我不想做
+</code></pre>
+<h2 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h2><p>给定两个字符串 text1 和 text2，返回这两个字符串的最长 <strong>公共子序列</strong> 的长度。如果不存在 <strong>公共子序列</strong> ，返回 0 。</p>
+<p>一个字符串的 <strong>子序列</strong> 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
+<ul>
+<li>例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。</li>
+</ul>
+<p>两个字符串的 <strong>公共子序列</strong> 是这两个字符串所共同拥有的子序列。</p>
+<p>题解：和最长重复子数组差不多，区别是dp定义有区别 这个不用维护ans最大值 最后</p>
+<p>dp[n1][n2]就是结果</p>
+<pre><code class="plain">class Solution &#123;
+    public int longestCommonSubsequence(String text1, String text2) &#123;
+         int n1=text1.length(),n2=text2.length();
+        //dp[i][j]：长度为[0, i - 1]的字符串text1与长度为[0, j - 1]的字符串text2的最长公共子序列为dp[i][j]
+        int[][] dp=new int[n1+1][n2+1];
+如果text1[i - 1] 与 text2[j - 1]相同，那么找到了一个公共元素，所以dp[i][j] = dp[i - 1][j - 1] + 1;
+如果text1[i - 1] 与 text2[j - 1]不相同，那就看看text1[0, i - 2]与text2[0, j - 1]的最长公共子序列 和 text1[0, i - 1]与text2[0, j - 2]的最长公共子序列，取最大的。即：dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        for(int i=1;i&lt;n1+1;i++)&#123;
+            for(int j=1;j&lt;n2+1;j++)&#123;
+                if(text1.charAt(i-1)==text2.charAt(j-1))&#123;
+                    dp[i][j]=dp[i-1][j-1]+1;
+                &#125;else&#123;
+                    //这里举个例子
+             text1  1 2 3
+             text2  0 1 2
+                    3！=2  则12和012公共子序列2  123和01公共子序列1 最大值为 2
+                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
+                &#125;
+            &#125;
+        &#125;
+        return dp[n1][n2];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="不相交的线"><a href="#不相交的线" class="headerlink" title="不相交的线"></a>不相交的线</h2><p>在两条独立的水平线上按给定的顺序写下 nums1 和 nums2 中的整数。</p>
+<p>现在，可以绘制一些连接两个数字 nums1[i] 和 nums2[j] 的直线，这些直线需要同时满足满足：</p>
+<ul>
+<li>nums1[i] &#x3D;&#x3D; nums2[j]</li>
+<li>且绘制的直线不与任何其他连线（非水平线）相交。</li>
+</ul>
+<p>请注意，连线即使在端点也不能相交：每个数字只能属于一条连线。</p>
+<p>以这种方法绘制线条，并返回可以绘制的最大连线数。</p>
+<p>题解：</p>
+<p><strong>这题和最长公共子序列一样 就是改个数据结构完事</strong></p>
+<pre><code class="plain">class Solution &#123;
+    public int maxUncrossedLines(int[] nums1, int[] nums2) &#123;
+         int n1=nums1.length,n2=nums2.length;
+        //dp[i][j]：长度为[0, i - 1]的字符串text1与长度为[0, j - 1]的字符串text2的最长公共子序列为dp[i][j]
+        int[][] dp=new int[n1+1][n2+1];
+//如果text1[i - 1] 与 text2[j - 1]相同，那么找到了一个公共元素，所以dp[i][j] = dp[i - 1][j - 1] + 1;
+//如果text1[i - 1] 与 text2[j - 1]不相同，那就看看text1[0, i - 2]与text2[0, j - 1]的最长公共子序列 和 text1[0, i - 1]与text2[0, j - 2]的最长公共子序列，取最大的。即：dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        for(int i=1;i&lt;n1+1;i++)&#123;
+            for(int j=1;j&lt;n2+1;j++)&#123;
+                if(nums1[i-1]==nums2[j-1])&#123;
+                    dp[i][j]=dp[i-1][j-1]+1;
+                &#125;else&#123;
+                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
+                &#125;
+            &#125;
+        &#125;
+        return dp[n1][n2];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最大子数组和"><a href="#最大子数组和" class="headerlink" title="最大子数组和"></a>最大子数组和</h2><p>给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p><strong>子数组</strong> 是数组中的一个连续部分。</p>
+<pre><code class="plain">class Solution &#123;
+    public int maxSubArray(int[] nums) &#123;
+        // 以i-1结尾的连续最大和的值为dp[i]
+        int n=nums.length;
+        int[] dp=new int[n+1];
+        int ans=Integer.MIN_VALUE;
+        for(int i=1;i&lt;=n;i++)&#123;
+            dp[i]=Math.max(dp[i-1]+nums[i-1],nums[i-1]);
+            ans=Math.max(dp[i],ans);
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="判断子序列"><a href="#判断子序列" class="headerlink" title="判断子序列"></a>判断子序列</h2><p>给定字符串 <strong>s</strong> 和 <strong>t</strong> ，判断 <strong>s</strong> 是否为 <strong>t</strong> 的子序列。</p>
+<p>字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，”ace”是”abcde”的一个子序列，而”aec”不是）。</p>
+<pre><code class="plain">class Solution &#123;
+    public boolean isSubsequence(String s, String t) &#123;
+// 判断 s 是否为 t 的子序列  即判断s.size==s和t公共序列？
+// dp[i][j] 表示s以i-1 t以j-1 结尾的公共序列
+        int ns=s.length(),nt=t.length();
+        int[][] dp=new int[ns+1][nt+1];
+        for(int i=1;i&lt;=ns;i++)&#123;
+            for(int j=1;j&lt;=nt;j++)&#123;
+                if(s.charAt(i-1)==t.charAt(j-1))&#123;
+                    dp[i][j]=dp[i-1][j-1]+1;
+                &#125;else&#123;
+                    // 否则当前的j-1就不选择 因为是判断s是否为t子序列 所以只能dp[i][j-1] i可不能-1
+                    dp[i][j]=dp[i][j-1];
+                &#125;
+            &#125;
+        &#125;
+        // 看公共序列长度是不是s的长度 是的话 说明s 是否为 t 的子序列
+        return dp[ns][nt]==ns;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="不同的子序列"><a href="#不同的子序列" class="headerlink" title="不同的子序列"></a>不同的子序列</h2><p>给定一个字符串 s 和一个字符串 t ，计算在 s 的子序列中 t 出现的个数。</p>
+<p>字符串的一个 <strong>子序列</strong> 是指，通过删除一些（也可以不删除）字符且不干扰剩余字符相对位置所组成的新字符串。（例如，”ACE” 是 “ABCDE” 的一个子序列，而 “AEC” 不是）</p>
+<p>题目数据保证答案符合 32 位带符号整数范围。</p>
+<pre><code class="plain">class Solution &#123;
+    public int numDistinct(String s, String t) &#123;
+// dp[i][j]表示以i-1结尾的s中出现以j-1结尾的t的个数
+// 递推公式：s.charAt(i-1)==t.charAt(j-1): dp[i][j]=dp[i-1][j-1]+dp[i-1][j];
+            // else  dp[i][j]=dp[i-1][j];
+        问题：为什么还要考虑 不用s[i - 1]来匹配
+        例如： s：bagg 和 t：bag ，s[3] 和 t[2]是相同的，但是字符串s也可以不用s[3]来匹配，即用s[0]s[1]s[2]组成的bag。
+         也就是s里面可以有两个bag和t匹配
+        // 初始化  dp[0][j]=0  dp[i][0]=1(一个，即空字符串);
+        int n1=s.length(),n2=t.length();
+        int[][] dp=new int[n1+1][n2+1];
+        for(int i=0;i&lt;=n1;i++)&#123;
+            dp[i][0]=1;
+        &#125;
+        for(int i=1;i&lt;=n1;i++)&#123;
+            for(int j=1;j&lt;=n2;j++)&#123;
+                if(s.charAt(i-1)==t.charAt(j-1))&#123;
+                    dp[i][j]=dp[i-1][j-1]+dp[i-1][j];
+                &#125;else&#123;
+                    dp[i][j]=dp[i-1][j];
+                &#125;
+            &#125;
+        &#125;
+        return dp[n1][n2];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="两个字符串的删除操作"><a href="#两个字符串的删除操作" class="headerlink" title="两个字符串的删除操作"></a>两个字符串的删除操作</h2><p>给定两个单词 word1 和 word2 ，返回使得 word1 和 word2<strong>相同</strong>所需的<strong>最小步数</strong>。</p>
+<p><strong>每步</strong> 可以删除任意一个字符串中的一个字符。</p>
+<p>题解：</p>
+<p>本题和<a target="_blank" rel="noopener" href="https://programmercarl.com/1143.%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97.html">动态规划：1143.最长公共子序列 (opens new window)</a>基本相同，只要求出两个字符串的最长公共子序列长度即可，那么除了最长公共子序列之外的字符都是必须删除的，最后用两个字符串的总长度减去两个最长公共子序列的长度就是删除的最少步数。</p>
+<pre><code class="plain">class Solution &#123;
+    public int minDistance(String word1, String word2) &#123;
+        // dp[i][j]两个序列公共序列长度
+        int n1=word1.length(),n2=word2.length();
+        int[][] dp=new int[n1+1][n2+1];
+        for(int i=1;i&lt;=n1;i++)&#123;
+            for(int j=1;j&lt;=n2;j++)&#123;
+                if(word1.charAt(i-1)==word2.charAt(j-1))&#123;
+                    dp[i][j]=dp[i-1][j-1]+1;
+                &#125;else&#123;
+                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
+                &#125;
+            &#125;
+        &#125;
+        // 两个字符串的总长度减去两个最长公共子序列的长度就是删除的最少步数。
+        return n1+n2-2*dp[n1][n2];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="编辑距离"><a href="#编辑距离" class="headerlink" title="编辑距离"></a>编辑距离</h2><p>给你两个单词 word1 和 word2， <em>请返回将</em> <em>word1</em> <em>转换成</em> <em>word2</em> <em>所使用的最少操作数</em> 。</p>
+<p>你可以对一个单词进行如下三种操作：</p>
+<ul>
+<li>插入一个字符</li>
+<li>删除一个字符</li>
+<li>替换一个字符</li>
+</ul>
+<pre><code class="plain">class Solution &#123;
+    public int minDistance(String word1, String word2) &#123;
+        // dp[i][j] 表示以下标i-1为结尾的字符串word1，和以下标j-1为结尾的字符串word2，最近编辑距离为dp[i][j]。
+        递归公式   
+        //1、if (word1[i - 1] == word2[j - 1]) 那么说明不用任何编辑
+        // 2、不等：
+        2.1 操作一：word1删除一个元素  dp[i][j] = dp[i - 1][j] + 1
+        2.2 操作二：word2删除一个元素  dp[i][j] = dp[i][j - 1] + 1;
+        为何没有添加元素 因为添加元素和删除元素等价
+        例如 word1 = &quot;ad&quot; ，word2 = &quot;a&quot;，word1删除元素&#39;d&#39; 和 word2添加一个元素&#39;d&#39;，变成word1=&quot;a&quot;, word2=&quot;ad&quot;
+        2.3 操作三：替换元素           dp[i][j] = dp[i - 1][j - 1] + 1;
+        int n1=word1.length(),n2=word2.length();
+        int[][] dp=new int[n1+1][n2+1];
+        for(int i=0;i&lt;=n1;i++)&#123;
+            dp[i][0]=i;
+        &#125;
+        for(int j=0;j&lt;=n2;j++)&#123;
+            dp[0][j]=j;
+        &#125;        
+        for(int i=1;i&lt;=n1;i++)&#123;
+            for(int j=1;j&lt;=n2;j++)&#123;
+                if(word1.charAt(i-1)==word2.charAt(j-1))&#123;
+                    dp[i][j]=dp[i-1][j-1];
+                &#125;else&#123;
+                    dp[i][j]=Math.min(Math.min(dp[i-1][j],dp[i][j-1]),dp[i-1][j-1])+1;
+                &#125;
+            &#125;
+        &#125;
+        return dp[n1][n2];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="回文子串"><a href="#回文子串" class="headerlink" title="回文子串"></a>回文子串</h2><p>给你一个字符串 s ，请你统计并返回这个字符串中 <strong>回文子串</strong> 的数目。</p>
+<p><strong>回文字符串</strong> 是正着读和倒过来读一样的字符串。</p>
+<p><strong>子字符串</strong> 是字符串中的由连续字符组成的一个序列。</p>
+<p>具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</p>
+<p>题解：</p>
+<p><strong>我认为双指针比dp简单</strong> 中心扩展见力扣1 </p>
+<pre><code class="plain">class Solution &#123;
+public:
+    int countSubstrings(string s) &#123;
+        //布尔类型的dp[i][j]：表示区间范围[i,j] （注意是左闭右闭）的子串是否是回文子串，如果是dp[i][j]为true，否则为false。
+        s[i]!=s[j],dp[i][j]=false。
+        s[i]=s[j]
+
+情况一：下标i 与 j相同，同一个字符例如a，当然是回文子串
+情况二：下标i 与 j相差为1，例如aa，也是回文子串
+情况三：下标：i 与 j相差大于1的时候，例如cabac，此时s[i]与s[j]已经相同了，我们看i到j区间是不是回文子串就看aba是不是回文就可以了，那么aba的区间就是 i+1 与 j-1区间，这个区间是不是回文就看dp[i + 1][j - 1]是否为true。
+//遍历顺序： 看递推公式，dp[i][j]依赖于dp[i+1][j-1]，因此i倒着来，j顺着来，且保证j&gt;i；
+       
+        vector&lt;vector&lt;bool&gt;&gt; dp(s.size(), vector&lt;bool&gt;(s.size(), false));
+        int result = 0;
+        for (int i = s.size() - 1; i &gt;= 0; i--) &#123;  // 注意遍历顺序
+            for (int j = i; j &lt; s.size(); j++) &#123;
+                if (s[i] == s[j]) &#123;
+                    if (j - i &lt;= 1) &#123; // 情况一 和 情况二
+                        result++;
+                        dp[i][j] = true;
+                    &#125; else if (dp[i + 1][j - 1]) &#123; // 情况三
+                        result++;
+                        dp[i][j] = true;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        return result;
+    &#125;
+&#125;;
+</code></pre>
+<p>java dp：</p>
+<pre><code class="plain">class Solution &#123;
+    public int countSubstrings(String s) &#123;
+        int len, ans = 0;
+        if (s == null || (len = s.length()) &lt; 1) return 0;
+        //dp[i][j]：s字符串下标i到下标j的字串是否是一个回文串，即s[i, j]
+        boolean[][] dp = new boolean[len][len];
+        for (int j = 0; j &lt; len; j++) &#123;
+            for (int i = 0; i &lt;= j; i++) &#123;
+                //当两端字母一样时，才可以两端收缩进一步判断
+                if (s.charAt(i) == s.charAt(j)) &#123;
+                    //i++，j--，即两端收缩之后i,j指针指向同一个字符或者i超过j了,必然是一个回文串
+                    if (j - i &lt; 3) &#123;
+                        dp[i][j] = true;
+                    &#125; else &#123;
+                        //否则通过收缩之后的字串判断
+                        dp[i][j] = dp[i + 1][j - 1];
+                    &#125;
+                &#125; else &#123;//两端字符不一样，不是回文串
+                    dp[i][j] = false;
+                &#125;
+            &#125;
+        &#125;
+        //遍历每一个字串，统计回文串个数
+        for (int i = 0; i &lt; len; i++) &#123;
+            for (int j = 0; j &lt; len; j++) &#123;
+                if (dp[i][j]) ans++;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最长回文子序列（只算长度）"><a href="#最长回文子序列（只算长度）" class="headerlink" title="最长回文子序列（只算长度）"></a>最长回文子序列（只算长度）</h2><p>给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。</p>
+<p>子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。</p>
+<pre><code class="plain">class Solution &#123;
+    public int longestPalindromeSubseq(String s) &#123;
+        // [i,j]范围内最长回文子序列长度为dp[i][j]
+        // 初始化 其余都为0，dp[i][i]=1;
+        // 递归公式： if s.charAt(i)=s.charAt(j):dp[i][j]=dp[i+1][j-1]+2;
+        // else  dp[i][j]=Math.max(dp[i][j-1],dp[i+1][j];
+        // 遍历顺序根据递归公式来
+        int n = s.length();
+        int[][] dp = new int[n][n];
+       // int[][] dp = new int[n+1][n+1];//也能pass  多一点无所谓
+        for(int i=0;i&lt;n;i++)&#123;
+            dp[i][i]=1;
+        &#125;
+        //遍历顺序  两边都可以   只要是从范围小的开始就行
+        for(int i=n-1;i&gt;=0;i--)&#123;
+            for(int j=i+1;j&lt;n;j++)&#123;
+                if(s.charAt(i)==s.charAt(j))&#123;
+                    dp[i][j]=dp[i+1][j-1]+2;
+                &#125;else&#123;
+                    dp[i][j]=Math.max(Math.max(dp[i][j-1],dp[i+1][j]),dp[i][j]);
+                &#125;
+            &#125;
+        &#125;
+        return dp[0][n-1];
+    &#125;
+&#125;
+</code></pre>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><pre><code class="plain">package top.hk.gkrpc.client;
+
+import java.util.Scanner;
+
+public class Main02 &#123;
+    public static void main(String[] args) &#123;
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] nums = new int[n];
+        for (int i = 0; i &lt; n; i++) &#123;
+            nums[i] = scanner.nextInt();
+        &#125;
+        int maxcount=0;
+        for(int i = 0; i&lt; 2*n-1; i++)&#123;
+            int l = i / 2,r = i / 2 + i % 2;//    + i % 2是为了奇偶校验
+            int count;
+            if(l==r-1&amp;&amp;nums[r]==nums[l])&#123;
+                count=2;
+            &#125;else&#123;
+                count=1;
+            &#125;
+            l--;
+            r++;
+            while(l &gt;= 0 &amp;&amp; r &lt; n &amp;&amp; nums[l] == nums[r])&#123;
+                count+=2;
+                l--;
+                r++;
+            &#125;
+            maxcount=Math.max(count,maxcount);
+            if(maxcount==n) break;
+        &#125;
+        System.out.println(n-maxcount);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h2><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
+<p>如果字符串的反序与原始字符串相同，则该字符串称为回文字符串</p>
+<p>题解：细节比较多，主要方法动态规划 双指针</p>
+<pre><code class="plain">class Solution &#123;
+    public String longestPalindrome(String s) &#123;
+        // dp
+        int maxlen=1;//至少为1
+        int start =0;//记录一下开始的下标  方便截取结果
+        int n=s.length();
+        boolean[][] dp=new boolean[n][n];
+        for(boolean[] bn:dp)&#123;
+            Arrays.fill(bn,true);
+        &#125;
+        if(n&lt;2) return s;
+        for(int L=2;L&lt;=n;L++)&#123;
+            for(int i=0;i&lt;n;i++)&#123;
+                // j-i+1=L   L的另一端下标
+                int j=L+i-1;
+                // j有可能越界
+                if(j&gt;=n) break;//当前的L已经不满足 break
+                if(s.charAt(i)!=s.charAt(j)) dp[i][j]=false;
+                else&#123;
+                    if(j-i&lt;3) dp[i][j]=true;
+                    else&#123;
+                        dp[i][j]=dp[i+1][j-1];
+                    &#125;
+                &#125;
+                if(dp[i][j]&amp;&amp;j-i+1&gt;maxlen)&#123;
+                    maxlen=j-i+1;
+                    start=i;
+                &#125;
+            &#125;
+        &#125;
+        return s.substring(start,start+maxlen);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="分割回文串-II"><a href="#分割回文串-II" class="headerlink" title="分割回文串 II"></a>分割回文串 II</h2><p>给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文。</p>
+<p>返回符合要求的 <strong>最少分割次数</strong> 。</p>
+<p>题解：</p>
+<p><strong>含义</strong></p>
+<p>dp[i]：范围是[0, i]的回文子串，最少分割次数是dp[i]</p>
+<p><strong>递推公式</strong></p>
+<p>如果要对长度为[0, i]的子串进行分割，分割点为j。</p>
+<p>那么如果分割后，区间[j + 1, i]是回文子串，那么dp[i] 就等于 dp[j] + 1。</p>
+<p>求最小切割数量：<strong>dp[i] &#x3D; min(dp[i], dp[j] + 1);</strong></p>
+<p><strong>dp数组如何初始化</strong></p>
+<p>那么dp[0]一定是0，长度为1的字符串最小分割次数就是0。这个是比较直观的。</p>
+<p>非零下标的dp[i]初始化为i 因为最多只能分割i次</p>
+<p><strong>确定遍历顺序</strong></p>
+<p>根据递推公式：dp[i] &#x3D; min(dp[i], dp[j] + 1);</p>
+<p>j是在[0，i]之间，所以遍历i的for循环一定在外层，这里遍历j的for循环在内层才能通过 计算过的dp[j]数值推导出dp[i]。</p>
+<p>其中**dp[i] &#x3D; min(dp[i], dp[j] + 1);**需要先用一个二维数组来保存整个字符串的回文情况。（看之前的回文字串即可）</p>
+<p>代码：</p>
+<pre><code class="plain">class Solution &#123;
+    public int minCut(String s) &#123;
+        //if(null == s || &quot;&quot;.equals(s))&#123;
+          //  return 0;
+        //&#125;        
+        int n=s.length();
+        boolean[][] isPalindromic=new boolean[n][n];  
+        // 先计算回文
+        for(int i=n-1;i&gt;=0;i--)&#123;
+            for(int j=i;j&lt;n;j++)&#123;
+                if(s.charAt(i)==s.charAt(j))&#123;
+                    if(j-i&lt;2)&#123;
+                        isPalindromic[i][j]=true;
+                    &#125;else&#123;
+                        isPalindromic[i][j]=isPalindromic[i+1][j-1];
+                    &#125;
+                &#125;else&#123;
+                    isPalindromic[i][j]=false;
+                &#125;
+            &#125;
+        &#125;
+        //  dp[i] 表示[0..i]的最小分割次数
+        int[] dp=new int[n];
+        for(int i=0;i&lt;n;i++)&#123;
+            dp[i]=i;
+        &#125;
+        // i从1-n  j从0-i
+        for(int i=1;i&lt;n;i++)&#123;
+            if(isPalindromic[0][i])&#123;
+                dp[i]=0;
+            &#125;
+            for(int j=0;j&lt;i;j++)&#123;
+                if(isPalindromic[j+1][i])&#123;
+                    dp[i]=Math.min(dp[i],dp[j]+1);
+                &#125;
+            &#125;
+        &#125;
+        return dp[n-1];
+
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最长递增子序列的个数"><a href="#最长递增子序列的个数" class="headerlink" title="最长递增子序列的个数"></a>最长递增子序列的个数</h2><p>给定一个未排序的整数数组 nums ， <em>返回最长递增子序列的个数</em> 。</p>
+<p><strong>注意</strong> 这个数列必须是 <strong>严格</strong> 递增的</p>
+<pre><code class="plain">class Solution &#123;
+    public int findNumberOfLIS(int[] nums) &#123;
+        // dp[i] 以i为结尾的最长递增子序列长度   count[i]以i为结尾的最长递增子序列数量
+        int n=nums.length;
+        int[] dp=new int[n];
+        Arrays.fill(dp,1);
+        int[] count=new int[n];
+        Arrays.fill(count,1);
+        int maxlen=1;
+        for(int i=1;i&lt;n;i++)&#123;
+            for(int j=0;j&lt;i;j++)&#123;
+                if(nums[i]&gt;nums[j])&#123;
+                    if(dp[j]+1&gt;dp[i])&#123;
+                        dp[i]=dp[j]+1;//dp[j]基础上加上i变成dp[j]+1了
+                        count[i]=count[j];//但个数不变
+                    &#125;else if(dp[j]+1==dp[i])&#123;
+                        count[i]+=count[j];//长度不变 但数量累加 因为以不同j结尾的子序列是不一样的
+                    &#125;
+                &#125;
+                // 维护最长递增子序列长度
+                if(dp[i]&gt;maxlen)&#123;
+                    maxlen=dp[i];
+                &#125;
+            &#125;
+        &#125;
+        int result=0;
+        for(int i=0;i&lt;n;i++)&#123;
+            // 以不同i结尾的子序列是不一样的 所以加
+            if(dp[i]==maxlen)&#123;
+                result+=count[i];
+            &#125;
+        &#125;
+        return result;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="最长递增子序列个数三"><a href="#最长递增子序列个数三" class="headerlink" title="最长递增子序列个数三"></a>最长递增子序列个数三</h2><p>给定数组 arr ，设长度为 n ，输出 arr 的最长上升子序列。（如果有多个答案，请输出其中 按数值(注：区别于按单个字符的ASCII码值)进行比较的 字典序最小的那个）</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230404174638522.png" alt="img"></p>
+<pre><code class="plain">import java.util.*;
+
+public class Solution &#123;
+    /**
+     * retrun the longest increasing subsequence
+     * @param arr int整型一维数组 the array
+     * @return int整型一维数组
+     */
+    public int[] LIS (int[] arr) &#123;
+        int n=arr.length;
+        //dp[i]表示以i位置元素结尾的最长上升子序列长度
+        int[] dp=new int[n+1];
+        //初始化为1
+        Arrays.fill(dp,1);
+        //记录最长子序列的长度
+        int len=0;
+        for(int i=0;i&lt;n;i++)&#123;
+            for(int j=0;j&lt;i;j++)&#123;
+                //如果小于arr[i]，则可以接在arr[i]前面
+                if(arr[j]&lt;arr[i])&#123;
+                    dp[i]=Math.max(dp[i],dp[j]+1);
+                &#125;
+            &#125;
+            //计算最长子序列的长度
+            len=Math.max(len,dp[i]);
+        &#125;
+        
+        int[] res=new int[len];
+        //从后往前确定目标子序列的每一个值
+        for(int i=n-1;i&gt;=0;i--)&#123;
+            if(dp[i]==len)&#123;
+                res[--len]=arr[i];
+            &#125;
+        &#125;
+        return res;
+    &#125;
+&#125;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">http://viacheung.github.io/2023/06/04/动态规划/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="prev" title="单调栈">
+      <i class="fa fa-chevron-left"></i> 单调栈
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="next" title="多线程">
+      多线程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C"><span class="nav-number">1.</span> <span class="nav-text">经验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">斐波那契数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="nav-number">3.</span> <span class="nav-text">爬楼梯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="nav-number">4.</span> <span class="nav-text">使用最小花费爬楼梯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84"><span class="nav-number">5.</span> <span class="nav-text">不同路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84-II"><span class="nav-number">6.</span> <span class="nav-text">不同路径 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86"><span class="nav-number">7.</span> <span class="nav-text">整数拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">8.</span> <span class="nav-text">不同的二叉搜索树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">9.</span> <span class="nav-text">01背包理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4"><span class="nav-number">9.1.</span> <span class="nav-text">二维</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4"><span class="nav-number">9.2.</span> <span class="nav-text">一维</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86"><span class="nav-number">10.</span> <span class="nav-text">分割等和子集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="nav-number">10.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="nav-number">10.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E7%9F%B3%E5%A4%B4%E7%9A%84%E9%87%8D%E9%87%8F-II"><span class="nav-number">11.</span> <span class="nav-text">最后一块石头的重量 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E5%92%8C"><span class="nav-number">12.</span> <span class="nav-text">目标和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2"><span class="nav-number">13.</span> <span class="nav-text">零钱兑换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%B3%E6%B0%94%E7%90%83"><span class="nav-number">14.</span> <span class="nav-text">戳气球</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E6%97%B6%E6%9C%BA%E5%90%AB%E5%86%B7%E5%86%BB%E6%9C%9F"><span class="nav-number">15.</span> <span class="nav-text">最佳买卖股票时机含冷冻期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0"><span class="nav-number">16.</span> <span class="nav-text">完全平方数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2"><span class="nav-number">17.</span> <span class="nav-text">最大正方形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97-%E4%B9%9F%E5%8F%AFgreedy-%E4%BC%98%E5%85%88%E8%BF%99%E4%B8%AA"><span class="nav-number">18.</span> <span class="nav-text">最长递增子序列(也可greedy 优先这个)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">19.</span> <span class="nav-text">乘积最大子数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%B7%E7%AA%83"><span class="nav-number">20.</span> <span class="nav-text">偷窃</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B2%9B%E5%B1%BF%E9%97%AE%E9%A2%98"><span class="nav-number">21.</span> <span class="nav-text">岛屿问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%92%8C%E9%9B%B6"><span class="nav-number">22.</span> <span class="nav-text">一和零</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85"><span class="nav-number">23.</span> <span class="nav-text">完全背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-II"><span class="nav-number">24.</span> <span class="nav-text">零钱兑换 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-%E2%85%A3"><span class="nav-number">25.</span> <span class="nav-text">组合总和 Ⅳ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%AC%E6%A5%BC%E6%A2%AF%E8%BF%9B%E9%98%B6"><span class="nav-number">26.</span> <span class="nav-text">爬楼梯进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2-1"><span class="nav-number">27.</span> <span class="nav-text">零钱兑换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0-1"><span class="nav-number">28.</span> <span class="nav-text">完全平方数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86"><span class="nav-number">29.</span> <span class="nav-text">单词拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85"><span class="nav-number">30.</span> <span class="nav-text">多重背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E5%8C%85%E6%80%BB%E7%BB%93"><span class="nav-number">31.</span> <span class="nav-text">背包总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D"><span class="nav-number">32.</span> <span class="nav-text">打家劫舍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D-II"><span class="nav-number">33.</span> <span class="nav-text">打家劫舍 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D-III"><span class="nav-number">34.</span> <span class="nav-text">打家劫舍 III</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA"><span class="nav-number">35.</span> <span class="nav-text">买卖股票的最佳时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-II"><span class="nav-number">36.</span> <span class="nav-text">买卖股票的最佳时机 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-III"><span class="nav-number">37.</span> <span class="nav-text">买卖股票的最佳时机 III</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-IV"><span class="nav-number">38.</span> <span class="nav-text">买卖股票的最佳时机 IV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E6%97%B6%E6%9C%BA%E5%90%AB%E5%86%B7%E5%86%BB%E6%9C%9F-1"><span class="nav-number">39.</span> <span class="nav-text">最佳买卖股票时机含冷冻期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%E5%90%AB%E6%89%8B%E7%BB%AD%E8%B4%B9"><span class="nav-number">40.</span> <span class="nav-text">买卖股票的最佳时机含手续费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%82%A1%E7%A5%A8%E6%80%BB%E7%BB%93"><span class="nav-number">41.</span> <span class="nav-text">股票总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">42.</span> <span class="nav-text">最长递增子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97"><span class="nav-number">43.</span> <span class="nav-text">最长连续递增序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%87%8D%E5%A4%8D%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">44.</span> <span class="nav-text">最长重复子数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">45.</span> <span class="nav-text">最长公共子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E7%9B%B8%E4%BA%A4%E7%9A%84%E7%BA%BF"><span class="nav-number">46.</span> <span class="nav-text">不相交的线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C"><span class="nav-number">47.</span> <span class="nav-text">最大子数组和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">48.</span> <span class="nav-text">判断子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">49.</span> <span class="nav-text">不同的子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">50.</span> <span class="nav-text">两个字符串的删除操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB"><span class="nav-number">51.</span> <span class="nav-text">编辑距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2"><span class="nav-number">52.</span> <span class="nav-text">回文子串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E5%BA%8F%E5%88%97%EF%BC%88%E5%8F%AA%E7%AE%97%E9%95%BF%E5%BA%A6%EF%BC%89"><span class="nav-number">53.</span> <span class="nav-text">最长回文子序列（只算长度）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">54.</span> <span class="nav-text">双指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2"><span class="nav-number">55.</span> <span class="nav-text">最长回文子串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2-II"><span class="nav-number">56.</span> <span class="nav-text">分割回文串 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">57.</span> <span class="nav-text">最长递增子序列的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E4%B8%AA%E6%95%B0%E4%B8%89"><span class="nav-number">58.</span> <span class="nav-text">最长递增子序列个数三</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

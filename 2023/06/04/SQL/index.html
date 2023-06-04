@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="11、题目：现在运营想要筛选出所有北京大学的学生进行用户调研，请你从用户信息表中取出满足条件的数据，结果返回设备id和学校。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/SQL/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="11、题目：现在运营想要筛选出所有北京大学的学生进行用户调研，请你从用户信息表中取出满足条件的数据，结果返回设备id和学校。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424160950126.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424161313268.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424162133044.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424163904655.png">
+<meta property="article:published_time" content="2023-06-04T06:10:51.000Z">
+<meta property="article:modified_time" content="2023-06-04T06:26:08.200Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424160950126.png">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/SQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SQL | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SQL
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:10:51 / 修改时间：14:26:08" itemprop="dateCreated datePublished" datetime="2023-06-04T14:10:51+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>1、题目：现在运营想要筛选出所有<strong>北京大学</strong>的学生进行用户调研，请你从用户信息表中取出满足条件的数据，结果返回<strong>设备id</strong>和<strong>学校</strong>。<span id="more"></span></p>
+<p>SELECT device_id,university FROM user_profile WHERE university&#x3D; ‘北京大学</p>
+<p>注意 返回数据用逗号隔开</p>
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>2、查询考试成绩有不及格的学生的学号</p>
+<p>SELECT DISTINCT 学号 FROM 成绩表 WHERE 成绩&lt; 60</p>
+<p>DISTINCT用来去重</p>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>3、查找年龄大于24岁的用户信息</p>
+<p>SELECT device_id, gender, age, university FROM user_profile WHERE age is not null and age &gt; 24</p>
+<p>null 是大于所有数值型还是小于所有数值型是由 DBMS 决定的，严谨起见，还是加上 age is not null 的条件</p>
+<h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>4、查询所有系号在2和3之间的班号和班名。</p>
+<p>SELECT 班号,班名 FROM 班级表 WHERE 系号 BETWEEN <code>2` `AND </code>3</p>
+<h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>5、查询所有系号不在2和3之间的班号和班名。</p>
+<p>SELECT 班号,班名 FROM 班级表 WHERE 系号 NOT BETWEEN <code>2` `AND </code>3</p>
+<h1 id="6"><a href="#6" class="headerlink" title="6"></a>6</h1><p>6、现在运营想要查看除复旦大学以外的所有用户明细，请你取出相应数据</p>
+<p>SELECT<code> </code>device_id,gender,age,university <code>FROM` `user_profile</code>WHERE<code> </code>university <code>NOT` `IN` `(</code>‘复旦大学’&#96;&#96;)或者select device_id,gender,age,university from user_profile where university!&#x3D;”复旦大学”</p>
+<p>where 字段 in（not in） 一个范围</p>
+<h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><p>7、现在运营想要找到<strong>男性且GPA在3.5以上</strong>的用户进行调研，请你取出相关数据。</p>
+<p>select device_id,gender,age ,university,gpa from user_profile where gender&#x3D;”male” and gpa&gt;3.5</p>
+<h1 id="8"><a href="#8" class="headerlink" title="8"></a>8</h1><p>8、查询所有系号大于1且班名以“电子 ” 开头的班号和班名。</p>
+<p>SELECT<code> </code>班号,班名 <code>FROM` `班级表</code>WHERE<code> </code>系号&gt;1 <code>AND` `班名 </code>LIKE<code> </code>‘电子%’</p>
+<h1 id="9"><a href="#9" class="headerlink" title="9"></a>9</h1><p>9、现在运营想要找到<strong>学校为北大或GPA在3.7以上</strong>的用户进行调研，请你取出相关数据</p>
+<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>university&#x3D;&#96;&#96;’北京大学’<code> </code>OR<code> </code>gpa &gt; 3.7</p>
+<h1 id="10"><a href="#10" class="headerlink" title="10"></a>10</h1><p>10、现在运营想要找到<strong>学校为北大、复旦和山大</strong>的同学进行调研，请你取出相关数据。</p>
+<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>university <code>IN` `(</code>‘北京大学’<code> </code>, <code>&#39;复旦大学&#39;</code>, <code>&#39;山东大学&#39;</code>)</p>
+<h1 id="11"><a href="#11" class="headerlink" title="11"></a>11</h1><p>11、现在运营想要找到gpa在3.5以上的山东大学用户 或 gpa在3.8以上的复旦大学同学进行用户调研，请你取出相应数据</p>
+<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>(university&#x3D;<code>&#39;山东大学&#39;</code>AND<code> </code>gpa &gt; 3.5) <code>OR` `(university=</code>‘复旦大学’<code> </code>AND<code> </code>gpa &gt; 3.8)</p>
+<h1 id="12"><a href="#12" class="headerlink" title="12"></a>12</h1><p>12、现在运营想查看所有大学中带有北京的用户的信息，请你取出相应数据。</p>
+<p>SELECT device_id,age,university  FROM user_profile WHERE university  LIKE ‘%北京%’</p>
+<p><strong>拓展：</strong></p>
+<p>这道题主要考察的是模糊查询 字段名 like ‘匹配内容’</p>
+<ol>
+<li>_ ：下划线 代表匹配任意一个字符；</li>
+<li>% ：百分号 代表匹配0个或多个字符；</li>
+<li>[]: 中括号 代表匹配其中的任意一个字符；</li>
+<li>[^]: ^尖冒号 代表 非，取反的意思；不匹配中的任意一个字符。</li>
+</ol>
+<p>tips：面试常问的一个问题：你了解哪些数据库优化技术？ SQL语句优化也属于数据库优化一部分，而我们的like模糊查询会引起全表扫描，速度比较慢，应该尽量避免使用like关键字进行模糊查询。</p>
+<h1 id="13"><a href="#13" class="headerlink" title="13"></a>13</h1><p>13 复旦大学学生gpa最高值</p>
+<p>方法一：</p>
+<p><strong>desc倒排</strong></p>
+<p>select gpa from user_profile where university &#x3D;’复旦大学’ order by  gpa desc limit 1</p>
+<p>方法二：</p>
+<p>聚合函数必须放在前面 不可在where里面</p>
+<p>SELECT MAX(gpa)gpa FROM user_profile WHERE university &#x3D; ‘复旦大学’</p>
+<p><strong>拓展</strong></p>
+<h2 id="使用聚合函数汇总数据"><a href="#使用聚合函数汇总数据" class="headerlink" title="使用聚合函数汇总数据"></a>使用聚合函数汇总数据</h2><p>SQL提供的统计函数有：COUNT(【Shift+8】)：统计表中元组个数；COUNT([DISTINCT] &lt;列名&gt;)：统计本列列值个数；SUM( &lt;列名&gt; )：计算列值总和；AVG( &lt;列名&gt; )：计算列值平均值；MAX( &lt;列名&gt; )：求列值最大值；MIN( &lt;列名&gt; )： 求列值最小值。上述函数中除COUNT(【Shift+8】)外，其他函数在计算过程中均忽略NULL值。</p>
+<p><strong>统计函数不能出现在WHERE子句中。</strong>例如，查询成绩最高的学生的学号，如下写法是错误的：SELECT 学号 FROM 成绩表WHERE 成绩 &#x3D; MX(成绩</p>
+<h1 id="14"><a href="#14" class="headerlink" title="14"></a>14</h1><p>14、题目：现在运营想要看一下男性用户有多少人以及他们的平均gpa是多少，用以辅助设计相关活动，请你取出相应数据。</p>
+<p>问题分解：</p>
+<ol>
+<li>限定条件为 男性用户；</li>
+<li>有多少人，明显是计数，count函数；</li>
+<li>平均gpa，求平均值用avg函数；</li>
+</ol>
+<hr>
+<p>细节问题：根据输出示例，有两个问题需要注意：</p>
+<ol>
+<li>表头重命名，用as语法</li>
+<li>浮点数的平均值可能小数点位数很多，按照示例保存一位小数，用round函数</li>
+</ol>
+<p>使用ROUND()函数，ROUND返回一个数值，舍入到指定的长度或精度</p>
+<p>select count(gender) as male_num,round(avg(gpa),1) as avg_gpa from user_profile where gender&#x3D;’male’ </p>
+<h1 id="15"><a href="#15" class="headerlink" title="15"></a>15</h1><p>15、现在运营想要对每个学校不同性别的用户活跃情况和发帖数量进行分析，请分别计算出每个学校每种性别的用户数、30天内平均活跃天数和平均发帖数量。</p>
+<p>结果：这里最好用下round(x,1)</p>
+<p>select      gender, university,     count(device_id) as user_num,     avg(active_days_within_30) as avg_active_days,     avg(question_cnt) as avg_question_cnt from user_profile group by gender, university</p>
+<p><strong>在面试某上海上市金融科技公司中曾被问到的一个问题是：</strong></p>
+<ol>
+<li>你在项目中你用过分组函数吗？</li>
+</ol>
+<p>我：用过（必须展现实力）</p>
+<ol>
+<li>那你听清楚我下面这个问题，分组SQL语句中，select和from和where和group by 和 having 这几部分的执行顺序是怎么样的？</li>
+</ol>
+<p>我：先是from，再到 where ，再到select，再到group by ，最后having。</p>
+<ol>
+<li>你能说说为什么是这样子的吗？</li>
+</ol>
+<p>我：因为首先肯定是要确定数据从哪张表来，然后按where条件查询出结果，再然后才能进行group by分组（分组条件可以有多个，按字段顺序依次分组），最后是由having对分组后的结果集进行过滤</p>
+<p>我的理解： 先看他是根据什么分组的 然后看需要啥字段 给他就行了</p>
+<h1 id="16"><a href="#16" class="headerlink" title="16"></a>16</h1><p>16、题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。</p>
+<p>select     university,     round(avg(question_cnt), 1) as avg_question_cnt,     round(avg(answer_cnt), 1) as avg_answer_cnt from user_profile group by university having avg_question_cnt&lt;5 or avg_answer_cnt&lt;20 </p>
+<h2 id="使用HAVING"><a href="#使用HAVING" class="headerlink" title="使用HAVING"></a>使用HAVING</h2><p>HAVING子句用于对分组后的结果再进行过滤，它的功能有点像WHERE子句，但它用于组而不是单个记录。<strong>在HAVING子句中可以使用统计函数，但在WHERE子句中则不能。****HAVING通常与GROUP BY子句一起使用。</strong></p>
+<p>我的理解：</p>
+<h1 id="17"><a href="#17" class="headerlink" title="17"></a>17</h1><p>17、having 最后规律分组的数据 可以用select后面的as 字段</p>
+<p>题目：现在运营想要查看不同大学的用户平均发帖情况，并期望结果按照平均发帖情况进行升序排列，请你取出相应数据。</p>
+<p>select university,     avg(question_cnt) as avg_question_cnt from user_profile group by university order by avg_question_cnt</p>
+<p>同样的 order by 放在最后面就好了</p>
+<ol>
+<li>tips：在排序中order by 字段 asc –其中升序为asc(可以不写，默认就是按照升序排列),降序为desc（必须写）</li>
+</ol>
+<p>round最好也加一下</p>
+<h1 id="18"><a href="#18" class="headerlink" title="18"></a>18</h1><p>题目：现在运营想要查看所有来自浙江大学的用户题目回答明细情况，请你取出相应数据</p>
+<ul>
+<li>限定条件：来自浙江大学的用户，学校信息在用户画像表，答题情况在用户练习明细表，因此需要通过device_id关联两个表的数据； </li>
+<li>方法1：join两个表，用inner join，条件是on up.device_id&#x3D;qpd.device_id and up.university&#x3D;’浙江大学’</li>
+<li>方法2：先从画像表找到浙江大学的所有学生id列表where university&#x3D;’浙江大学’，再去练习明细表筛选出id在这个列表的记录，用where in</li>
+</ul>
+<p>select qpd.device_id, qpd.question_id, qpd.result from question_practice_detail as qpd inner join user_profile as up on up.device_id&#x3D;qpd.device_id and up.university&#x3D;’浙江大学’ order by question_idselect device_id, question_id, result from question_practice_detail where device_id in (     select device_id from user_profile     where university&#x3D;’浙江大学’ ) order by question_id</p>
+<p>子查询效率低一点 但是我写起来舒服</p>
+<p>xx表 inner join xx表 On 条件 order by XX</p>
+<p>还是用join吧 !!!! 用子查询好像不太行</p>
+<p>这里注意，一旦我们join了之后，select qpd.device_id, qpd.question_id, qpd.result后面跟的一定要是具体表的表名 不然查不出来！</p>
+<p>而且中间有条件的话别用where 条件直接在On里面写就行</p>
+<h1 id="19"><a href="#19" class="headerlink" title="19"></a>19</h1><p>运营想要了解每个学校答过题的用户平均答题数量情况，请你取出数据。</p>
+<ul>
+<li>每个学校：按学校分组，group by university</li>
+<li>平均答题数量：在每个学校的分组内，用总答题数量除以总人数即可得到平均答题数量count(question_id) &#x2F; count(distinct device_id)</li>
+<li>表连接：学校和答题信息在不同的表，需要做连接</li>
+</ul>
+<p>select university,     count(question_id) &#x2F; count(distinct qpd.device_id) as avg_answer_cnt from question_practice_detail as qpd inner join user_profile as up on qpd.device_id&#x3D;up.device_id group by university</p>
+<h1 id="20"><a href="#20" class="headerlink" title="20"></a>20</h1><h3 id="左连接，右连接，内连接，全连接的区别及使用"><a href="#左连接，右连接，内连接，全连接的区别及使用" class="headerlink" title="左连接，右连接，内连接，全连接的区别及使用"></a>左连接，右连接，内连接，全连接的区别及使用</h3><p>左连接 （left join）：返回包括左表的所有记录和右表中连接字段相等的记录右连接（right join）：返回包括右表的所有记录和左表中连接字段相等的记录等值连接或者叫内连接（inner join）：只返回两表相连相等的行全外连接（full join）：返回左右表中所有的记录和左右表中连接字段相等的记录。</p>
+<ul>
+<li>限定条件：无；</li>
+<li>每个学校：按学校分组group by university</li>
+<li>不同难度：按难度分组group by difficult_level</li>
+<li>平均答题数：总答题数除以总人数count(qpd.question_id) &#x2F; count(distinct qpd.device_id)</li>
+<li>来自上面信息三个表，需要联表，up与qpd用device_id连接，qd与qpd用question_id连接。</li>
+</ul>
+<p>select      university,     difficult_level,     round(count(qpd.question_id) &#x2F; count(distinct qpd.device_id), 4) as avg_answer_cnt from question_practice_detail as qpd left join user_profile as up on up.device_id&#x3D;qpd.device_id left join question_detail as qd on qd.question_id&#x3D;qpd.question_id group by university, difficult_level</p>
+<h1 id="21"><a href="#21" class="headerlink" title="21"></a>21</h1><p>运营想要查看<strong>参加了答题</strong>的山东大学的用户在不同难度下的平均答题题目数，请取出相应数据</p>
+<p>目前用inner比较稳妥</p>
+<p>20题用inner就可</p>
+<h1 id="22"><a href="#22" class="headerlink" title="22"></a>22</h1><p>分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，结果不去重</p>
+<ul>
+<li>限定条件：学校为山东大学或者性别为男性的用户：university&#x3D;’山东大学’, gender&#x3D;’male’；</li>
+<li>分别查看&amp;结果不去重：所以直接使用两个条件的or是不行的，直接用union也不行，要用union all，分别去查满足条件1的和满足条件2的，然后合在一起不去重</li>
+</ul>
+<p>SELECT device_id,gender,age,gpa FROM user_profile WHERE university&#x3D;’山东大学’  UNION ALL SELECT device_id,gender,age,gpa FROM user_profile WHERE gender&#x3D;’male’</p>
+<p>结果不去重 就加ALL</p>
+<h1 id="23"><a href="#23" class="headerlink" title="23"></a>23</h1><p>题目：现在运营想要将用户划分为25岁以下和25岁及以上两个年龄段，分别查看这两个年龄段用户数量</p>
+<p><strong>本题注意：age为null 也记为 25岁以下</strong></p>
+<h3 id="CASE函数"><a href="#CASE函数" class="headerlink" title="CASE函数"></a>CASE函数</h3><p>是一种多分支的函数，可以根据条件列表的值返回多个可能的结果表达式中的一个。可用在任何允许使用表达式的地方，但不能单独作为一个语句执行。</p>
+<p>case 条件表达式 when 条件表达式值 then 字段值 end as 字段</p>
+<p>SELECT CASE WHEN age &lt; 25 OR age IS NULL THEN ‘25岁以下’              WHEN age &gt;&#x3D; 25 THEN ‘25岁及以上’             END age_cut,COUNT(*) as number FROM user_profile GROUP BY age_cut</p>
+<h1 id="24"><a href="#24" class="headerlink" title="24"></a>24</h1><p>题目：现在运营想要将用户划分为<strong>20岁以下，20-24岁，25岁及以上</strong>三个年龄段，分别查看不同年龄段用户的明细情况，请取出相应数据。（注：若<strong>年龄为空</strong>请返回<strong>其他</strong>。）</p>
+<p>select     device_id,     gender,     case         when age&gt;&#x3D;25 then ‘25岁及以上’         when age&gt;&#x3D;20 then ‘20-24岁’         when age&lt;20 then ‘20岁以下’         else ‘其他’     end as age_cut from user_profile </p>
+<h1 id="25"><a href="#25" class="headerlink" title="25"></a>25</h1><p>题目：现在运营想要计算出<strong>2021年8月每天用户练习题目的数量</strong>，请取出相应数据。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424160950126.png" alt="img"></p>
+<p><strong>知识点</strong>：</p>
+<p>对于2021-05-03，用year month day函数直接取得想要的</p>
+<pre><code class="plain">select
+    day(date) as day,
+    count(question_id) as question_cnt
+from question_practice_detail
+where month(date)=8 and year(date)=2021
+group by date
+</code></pre>
+<h1 id="26"><a href="#26" class="headerlink" title="26"></a>26</h1><p>题目：现在运营想要查看用户在某天刷题后第二天还会再来刷题的平均概率。请你取出相应数据。<img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424161313268.png" alt="img"></p>
+<ul>
+<li><p>限定条件：第二天再来。</p>
+</li>
+<li><ul>
+<li>解法1：表里的数据可以看作是全部第一天来刷题了的，那么我们需要构造出第二天来了的字段，因此可以考虑用left join把第二天来了的拼起来，限定第二天来了的可以用date_add(date1, interval 1 day)&#x3D;date2筛选，并用device_id限定是同一个用户。</li>
+</ul>
+</li>
+<li><p>平均概率：</p>
+</li>
+<li><ul>
+<li>解法1：可以count(date1)得到左表全部的date记录数作为分母，count(date2)得到右表关联上了的date记录数作为分子，相除即可得到平均概率</li>
+</ul>
+</li>
+</ul>
+<pre><code class="plain">select count(date2) / count(date1) as avg_ret
+from (
+    select
+        distinct qpd.device_id,
+        qpd.date as date1,
+        uniq_id_date.date as date2
+    from question_practice_detail as qpd
+    left join(
+        select distinct device_id, date
+        from question_practice_detail
+    ) as uniq_id_date
+    on qpd.device_id=uniq_id_date.device_id
+        and date_add(qpd.date, interval 1 day)=uniq_id_date.date
+) as id_last_next_date
+</code></pre>
+<h1 id="27"><a href="#27" class="headerlink" title="27"></a>27</h1><p>题目：现在运营举办了一场比赛，收到了一些参赛申请，表数据记录形式如下所示，现在运营想要统计每个性别的用户分别有多少参赛者，请取出相应结果</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424162133044.png" alt="img"></p>
+<p><strong>字符串截取函数</strong></p>
+<p>substring_index(FIELD, sep, n)可以将字段FIELD按照sep分隔：</p>
+<p>(1).当n大于0时取第n个分隔符(n从1开始)左边的全部内容；</p>
+<p>(2).当n小于0时取倒数第n个分隔符(n从-1开始)右边的全部内容；</p>
+<pre><code class="plain">select
+    substring_index(profile, &#39;,&#39;, -1) as gender,
+    count(device_id) as number
+from user_submit
+group by gender
+</code></pre>
+<p>同理，对blog_url进行处理</p>
+<p>select device_id,substring_index(blog_url,’&#x2F;‘,-1) as user_name from user_submit;</p>
+<p>如果要找年龄呢？</p>
+<p>双层嵌套</p>
+<p>select substring_index(substring_index(profile,’,’,-2) ,’,’,1) as age,count(device_id) as number from user_submit group by age;</p>
+<h1 id="28"><a href="#28" class="headerlink" title="28"></a>28</h1><p>现在运营想要找到每个学校gpa最低的同学来做调研，请你取出每个学校的最低gpa。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424163904655.png" alt="img"></p>
+<pre><code class="plain">select device_id,university,gpa
+from user_profile
+where (university,gpa) in (select university,min(gpa) from user_profile group by university)
+order by university;
+</code></pre>
+<p>子查询：去重的university 以及min gpa</p>
+<p>然后用In判断符合条件的就行</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/SQL/" title="SQL">http://viacheung.github.io/2023/06/04/SQL/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/Redis/" rel="prev" title="Redis">
+      <i class="fa fa-chevron-left"></i> Redis
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="next" title="并查集">
+      并查集 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6"><span class="nav-number">6.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7"><span class="nav-number">7.</span> <span class="nav-text">7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8"><span class="nav-number">8.</span> <span class="nav-text">8</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9"><span class="nav-number">9.</span> <span class="nav-text">9</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10"><span class="nav-number">10.</span> <span class="nav-text">10</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11"><span class="nav-number">11.</span> <span class="nav-text">11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12"><span class="nav-number">12.</span> <span class="nav-text">12</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13"><span class="nav-number">13.</span> <span class="nav-text">13</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E6%B1%87%E6%80%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">13.1.</span> <span class="nav-text">使用聚合函数汇总数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14"><span class="nav-number">14.</span> <span class="nav-text">14</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15"><span class="nav-number">15.</span> <span class="nav-text">15</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16"><span class="nav-number">16.</span> <span class="nav-text">16</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8HAVING"><span class="nav-number">16.1.</span> <span class="nav-text">使用HAVING</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17"><span class="nav-number">17.</span> <span class="nav-text">17</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18"><span class="nav-number">18.</span> <span class="nav-text">18</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19"><span class="nav-number">19.</span> <span class="nav-text">19</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20"><span class="nav-number">20.</span> <span class="nav-text">20</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A6%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%8F%B3%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%86%85%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">20.0.1.</span> <span class="nav-text">左连接，右连接，内连接，全连接的区别及使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21"><span class="nav-number">21.</span> <span class="nav-text">21</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22"><span class="nav-number">22.</span> <span class="nav-text">22</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23"><span class="nav-number">23.</span> <span class="nav-text">23</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CASE%E5%87%BD%E6%95%B0"><span class="nav-number">23.0.1.</span> <span class="nav-text">CASE函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24"><span class="nav-number">24.</span> <span class="nav-text">24</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25"><span class="nav-number">25.</span> <span class="nav-text">25</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26"><span class="nav-number">26.</span> <span class="nav-text">26</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27"><span class="nav-number">27.</span> <span class="nav-text">27</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28"><span class="nav-number">28.</span> <span class="nav-text">28</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="什么是操作系统？管理计算机硬件与软件资源的程序  屏蔽了硬件层的复杂性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统">
+<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="什么是操作系统？管理计算机硬件与软件资源的程序  屏蔽了硬件层的复杂性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/A61F5B5322ED49038C64BDD82D341987">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210610173249387.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230330225823075.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210807152300643.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/webp/226907/1684914769452-d1ec9390-2694-4a1e-85d1-4594b50d186d.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230331214416885.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210807152619210.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210807152232136.png">
+<meta property="article:published_time" content="2023-06-04T06:11:22.000Z">
+<meta property="article:modified_time" content="2023-06-04T06:28:02.722Z">
+<meta property="article:author" content="ViaCheung">
+<meta property="article:tag" content="Java,python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/A61F5B5322ED49038C64BDD82D341987">
+
+<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>操作系统 | 命运石之门</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">命运石之门</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到我的博客空间🙇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/viacheung" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ViaCheung">
+      <meta itemprop="description" content="el psy congroo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="命运石之门">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          操作系统
+        </h1>
+
+        <div class="post-meta">
+	  <span class="post-time">
+
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-04 14:11:22 / 修改时间：14:28:02" itemprop="dateCreated datePublished" datetime="2023-06-04T14:11:22+08:00">2023-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%AB%E8%82%A1/" itemprop="url" rel="index"><span itemprop="name">八股</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="什么是操作系统？"><a href="#什么是操作系统？" class="headerlink" title="什么是操作系统？"></a>什么是操作系统？</h2><p>管理计算机硬件与软件资源的程序 </p>
+<p>屏蔽了硬件层的复杂性 <span id="more"></span></p>
+<p>内核负责系统的内存管理，硬件设备的管理，⽂件系统的管理以及应⽤程序的管理。 </p>
+<h2 id="系统调⽤"><a href="#系统调⽤" class="headerlink" title="系统调⽤"></a>系统调⽤</h2><p>用户态内核态</p>
+<p>⽤户程序中，凡是与系统态级别的资源有关的操作（如⽂件管理、进程控制、内存管理等)，都必须通过系统调⽤⽅式向操作系统提出服务请求，并由操作系统代为完成。 </p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ul>
+<li>调度：进程是资源管理的基本单位，线程是程序执行的基本单位。</li>
+<li>切换：线程上下文切换比进程上下文切换要快得多。</li>
+<li>拥有资源： 进程是拥有资源的一个独立单位，线程不拥有系统资源，但是可以访问隶属于进程的资源。</li>
+<li>系统开销： 创建或撤销进程时，系统都要为之分配或回收系统资源，如内存空间，I&#x2F;O设备等，OS所付出的开销显著大于在创建或撤销线程时的开销，进程切换的开销也远大于线程切换的开销。</li>
+</ul>
+<h2 id="协程与线程的区别？"><a href="#协程与线程的区别？" class="headerlink" title="协程与线程的区别？"></a>协程与线程的区别？</h2><ul>
+<li>线程和进程都是同步机制，而协程是异步机制。</li>
+<li>线程是抢占式，而协程是非抢占式的。需要用户释放使用权切换到其他协程，因此同一时间其实只有一个协程拥有运行权，相当于单线程的能力。</li>
+<li>一个线程可以有多个协程，一个进程也可以有多个协程(包含关系)。</li>
+<li>协程不被操作系统内核管理，而完全是由程序控制。线程是被分割的CPU资源，协程是组织好的代码流程，线程是协程的资源。但协程不会直接使用线程，协程直接利用的是执行器关联任意线程或线程池。</li>
+<li>协程能保留上一次调用时的状态。</li>
+</ul>
+<h2 id="并发和并行有什么区别？"><a href="#并发和并行有什么区别？" class="headerlink" title="并发和并行有什么区别？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_3-%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F">并发和并行有什么区别？</a></h2><p>并发：1、一段时间，有多个任务在执行； 但某一时刻 ，只有一个任务在执行 本质是因为进程切换时间片足够块来达到同时多个程序在运行的错觉</p>
+<p>并行：2、同一时刻，确实有多个任务在执行。需要多核处理器才能完成，不同的程序被放到不同的处理器上运行</p>
+<h2 id="进程与线程的切换流程？"><a href="#进程与线程的切换流程？" class="headerlink" title="进程与线程的切换流程？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_4-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%87%E6%8D%A2%E6%B5%81%E7%A8%8B%EF%BC%9F">进程与线程的切换流程？</a></h2><p>进程切换分两步：</p>
+<p>1、切换<strong>页表</strong>以使用新的地址空间（换其他线程的虚拟地址空间），一旦去切换上下文，处理器中所有已经缓存的内存地址一瞬间都作废了。（虚拟地址空间转换）</p>
+<p>2、切换内核栈和硬件上下文。</p>
+<p>线程只有：</p>
+<p>切换内核栈和硬件上下文。</p>
+<p>因为每个进程都有自己的虚拟地址空间，而线程是共享所在进程的虚拟地址空间的，因此同一个进程中的线程进行线程切换时不涉及虚拟地址空间的转换。</p>
+<h2 id="为什么虚拟地址空间切换会比较耗时？"><a href="#为什么虚拟地址空间切换会比较耗时？" class="headerlink" title="为什么虚拟地址空间切换会比较耗时？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_5-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%88%87%E6%8D%A2%E4%BC%9A%E6%AF%94%E8%BE%83%E8%80%97%E6%97%B6%EF%BC%9F">为什么虚拟地址空间切换会比较耗时？</a></h2><p>进程都有自己的虚拟地址空间，把虚拟地址转换为物理地址需要查找页表，页表查找是一个很慢的过程，因此通常使用Cache来缓存常用的地址映射，这样可以加速页表查找，这个Cache就是TLB（translation Lookaside Buffer，TLB本质上就是一个Cache，是用来加速页表查找的）。</p>
+<p>由于每个进程都有自己的虚拟地址空间，那么显然每个进程都有自己的页表，那么<strong>当进程切换后页表也要进行切换，页表切换后TLB就失效了</strong>，Cache失效导致命中率降低，那么虚拟地址转换为物理地址就会变慢，表现出来的就是程序运行会变慢，而线程切换则不会导致TLB失效，因为线程无需切换地址空间，因此我们通常说线程切换要比较进程切换块，原因就在这里。</p>
+<p>总结：虚拟地址到物理地址需要用到页表进行转换，为了加速转换，一般把页表放到Cache（TLB）里面 进程切换后页表也要进行切换，页表切换后TLB就失效了，所以这个转换就变慢了</p>
+<h2 id="进程间通信方式有哪些？"><a href="#进程间通信方式有哪些？" class="headerlink" title="进程间通信方式有哪些？"></a>进程间通信方式有哪些？</h2><ul>
+<li>管道：管道这种通讯方式有两种限制，一是半双工的通信，数据只能单向流动，二是只能在具有亲缘关系的进程间(父子进程关系)。管道可以分为两类：匿名管道和命名管道。匿名管道是单向的，只能在有亲缘关系的进程间通信；命名管道以磁盘文件的方式存在，可以实现本机任意两个进程通信。</li>
+<li>信号 ： 信号是一种比较复杂的通信方式，信号可以在任何时候发给某一进程，而无需知道该进程的状态。</li>
+<li>Socket：与其他通信机制不同的是，它可用于不同机器间的进程通信。</li>
+<li>消息队列：消息队列克服了信号承载信息量少，管道只能承载无格式字节流以及缓冲区大小受限等缺点。</li>
+<li>共享内存：共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号量，配合使用，来实现进程间的同步和通信。</li>
+<li>信号量：信号量是一个<strong>计数器</strong>，可以用来控制多个进程对共享资源的访问。它常作为一种<strong>锁机制</strong>，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</li>
+</ul>
+<p><strong>优缺点</strong>：</p>
+<ul>
+<li>管道：速度慢，容量有限；</li>
+<li>Socket：任何进程间都能通讯，但速度慢；</li>
+<li>消息队列：容量受到系统限制，且要注意第一次读的时候，要考虑上一次没有读完数据的问题；</li>
+<li>信号量：不能传递复杂消息，只能用来同步；</li>
+<li>共享内存区：能够很容易控制容量，速度快，但要保持同步，比如一个进程在写的时候，另一个进程要注意读写的问题，相当于线程中的线程安全，当然，共享内存区同样可以用作线程间通讯，不过没这个必要，线程间本来就已经共享了同一进程内的一块内存。</li>
+</ul>
+<h2 id="进程间的通信⽅式总结："><a href="#进程间的通信⽅式总结：" class="headerlink" title="进程间的通信⽅式总结："></a>进程间的通信⽅式总结：</h2><p>管道&#x2F;匿名管道(Pipes) </p>
+<p>信号(Signal) </p>
+<p>消息队列(Message Queuing) </p>
+<p>信号量(Semaphores) ：计数器，⽤于多进程对共享数据的访问 </p>
+<p>共享内存(Shared memory) </p>
+<p>套接字(Sockets) : 客户端和服务器之间通过⽹络进⾏通信 </p>
+<h2 id="进程间同步的方式有哪些？"><a href="#进程间同步的方式有哪些？" class="headerlink" title="进程间同步的方式有哪些？"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E8%AF%95%E9%A2%98?id=_7-%E8%BF%9B%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F">进程间同步的方式有哪些？</a></h2><p>1、<strong>临界区</strong>：通过多线程的串行化来访问公共资源或一段代码，速度快，适合控制数据访问。（只能同步本进程内的线程）</p>
+<p>优点：保证在某一时刻只有一个线程能访问数据的简便办法。</p>
+<p>缺点：虽然临界区同步速度很快，但却只能用来同步本进程内的线程，而不可用来同步多个进程中的线程。</p>
+<p>2、<strong>互斥量</strong>（锁）：为协调共同对一个共享资源的单独访问而设计的。互斥量跟临界区很相似，比临界区复杂，互斥对象只有一个，只有拥有互斥对象的线程才具有访问资源的权限。（可以在不同进程的线程之间进行同步）</p>
+<p>优点：使用互斥不仅仅能够在同一应用程序不同线程中实现资源的安全共享，而且可以在不同应用程序的线程之间实现对资源的安全共享。</p>
+<p>缺点：</p>
+<ul>
+<li>互斥量是可以命名的，也就是说它可以跨越进程使用，所以创建互斥量需要的资源更多，所以如果只为了在进程内部是用的话使用临界区会带来速度上的优势并能够减少资源占用量。（跨进程 需要资源多）</li>
+<li>通过互斥量可以指定资源被独占的方式使用，但如果有下面一种情况通过互斥量就无法处理，比如现在一位用户购买了一份三个并发访问许可的数据库系统，可以根据用户购买的访问许可数量来决定有多少个线程&#x2F;进程能同时进行数据库操作，这时候如果利用互斥量就没有办法完成这个要求，信号量对象可以说是一种资源计数器。（无法处理多个线程一起同步的问题 要用到信号量）</li>
+</ul>
+<p>3、<strong>信号量</strong>：为控制一个具有有限数量用户资源而设计。它允许多个线程在同一时刻访问同一资源，但是需要限制在同一时刻访问此资源的最大线程数目。互斥量是信号量的一种特殊情况，当信号量的最大资源数&#x3D;1就是互斥量了。</p>
+<p>优点：适用于对Socket（套接字）程序中线程的同步。</p>
+<p>缺点:</p>
+<ul>
+<li>信号量机制必须有公共内存，<strong>不能用于分布式操作系统</strong>，这是它最大的弱点；</li>
+<li>信号量机制功能强大，但使用时对信号量的操作分散， 而且难以控制，读写和维护都很困难，加重了程序员的编码负担；</li>
+<li>核心操作P-V分散在各用户程序的代码中，不易控制和管理，一旦错误，后果严重，且不易发现和纠正。</li>
+</ul>
+<p>4、<strong>事件</strong>： 用来通知线程有一些事件已发生，从而启动后继任务的开始。</p>
+<p>优点：事件对象通过通知操作的方式来保持线程的同步，并且<strong>可以实现不同进程中的线程同步操作</strong>。</p>
+<h2 id="线程间的同步的⽅式"><a href="#线程间的同步的⽅式" class="headerlink" title="线程间的同步的⽅式"></a>线程间的同步的⽅式</h2><p>1、临界区（同进程）：当多个线程访问一个独占性共享资源时，可以使用临界区对象。拥有临界区的线程可以访问被保护起来的资源或代码段，其他线程若想访问，则被挂起，直到拥有临界区的线程放弃临界区为止，以此达到用原子方式操 作共享资源的目的。</p>
+<p>2、事件：事件机制，则允许一个线程在处理完一个任务后，主动唤醒另外一个线程执行任务。</p>
+<p>3、互斥量：互斥对象和临界区对象非常相似，<strong>只是其允许在进程间使用</strong>（可以不同进程的线程同步），而临界区只限制与同一进程的各个线程之间使用，但是更节省资源，更有效率。</p>
+<p>（ Java 中的synchronized 关键词和各种 Lock 都是这种机制。）</p>
+<p>4、信号量：当需要一个计数器来限制可以使用某共享资源的线程数目时，可以使用“信号量”对象。</p>
+<p>区别：</p>
+<ul>
+<li>互斥量与临界区的作用非常相似，但互斥量是可以命名的，也就是说互斥量可以跨越进程使用，但创建互斥量需要的资源更多，所以如果只为了在进程内部是用的话使用临界区会带来速度上的优势并能够减少资源占用量 。因为互斥量是跨进程的互斥量一旦被创建，就可以通过名字打开它。</li>
+<li>互斥量，信号量，事件都可以被跨越进程使用来进行同步数据操作</li>
+</ul>
+<h2 id="线程的分类？"><a href="#线程的分类？" class="headerlink" title="线程的分类？"></a>线程的分类？</h2><p>从线程的运行空间来说，分为用户级线程（user-level thread, ULT）和内核级线程（kernel-level, KLT）</p>
+<p><strong>内核级线程</strong>：这类线程依赖于内核，又称为内核支持的线程或轻量级进程。无论是在用户程序中的线程还是系统进程中的线程，它们的<strong>创建、撤销和切换都由内核实现</strong>。比如英特尔i5-8250U是4核8线程，这里的线程就是内核级线程</p>
+<p><strong>用户级线程</strong>：它仅存在于用户级中，这种线程是<strong>不依赖于操作系统核心</strong>的。应用进程利用<strong>线程库来完成其创建和管理</strong>，速度比较快，<strong>操作系统内核无法感知用户级线程的存在</strong>。</p>
+<h2 id="什么是临界区，如何解决冲突？"><a href="#什么是临界区，如何解决冲突？" class="headerlink" title="什么是临界区，如何解决冲突？"></a>什么是临界区，如何解决冲突？</h2><p><strong>每个进程中访问临界资源的那段程序</strong>称为临界区，<strong>一次仅允许一个进程使用的资源称为临界资源。</strong></p>
+<p>解决冲突的办法：</p>
+<ul>
+<li>【一次只允许一个进程进入，其他进程在外面等】如果有若干进程要求进入空闲的临界区，<strong>一次仅允许一个进程进入</strong>，如已有进程进入自己的临界区，则其它所有试图进入临界区的进程必须等待；</li>
+<li>【进入时间优先】进入临界区的进程要在<strong>有限时间内退出</strong>。</li>
+<li>【进不去的话 让出CPU，避免出现忙等】如果进程不能进入自己的临界区，则应<strong>让出CPU</strong>，避免进程出现“忙等”现象。</li>
+</ul>
+<h2 id="什么是死锁？死锁产生的条件？"><a href="#什么是死锁？死锁产生的条件？" class="headerlink" title="什么是死锁？死锁产生的条件？"></a>什么是死锁？死锁产生的条件？</h2><p><strong>什么是死锁</strong>：</p>
+<p>两个或者多个进程持有某种资源而又等待其它进程释放现在保持着的资源，然后形成一种无限期的阻塞、相互等待的一种状态。</p>
+<p><strong>死锁产生的四个必要条件</strong>：（有一个条件不成立，则不会产生死锁）</p>
+<ul>
+<li>互斥条件：一个资源一次只能被一个进程使用</li>
+<li>请求与保持条件：一个进程因请求资源而阻塞时，对已获得资源保持不放</li>
+<li>不剥夺条件：进程获得的资源，在未完全使用完之前，不能强行剥夺</li>
+<li>循环等待条件：若干进程之间形成一种头尾相接的环形等待资源关系</li>
+</ul>
+<h3 id="如何处理死锁问题"><a href="#如何处理死锁问题" class="headerlink" title="如何处理死锁问题"></a><a target="_blank" rel="noopener" href="https://www.javalearn.cn/#/doc/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E8%AF%95%E9%A2%98?id=%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98">如何处理死锁问题</a></h3><p>常用的处理死锁的方法有：死锁预防、死锁避免、死锁检测、死锁解除、鸵鸟策略。</p>
+<p><strong>（1）死锁的预防：</strong>基本思想就是确保死锁发生的四个必要条件中至少有一个不成立：</p>
+<ul>
+<li>① 破除资源互斥条件：无法破坏</li>
+<li>② 破除“请求与保持”条件：进程在运行之前，必须一次性获取所有的资源。缺点：在很多情况下，无法预知进程执行前所需的全部资源，因为进程是动态执行的，同时也会降低资源利用率，导致降低了进程的并发性。</li>
+<li>③ 破除“不可剥夺”条件：允许进程强行从占有者那里夺取某些资源。当一个已经保持了某些不可被抢占资源的进程，提出新的资源请求而不能得到满足时，它必须释放已经保持的所有资源，待以后需要时再重新申请。这意味着进程已经占有的资源会被暂时被释放，或者说被抢占了。</li>
+<li>④ 破除“循环等待”条件：对所有资源排序编号，按照顺序获取资源，将紧缺的，稀少的采用较大的编号，在申请资源时必须按照编号的顺序进行，一个进程只有获得较小编号的进程才能申请较大编号的进程。（申请资源有序 释放资源反序）</li>
+</ul>
+<p><strong>（2）死锁避免：</strong></p>
+<p>死锁避免则允许前三个必要条件，但是通过动态地检测资源分配状态，以确保循环等待条件不成立，从而确保系统处于安全状态。</p>
+<p>所谓安全状态是指：如果系统能按某个顺序为每个进程分配资源（不超过其最大值），那么系统状态是安全的，换句话说就是，如果存在一个安全序列，那么系统处于安全状态。银行家算法是经典的死锁避免的算法。</p>
+<p><strong>（3）死锁检测：</strong></p>
+<p>死锁预防策略是非常保守的，他们通过限制访问资源和在进程上强加约束来解决死锁的问题。死锁检测则是完全相反，它不限制资源访问或约束进程行为，只要有可能，被请求的资源就被授权给进程。但是操作系统会周期性地执行一个算法检测前面的循环等待的条件。<strong>死锁检测算法是通过资源分配图来检测是否存在环来实现，从一个节点出发进行深度优先搜索，对访问过的节点进行标记，如果访问了已经标记的节点，就表示有存在环，也就是检测到死锁的发生</strong>。</p>
+<p>dfs</p>
+<ul>
+<li>（1）如果进程-资源分配图中无环路，此时系统没有死锁。</li>
+<li>（2）如果进程-资源分配图中有环路，且每个资源类中只有一个资源，则系统发生死锁。</li>
+<li>（3）如果进程-资源分配图中有环路，且所涉及的资源类有多个资源，则不一定会发生死锁。（因为不止一个资源嘛 你再访问也没事）</li>
+</ul>
+<p><strong>（4）死锁解除：</strong></p>
+<p>死锁解除的常用方法就是终止进程和资源抢占，回滚。所谓进程终止就是简单地终止一个或多个进程以打破循环等待，包括两种方式：终止所有死锁进程和一次只终止一个进程直到取消死锁循环为止；所谓资源抢占就是从一个或者多个死锁进程那里抢占一个或多个资源。</p>
+<p><strong>（5）鸵鸟策略：</strong></p>
+<p>把头埋在沙子里，假装根本没发生问题。因为解决死锁问题的代价很高，因此鸵鸟策略这种不采取任何措施的方案会获得更高的性能。<strong>当发生死锁时不会对用户造成多大影响，或发生死锁的概率很低，可以采用鸵鸟策略</strong>。大多数操作系统，包括 Unix，Linux 和 Windows，处理死锁问题的办法仅仅是忽略它。</p>
+<h2 id="进程的调度算法"><a href="#进程的调度算法" class="headerlink" title="进程的调度算法"></a>进程的调度算法</h2><ul>
+<li><strong>先来先服务</strong>：非抢占式的调度算法，按照请求的顺序进行调度。有利于长作业，但不利于短作业，因为短作业必须一直等待前面的长作业执行完毕才能执行，而长作业又需要执行很长时间，造成了短作业等待时间过长。另外，对I&#x2F;O密集型进程也不利，因为这种进程每次进行I&#x2F;O操作之后又得重新排队。</li>
+<li><strong>短作业优先</strong>：非抢占式的调度算法，按估计运行时间最短的顺序进行调度。长作业有可能会饿死，处于一直等待短作业执行完毕的状态。因为如果一直有短作业到来，那么长作业永远得不到调度。</li>
+<li><strong>最短剩余时间优先</strong>：最短作业优先的抢占式版本，按剩余运行时间的顺序进行调度。 当一个新的作业到达时，其整个运行时间与当前进程的剩余时间作比较。如果新的进程需要的时间更少，则挂起当前进程，运行新的进程。否则新的进程等待。</li>
+<li><strong>时间片轮转</strong>：将所有就绪进程按 FCFS 的原则排成一个队列，每次调度时，把 CPU 时间分配给队首进程，该进程可以执行一个时间片。当时间片用完时，由计时器发出时钟中断，调度程序便停止该进程的执行，并将它送往就绪队列的末尾，同时继续把 CPU 时间分配给队首的进程。时间片轮转算法的效率和时间片的大小有很大关系：因为进程切换都要保存进程的信息并且载入新进程的信息，如果时间片太小，会导致进程切换得太频繁，在进程切换上就会花过多时间。 而如果时间片过长，那么实时性就不能得到保证。</li>
+<li><strong>优先级调度</strong>：为每个进程分配一个优先级，按优先级进行调度。为了防止低优先级的进程永远等不到调度，可以随着时间的推移增加等待进程的优先级。</li>
+</ul>
+<h2 id="进程有哪些状态？"><a href="#进程有哪些状态？" class="headerlink" title="进程有哪些状态？"></a>进程有哪些状态？</h2><p>进程一共有5种状态，分别是创建、就绪、运行（执行）、终止、阻塞。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/A61F5B5322ED49038C64BDD82D341987" alt="img"></p>
+<ul>
+<li>运行状态就是进程正在CPU上运行。在单处理机环境下，每一时刻最多只有一个进程处于运行状态。</li>
+<li>就绪状态就是说进程已处于准备运行的状态，即进程获得了除CPU之外的一切所需资源，一旦得到CPU即可运行。</li>
+<li>阻塞状态就是进程正在等待某一事件而暂停运行，比如等待某资源为可用或等待I&#x2F;O完成。即使CPU空闲，该进程也不能运行。</li>
+</ul>
+<p><strong>运行态→阻塞态</strong>：往往是由于等待外设，等待主存等资源分配或等待人工干预而引起的。 </p>
+<p><strong>阻塞态→就绪态</strong>：则是等待的条件已满足，只需分配到处理器后就能运行。</p>
+<p><strong>运行态→就绪态</strong>：不是由于自身原因，而是由外界原因使运行状态的进程让出处理器，这时候就变成就绪态。例如时间片用完，或有更高优先级的进程来抢占处理器等。</p>
+<p><strong>就绪态→运行态</strong>：系统按某种策略选中就绪队列中的一个进程占用处理器，此时就变成了运行态。</p>
+<h2 id="什么是分页？"><a href="#什么是分页？" class="headerlink" title="什么是分页？"></a>什么是分页？</h2><p>把内存空间划分为<strong>大小相等且固定的块</strong>，作为主存的基本单位。因为程序数据存储在不同的页面中，而页面又离散的分布在内存中，<strong>因此需要一个页表来记录映射关系，以实现从页号到物理块号的映射。</strong></p>
+<p>访问分页系统中内存数据需要<strong>两次的内存访问</strong> (一次是从内存中访问页表，从中找到指定的物理块号，加上页内偏移得到实际物理地址(页号*每页块数+页内偏移量&#x3D;物理块号)；第二次就是根据第一次得到的物理地址访问内存取出数据)。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210610173249387.png" alt="img"></p>
+<h2 id="什么是分段？"><a href="#什么是分段？" class="headerlink" title="什么是分段？"></a>什么是分段？</h2><p><strong>分页是为了提高内存利用率，而分段是为了满足程序员在编写代码的时候的一些逻辑需求(比如数据共享，数据保护，动态链接等)。</strong></p>
+<p>分段内存管理当中，<strong>地址是二维的，一维是段号，二维是段内地址；其中每个段的长度是不一样的，而且每个段内部都是从0开始编址的</strong>。由于分段管理中，每个段内部是连续内存分配，但是段和段之间是<strong>离散分配</strong>的，因此也存在一个逻辑地址到物理地址的映射关系，相应的就是段表机制。</p>
+<p>基址+偏移量（看看有没有超过段长 超过说明越界了）</p>
+<p>根据段号确认基址，加上偏移量 （还要判断是否越界）</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230330225823075.png" alt="img"></p>
+<h2 id="分页和分段有什区别？"><a href="#分页和分段有什区别？" class="headerlink" title="分页和分段有什区别？"></a>分页和分段有什区别？</h2><ul>
+<li>（分页透明 分段不透明 需要自己显式划分）分页对程序员是透明的，但是分段需要程序员显式划分每个段。</li>
+<li>分页的地址空间是一维地址空间，分段是二维的。（一个给地址就行 一个需要给段码+段内地址）</li>
+</ul>
+<p>解释：分页之所以是一维的，原因在于分页的大小是固定的，且页码之间是连续的，操作的时候只需给出一个地址，就能够根据所给地址的大小与页面大小计算出在页码和页内地址，粗略举例，比如页面大小是4KB，给一个地址为5000，可以算出所在页码是2，页内地址是5000-4000&#x3D;1000，即在第二页的第1000个位置。而分段的因为每段的长度不一样，必须给出段码和段内地址</p>
+<ul>
+<li><strong>页的大小不可变，段的大小可以动态改变</strong>。</li>
+<li>分页主要用于实现虚拟内存，从而获得更大的地址空间（for max）；分段主要是为了使程序和数据可以被划分为逻辑上独立的地址空间并且有助于共享和保护(独立化)。</li>
+</ul>
+<h2 id="什么是交换空间？"><a href="#什么是交换空间？" class="headerlink" title="什么是交换空间？"></a>什么是交换空间？</h2><p>操作系统把物理内存(physical RAM)分成一块一块的小内存，每一块内存被称为<strong>页(page)。当内存资源不足时，</strong>Linux把某些页的内容转移至硬盘上的一块空间上，以释放内存空间<strong>。硬盘上的那块空间叫做</strong>交换空间**(swap space),而这一过程被称为交换(swapping)。**物理内存和交换空间的总容量就是虚拟内存的可用容量。</p>
+<p>用途：</p>
+<ul>
+<li>物理内存不足时一些不常用的页可以被交换出去，腾给系统。</li>
+<li>程序启动时很多内存页被用来初始化，之后便不再需要，可以交换出去。</li>
+</ul>
+<h2 id="物理地址、逻辑地址（有效地址）、虚拟地址（线性地址）的区别"><a href="#物理地址、逻辑地址（有效地址）、虚拟地址（线性地址）的区别" class="headerlink" title="物理地址、逻辑地址（有效地址）、虚拟地址（线性地址）的区别?"></a>物理地址、逻辑地址（有效地址）、虚拟地址（线性地址）的区别?</h2><p>物理地址就是内存中<strong>真正的地址</strong>，具有唯一性。<strong>不管哪种地址，最终都会映射为物理地址</strong>。</p>
+<p>在实模式下，段基址 + 段内偏移经过地址加法器的处理，经过地址总线传输，最终也会转换为物理地址。</p>
+<p>但是在保护模式下，段基址 + 段内偏移被称为线性地址，不过此时的段基址不能称为真正的地址，而是会被称作为一个选择子的东西，选择子就是个索引，相当于数组的下标，通过这个索引能够在 GDT 中找到相应的段描述符，段描述符记录了<strong>段的起始、段的大小</strong>等信息，这样便得到了基地址。如果此时没有开启内存分页功能，那么这个线性地址可以直接当做物理地址来使用，直接访问内存。如果开启了分页功能，那么这个线性地址又多了一个名字，这个名字就是虚拟地址。</p>
+<p>不论在实模式还是保护模式下，段内偏移地址都叫做有效地址。有效地址也是逻辑地址。</p>
+<p>线性地址可以看作是虚拟地址，虚拟地址不是真正的物理地址，但是虚拟地址会最终被映射为物理地址。下面是虚拟地址 -&gt; 物理地址的映射。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210807152300643.png" alt="img"></p>
+<h2 id="什么是缓冲区溢出？有什么危害？"><a href="#什么是缓冲区溢出？有什么危害？" class="headerlink" title="什么是缓冲区溢出？有什么危害？"></a>什么是缓冲区溢出？有什么危害？</h2><p>缓冲区溢出是指当计算机向缓冲区填充数据时超出了缓冲区本身的容量，溢出的数据覆盖在合法数据上。</p>
+<p>危害有以下两点：</p>
+<ul>
+<li>程序崩溃，导致拒绝服务</li>
+<li>跳转并且执行一段恶意代码</li>
+</ul>
+<p>造成缓冲区溢出的主要原因是程序中没有仔细检查用户输入。</p>
+<h2 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h2><p>因为只加载进程的一部分进入内存 然后用页面置换技术就完事</p>
+<p>虚拟内存就是说，让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。虚拟内存使用部分加载的技术，让一个进程或者资源的<strong>某些</strong>页面加载进内存，从而能够加载更多的进程，甚至能加载比内存大的进程，这样看起来好像内存变大了，这部分内存其实包含了磁盘或者硬盘，并且就叫做虚拟内存。</p>
+<h2 id="虚拟内存的实现方式有哪些"><a href="#虚拟内存的实现方式有哪些" class="headerlink" title="虚拟内存的实现方式有哪些?"></a>虚拟内存的实现方式有哪些?</h2><p>虚拟内存中，允许将一个作业分多次调入内存。釆用连续分配方式时，会使相当一部分内存空间都处于暂时或永久的空闲状态，造成内存资源的严重浪费，而且也无法从逻辑上扩大内存容量。因此，虚拟内存的实需要建立在<strong>离散分配</strong>的内存管理方式的基础上。虚拟内存的实现有以下三种方式：</p>
+<p>肯定要离散呀 连续的话 那相当于没有虚拟内存 使用起始位置+偏移量 </p>
+<ul>
+<li>请求分页存储管理。（分页）</li>
+<li>请求分段存储管理。(分段)</li>
+<li>请求段页式存储管理。（段页）</li>
+</ul>
+<p>感觉主要是这个离散分配让虚拟内存好像范围大了很多</p>
+<h2 id="讲一讲IO多路复用"><a href="#讲一讲IO多路复用" class="headerlink" title="讲一讲IO多路复用"></a>讲一讲IO多路复用</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6882984260672847879">https://juejin.cn/post/6882984260672847879</a></p>
+<p><strong>IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程。IO多路复用适用如下场合</strong>：</p>
+<ul>
+<li>当客户处理多个描述字时（一般是交互式输入和网络套接口），必须使用I&#x2F;O复用。</li>
+<li>当一个客户同时处理多个套接口时，而这种情况是可能的，但很少出现。</li>
+<li>如果一个TCP服务器既要处理监听套接口，又要处理已连接套接口，一般也要用到I&#x2F;O复用。</li>
+<li>如果一个服务器即要处理TCP，又要处理UDP，一般要使用I&#x2F;O复用。</li>
+<li>如果一个服务器要处理多个服务或多个协议，一般要使用I&#x2F;O复用。</li>
+<li>与多进程和多线程技术相比，I&#x2F;O多路复用技术的最大优势是系统开销小，系统不必创建进程&#x2F;线程，也不必维护这些进程&#x2F;线程，从而大大减小了系统的开销</li>
+</ul>
+<h2 id="硬链接和软链接有什么区别？"><a href="#硬链接和软链接有什么区别？" class="headerlink" title="硬链接和软链接有什么区别？"></a>硬链接和软链接有什么区别？</h2><h3 id="inode"><a href="#inode" class="headerlink" title="inode"></a>inode</h3><p>inode 是一个描述文件或目录属性的数据库，如元信息、硬盘物理地址等。通过 inode，操作系统可以检索文件权限信息、物理地址等信息。当一个文件从一个文件夹移到另一个文件夹，文件将被移动到硬盘的另一个位置，文件的 inode 值也会自动发生变化。</p>
+<h3 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h3><p>硬连接直接通过 inode 引用文件。硬连接只能用于文件，而不能用于目录。</p>
+<p>硬连接（Hard Link）扮演着源文件拷贝或镜像的角色。可以访问源文件的数据，如果源文件被删除，硬连接依然可以访问源文件的数据。</p>
+<h3 id="软连接"><a href="#软连接" class="headerlink" title="软连接"></a>软连接</h3><p>软连接本质上是源文件的一个快捷方式，指向源文件本身，而不是源文件的 inode 值。软连接可以同时用于文件和目录，也可以在不同的硬盘或容器之间使用。</p>
+<p>软连接（Soft Link 或 Symbolic Link）扮演着源文件指针的角色。不可以访问源文件数据，如果源文件被删除，软连接将会指向一个不再存在的文件地址。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/webp/226907/1684914769452-d1ec9390-2694-4a1e-85d1-4594b50d186d.webp" alt="img"></p>
+<p>硬连接直接引用源文件引用的 inode，软连接则直接引用源文件。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230331214416885.png" alt="img"></p>
+<h2 id="中断的处理过程"><a href="#中断的处理过程" class="headerlink" title="中断的处理过程?"></a>中断的处理过程?</h2><ol>
+<li>保护现场：将当前执行程序的相关数据保存在寄存器中，然后入栈。</li>
+<li>开中断：以便执行中断时能响应较高级别的中断请求。</li>
+<li>中断处理</li>
+<li>关中断：保证恢复现场时不被新中断打扰</li>
+<li>恢复现场：从堆栈中按序取出程序数据，恢复中断前的执行状态。</li>
+</ol>
+<h2 id="中断和轮询有什么区别？"><a href="#中断和轮询有什么区别？" class="headerlink" title="中断和轮询有什么区别？"></a>中断和轮询有什么区别？</h2><ul>
+<li>轮询：CPU对<strong>特定设备</strong>轮流询问。中断：通过<strong>特定事件</strong>提醒CPU。</li>
+<li>轮询：效率低等待时间长，CPU利用率不高。中断：容易遗漏问题，CPU利用率不高。</li>
+</ul>
+<h2 id="什么是用户态和内核态？"><a href="#什么是用户态和内核态？" class="headerlink" title="什么是用户态和内核态？"></a>什么是用户态和内核态？</h2><p>用户态和系统态是操作系统的两种运行状态：</p>
+<ul>
+<li>内核态：内核态运行的程序可以访问计算机的任何数据和资源，不受限制，包括外围设备，比如网卡、硬盘等。处于内核态的 CPU 可以从一个程序切换到另外一个程序，并且占用 CPU 不会发生抢占情况。</li>
+<li>用户态：用户态运行的程序只能受限地访问内存，只能直接读取用户程序的数据，并且不允许访问外围设备，用户态下的 CPU 不允许独占，也就是说 CPU 能够被其他程序获取。</li>
+</ul>
+<p>将操作系统的运行状态分为用户态和内核态，主要是为了对访问能力进行限制，<strong>防止随意进行一些比较危险的操作导致系统的崩溃</strong>，比如设置时钟、内存清理，这些都需要在内核态下完成 。</p>
+<h2 id="用户态和内核态是如何切换的"><a href="#用户态和内核态是如何切换的" class="headerlink" title="用户态和内核态是如何切换的?"></a>用户态和内核态是如何切换的?</h2><p>所有的用户进程都是运行在用户态的，但是我们上面也说了，用户程序的访问能力有限，一些比较重要的比如从硬盘读取数据，从键盘获取数据的操作则是内核态才能做的事情，而这些数据却又对用户程序来说非常重要。所以就涉及到两种模式下的转换，即<strong>用户态 -&gt; 内核态 -&gt; 用户态</strong>，而唯一能够做这些操作的只有 系统调用，而能够执行系统调用的就只有 操作系统。</p>
+<p>一般用户态 -&gt; 内核态的转换我们都称之为 trap 进内核，也被称之为 陷阱指令(trap instruction)。</p>
+<p>他们的工作流程如下：</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210807152619210.png" alt="img"></p>
+<ul>
+<li>首先用户程序会调用 glibc 库，glibc 是一个标准库，同时也是一套核心库，库中定义了很多关键 API。</li>
+<li>glibc 库知道针对不同体系结构调用系统调用的正确方法，它会根据体系结构应用程序的二进制接口设置用户进程传递的参数，来准备系统调用。</li>
+<li>然后，glibc 库调用软件中断指令(SWI) ，这个指令通过更新 CPSR 寄存器将模式改为超级用户模式，然后跳转到地址 0x08 处。</li>
+<li>到目前为止，整个过程仍处于用户态下，在执行 SWI 指令后，允许进程执行内核代码，MMU 现在允许内核虚拟内存访问</li>
+<li>从地址 0x08 开始，进程执行加载并跳转到中断处理程序，这个程序就是 ARM 中的 vector_swi()。</li>
+<li>在 vector_swi() 处，从 SWI 指令中提取系统调用号 SCNO，然后使用 SCNO 作为系统调用表 sys_call_table 的索引，调转到系统调用函数。</li>
+<li>执行系统调用完成后，将还原用户模式寄存器，然后再以用户模式执行。</li>
+</ul>
+<h2 id="Unix-常见的IO模型"><a href="#Unix-常见的IO模型" class="headerlink" title="Unix 常见的IO模型"></a>Unix 常见的IO模型</h2><p>对于一次IO访问（以read举例），数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的地址空间。所以说，当一个read操作发生时，它会经历两个阶段：</p>
+<ul>
+<li>等待数据准备就绪 (Waiting for the data to be ready)</li>
+<li>将数据从内核拷贝到进程中 (Copying the data from the kernel to the process)</li>
+</ul>
+<p>正式因为这两个阶段，linux系统产生了下面五种网络模式的方案：</p>
+<ul>
+<li>阻塞式IO模型(blocking IO model)</li>
+<li>非阻塞式IO模型(noblocking IO model)</li>
+<li>IO复用式IO模型(IO multiplexing model)</li>
+<li>信号驱动式IO模型(signal-driven IO model)</li>
+<li>异步IO式IO模型(asynchronous IO model)</li>
+</ul>
+<p>对于这几种 IO 模型的详细说明，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6942686874301857800#heading-13">https://juejin.cn/post/6942686874301857800#heading-13</a></p>
+<p>其中，IO多路复用模型指的是：使用单个进程同时处理多个网络连接IO，他的原理就是select、poll、epoll 不断轮询所负责的所有 socket，当某个socket有数据到达了，就通知用户进程。该模型的优势并不是对于单个连接能处理得更快，而是在于能处理更多的连接。</p>
+<h2 id="select、poll-和-epoll-之间的区别"><a href="#select、poll-和-epoll-之间的区别" class="headerlink" title="select、poll 和 epoll 之间的区别?"></a>select、poll 和 epoll 之间的区别?</h2><p>（1）select：时间复杂度 O(n)</p>
+<p>select 仅仅知道有 I&#x2F;O 事件发生，但并不知道是哪几个流，所以只能<strong>无差别轮询所有流</strong>，找出能读出数据或者写入数据的流，并对其进行操作。所以 select 具有 O(n) 的无差别轮询复杂度，同时处理的流越多，无差别轮询时间就越长。</p>
+<p>（2）poll：时间复杂度 O(n)</p>
+<p>poll 本质上和 select 没有区别，它将用户传入的数组拷贝到内核空间，然后查询每个 fd 对应的设备状态， 但是它<strong>没有最大连接数的限制</strong>，原因是它是基于<strong>链表</strong>来存储的。</p>
+<p>（3）epoll：时间复杂度 O(1)</p>
+<p>epoll 可以理解为 event poll，不同于忙轮询和无差别轮询，epoll 会把哪个流发生了怎样的 I&#x2F;O 事件通知我们。所以说 epoll 实际上是事件驱动（每个事件关联上 fd）的。</p>
+<p>select，poll，epoll 都是 IO 多路复用的机制。I&#x2F;O 多路复用就是通过一种机制监视多个描述符，<strong>一旦某个描述符就绪（一般是读就绪或者写就绪）</strong>，就通知程序进行相应的读写操作。但 select，poll，epoll 本质上都是同步 I&#x2F;O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步 I&#x2F;O 则无需自己负责进行读写，异步 I&#x2F;O 的实现会负责把数据从内核拷贝到用户空间。</p>
+<h2 id="操作系统的内存管理主要是做什么"><a href="#操作系统的内存管理主要是做什么" class="headerlink" title="操作系统的内存管理主要是做什么"></a>操作系统的内存管理主要是做什么</h2><p>主要负责内存的分配与回收 </p>
+<h2 id="常⻅的⼏种内存管理机制"><a href="#常⻅的⼏种内存管理机制" class="headerlink" title="常⻅的⼏种内存管理机制"></a>常⻅的⼏种内存管理机制</h2><p>块式管理 ：碎⽚ </p>
+<p>⻚式管理 ： 提⾼了内存利⽤率，减少了碎⽚ </p>
+<p>段式管理 ：实际意义的 </p>
+<h2 id="快表和多级⻚表"><a href="#快表和多级⻚表" class="headerlink" title="快表和多级⻚表"></a>快表和多级⻚表</h2><p><strong>解决了⻚表管理中很重要的两个问题</strong></p>
+<ol>
+<li>虚拟地址到物理地址的转换要快。</li>
+<li>解决虚拟地址空间⼤，⻚表也会很⼤的问题。</li>
+</ol>
+<p>快表 (类似缓存)</p>
+<p>\1.根据虚拟地址中的⻚号查快表；\2. 如果该⻚在快表中，直接从快表中读取相应的物理地址；\3. 如果该⻚不在快表中，就访问内存中的⻚表，再从⻚表中得到物理地址，同时将⻚表中的该映射表项添加到快表中；\4. 当快表填满后，⼜要登记新⻚时，就按照⼀定的淘汰策略淘汰掉快表中的⼀个⻚。 </p>
+<p>多级⻚表 </p>
+<p>时间换空间 </p>
+<h2 id="分⻚机制和分段机制的共同点和区别"><a href="#分⻚机制和分段机制的共同点和区别" class="headerlink" title="分⻚机制和分段机制的共同点和区别"></a>分⻚机制和分段机制的共同点和区别</h2><p>共同点 ：1、都是为了提⾼内存利⽤率，较少内存碎⽚。2、每个⻚和段中的内存是连续的。 </p>
+<p>区别 ： </p>
+<p>1、⻚的⼤⼩是固定的，由操作系统决定；⽽段的⼤⼩不固定，取决于我们当前运⾏的程序。 </p>
+<p>2、分⻚仅仅是为了满⾜操作系统内存管理的需求，⽽段是逻辑信息的单位， </p>
+<h2 id="逻辑-虚拟-地址和物理地址"><a href="#逻辑-虚拟-地址和物理地址" class="headerlink" title="逻辑(虚拟)地址和物理地址"></a>逻辑(虚拟)地址和物理地址</h2><p>逻辑地址：指针⾥⾯存储的数值 </p>
+<p>物理地址指的是真实物理内存中地址 （内存地址寄存器 ）</p>
+<h2 id="CPU-寻址了解吗-为什么需要虚拟地址空间"><a href="#CPU-寻址了解吗-为什么需要虚拟地址空间" class="headerlink" title="CPU 寻址了解吗?为什么需要虚拟地址空间?"></a>CPU 寻址了解吗?为什么需要虚拟地址空间?</h2><p>如果直接把物理地址暴露出来的话会带来严重问题，⽐如可能对操作系统造成伤害以及给同时运⾏多个程序造成困难。 </p>
+<h2 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h2><p>只是多个进程被分割为多个物理内存块（还有部分暂时存储在外部磁盘存储器上，在需要时进⾏数据交换。 ） 感觉上是独享主存 </p>
+<h2 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h2><p>时间局部：如果程序中的某条指令⼀旦执⾏，不久以后该指令可能再次执⾏ </p>
+<p>空间局部性 ：⼀旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问， </p>
+<h2 id="⻚⾯置换算法"><a href="#⻚⾯置换算法" class="headerlink" title="⻚⾯置换算法"></a>⻚⾯置换算法</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20210807152232136.png" alt="img"></p>
+<p>OPT ⻚⾯置换算法（最佳⻚⾯置换算法） ：最⻓时间内不再被访问的⻚⾯ </p>
+<p>FIFO（First In First Out） ⻚⾯置换算法（先进先出⻚⾯置换算法） : 总是淘汰最先进⼊内存的⻚⾯，即选择在内存中驻留时间最久的⻚⾯进⾏淘汰 </p>
+<p>LRU （Least Currently Used）⻚⾯置换算法（最近最久未使⽤⻚⾯置换算法） </p>
+<p>LFU （Least Frequently Used）⻚⾯置换算法（最少使⽤⻚⾯置换算法） </p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>“坚持原创技术分享，您的支持将鼓励我继续创作!“</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="ViaCheung 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ViaCheung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://viacheung.github.io/2023/06/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">http://viacheung.github.io/2023/06/04/操作系统/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="prev" title="并查集">
+      <i class="fa fa-chevron-left"></i> 并查集
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/04/%E6%B5%8B%E5%BC%80/" rel="next" title="测开">
+      测开 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是操作系统？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E2%BD%A4"><span class="nav-number">2.</span> <span class="nav-text">系统调⽤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">进程和线程的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">协程与线程的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%B9%B6%E8%A1%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">并发和并行有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%87%E6%8D%A2%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">进程与线程的切换流程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%88%87%E6%8D%A2%E4%BC%9A%E6%AF%94%E8%BE%83%E8%80%97%E6%97%B6%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">为什么虚拟地址空间切换会比较耗时？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">进程间通信方式有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E2%BD%85%E5%BC%8F%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">9.</span> <span class="nav-text">进程间的通信⽅式总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">10.</span> <span class="nav-text">进程间同步的方式有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%97%B4%E7%9A%84%E5%90%8C%E6%AD%A5%E7%9A%84%E2%BD%85%E5%BC%8F"><span class="nav-number">11.</span> <span class="nav-text">线程间的同步的⽅式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%9F"><span class="nav-number">12.</span> <span class="nav-text">线程的分类？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%B4%E7%95%8C%E5%8C%BA%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81%EF%BC%9F"><span class="nav-number">13.</span> <span class="nav-text">什么是临界区，如何解决冲突？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81%EF%BC%9F%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E6%9D%A1%E4%BB%B6%EF%BC%9F"><span class="nav-number">14.</span> <span class="nav-text">什么是死锁？死锁产生的条件？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="nav-number">14.1.</span> <span class="nav-text">如何处理死锁问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">15.</span> <span class="nav-text">进程的调度算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E7%8A%B6%E6%80%81%EF%BC%9F"><span class="nav-number">16.</span> <span class="nav-text">进程有哪些状态？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E9%A1%B5%EF%BC%9F"><span class="nav-number">17.</span> <span class="nav-text">什么是分页？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E6%AE%B5%EF%BC%9F"><span class="nav-number">18.</span> <span class="nav-text">什么是分段？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E5%92%8C%E5%88%86%E6%AE%B5%E6%9C%89%E4%BB%80%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">19.</span> <span class="nav-text">分页和分段有什区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%EF%BC%9F"><span class="nav-number">20.</span> <span class="nav-text">什么是交换空间？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E3%80%81%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%EF%BC%88%E6%9C%89%E6%95%88%E5%9C%B0%E5%9D%80%EF%BC%89%E3%80%81%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%EF%BC%88%E7%BA%BF%E6%80%A7%E5%9C%B0%E5%9D%80%EF%BC%89%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">21.</span> <span class="nav-text">物理地址、逻辑地址（有效地址）、虚拟地址（线性地址）的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8D%B1%E5%AE%B3%EF%BC%9F"><span class="nav-number">22.</span> <span class="nav-text">什么是缓冲区溢出？有什么危害？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%EF%BC%9F"><span class="nav-number">23.</span> <span class="nav-text">什么是虚拟内存？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">24.</span> <span class="nav-text">虚拟内存的实现方式有哪些?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B2%E4%B8%80%E8%AE%B2IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-number">25.</span> <span class="nav-text">讲一讲IO多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E9%93%BE%E6%8E%A5%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">26.</span> <span class="nav-text">硬链接和软链接有什么区别？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inode"><span class="nav-number">26.1.</span> <span class="nav-text">inode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E8%BF%9E%E6%8E%A5"><span class="nav-number">26.2.</span> <span class="nav-text">硬连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="nav-number">26.3.</span> <span class="nav-text">软连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="nav-number">27.</span> <span class="nav-text">中断的处理过程?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E8%BD%AE%E8%AF%A2%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">28.</span> <span class="nav-text">中断和轮询有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%EF%BC%9F"><span class="nav-number">29.</span> <span class="nav-text">什么是用户态和内核态？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E7%9A%84"><span class="nav-number">30.</span> <span class="nav-text">用户态和内核态是如何切换的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unix-%E5%B8%B8%E8%A7%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B"><span class="nav-number">31.</span> <span class="nav-text">Unix 常见的IO模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select%E3%80%81poll-%E5%92%8C-epoll-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">32.</span> <span class="nav-text">select、poll 和 epoll 之间的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%BB%E8%A6%81%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">33.</span> <span class="nav-text">操作系统的内存管理主要是做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E2%BB%85%E7%9A%84%E2%BC%8F%E7%A7%8D%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6"><span class="nav-number">34.</span> <span class="nav-text">常⻅的⼏种内存管理机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E8%A1%A8%E5%92%8C%E5%A4%9A%E7%BA%A7%E2%BB%9A%E8%A1%A8"><span class="nav-number">35.</span> <span class="nav-text">快表和多级⻚表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E2%BB%9A%E6%9C%BA%E5%88%B6%E5%92%8C%E5%88%86%E6%AE%B5%E6%9C%BA%E5%88%B6%E7%9A%84%E5%85%B1%E5%90%8C%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="nav-number">36.</span> <span class="nav-text">分⻚机制和分段机制的共同点和区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91-%E8%99%9A%E6%8B%9F-%E5%9C%B0%E5%9D%80%E5%92%8C%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="nav-number">37.</span> <span class="nav-text">逻辑(虚拟)地址和物理地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU-%E5%AF%BB%E5%9D%80%E4%BA%86%E8%A7%A3%E5%90%97-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-number">38.</span> <span class="nav-text">CPU 寻址了解吗?为什么需要虚拟地址空间?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">39.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%80%A7%E5%8E%9F%E7%90%86"><span class="nav-number">40.</span> <span class="nav-text">局部性原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%BB%9A%E2%BE%AF%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">41.</span> <span class="nav-text">⻚⾯置换算法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ViaCheung"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ViaCheung</p>
+  <div class="site-description" itemprop="description">el psy congroo</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/viacheung" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;viacheung" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:viacheung5@gmail.com" title="E-Mail → mailto:viacheung5@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViaCheung</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div> -->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
