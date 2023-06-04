@@ -239,7 +239,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 01:18:03 / 修改时间：01:20:33" itemprop="dateCreated datePublished" datetime="2023-06-04T01:18:03+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 01:18:03 / 修改时间：01:30:06" itemprop="dateCreated datePublished" datetime="2023-06-04T01:18:03+08:00">2023-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,219 +262,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="比较器"><a href="#比较器" class="headerlink" title="比较器"></a>比较器</h2><pre><code class="plain">Arrays.sort(points, (a, b) -&gt; Integer.compare(a[0], b[0]));//表升序
-   java.lang包的Integer类的compare()方法比较作为参数给出的两个整数值(x，y)，如果(x == y)则返回零，如果(x &lt;y)则返回小于零，如果(x&gt; y)，则返回大于零的值。
-</code></pre>
-<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230225192923077.png" alt="img"></p>
-<h2 id="Boolean-amp-boolean"><a href="#Boolean-amp-boolean" class="headerlink" title="Boolean &amp;boolean"></a>Boolean &amp;boolean</h2><p>一个是泛型 一个是普通类型</p>
-<h3 id="超大数据"><a href="#超大数据" class="headerlink" title="超大数据"></a>超大数据</h3><p>BigDecimal b1 &#x3D; new BigDecimal(Double.toString(v1));</p>
-<p>cnblogs.com&#x2F;zhangyinhua&#x2F;p&#x2F;11545305.html</p>
-<h2 id="和-的区别"><a href="#和-的区别" class="headerlink" title="|和||的区别"></a><strong>|和||的区别</strong></h2><p>||会短路</p>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>int float double : 0</p>
-<p>boolean: false</p>
-<p>String : null</p>
-<p>char : 空格</p>
-<p>List&lt;int[]&gt; 转二维数组</p>
-<p> ans.toArray(new int[ans.size()][]);</p>
-<p>打印二维数组</p>
-<p> System.out.println(Arrays.deepToString(intervals));</p>
-<p>打印一维数组Arrays.toString();</p>
-<p>返回二维数组</p>
-<p> return new int[]{num0,num1};</p>
-<h2 id="求长度三剑客"><a href="#求长度三剑客" class="headerlink" title="求长度三剑客"></a>求长度三剑客</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220919155428203.png" alt="img"></p>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><strong>转Int</strong></p>
-<p>Integer.valueOf()和Integer.parseInt()</p>
-<p>valueOf(String)方法会返回Integer类的对象，而parseInt(String)方法返回原始的int值。</p>
-<p>xx.valueOf(a) 把a转为xx类型； xx.valueOf(a，0，n) 表示把a转为xx类型，同时取下标从0开始的n个数据；</p>
-<p><strong>判断字符串相等</strong></p>
-<p>1、&#x3D;&#x3D; 引用</p>
-<p>2、.equals() 内容 （用这个）</p>
-<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>添加：append</p>
-<p>查询 CharAt</p>
-<p>删除 deleteCharAt(index) delete(start,end)</p>
-<h2 id="List系列"><a href="#List系列" class="headerlink" title="List系列"></a>List系列</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/181428633">ArrayList</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/182470738">LinkedList</a></p>
-<p>add 添加</p>
-<p>remove 删除</p>
-<h2 id="Queue系列"><a href="#Queue系列" class="headerlink" title="Queue系列"></a>Queue系列</h2><ul>
-<li><strong>ArrayDeque</strong>ArrayDeque 是 Java 集合中<strong>双端队列</strong>的<strong>数组实现</strong>，双端队列的链表实现（<strong>LinkedList</strong>）我们在前几篇文章中讲过了。ArrayDeque 几乎没有容量限制，设计为<strong>线程不安全的</strong>，<strong>禁止 null 元素</strong>。ArrayDeque 作为<strong>栈</strong>使用时<strong>比 Stack 类效率要高</strong>，作为<strong>队列</strong>使用时<strong>比 LinkedList 要快</strong>。</li>
-</ul>
-<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList 类是一个可以动态修改的数组，与普通数组的区别就是它是没有固定大小的限制，我们可以添加或删除元素。</p>
-<p><strong>添加元素</strong></p>
-<p>ArrayList 类提供了很多有用的方法，添加元素到 ArrayList 可以使用 add() 方法:</p>
-<p><strong>访问元素</strong></p>
-<p>访问 ArrayList 中的元素可以使用 <strong>get()</strong> 方法</p>
-<p><strong>修改元素</strong></p>
-<p>如果要修改 ArrayList 中的元素可以使用 <strong>set()</strong> 方法：</p>
-<p><strong>删除元素</strong></p>
-<p>如果要删除 ArrayList 中的元素可以使用 <strong>remove()</strong> 方法：</p>
-<p><strong>计算大小</strong></p>
-<p>如果要计算 ArrayList 中的元素数量可以使用 <strong>size()</strong> 方法：</p>
-<p><strong>判断相等</strong></p>
-<p>.equals方法</p>
-<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>可以把他当作队列 数组 栈来看待，因此不用单独记忆其api</p>
-<p>添加 add</p>
-<p>移除最后元素： removeLast</p>
-<p>获取最后一个元素：getLast</p>
-<p>效果其实和Array</p>
-<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>不允许有重复元素 允许有 null 值 是无序的 不是线程安全的</p>
-<p>同样 add() remove() size() </p>
-<p>contains() 方法来判断元素是否存在于集合当中</p>
-<p>检查数字是否在哈希集合中需要 O(1)的时间，而对于其他数据结构，则需要 O(n 的时间。选择正确的数据结构是解决这些问题的关键部分。</p>
-<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>散列表，存储的内容是键值对(key-value)映射。</p>
-<p>实现了 Map 接口，根据键的 HashCode 值存储数据，具有很快的访问速度，最多允许一条记录的键为 null，不支持线程同步。</p>
-<p>无序的，即不会记录插入的顺序。</p>
-<p><strong>api:</strong></p>
-<p>添加键值对(key-value)可以使用 put() 方法:</p>
-<p>get(key) 方法来获取 key 对应的 value:</p>
-<p>我们可以使用 remove(key) 方法来删除 key 对应的键值对(key-value):</p>
-<p><strong>size()</strong> 方法：</p>
-<p>isEmpty() containKey() containValue() entrySet() keySet() values()</p>
-<p>Map的<strong>entrySet()方法</strong>返回一个实现Map.Entry接口的对象集合。集合中每个对象都是底层Map中一个特定的键&#x2F;值对。通过这个集合的迭代器，获得每一个条目(唯一获取方式)的键或值并对值进行更改。Map.Entry中的常用方法如下所示：</p>
-<p>​	 (1) Object getKey(): 返回条目的关键字</p>
-<p>(2) Object getValue(): 返回条目的值 (3) Object setValue(Object value): 将相关映像中的值改为value，并且返回旧值</p>
-<p>Trie树</p>
-<p>「前缀树」又叫「字典树」或「单词查找树」</p>
-<p>「前缀树」的应用场景：给定一个字符串集合构建一棵前缀树，然后给一个字符串，判断前缀树中是否存在该字符串或者该字符串的前缀</p>
-<p><strong>分析</strong></p>
-<p>一般而言，字符串的集合都是仅由小写字母构成，所以本文章都是基于该情况展开分析！</p>
-<p>字符串集合：[them, zip, team, the, app, that]。这个样例的前缀树长什么样呢？</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/1657540498-HHnzlV-1.svg" alt="img"></p>
-<p>由于都是小写字母，所以对于每个节点，均有 26 个孩子节点，上图中没有画出来，省略了而已…，但是要记住：每个节点均有 26 个孩子节点</p>
-<p>还有一个点要明确：节点仅仅表示从根节点到本节点的路径构成的字符串是否有效而已</p>
-<p>对于上图中橙色的节点，均为有效节点，即：从根节点到橙色节点的路径构成的字符串均在集合中</p>
-<pre><code class="plain">如果现在要看目标字符串 te 是否存在，分两步：
- 首先看看表示 te 字符串的路径是否存在，这个例子是存在的
- 其次看看该路径的终点处的节点是否有效，很遗憾，此处为白色，无效
- 所以前缀 te 不存在！！
-</code></pre>
-<p><strong>构建前缀树 插入字符串 查找前缀过程</strong></p>
-<pre><code class="plain">class Trie &#123;
-     //结点定义
-     class TrieNode &#123;
-         boolean val;
-         TrieNode[] children = new TrieNode[26];
-     &#125;
-     //根节点定义
-     private TrieNode root;
-     //根节点初始化
-     public Trie() &#123;
-         root = new TrieNode();
-     &#125;
- 
-     public void insert(String word) &#123;
-         TrieNode p = root;
-         for (char c : word.toCharArray()) &#123;
-             int i = c - &#39;a&#39;;
-             if (p.children[i] == null) p.children[i] = new TrieNode();
-             p = p.children[i];
-         &#125;
-         p.val = true;
-     &#125;
-     //查询
-     public boolean search(String word) &#123;
-         TrieNode p = root;
-         for (char c : word.toCharArray()) &#123;
-             int i = c - &#39;a&#39;;
-             if (p.children[i] == null) return false;
-             p = p.children[i];
-         &#125;
-         return p.val;//成功，返回值（看看此处存不存在值）
-     &#125;
-     //查询前缀
-     public boolean startsWith(String prefix) &#123;
-         TrieNode p = root;
-         for (char c : prefix.toCharArray()) &#123;
-             int i = c - &#39;a&#39;;
-             if (p.children[i] == null) return false;
-             p = p.children[i];
-         &#125;
-         return true;//和查询一样的思路，只是返回的是true而已
-     &#125;
- 
- &#125;
-//官方解法
- class Trie &#123;
-     private Trie[] children;//定义两个成员变量
-     private boolean isEnd;//
- 
-     public Trie() &#123;
-         //两个成员变量
-         children = new Trie[26];
-         isEnd = false;
-     &#125;
-     //构建
-     public void insert(String word) &#123;
-         Trie node = this;
-         for (int i = 0; i &lt; word.length(); i++) &#123;
-             char ch = word.charAt(i);
-             int index = ch - &#39;a&#39;;//转化为数字，从左边往右边a到z
-             if (node.children[index] == null) &#123;
-                 node.children[index] = new Trie();//如果为空的话构建
-             &#125;
-             node = node.children[index];//向下移动
-         &#125;
-         node.isEnd = true;//置为true
-     &#125;
-     
-     public boolean search(String word) &#123;
-         Trie node = searchPrefix(word);
-         return node != null &amp;&amp; node.isEnd;//需要既是非Null，也得是最后一个(isend为true)
-     &#125;
-     
-     public boolean startsWith(String prefix) &#123;
-         return searchPrefix(prefix) != null;//看查到的node结点是否存在就行，因为是前缀，不用管Isend
-     &#125;
-     //查前缀
-     private Trie searchPrefix(String prefix) &#123;
-         Trie node = this;//指向当前对象的指针  可以理解为指向trie的根部节点
-         for (int i = 0; i &lt; prefix.length(); i++) &#123;
-             char ch = prefix.charAt(i);
-             int index = ch - &#39;a&#39;;
-             if (node.children[index] == null) &#123;
-                 return null;//发现其中一个为null就肯定查询失败
-             &#125;
-             node = node.children[index];
-         &#125;
-         return node;//返回最后一个Node，此时还没判断是否为Null,此时路径没问题
-     &#125;
- &#125;
-</code></pre>
-<p>时间复杂度：O(∣S∣)，其中 ∣S∣是每次插入或查询的字符串的长度。</p>
-<p>空间复杂度：O(∣T∣⋅Σ)，其中 ∣T∣为所有插入字符串的长度之和，Σ 为字符集的大小，本题 Σ&#x3D;26</p>
-<p>官方题解的for可以用增强for循环</p>
-<h2 id="ACM"><a href="#ACM" class="headerlink" title="ACM"></a>ACM</h2><p>nextInt()：读取到空格或回车之后结束本次的int值；同理还有nextDouble() 、nextFloat()、nextInt()</p>
-<p> int n&#x3D;sc.nextInt();只获取数字 换行符需要sc.nextLine();拿掉</p>
-<p>第二个字符串排序就不用nextLine了</p>
-<p>next()：直至读取到空格或回车之后结束本次的String值，不可读取回车；nextLine()：直至读取到换行符（回车）之后结束本次读取的String，可读取回车（空值）hasNextInt()：判断控制台接收是否为数字,是则接收 hasNextInt()只起到判断作用而不是接收数据</p>
-<p>导包建议：</p>
-<p> import java.util.*;</p>
-<p><strong>例子：</strong></p>
-<p>输入描述:输入有两行，第一行n</p>
-<p>第二行是n个字符串，字符串之间用空格隔开输出描述:输出一行排序后的字符串，空格隔开，无结尾空格</p>
-<pre><code class="plain">import java.util.*;
- public class Main &#123;
-   public static void main(String[] args) &#123;
-       Scanner sc = new Scanner(System.in);
-       int n=sc.nextInt();
-       String enter=sc.nextLine();//把换车符拿掉
-       String line=sc.nextLine();
-       String[] s=line.split(&quot; &quot;);//转为数组好排序
-       Arrays.sort(s);
-       StringBuilder sb=new StringBuilder();
-       for(String ss:s)&#123;
-           sb.append(ss).append(&quot; &quot;);
-       &#125;
-       String s1 = sb.toString();
-       System.out.println(s1.substring(0,s1.length()-1));
-   &#125;
- &#125;
-</code></pre>
-<h3 id="接受输入的字符a"><a href="#接受输入的字符a" class="headerlink" title="接受输入的字符a"></a>接受输入的字符a</h3><pre><code class="plain">String b = in.next
- if(b.equals(&quot;a&quot;))
-</code></pre>
-<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>System.out.printf(“%.11f”, ans+sum);&#x2F;&#x2F;.11表示位数</p>
-
+          用Java写算法题的一些api
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/JAVA-API%E5%9F%BA%E7%A1%80/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -521,7 +317,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 01:13:09 / 修改时间：01:14:04" itemprop="dateCreated datePublished" datetime="2023-06-04T01:13:09+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 01:13:09 / 修改时间：01:30:45" itemprop="dateCreated datePublished" datetime="2023-06-04T01:13:09+08:00">2023-06-04</time>
             </span>
 
           
@@ -535,40 +331,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>nextInt()：读取到空格或回车之后结束本次的int值；同理还有nextDouble() 、nextFloat()、nextInt()</p>
-<p>int n&#x3D;sc.nextInt();只获取数字 换行符需要sc.nextLine();拿掉</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134906020.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134916246.png" alt="img"></p>
-<p>第二个字符串排序就不用nextLine了</p>
-<p>next()：直至读取到空格或回车之后结束本次的String值，不可读取回车；nextLine()：直至读取到换行符（回车）之后结束本次读取的String，可读取回车（空值）hasNextInt()：判断控制台接收是否为数字,是则接收 hasNextInt()只起到判断作用而不是接收数据</p>
-<p>导包建议：</p>
-<p>import java.util.*;</p>
-<p><strong>例子：</strong></p>
-<p>输入描述:输入有两行，第一行n</p>
-<p>第二行是n个字符串，字符串之间用空格隔开输出描述:输出一行排序后的字符串，空格隔开，无结尾空格</p>
-<pre><code class="plain">import java.util.*;
-public class Main &#123;
-  public static void main(String[] args) &#123;
-      Scanner sc = new Scanner(System.in);
-      int n=sc.nextInt();
-      String enter=sc.nextLine();//把换车符拿掉
-      String line=sc.nextLine();
-      String[] s=line.split(&quot; &quot;);//转为数组好排序
-      Arrays.sort(s);
-      StringBuilder sb=new StringBuilder();
-      for(String ss:s)&#123;
-          sb.append(ss).append(&quot; &quot;);
-      &#125;
-      String s1 = sb.toString();
-      System.out.println(s1.substring(0,s1.length()-1));
-  &#125;
-&#125;
-</code></pre>
-<h2 id="接受输入的字符a"><a href="#接受输入的字符a" class="headerlink" title="接受输入的字符a"></a>接受输入的字符a</h2><pre><code class="plain">String b = in.next
-if(b.equals(&quot;a&quot;))
-</code></pre>
-<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>System.out.printf(“%.11f”, ans+sum);&#x2F;&#x2F;.11表示位数</p>
-
+          ACM格式输入输出问题
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/04/ACM/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
