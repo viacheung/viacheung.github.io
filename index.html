@@ -203,12 +203,16 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">binlog日志变更技术方案</a>
         </h2>
 
         <div class="post-meta">
 	  <span class="post-time">
 
+	  
+	      <i class="fa fa-thumb-tack"></i>
+	      <font color=7D26CD>�ö�</font>
+	      <span class="post-meta-divider">|</span>
 	  
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,7 +221,16 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-08 20:21:51 / 修改时间：20:22:25" itemprop="dateCreated datePublished" datetime="2023-09-08T20:21:51+08:00">2023-09-08</time>
+              <time title="创建时间：2023-09-08 17:44:24 / 修改时间：20:40:24" itemprop="dateCreated datePublished" datetime="2023-09-08T17:44:24+08:00">2023-09-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+                </span>
             </span>
 
           
@@ -233,337 +246,14 @@
       
           <h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p><strong>需求</strong>：实现数据修改日志功能，所有的参数项，在编辑并提交保存后，需要将历史数据放入log表中，记录修改人、修改时间、操作字段、变更前数据、变更后数据；</p>
 <p><strong>目的</strong> :订阅binlog日志实现业务解耦</p>
-<h1 id="2-总体架构"><a href="#2-总体架构" class="headerlink" title="2. 总体架构"></a>2. 总体架构</h1><p><img src="/.io//1693205640157-7a229db8-0092-43b1-adf6-bdeec5d85e62.jpeg" alt="img"><img src="/.io//1690165570738-77d55d8d-c6ae-4191-8b00-1bef098f7c2b.jpeg" alt="img"></p>
-<h1 id="3-接入数据工厂"><a href="#3-接入数据工厂" class="headerlink" title="3. 接入数据工厂"></a>3. 接入数据工厂</h1><p>由于技术升级等原因，融合云的Binlog Source目前已停新增，后面会逐步下线，且数据集成功能较Binlog Source更加强大，综上，选择数据工厂链路实现数据库的Binlog到Talos的采集。</p>
-<h2 id="3-1-数据工厂信息"><a href="#3-1-数据工厂信息" class="headerlink" title="3.1. 数据工厂信息"></a>3.1. 数据工厂信息</h2><p>平台地址：<a target="_blank" rel="noopener" href="https://dt.mi.com/workspace">https://dt.mi.com/workspace</a></p>
-<p>功能模块：数据工场-数据开发-实时&#x2F;离线-集成作业</p>
-<h2 id="3-2-新建作业"><a href="#3-2-新建作业" class="headerlink" title="3.2. 新建作业"></a>3.2. 新建作业</h2><p>创建作业前，需要先将MySQL数据库源添加到空间内（如果是写入已有topic，需要将topic导入到空间，并加入写权限），详细操作可见&gt;&gt;<a target="_blank" rel="noopener" href="https://xiaomi.f.mioffice.cn/docs/dock4SieqNccJ4xnM1vZRHBN3Le#YVt3ga">数据源管理</a></p>
-<ol>
-<li>开发模块中选择实时开发，新建“实时集成”作业，进入配置页面。</li>
-</ol>
-
-
-<ol>
-<li>源选择“MySQL(Binlog)”，目标选择“Talos”<strong>（仅支持binlog格式<strong><strong>schema</strong></strong>的talos）</strong></li>
-</ol>
-<ul>
-<li><ul>
-<li>匹配类型选择库表，指定数据库数据表，如果想订阅整个数据库Binlog信息，此处数据表随意选择即可，后续订阅库级别的Talos即可</li>
-<li>注意：数据库所在集群环境需要和Talos集群环境一致，否则会出现类似如下错误</li>
-<li></li>
-</ul>
-</li>
-</ul>
-<p>其余配置以及作业管理参照：<a target="_blank" rel="noopener" href="https://xiaomi.f.mioffice.cn/wiki/wikk4TN9Zibaq51jutqF5lRNRaf">https://xiaomi.f.mioffice.cn/wiki/wikk4TN9Zibaq51jutqF5lRNRaf</a></p>
-<p>我是在中国北京IPD损益测算环境下进行的</p>
-<h2 id="3-3-链路监控图"><a href="#3-3-链路监控图" class="headerlink" title="3.3. 链路监控图"></a>3.3. 链路监控图</h2><p><a target="_blank" rel="noopener" href="https://dt.mi.com/workspace/#/workspace/12499/operationCenter/realTimeOperate/jobDetail?jobId=1672564&amp;jobVersion=1&amp;partKey=tracingMonitor">https://dt.mi.com/workspace/#/workspace/12499/operationCenter/realTimeOperate/jobDetail?jobId=1672564&amp;jobVersion=1&amp;partKey=tracingMonitor</a></p>
-
-
-<p>采集作业同步实例级别的 binlog，记录到 TALOS(1)，然后接了一个集成作业，过滤某张用户需要的表(也就是新建作业部分我们选定的数据表)到下游的系统 TALOS(2) </p>
-<p>如果想要订阅整个数据库的变更记录，接入TALOS(1)，如果想要订阅具体的表，接入TALOS(2），然后在小米融合云的Talos Platform就可以查看具体信息了</p>
-<p>我们这里是订阅整个损益系统的数据库表的变更，所以连的上12499那个topic</p>
-
-
-<p>因为talos platform我们团队之前已经开过权限 因此在对应的环境下是可以直接看到topic的</p>
-<h1 id="4-Java-TalosConsumer"><a href="#4-Java-TalosConsumer" class="headerlink" title="4. Java TalosConsumer"></a>4. Java TalosConsumer</h1><p>生产Binlog消息部分已经由数据工厂做好，只需要关注Talos消费者逻辑，这里主要介绍使用流程和配置；<br>参考<br><a target="_blank" rel="noopener" href="https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java">https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java</a></p>
-<h2 id="4-1-TalosConsumer-使用流程"><a href="#4-1-TalosConsumer-使用流程" class="headerlink" title="4.1. TalosConsumer 使用流程"></a>4.1. TalosConsumer 使用流程</h2><h3 id="4-1-1-准备工作"><a href="#4-1-1-准备工作" class="headerlink" title="4.1.1. 准备工作"></a>4.1.1. 准备工作</h3><p><a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/product/docs/talos/talos/join/join_prepare/join_prepare">接入前准备</a></p>
-<h3 id="4-1-2-配置server地址"><a href="#4-1-2-配置server地址" class="headerlink" title="4.1.2. 配置server地址"></a>4.1.2. 配置server地址</h3><p>使用配置文件构造TalosConsumerConfig，并配置Talos的service uri，我们提供http和https，具体URI见<a target="_blank" rel="noopener" href="https://cloud.d.xiaomi.net/product/docs/talos/talos/join/join_prepare/talos_cluster_info#/">集群信息</a>；很多配置是可Configurable的，用户可以根据<a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/product/docs/talos/talos/details/talos_consumer/talos_consumer/talos_consumer_config">配置详解</a>的说明针对自己业务数据的情况进行配置。</p>
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Default</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>galaxy.talos.service.endpoint</td>
-<td>指定Talos Server的URI，可以配置http和https，相关集群对应的URI请见<a target="_blank" rel="noopener" href="https://docs.api.xiaomi.com/talos/outer-cluster-info.html">集群信息</a></td>
-<td>–</td>
-</tr>
-</tbody></table>
-<pre><code class="plain">    Properties pros = new Properties();
-    pros.setProperty(&quot;galaxy.talos.service.endpoint&quot;, &quot;$talosServiceURI&quot;);
-    consumerConfig = new TalosConsumerConfig(pros);
-</code></pre>
-<h3 id="4-1-3-构造Credential"><a href="#4-1-3-构造Credential" class="headerlink" title="4.1.3. 构造Credential"></a>4.1.3. 构造Credential</h3><p>使用融合云创建Team的AccessKey和SecretKey构造合法的Credential，只有合法的Credential才能Authentication success。</p>
-<pre><code class="plain"> // credential
-    credential = new Credential();
-    credential.setSecretKeyId(accessKey)
-        .setSecretKey(accessSecret)
-        .setType(UserType.DEV_XIAOMI);
-</code></pre>
-<h3 id="4-1-4-实现接口"><a href="#4-1-4-实现接口" class="headerlink" title="4.1.4. 实现接口"></a>4.1.4. 实现接口</h3><p>实现MessageProcessor和MessageProcessorFactory接口，实现这个接口，处理从server读取的数据</p>
-<pre><code class="plain">private static class MyMessageProcessor implements MessageProcessor &#123;
-    @Override
-    public void init(TopicAndPartition topicAndPartition, long messageOffset) &#123;
-
-    &#125;
-    @Override
-    public void process(List&lt;MessageAndOffset&gt; messages, MessageCheckpointer messageCheckpointer) &#123;
-      try &#123;
-        // add your process logic for &#39;messages&#39;
-        for (MessageAndOffset messageAndOffset : messages) &#123;
-          LOG.info(&quot;Message content: &quot; + new String(
-              messageAndOffset.getMessage().getMessage()));
-        &#125;
-
-        long count = successGetNumber.addAndGet(messages.size());
-        LOG.info(&quot;Consuming total data so far: &quot; + count);
-
-        /** if user has set &#39;galaxy.talos.consumer.checkpoint.auto.commit&#39; to false,
-         * then you can call the &#39;checkpoint&#39; to commit the list of messages.
-         */
-        //messageCheckpointer.checkpoint();
-      &#125; catch (Throwable throwable) &#123;
-        LOG.error(&quot;process error, &quot;, throwable);
-      &#125;
-    &#125;
-
-    @Override
-    public void shutdown(MessageCheckpointer messageCheckpointer) &#123;
-
-    &#125;
-  &#125;
-</code></pre>
-<p><strong>MessageProcessorFactory接口</strong></p>
-<pre><code class="plain">  private static class MyMessageProcessorFactory implements MessageProcessorFactory &#123;
-    @Override
-    public MessageProcessor createProcessor() &#123;
-      return new MyMessageProcessor();
-    &#125;
-  &#125;
-</code></pre>
-<h3 id="4-1-5-读取数据"><a href="#4-1-5-读取数据" class="headerlink" title="4.1.5. 读取数据"></a>4.1.5. 读取数据</h3><p>实例化TalosConsumer即可，它会自动读取数据、进行rebalance和维护消费的offset</p>
-<pre><code class="plain"> talosConsumer = new TalosConsumer(consumerGroup, consumerConfig,
-        credential, topicName, new MyMessageProcessorFactory(),
-        clientPrefix, new SimpleTopicAbnormalCallback());
-</code></pre>
-<p><a target="_blank" rel="noopener" href="https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java">示例代码链接</a></p>
-<h2 id="4-2-TalosConsumer-参数项"><a href="#4-2-TalosConsumer-参数项" class="headerlink" title="4.2. TalosConsumer 参数项"></a>4.2. TalosConsumer 参数项</h2><table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>必需项</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>galaxy.talos.service.endpoint</td>
-<td>指定Talos Server的URI，参见<a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/product/docs/talos/talos/join/join_prepare/talos_cluster_info">集群信息</a></td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.topic.name</td>
-<td>指定用户获取数据的Topic Name</td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.access.key</td>
-<td>指定Team AccessKey，参见<a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/product/docs/talos/talos_platform/talos_platform_auth">融合云认证机制</a></td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.access.secret</td>
-<td>指定Team SecretKey，参见<a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/product/docs/talos/talos_platform/talos_platform_auth">融合云认证机制</a></td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.fetch.interval.ms</td>
-<td>指定每个partition拉取数据的时间间隔&#x2F;频率</td>
-<td>200ms</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.max.fetch.records</td>
-<td>指定每个partition拉取数据batch条目数的最大值</td>
-<td>1000</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.checkpoint.auto.commit</td>
-<td>指定系统是否自动commit消费的数据</td>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.commit.offset.record.fetched.num</td>
-<td>指定consumer commit offset 消息条目数维度的频率</td>
-<td>10000</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.commit.offset.interval.milli</td>
-<td>指定consumer commit offset 时间维度的频率</td>
-<td>5000ms</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.out.of.range.reset.latest.offset</td>
-<td>指定当用户拉取消息时offset出现越界，是否从该partition的最新offset开始拉取</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.start.reset.offset.value</td>
-<td>指定从当前Partition的StartOffset还是EndOffset开始读取消息</td>
-<td>-1</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.start.whether.reset.offset</td>
-<td>指定TalosConsumer启动时是否重置offset</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.client.falcon.monitor.switch</td>
-<td>指定消费过程是否需要监控</td>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.degrade.fetch.interval</td>
-<td>被限速之后拉取数据的时间间隔&#x2F;频率</td>
-<td>60s</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.accelerate.switch</td>
-<td>是否开启自动加速拉取数据</td>
-<td>false</td>
-<td>false</td>
-</tr>
-</tbody></table>
-<h1 id="5-Binlog数据解析"><a href="#5-Binlog数据解析" class="headerlink" title="5. Binlog数据解析"></a>5. Binlog数据解析</h1><h5 id="Binlog-thrift定义"><a href="#Binlog-thrift定义" class="headerlink" title="Binlog thrift定义"></a>Binlog thrift定义</h5><pre><code class="plain">struct Binlog &#123;
-          1: required i64 timestamp,    // binlog产生的时间戳
-          2: required Operation operationType,  // 数据操作类型
-          3: required list&lt;ColumnSchema&gt; schema,  //表结构
-          4: optional list&lt;Row&gt; rows,  // 改动后的数据
-          5: optional string database, //数据库名
-          6: optional string table,  // 表名
-          7: optional list&lt;string&gt; primaryKey,  // 主键
-          8: optional list&lt;Row&gt; oldRows,  // 改动前的数据
-          9: optional i64 offset,   // 唯一顺序id
-        &#125;
-</code></pre>
-<h5 id="changlog表结构"><a href="#changlog表结构" class="headerlink" title="changlog表结构"></a>changlog表结构</h5><pre><code class="plain">CREATE TABLE `changelog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modifier` varchar(255) NOT NULL COMMENT &#39;修改人&#39;,
-  `modificationTime` datetime NOT NULL COMMENT &#39;修改时间&#39;,
-  `databaseName` varchar(255) NOT NULL COMMENT &#39;库名&#39;,
-  `tableName` varchar(255) NOT NULL COMMENT &#39;表名&#39;,
-  `primaryKey` varchar(255) NOT NULL,
-  `modifyCol` varchar(255) NOT NULL COMMENT &#39;修改列字段&#39;,
-  `modifyRow` varchar(255) NOT NULL COMMENT &#39;修改行对应主键id值&#39;,
-  `Oldvalue` varchar(255) NOT NULL COMMENT &#39;旧值&#39;,
-  `Newvalue` varchar(255) NOT NULL COMMENT &#39;新值&#39;,
-  `diff` longtext NOT NULL COMMENT &#39;json信息存储&#39;,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
-</code></pre>
-<h5 id="反序列化Talos中的数据"><a href="#反序列化Talos中的数据" class="headerlink" title="反序列化Talos中的数据"></a>反序列化Talos中的数据</h5><pre><code class="java">Binlog binlog = BinlogDeserializer.deserialize(messageAndOffset.message.getMessage())
-</code></pre>
-<h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5>
-
-<ol>
-<li>处理方法<strong>process</strong>：处理来自Talos的消息：</li>
-</ol>
-<ul>
-<li><ul>
-<li>对每条消息进行处理：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>反序列化Binlog消息</li>
-<li>获取相关信息，修改时间、数据库名、表名、主键、旧行列表、新行列表以及表结构schema</li>
-<li>获取修改人字段的索引（约定修改人字段名称为update_user）</li>
-<li>如果Binlog为UPDATE操作：</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li><ul>
-<li>获取新旧行的差异Map。</li>
-<li>添加**”modify Time”<strong>、</strong>“databaseName”<strong>和</strong>“tableName”**字段到差异Map。</li>
-<li>插入到<strong>changelog</strong>表。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li>完成对消息的处理。</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>获取修改人字段索引方法<strong>get_modifier_columnIndex</strong>：查找列模式列表中是否包含名为**”update_user”**的字段，并返回其索引。</li>
-<li>获取差异信息方法<strong>getDiff</strong>：比较旧行和新行的数据，生成差异信息Map。</li>
-</ol>
-<h5 id="getColumnValue方法"><a href="#getColumnValue方法" class="headerlink" title="getColumnValue方法"></a>getColumnValue方法</h5><p>ColumnSchema与Row按顺序一一对应，可以自行根据ColumnSchema.type将Row中存储的数据解析为对应的类型，示例代码如下：</p>
-<pre><code class="java">private static Object getColumnValue(Row row, int columnIndex, ColumnSchema columnSchema) &#123;
-        switch (columnSchema.type) &#123;
-        case TINYINT: case SMALLINT: case MEDIUMINT: case INT: case UNSIGNEDTINYINT: case UNSIGNEDMEDIUMINT:
-        case UNSIGNEDSMALLINT: case UNSIGNEDINT: case YEAR:
-            System.out.println(binlog.rows.get(0).row.get(index).getI32Value());
-            break;
-        case BIGINT: case UNSIGNEDBIGINT: case DATETIME: case DATE: case TIME: case TIMESTAMP: case SET:
-            System.out.println(binlog.rows.get(0).row.get(index).getI64Value());
-            break;
-        case DOUBLE: case DECIMAL: case FLOAT:
-            System.out.println(binlog.rows.get(0).row.get(index).getDoubleValue());
-            break;
-        case CHAR: case VARCHAR: case JSON:
-            System.out.println(binlog.rows.get(0).row.get(index).getStringValue());
-            break;
-    &#125;
-&#125;
-</code></pre>
-<h1 id="6-其他实现细节"><a href="#6-其他实现细节" class="headerlink" title="6. 其他实现细节"></a>6. 其他实现细节</h1><h2 id="6-1-kc加密"><a href="#6-1-kc加密" class="headerlink" title="6.1. kc加密"></a>6.1. kc加密</h2><p><a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/next/console/keycenter/sid/encry?env=cn&amp;projectId=13153&amp;sid=mi-ipd-research">https://cloud.mioffice.cn/next/console/keycenter/sid/encry?env=cn&amp;projectId=13153&amp;sid=mi-ipd-research</a></p>
-<h2 id="6-2-改用mybatis"><a href="#6-2-改用mybatis" class="headerlink" title="6.2. 改用mybatis"></a>6.2. 改用mybatis</h2><p>之前用的jdbc，比较简单，但为了后面好管理，改为mybatis，其中这个地方卡了很久</p>
-<pre><code class="java">//注入
-@Autowired
-    private MyMessageProcessorFactory myMessageProcessorFactory;
-
-@Autowired
-    private TalosConfig talosConfig;
-//    启动消费者
-public void start() throws TException &#123;
-    TalosConsumerConfig consumerConfig = talosConfig.consumerConfig(&quot;serverBeijing5_Zhongjingyun&quot;);
-Credential credential = talosConfig.credential();
-//不再是new对象而是改为注入，myMessageProcessorFactory里面注入myMessageProcessor
-TalosConsumer talosConsumer = new TalosConsumer(TalosConfig.consumerGroup, consumerConfig,
-                                                credential, topicName, myMessageProcessorFactory,
-                                                clientPrefix, new SimpleTopicAbnormalCallback());
-
-&#125;
-</code></pre>
-<h1 id="7-部署相关"><a href="#7-部署相关" class="headerlink" title="7. 部署相关"></a>7. 部署相关</h1><ol>
-<li>推到git仓库上面（master生产 test 测试）<br><a target="_blank" rel="noopener" href="https://git.n.xiaomi.com/mit/supplychain/ipd/ipd-data-change-log">https://git.n.xiaomi.com/mit/supplychain/ipd/ipd-data-change-log</a></li>
-<li>在IAM资源树服务上创建节点（给个权限就行）</li>
-<li>创建应用<br><a target="_blank" rel="noopener" href="https://cloud.mioffice.cn/next/console/matrix/apps?appId=17958&amp;projectId=363992">https://cloud.mioffice.cn/next/console/matrix/apps?appId=17958&amp;projectId=363992</a></li>
-<li>应用上创建部署空间</li>
-<li>流水线配置（选那个</li>
-<li>（我创建的模板就行） 这里matrix部分要选刚刚建的部署空间</li>
-<li>本地执行脚本触发流水线<br>后面需要指定环境参数  .&#x2F;mitag.sh pro<br>才能打到正确的tag</li>
-</ol>
-<p>&#96;&#96;&#96;git<br>#!&#x2F;bin&#x2F;bash</p>
-<h1 id="设置-Bash-脚本选项，set-e-表示遇到错误就停止执行脚本"><a href="#设置-Bash-脚本选项，set-e-表示遇到错误就停止执行脚本" class="headerlink" title="设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本"></a>设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本</h1><p>set -e</p>
-<h1 id="默认前缀是-“test”"><a href="#默认前缀是-“test”" class="headerlink" title="默认前缀是 “test”"></a>默认前缀是 “test”</h1><p>prefix&#x3D;”test”</p>
-<h1 id="如果第一个参数是-“pre”，则前缀变为-“pre”"><a href="#如果第一个参数是-“pre”，则前缀变为-“pre”" class="headerlink" title="如果第一个参数是 “pre”，则前缀变为 “pre”"></a>如果第一个参数是 “pre”，则前缀变为 “pre”</h1><p>if [[ $1 &#x3D;&#x3D; “pre” ]]; then<br>    prefix&#x3D;”pre”<br>fi</p>
-<h1 id="如果第一个参数是-“pro”，则前缀变为-“pro”"><a href="#如果第一个参数是-“pro”，则前缀变为-“pro”" class="headerlink" title="如果第一个参数是 “pro”，则前缀变为 “pro”"></a>如果第一个参数是 “pro”，则前缀变为 “pro”</h1><p>if [[ $1 &#x3D;&#x3D; “pro” ]]; then<br>    prefix&#x3D;”pro”<br>fi</p>
-<h1 id="前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”"><a href="#前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”" class="headerlink" title="前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”"></a>前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”</h1><h1 id="自定义函数-mi-tag-，用于打标签"><a href="#自定义函数-mi-tag-，用于打标签" class="headerlink" title="自定义函数 mi-tag()，用于打标签"></a>自定义函数 mi-tag()，用于打标签</h1><p>function mi-tag() {<br>    # 设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本<br>    set -e<br>    # 更新本地代码，并拉取远程仓库的标签<br>    git pull –tags -f<br>    # 获取最大的标签号<br>    local maxTag&#x3D;0;<br>      # 列出所有的标签 过滤出具有特定前缀和日期匹配的标签列表<br>    for k in <code>git tag -l &quot;$&#123;prefix&#125;$(date +&#39;%Y%m%d&#39;)-*&quot;</code><br>    do<br>      # 将标签名中的连字符（”-“）替换为空格<br>      local arr&#x3D;(<code>echo $k|tr &quot;-&quot; &quot; &quot;</code>)<br>      # 算数组arr的长度，并将结果减去1 得到数组最后一个元素的索引。<br>      local index&#x3D;&#96;expr $</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

@@ -3844,10 +3844,12 @@ IAccountService as = ac.getBean(&quot;accountService&quot;,IAccountService.class
       </categories>
   </entry>
   <entry>
-    <title></title>
+    <title>binlog日志变更技术方案</title>
     <url>/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p><strong>需求</strong>：实现数据修改日志功能，所有的参数项，在编辑并提交保存后，需要将历史数据放入log表中，记录修改人、修改时间、操作字段、变更前数据、变更后数据；</p>
 <p><strong>目的</strong> :订阅binlog日志实现业务解耦</p>
+<span id="more"></span>****
+
 <h1 id="2-总体架构"><a href="#2-总体架构" class="headerlink" title="2. 总体架构"></a>2. 总体架构</h1><p><img src="/.io//1693205640157-7a229db8-0092-43b1-adf6-bdeec5d85e62.jpeg" alt="img"><img src="/.io//1690165570738-77d55d8d-c6ae-4191-8b00-1bef098f7c2b.jpeg" alt="img"></p>
 <h1 id="3-接入数据工厂"><a href="#3-接入数据工厂" class="headerlink" title="3. 接入数据工厂"></a>3. 接入数据工厂</h1><p>由于技术升级等原因，融合云的Binlog Source目前已停新增，后面会逐步下线，且数据集成功能较Binlog Source更加强大，综上，选择数据工厂链路实现数据库的Binlog到Talos的采集。</p>
 <h2 id="3-1-数据工厂信息"><a href="#3-1-数据工厂信息" class="headerlink" title="3.1. 数据工厂信息"></a>3.1. 数据工厂信息</h2><p>平台地址：<a href="https://dt.mi.com/workspace">https://dt.mi.com/workspace</a></p>
@@ -4179,6 +4181,9 @@ TalosConsumer talosConsumer = new TalosConsumer(TalosConfig.consumerGroup, consu
 <h1 id="如果第一个参数是-“pro”，则前缀变为-“pro”"><a href="#如果第一个参数是-“pro”，则前缀变为-“pro”" class="headerlink" title="如果第一个参数是 “pro”，则前缀变为 “pro”"></a>如果第一个参数是 “pro”，则前缀变为 “pro”</h1><p>if [[ $1 &#x3D;&#x3D; “pro” ]]; then<br>    prefix&#x3D;”pro”<br>fi</p>
 <h1 id="前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”"><a href="#前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”" class="headerlink" title="前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”"></a>前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”</h1><h1 id="自定义函数-mi-tag-，用于打标签"><a href="#自定义函数-mi-tag-，用于打标签" class="headerlink" title="自定义函数 mi-tag()，用于打标签"></a>自定义函数 mi-tag()，用于打标签</h1><p>function mi-tag() {<br>    # 设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本<br>    set -e<br>    # 更新本地代码，并拉取远程仓库的标签<br>    git pull –tags -f<br>    # 获取最大的标签号<br>    local maxTag&#x3D;0;<br>      # 列出所有的标签 过滤出具有特定前缀和日期匹配的标签列表<br>    for k in <code>git tag -l &quot;$&#123;prefix&#125;$(date +&#39;%Y%m%d&#39;)-*&quot;</code><br>    do<br>      # 将标签名中的连字符（”-“）替换为空格<br>      local arr&#x3D;(<code>echo $k|tr &quot;-&quot; &quot; &quot;</code>)<br>      # 算数组arr的长度，并将结果减去1 得到数组最后一个元素的索引。<br>      local index&#x3D;&#96;expr $</p>
 ]]></content>
+      <categories>
+        <category>项目</category>
+      </categories>
   </entry>
   <entry>
     <title>基于hexo的Quiet主题搭建博客教程</title>
