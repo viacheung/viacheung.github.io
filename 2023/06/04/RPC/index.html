@@ -19,13 +19,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="实现基于Dubbo的简单RPC框架，主要包括注册中心、网络传输、序列化与反序列化、动态代理、负载均衡等特性">
+<meta property="og:type" content="article">
 <meta property="og:title" content="RPC">
 <meta property="og:url" content="http://viacheung.github.io/2023/06/04/RPC/index.html">
 <meta property="og:site_name" content="命运石之门">
+<meta property="og:description" content="实现基于Dubbo的简单RPC框架，主要包括注册中心、网络传输、序列化与反序列化、动态代理、负载均衡等特性">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230416164720582.png">
@@ -38,7 +40,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1545977832954.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/1545978062568.png">
 <meta property="article:published_time" content="2023-06-04T10:03:19.000Z">
-<meta property="article:modified_time" content="2023-06-04T10:14:36.965Z">
+<meta property="article:modified_time" content="2023-09-08T12:28:57.626Z">
 <meta property="article:author" content="ViaCheung">
 <meta property="article:tag" content="Java,python">
 <meta name="twitter:card" content="summary">
@@ -226,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-06-04 18:03:19 / 修改时间：18:14:36" itemprop="dateCreated datePublished" datetime="2023-06-04T18:03:19+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 18:03:19" itemprop="dateCreated datePublished" datetime="2023-06-04T18:03:19+08:00">2023-06-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-08 20:28:57" itemprop="dateModified" datetime="2023-09-08T20:28:57+08:00">2023-09-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -258,9 +266,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png" alt="image-20230604180538472" style="zoom:50%;">
+        <p>实现基于Dubbo的简单RPC框架，主要包括注册中心、网络传输、序列化与反序列化、动态代理、负载均衡等特性  <span id="more"></span></p>
+<img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306041805677.png" alt="image-20230604180538472" style="zoom:50%;">
 
-<span id="more"></span>
+
+
+
 
 <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p>总结</p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/28e48e5f9c73">https://www.jianshu.com/p/28e48e5f9c73</a></p>
@@ -1162,7 +1173,7 @@ public object intercept(object obj, java.lang. reflect. Method method, 0bject[] 
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

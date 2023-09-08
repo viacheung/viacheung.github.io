@@ -19,18 +19,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+    var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="项目概要港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器； 研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。">
+  <meta name="description" content="项目概要这个项目是基于Springboot开发的web项目，部署于港口现场">
 <meta property="og:type" content="article">
 <meta property="og:title" content="防雷防电检测系统">
 <meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="命运石之门">
-<meta property="og:description" content="项目概要港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器； 研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。">
+<meta property="og:description" content="项目概要这个项目是基于Springboot开发的web项目，部署于港口现场">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-04T10:17:19.000Z">
-<meta property="article:modified_time" content="2023-06-04T10:20:43.378Z">
+<meta property="article:modified_time" content="2023-09-08T12:24:07.571Z">
 <meta property="article:author" content="ViaCheung">
 <meta property="article:tag" content="Java,python">
 <meta name="twitter:card" content="summary">
@@ -217,10 +217,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-06-04 18:17:19 / 修改时间：18:20:43" itemprop="dateCreated datePublished" datetime="2023-06-04T18:17:19+08:00">2023-06-04</time>
+              <time title="创建时间：2023-06-04 18:17:19" itemprop="dateCreated datePublished" datetime="2023-06-04T18:17:19+08:00">2023-06-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-08 20:24:07" itemprop="dateModified" datetime="2023-09-08T20:24:07+08:00">2023-09-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -249,8 +255,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="项目概要"><a href="#项目概要" class="headerlink" title="项目概要"></a>项目概要</h3><p>港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器；</p>
-<p>研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。<span id="more"></span></p>
+        <h3 id="项目概要"><a href="#项目概要" class="headerlink" title="项目概要"></a>项目概要</h3><p>这个项目是基于Springboot开发的web项目，部署于港口现场<span id="more"></span>，后续对系统持续进行迭代升级。系统主要用于与港口油罐区布设的电压，电阻，温度等监测设备交互，通过modbus协议向设备发送请求获取设备返回的数据。在系统后端对数据进行解析并展示于前端。</p>
+<p>港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器；</p>
+<p>研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。</p>
 <p>前端5s轮询一次，1h是持久化到数据库</p>
 <p>redis存的是 key：设备（40） map&lt;类型：值&gt; ip端口 </p>
 <p>这个项目是基于Springboot开发的web项目，在研一入学前开始对系统进行设计和开发，并部署于港口现场，后续对系统持续进行迭代升级。系统主要用于与港口油罐区布设的电压，电阻，温度等监测设备交互，通过modbus协议向设备发送请求获取设备返回的数据。在系统后端对数据进行解析并展示于前端。</p>
@@ -380,7 +387,10 @@
     <a href="/2023/06/04/%E9%AD%94%E6%96%B9%E5%A4%A9%E5%9C%B0/" rel="prev" title="魔方天地">
       <i class="fa fa-chevron-left"></i> 魔方天地
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -455,7 +465,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
