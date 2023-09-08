@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ACM输入输出说明</title>
-    <url>/2023/06/01/ACM/</url>
-    <content><![CDATA[<p>nextInt()：读取到空格或回车之后结束本次的int值；同理还有nextDouble() 、nextFloat()、nextInt()<span id="more"></span></p>
-<p>int n&#x3D;sc.nextInt();只获取数字 换行符需要sc.nextLine();拿掉</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134906020.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134916246.png" alt="img"></p>
-<p>第二个字符串排序就不用nextLine了</p>
-<p>next()：直至读取到空格或回车之后结束本次的String值，不可读取回车；nextLine()：直至读取到换行符（回车）之后结束本次读取的String，可读取回车（空值）hasNextInt()：判断控制台接收是否为数字,是则接收 hasNextInt()只起到判断作用而不是接收数据</p>
-<p>导包建议：</p>
-<p>import java.util.*;</p>
-<p><strong>例子：</strong></p>
-<p>输入描述:输入有两行，第一行n</p>
-<p>第二行是n个字符串，字符串之间用空格隔开输出描述:输出一行排序后的字符串，空格隔开，无结尾空格</p>
-<pre><code class="plain">import java.util.*;
-public class Main &#123;
-  public static void main(String[] args) &#123;
-      Scanner sc = new Scanner(System.in);
-      int n=sc.nextInt();
-      String enter=sc.nextLine();//把换车符拿掉
-      String line=sc.nextLine();
-      String[] s=line.split(&quot; &quot;);//转为数组好排序
-      Arrays.sort(s);
-      StringBuilder sb=new StringBuilder();
-      for(String ss:s)&#123;
-          sb.append(ss).append(&quot; &quot;);
-      &#125;
-      String s1 = sb.toString();
-      System.out.println(s1.substring(0,s1.length()-1));
-  &#125;
-&#125;
-</code></pre>
-<h2 id="接受输入的字符a"><a href="#接受输入的字符a" class="headerlink" title="接受输入的字符a"></a>接受输入的字符a</h2><pre><code class="plain">String b = in.next
-if(b.equals(&quot;a&quot;))
-</code></pre>
-<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>System.out.printf(“%.11f”, ans+sum);&#x2F;&#x2F;.11表示位数</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-  </entry>
-  <entry>
     <title>JAVA_API基础</title>
     <url>/2023/06/04/JAVA-API%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="比较器"><a href="#比较器" class="headerlink" title="比较器"></a>比较器</h2><p>1、Arrays.sort(points, (a, b) -&gt; Integer.compare(a[0], b[0]));&#x2F;&#x2F;表升序<span id="more"></span><br>2、java.lang包的Integer类的compare()方法比较作为参数给出的两个整数值(x，y)，如果(x &#x3D;&#x3D; y)则返回零，如果(x &lt;y)则返回小于零，如果(x&gt; y)，则返回大于零的值。</p>
@@ -252,6 +211,47 @@ if(b.equals(&quot;a&quot;))
 </code></pre>
 <h3 id="接受输入的字符a"><a href="#接受输入的字符a" class="headerlink" title="接受输入的字符a"></a>接受输入的字符a</h3><pre><code class="plain">String b = in.next
  if(b.equals(&quot;a&quot;))
+</code></pre>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>System.out.printf(“%.11f”, ans+sum);&#x2F;&#x2F;.11表示位数</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ACM输入输出说明</title>
+    <url>/2023/06/01/ACM/</url>
+    <content><![CDATA[<p>nextInt()：读取到空格或回车之后结束本次的int值；同理还有nextDouble() 、nextFloat()、nextInt()<span id="more"></span></p>
+<p>int n&#x3D;sc.nextInt();只获取数字 换行符需要sc.nextLine();拿掉</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134906020.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230309134916246.png" alt="img"></p>
+<p>第二个字符串排序就不用nextLine了</p>
+<p>next()：直至读取到空格或回车之后结束本次的String值，不可读取回车；nextLine()：直至读取到换行符（回车）之后结束本次读取的String，可读取回车（空值）hasNextInt()：判断控制台接收是否为数字,是则接收 hasNextInt()只起到判断作用而不是接收数据</p>
+<p>导包建议：</p>
+<p>import java.util.*;</p>
+<p><strong>例子：</strong></p>
+<p>输入描述:输入有两行，第一行n</p>
+<p>第二行是n个字符串，字符串之间用空格隔开输出描述:输出一行排序后的字符串，空格隔开，无结尾空格</p>
+<pre><code class="plain">import java.util.*;
+public class Main &#123;
+  public static void main(String[] args) &#123;
+      Scanner sc = new Scanner(System.in);
+      int n=sc.nextInt();
+      String enter=sc.nextLine();//把换车符拿掉
+      String line=sc.nextLine();
+      String[] s=line.split(&quot; &quot;);//转为数组好排序
+      Arrays.sort(s);
+      StringBuilder sb=new StringBuilder();
+      for(String ss:s)&#123;
+          sb.append(ss).append(&quot; &quot;);
+      &#125;
+      String s1 = sb.toString();
+      System.out.println(s1.substring(0,s1.length()-1));
+  &#125;
+&#125;
+</code></pre>
+<h2 id="接受输入的字符a"><a href="#接受输入的字符a" class="headerlink" title="接受输入的字符a"></a>接受输入的字符a</h2><pre><code class="plain">String b = in.next
+if(b.equals(&quot;a&quot;))
 </code></pre>
 <h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>System.out.printf(“%.11f”, ans+sum);&#x2F;&#x2F;.11表示位数</p>
 ]]></content>
@@ -1813,345 +1813,6 @@ if(b.equals(&quot;a&quot;))
       </categories>
   </entry>
   <entry>
-    <title>SQL</title>
-    <url>/2023/06/04/SQL/</url>
-    <content><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>1、题目：现在运营想要筛选出所有<strong>北京大学</strong>的学生进行用户调研，请你从用户信息表中取出满足条件的数据，结果返回<strong>设备id</strong>和<strong>学校</strong>。<span id="more"></span></p>
-<p>SELECT device_id,university FROM user_profile WHERE university&#x3D; ‘北京大学</p>
-<p>注意 返回数据用逗号隔开</p>
-<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>2、查询考试成绩有不及格的学生的学号</p>
-<p>SELECT DISTINCT 学号 FROM 成绩表 WHERE 成绩&lt; 60</p>
-<p>DISTINCT用来去重</p>
-<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>3、查找年龄大于24岁的用户信息</p>
-<p>SELECT device_id, gender, age, university FROM user_profile WHERE age is not null and age &gt; 24</p>
-<p>null 是大于所有数值型还是小于所有数值型是由 DBMS 决定的，严谨起见，还是加上 age is not null 的条件</p>
-<h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>4、查询所有系号在2和3之间的班号和班名。</p>
-<p>SELECT 班号,班名 FROM 班级表 WHERE 系号 BETWEEN <code>2` `AND </code>3</p>
-<h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>5、查询所有系号不在2和3之间的班号和班名。</p>
-<p>SELECT 班号,班名 FROM 班级表 WHERE 系号 NOT BETWEEN <code>2` `AND </code>3</p>
-<h1 id="6"><a href="#6" class="headerlink" title="6"></a>6</h1><p>6、现在运营想要查看除复旦大学以外的所有用户明细，请你取出相应数据</p>
-<p>SELECT<code> </code>device_id,gender,age,university <code>FROM` `user_profile</code>WHERE<code> </code>university <code>NOT` `IN` `(</code>‘复旦大学’&#96;&#96;)或者select device_id,gender,age,university from user_profile where university!&#x3D;”复旦大学”</p>
-<p>where 字段 in（not in） 一个范围</p>
-<h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><p>7、现在运营想要找到<strong>男性且GPA在3.5以上</strong>的用户进行调研，请你取出相关数据。</p>
-<p>select device_id,gender,age ,university,gpa from user_profile where gender&#x3D;”male” and gpa&gt;3.5</p>
-<h1 id="8"><a href="#8" class="headerlink" title="8"></a>8</h1><p>8、查询所有系号大于1且班名以“电子 ” 开头的班号和班名。</p>
-<p>SELECT<code> </code>班号,班名 <code>FROM` `班级表</code>WHERE<code> </code>系号&gt;1 <code>AND` `班名 </code>LIKE<code> </code>‘电子%’</p>
-<h1 id="9"><a href="#9" class="headerlink" title="9"></a>9</h1><p>9、现在运营想要找到<strong>学校为北大或GPA在3.7以上</strong>的用户进行调研，请你取出相关数据</p>
-<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>university&#x3D;&#96;&#96;’北京大学’<code> </code>OR<code> </code>gpa &gt; 3.7</p>
-<h1 id="10"><a href="#10" class="headerlink" title="10"></a>10</h1><p>10、现在运营想要找到<strong>学校为北大、复旦和山大</strong>的同学进行调研，请你取出相关数据。</p>
-<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>university <code>IN` `(</code>‘北京大学’<code> </code>, <code>&#39;复旦大学&#39;</code>, <code>&#39;山东大学&#39;</code>)</p>
-<h1 id="11"><a href="#11" class="headerlink" title="11"></a>11</h1><p>11、现在运营想要找到gpa在3.5以上的山东大学用户 或 gpa在3.8以上的复旦大学同学进行用户调研，请你取出相应数据</p>
-<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>(university&#x3D;<code>&#39;山东大学&#39;</code>AND<code> </code>gpa &gt; 3.5) <code>OR` `(university=</code>‘复旦大学’<code> </code>AND<code> </code>gpa &gt; 3.8)</p>
-<h1 id="12"><a href="#12" class="headerlink" title="12"></a>12</h1><p>12、现在运营想查看所有大学中带有北京的用户的信息，请你取出相应数据。</p>
-<p>SELECT device_id,age,university  FROM user_profile WHERE university  LIKE ‘%北京%’</p>
-<p><strong>拓展：</strong></p>
-<p>这道题主要考察的是模糊查询 字段名 like ‘匹配内容’</p>
-<ol>
-<li>_ ：下划线 代表匹配任意一个字符；</li>
-<li>% ：百分号 代表匹配0个或多个字符；</li>
-<li>[]: 中括号 代表匹配其中的任意一个字符；</li>
-<li>[^]: ^尖冒号 代表 非，取反的意思；不匹配中的任意一个字符。</li>
-</ol>
-<p>tips：面试常问的一个问题：你了解哪些数据库优化技术？ SQL语句优化也属于数据库优化一部分，而我们的like模糊查询会引起全表扫描，速度比较慢，应该尽量避免使用like关键字进行模糊查询。</p>
-<h1 id="13"><a href="#13" class="headerlink" title="13"></a>13</h1><p>13 复旦大学学生gpa最高值</p>
-<p>方法一：</p>
-<p><strong>desc倒排</strong></p>
-<p>select gpa from user_profile where university &#x3D;’复旦大学’ order by  gpa desc limit 1</p>
-<p>方法二：</p>
-<p>聚合函数必须放在前面 不可在where里面</p>
-<p>SELECT MAX(gpa)gpa FROM user_profile WHERE university &#x3D; ‘复旦大学’</p>
-<p><strong>拓展</strong></p>
-<h2 id="使用聚合函数汇总数据"><a href="#使用聚合函数汇总数据" class="headerlink" title="使用聚合函数汇总数据"></a>使用聚合函数汇总数据</h2><p>SQL提供的统计函数有：COUNT(【Shift+8】)：统计表中元组个数；COUNT([DISTINCT] &lt;列名&gt;)：统计本列列值个数；SUM( &lt;列名&gt; )：计算列值总和；AVG( &lt;列名&gt; )：计算列值平均值；MAX( &lt;列名&gt; )：求列值最大值；MIN( &lt;列名&gt; )： 求列值最小值。上述函数中除COUNT(【Shift+8】)外，其他函数在计算过程中均忽略NULL值。</p>
-<p><strong>统计函数不能出现在WHERE子句中。</strong>例如，查询成绩最高的学生的学号，如下写法是错误的：SELECT 学号 FROM 成绩表WHERE 成绩 &#x3D; MX(成绩</p>
-<h1 id="14"><a href="#14" class="headerlink" title="14"></a>14</h1><p>14、题目：现在运营想要看一下男性用户有多少人以及他们的平均gpa是多少，用以辅助设计相关活动，请你取出相应数据。</p>
-<p>问题分解：</p>
-<ol>
-<li>限定条件为 男性用户；</li>
-<li>有多少人，明显是计数，count函数；</li>
-<li>平均gpa，求平均值用avg函数；</li>
-</ol>
-<hr>
-<p>细节问题：根据输出示例，有两个问题需要注意：</p>
-<ol>
-<li>表头重命名，用as语法</li>
-<li>浮点数的平均值可能小数点位数很多，按照示例保存一位小数，用round函数</li>
-</ol>
-<p>使用ROUND()函数，ROUND返回一个数值，舍入到指定的长度或精度</p>
-<p>select count(gender) as male_num,round(avg(gpa),1) as avg_gpa from user_profile where gender&#x3D;’male’ </p>
-<h1 id="15"><a href="#15" class="headerlink" title="15"></a>15</h1><p>15、现在运营想要对每个学校不同性别的用户活跃情况和发帖数量进行分析，请分别计算出每个学校每种性别的用户数、30天内平均活跃天数和平均发帖数量。</p>
-<p>结果：这里最好用下round(x,1)</p>
-<p>select      gender, university,     count(device_id) as user_num,     avg(active_days_within_30) as avg_active_days,     avg(question_cnt) as avg_question_cnt from user_profile group by gender, university</p>
-<p><strong>在面试某上海上市金融科技公司中曾被问到的一个问题是：</strong></p>
-<ol>
-<li>你在项目中你用过分组函数吗？</li>
-</ol>
-<p>我：用过（必须展现实力）</p>
-<ol>
-<li>那你听清楚我下面这个问题，分组SQL语句中，select和from和where和group by 和 having 这几部分的执行顺序是怎么样的？</li>
-</ol>
-<p>我：先是from，再到 where ，再到select，再到group by ，最后having。</p>
-<ol>
-<li>你能说说为什么是这样子的吗？</li>
-</ol>
-<p>我：因为首先肯定是要确定数据从哪张表来，然后按where条件查询出结果，再然后才能进行group by分组（分组条件可以有多个，按字段顺序依次分组），最后是由having对分组后的结果集进行过滤</p>
-<p>我的理解： 先看他是根据什么分组的 然后看需要啥字段 给他就行了</p>
-<h1 id="16"><a href="#16" class="headerlink" title="16"></a>16</h1><p>16、题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。</p>
-<p>select     university,     round(avg(question_cnt), 1) as avg_question_cnt,     round(avg(answer_cnt), 1) as avg_answer_cnt from user_profile group by university having avg_question_cnt&lt;5 or avg_answer_cnt&lt;20 </p>
-<h2 id="使用HAVING"><a href="#使用HAVING" class="headerlink" title="使用HAVING"></a>使用HAVING</h2><p>HAVING子句用于对分组后的结果再进行过滤，它的功能有点像WHERE子句，但它用于组而不是单个记录。<strong>在HAVING子句中可以使用统计函数，但在WHERE子句中则不能。****HAVING通常与GROUP BY子句一起使用。</strong></p>
-<p>我的理解：</p>
-<h1 id="17"><a href="#17" class="headerlink" title="17"></a>17</h1><p>17、having 最后规律分组的数据 可以用select后面的as 字段</p>
-<p>题目：现在运营想要查看不同大学的用户平均发帖情况，并期望结果按照平均发帖情况进行升序排列，请你取出相应数据。</p>
-<p>select university,     avg(question_cnt) as avg_question_cnt from user_profile group by university order by avg_question_cnt</p>
-<p>同样的 order by 放在最后面就好了</p>
-<ol>
-<li>tips：在排序中order by 字段 asc –其中升序为asc(可以不写，默认就是按照升序排列),降序为desc（必须写）</li>
-</ol>
-<p>round最好也加一下</p>
-<h1 id="18"><a href="#18" class="headerlink" title="18"></a>18</h1><p>题目：现在运营想要查看所有来自浙江大学的用户题目回答明细情况，请你取出相应数据</p>
-<ul>
-<li>限定条件：来自浙江大学的用户，学校信息在用户画像表，答题情况在用户练习明细表，因此需要通过device_id关联两个表的数据； </li>
-<li>方法1：join两个表，用inner join，条件是on up.device_id&#x3D;qpd.device_id and up.university&#x3D;’浙江大学’</li>
-<li>方法2：先从画像表找到浙江大学的所有学生id列表where university&#x3D;’浙江大学’，再去练习明细表筛选出id在这个列表的记录，用where in</li>
-</ul>
-<p>select qpd.device_id, qpd.question_id, qpd.result from question_practice_detail as qpd inner join user_profile as up on up.device_id&#x3D;qpd.device_id and up.university&#x3D;’浙江大学’ order by question_idselect device_id, question_id, result from question_practice_detail where device_id in (     select device_id from user_profile     where university&#x3D;’浙江大学’ ) order by question_id</p>
-<p>子查询效率低一点 但是我写起来舒服</p>
-<p>xx表 inner join xx表 On 条件 order by XX</p>
-<p>还是用join吧 !!!! 用子查询好像不太行</p>
-<p>这里注意，一旦我们join了之后，select qpd.device_id, qpd.question_id, qpd.result后面跟的一定要是具体表的表名 不然查不出来！</p>
-<p>而且中间有条件的话别用where 条件直接在On里面写就行</p>
-<h1 id="19"><a href="#19" class="headerlink" title="19"></a>19</h1><p>运营想要了解每个学校答过题的用户平均答题数量情况，请你取出数据。</p>
-<ul>
-<li>每个学校：按学校分组，group by university</li>
-<li>平均答题数量：在每个学校的分组内，用总答题数量除以总人数即可得到平均答题数量count(question_id) &#x2F; count(distinct device_id)</li>
-<li>表连接：学校和答题信息在不同的表，需要做连接</li>
-</ul>
-<p>select university,     count(question_id) &#x2F; count(distinct qpd.device_id) as avg_answer_cnt from question_practice_detail as qpd inner join user_profile as up on qpd.device_id&#x3D;up.device_id group by university</p>
-<h1 id="20"><a href="#20" class="headerlink" title="20"></a>20</h1><h3 id="左连接，右连接，内连接，全连接的区别及使用"><a href="#左连接，右连接，内连接，全连接的区别及使用" class="headerlink" title="左连接，右连接，内连接，全连接的区别及使用"></a>左连接，右连接，内连接，全连接的区别及使用</h3><p>左连接 （left join）：返回包括左表的所有记录和右表中连接字段相等的记录右连接（right join）：返回包括右表的所有记录和左表中连接字段相等的记录等值连接或者叫内连接（inner join）：只返回两表相连相等的行全外连接（full join）：返回左右表中所有的记录和左右表中连接字段相等的记录。</p>
-<ul>
-<li>限定条件：无；</li>
-<li>每个学校：按学校分组group by university</li>
-<li>不同难度：按难度分组group by difficult_level</li>
-<li>平均答题数：总答题数除以总人数count(qpd.question_id) &#x2F; count(distinct qpd.device_id)</li>
-<li>来自上面信息三个表，需要联表，up与qpd用device_id连接，qd与qpd用question_id连接。</li>
-</ul>
-<p>select      university,     difficult_level,     round(count(qpd.question_id) &#x2F; count(distinct qpd.device_id), 4) as avg_answer_cnt from question_practice_detail as qpd left join user_profile as up on up.device_id&#x3D;qpd.device_id left join question_detail as qd on qd.question_id&#x3D;qpd.question_id group by university, difficult_level</p>
-<h1 id="21"><a href="#21" class="headerlink" title="21"></a>21</h1><p>运营想要查看<strong>参加了答题</strong>的山东大学的用户在不同难度下的平均答题题目数，请取出相应数据</p>
-<p>目前用inner比较稳妥</p>
-<p>20题用inner就可</p>
-<h1 id="22"><a href="#22" class="headerlink" title="22"></a>22</h1><p>分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，结果不去重</p>
-<ul>
-<li>限定条件：学校为山东大学或者性别为男性的用户：university&#x3D;’山东大学’, gender&#x3D;’male’；</li>
-<li>分别查看&amp;结果不去重：所以直接使用两个条件的or是不行的，直接用union也不行，要用union all，分别去查满足条件1的和满足条件2的，然后合在一起不去重</li>
-</ul>
-<p>SELECT device_id,gender,age,gpa FROM user_profile WHERE university&#x3D;’山东大学’  UNION ALL SELECT device_id,gender,age,gpa FROM user_profile WHERE gender&#x3D;’male’</p>
-<p>结果不去重 就加ALL</p>
-<h1 id="23"><a href="#23" class="headerlink" title="23"></a>23</h1><p>题目：现在运营想要将用户划分为25岁以下和25岁及以上两个年龄段，分别查看这两个年龄段用户数量</p>
-<p><strong>本题注意：age为null 也记为 25岁以下</strong></p>
-<h3 id="CASE函数"><a href="#CASE函数" class="headerlink" title="CASE函数"></a>CASE函数</h3><p>是一种多分支的函数，可以根据条件列表的值返回多个可能的结果表达式中的一个。可用在任何允许使用表达式的地方，但不能单独作为一个语句执行。</p>
-<p>case 条件表达式 when 条件表达式值 then 字段值 end as 字段</p>
-<p>SELECT CASE WHEN age &lt; 25 OR age IS NULL THEN ‘25岁以下’              WHEN age &gt;&#x3D; 25 THEN ‘25岁及以上’             END age_cut,COUNT(*) as number FROM user_profile GROUP BY age_cut</p>
-<h1 id="24"><a href="#24" class="headerlink" title="24"></a>24</h1><p>题目：现在运营想要将用户划分为<strong>20岁以下，20-24岁，25岁及以上</strong>三个年龄段，分别查看不同年龄段用户的明细情况，请取出相应数据。（注：若<strong>年龄为空</strong>请返回<strong>其他</strong>。）</p>
-<p>select     device_id,     gender,     case         when age&gt;&#x3D;25 then ‘25岁及以上’         when age&gt;&#x3D;20 then ‘20-24岁’         when age&lt;20 then ‘20岁以下’         else ‘其他’     end as age_cut from user_profile </p>
-<h1 id="25"><a href="#25" class="headerlink" title="25"></a>25</h1><p>题目：现在运营想要计算出<strong>2021年8月每天用户练习题目的数量</strong>，请取出相应数据。</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424160950126.png" alt="img"></p>
-<p><strong>知识点</strong>：</p>
-<p>对于2021-05-03，用year month day函数直接取得想要的</p>
-<pre><code class="plain">select
-    day(date) as day,
-    count(question_id) as question_cnt
-from question_practice_detail
-where month(date)=8 and year(date)=2021
-group by date
-</code></pre>
-<h1 id="26"><a href="#26" class="headerlink" title="26"></a>26</h1><p>题目：现在运营想要查看用户在某天刷题后第二天还会再来刷题的平均概率。请你取出相应数据。<img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424161313268.png" alt="img"></p>
-<ul>
-<li><p>限定条件：第二天再来。</p>
-</li>
-<li><ul>
-<li>解法1：表里的数据可以看作是全部第一天来刷题了的，那么我们需要构造出第二天来了的字段，因此可以考虑用left join把第二天来了的拼起来，限定第二天来了的可以用date_add(date1, interval 1 day)&#x3D;date2筛选，并用device_id限定是同一个用户。</li>
-</ul>
-</li>
-<li><p>平均概率：</p>
-</li>
-<li><ul>
-<li>解法1：可以count(date1)得到左表全部的date记录数作为分母，count(date2)得到右表关联上了的date记录数作为分子，相除即可得到平均概率</li>
-</ul>
-</li>
-</ul>
-<pre><code class="plain">select count(date2) / count(date1) as avg_ret
-from (
-    select
-        distinct qpd.device_id,
-        qpd.date as date1,
-        uniq_id_date.date as date2
-    from question_practice_detail as qpd
-    left join(
-        select distinct device_id, date
-        from question_practice_detail
-    ) as uniq_id_date
-    on qpd.device_id=uniq_id_date.device_id
-        and date_add(qpd.date, interval 1 day)=uniq_id_date.date
-) as id_last_next_date
-</code></pre>
-<h1 id="27"><a href="#27" class="headerlink" title="27"></a>27</h1><p>题目：现在运营举办了一场比赛，收到了一些参赛申请，表数据记录形式如下所示，现在运营想要统计每个性别的用户分别有多少参赛者，请取出相应结果</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424162133044.png" alt="img"></p>
-<p><strong>字符串截取函数</strong></p>
-<p>substring_index(FIELD, sep, n)可以将字段FIELD按照sep分隔：</p>
-<p>(1).当n大于0时取第n个分隔符(n从1开始)左边的全部内容；</p>
-<p>(2).当n小于0时取倒数第n个分隔符(n从-1开始)右边的全部内容；</p>
-<pre><code class="plain">select
-    substring_index(profile, &#39;,&#39;, -1) as gender,
-    count(device_id) as number
-from user_submit
-group by gender
-</code></pre>
-<p>同理，对blog_url进行处理</p>
-<p>select device_id,substring_index(blog_url,’&#x2F;‘,-1) as user_name from user_submit;</p>
-<p>如果要找年龄呢？</p>
-<p>双层嵌套</p>
-<p>select substring_index(substring_index(profile,’,’,-2) ,’,’,1) as age,count(device_id) as number from user_submit group by age;</p>
-<h1 id="28"><a href="#28" class="headerlink" title="28"></a>28</h1><p>现在运营想要找到每个学校gpa最低的同学来做调研，请你取出每个学校的最低gpa。</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424163904655.png" alt="img"></p>
-<pre><code class="plain">select device_id,university,gpa
-from user_profile
-where (university,gpa) in (select university,min(gpa) from user_profile group by university)
-order by university;
-</code></pre>
-<p>子查询：去重的university 以及min gpa</p>
-<p>然后用In判断符合条件的就行</p>
-]]></content>
-      <categories>
-        <category>SQL</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>基于hexo的Quiet主题搭建博客教程</title>
-    <url>/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p>搭建博客</p>
-<p><a href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
-<p>域名绑定</p>
-<p><a href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a><span id="more"></span></p>
-<p>主题修改</p>
-<p><a href="https://zhuanlan.zhihu.com/p/618864711">https://zhuanlan.zhihu.com/p/618864711</a></p>
-<h1 id="2、遇到的报错信息"><a href="#2、遇到的报错信息" class="headerlink" title="2、遇到的报错信息"></a>2、遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
-</code></pre>
-<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
-<p>具体配置：<a href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
-<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
-<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
-<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
-<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
-<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
-<pre><code> deploy:
-  type: git
-  repository: git@github.com:viacheung/viacheung.github.io.git
-  branch: master
-</code></pre>
-<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170302215.png" alt="image-20230424170302215"></p>
-<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
-<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
-<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
-<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p>这里采用的是 <code>gitalk</code> 一个基于 Github Issue 和 Preact 开发的评论插件</p>
-<p>我们只需要在 <code>Quiet </code>主题文件里面的<code>_config.yml</code>配置文件的 <code>gitalk</code> 进行配置</p>
-<p>首先，您需要选择一个公共github存储库（已存在或创建一个新的github存储库）用于存储评论，</p>
-<p>然后需要创建 <strong>GitHub Application</strong>，如果没有 <a href="https://github.com/settings/applications/new">点击这里申请</a>，<code>Authorization callback URL</code> 填写当前使用插件页面的域名。</p>
-<img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230501002945716.png" alt="image-20230501002945716" style="zoom: 67%;">
-
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/2020-02-02-17-34-57.png" alt="img"></p>
-<pre><code class="yaml">gitalk:
-  clientID: 43557dd07d33bd0ebcdd # （需要替换）GitHub Application Client ID.
-  clientSecret: 4f8841de720cb270e38dea5ff52818c9eb744c36 #（需要替换）GitHub Application Client Secret.
-  repo: blog_commets #（需要替换）GitHub仓库名
-  owner: viacheung #（需要替换）GitHub repository 所有者，可以是个人或者组织。
-  admin: [&#39;viacheung&#39;] #（需要替换）GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
-</code></pre>
-<p>然后发布的时候题头需要comments: true</p>
-<h2 id="Error-Validation-Failed"><a href="#Error-Validation-Failed" class="headerlink" title="Error: Validation Failed"></a>Error: Validation Failed</h2><p>可能会出现Error: Validation Failed的问题，我的解决办法是添加了一句 <strong>id: decodeURI(location.pathname)</strong> ，使用了JS的解码函数decodeURI()</p>
-<p>在bloh&#x2F;themes&#x2F;Quiet&#x2F;layout&#x2F;_widget&#x2F;commet.ejs里面配置如下：</p>
-<pre><code class="ejs">&lt;% if(theme.gitalk.clientID &amp;&amp; theme.gitalk.clientSecret) &#123; %&gt;
-    &lt;!-- Gitalk --&gt;
-    &lt;script&gt;
-        const data = &#39;&#123;&quot;clientID&quot;:&quot;&lt;%= theme.gitalk.clientID %&gt;&quot;,&quot;clientSecret&quot;:&quot;&lt;%= theme.gitalk.clientSecret %&gt;&quot;,&quot;repo&quot;:&quot;&lt;%= theme.gitalk.repo %&gt;&quot;,&quot;owner&quot;:&quot;&lt;%= theme.gitalk.owner %&gt;&quot;,&quot;admin&quot;:&quot;&lt;%= theme.gitalk.admin %&gt;&quot;&#125;&#39;
-        const gitalk = new Gitalk(&#123;
-            ...JSON.parse( data),
-            id:decodeURI(location.pathname),
-            distractionFreeMode:false
-        &#125;)
-        
-        if(Boolean(&#39;&lt;%= page.comments %&gt;&#39;))&#123;
-            gitalk.render(&#39;gitalk-container&#39;)
-        &#125;
-    &lt;/script&gt;
-&lt;% &#125; %&gt;
-</code></pre>
-<h1 id="6-、插入图像"><a href="#6-、插入图像" class="headerlink" title="6 、插入图像"></a>6 、插入图像</h1><p>修改博客根目录中<code>_config.yml</code>文件的配置项<code>post_asset_folder</code>为<code>true</code>：</p>
-<p>npm install hexo-asset-image –save</p>
-<p>当文章需要添加图片时，将需要添加的图片放入同名的文件夹中，同时通过相对路径索引到该图片。</p>
-<p>右键引入图像</p>
-<p>有待改进</p>
-<p><strong>Typora文件名为中文保存时，插入图片的路径的中文部分是字符串乱码的，怎么解决？</strong></p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170226645.png" alt="image-20230424170226645"></p>
-<h1 id="7、写博客"><a href="#7、写博客" class="headerlink" title="7、写博客"></a>7、写博客</h1><p>我们的文章（F:\programFiles\blog\source_posts在此处）前面需要加这个</p>
-<p>在C:\Users\50537\OneDrive\blog\scaffolds\post.md里面可以配格式</p>
-<hr>
-<pre><code>title: 基于hexo的Quiet主题搭建博客教程
-comments: true
-categories:
-  - 教程
-aubot: viacheung
-tags:
-  - Hexo
-  - Quiet
-toc: true
-date: 2023-5-1 0:55
-</code></pre>
-<hr>
-<pre><code>笔记前面都加上这个 然后hexo clean   g   d
-</code></pre>
-<h1 id="8、换主题"><a href="#8、换主题" class="headerlink" title="8、换主题"></a>8、换主题</h1><p>找了一个还不错的主题，quiet</p>
-<p><a href="https://github.com/79E/hexo-theme-quiet">https://github.com/79E/hexo-theme-quiet</a></p>
-<p>下载下来，放在F:\programFiles\blog的themes</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306032304160.png" alt="image-20230603230455013"></p>
-<p>此处执行 </p>
-<pre><code>hexo clean 
-hexo g 
-hexo d
-</code></pre>
-<hr>
-<h2 id="8-1关于github里面提到的问题"><a href="#8-1关于github里面提到的问题" class="headerlink" title="8.1关于github里面提到的问题"></a>8.1关于github里面提到的问题</h2><p><strong>css 样式没有加载出来</strong></p>
-<p>需要管理员打开cmd 切换到博客根路径</p>
-<pre><code>C:\WINDOWS\system32&gt;F:
-
-F:\&gt;cd programFiles
-
-F:\programFiles&gt;cd blog
-</code></pre>
-<p>然后执行</p>
-<pre><code>npm i hexo-renderer-less
-npm i hexo-renderer-ejs
-</code></pre>
-<p>反正成功了</p>
-<p>不知道是不是这个起作用了</p>
-<p><a href="https://www.cnblogs.com/xrblog/p/11587356.html">https://www.cnblogs.com/xrblog/p/11587356.html</a></p>
-<h1 id="9、对于Hexo的理解"><a href="#9、对于Hexo的理解" class="headerlink" title="9、对于Hexo的理解"></a>9、对于Hexo的理解</h1><p>F:\programFiles\blog\source里面的文件名对应theme里面配置文件的导航名称</p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170212169.png" alt="image-20230424170212169"></p>
-<h1 id="10-、绑定域名"><a href="#10-、绑定域名" class="headerlink" title="10 、绑定域名"></a>10 、绑定域名</h1><p>source下面有个CNAME 里面写zhangweiyang.xyz</p>
-<p>github里面有个CNAME 里面写zhangweiyang.xyz</p>
-<h1 id="11、操作命令"><a href="#11、操作命令" class="headerlink" title="11、操作命令"></a>11、操作命令</h1><h2 id="11-1-新建文章"><a href="#11-1-新建文章" class="headerlink" title="11. 1 新建文章"></a>11. 1 新建文章</h2><pre><code>blog根目录下：
-
-hexo new &quot;xxx&quot;
-</code></pre>
-<h1 id="12、文章截断"><a href="#12、文章截断" class="headerlink" title="12、文章截断"></a>12、文章截断</h1><p>在需要截断的地方加入：</p>
-<!--more-->
-
-<p>首页就会显示这条以上的所有内容，隐藏接下来的所有内容。<br>例如本文会显示到修改配置上面。</p>
-<p>这个明显就方便很多，但当然有利有弊，比如开头都是废话首页看着就不是很好看，因此我一般会先选择方法二，如果感觉文章前面的写的不太好再用方法一。</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Redis</title>
     <url>/2023/06/04/Redis/</url>
     <content><![CDATA[<h2 id="Redis是什么以及优缺点"><a href="#Redis是什么以及优缺点" class="headerlink" title="Redis是什么以及优缺点"></a>Redis是什么以及优缺点</h2><p>整个数据库加载在内存当中操作，定期通过异步操作把数据库中的数据flush到硬盘上进行保存，每秒10w次读写操作<span id="more"></span></p>
@@ -2644,354 +2305,6 @@ hexo new &quot;xxx&quot;
 ]]></content>
       <categories>
         <category>八股</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>binlog日志变更技术方案</title>
-    <url>/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<p><strong>需求</strong>：实现数据修改日志功能，所有的参数项，在编辑并提交保存后，需要将历史数据放入log表中，记录修改人、修改时间、操作字段、变更前数据、变更后数据；</p>
-<p><strong>目的</strong> :订阅binlog日志实现业务解耦</p>
-<p>通过集成Talos消息队列和订阅数据库Binlog，从0-1完成IPD损益平台审计功能开发，实现数据的实时追溯和业务解耦 </p>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908230749263.png" alt="image-20230908230749263"></p>
- <span id="more"></span>
-
-
-
-<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p><strong>需求</strong>：实现数据修改日志功能，所有的参数项，在编辑并提交保存后，需要将历史数据放入log表中，记录修改人、修改时间、操作字段、变更前数据、变更后数据；</p>
-<p><strong>目的</strong> :订阅binlog日志实现业务解耦</p>
-<h1 id="2-总体架构"><a href="#2-总体架构" class="headerlink" title="2. 总体架构"></a>2. 总体架构</h1><p><img src="/.io//1693205640157-7a229db8-0092-43b1-adf6-bdeec5d85e62.jpeg" alt="img"><img src="/.io//1690165570738-77d55d8d-c6ae-4191-8b00-1bef098f7c2b.jpeg" alt="img"></p>
-<h1 id="3-接入数据工厂"><a href="#3-接入数据工厂" class="headerlink" title="3. 接入数据工厂"></a>3. 接入数据工厂</h1><p>由于技术升级等原因，融合云的Binlog Source目前已停新增，后面会逐步下线，且数据集成功能较Binlog Source更加强大，综上，选择数据工厂链路实现数据库的Binlog到Talos的采集。</p>
-<h2 id="3-1-数据工厂信息"><a href="#3-1-数据工厂信息" class="headerlink" title="3.1. 数据工厂信息"></a>3.1. 数据工厂信息</h2><p>平台地址：<a href="https://dt.mi.com/workspace">https://dt.mi.com/workspace</a></p>
-<p>功能模块：数据工场-数据开发-实时&#x2F;离线-集成作业</p>
-<h2 id="3-2-新建作业"><a href="#3-2-新建作业" class="headerlink" title="3.2. 新建作业"></a>3.2. 新建作业</h2><p>创建作业前，需要先将MySQL数据库源添加到空间内（如果是写入已有topic，需要将topic导入到空间，并加入写权限），详细操作可见&gt;&gt;<a href="https://xiaomi.f.mioffice.cn/docs/dock4SieqNccJ4xnM1vZRHBN3Le#YVt3ga">数据源管理</a></p>
-<ol>
-<li>开发模块中选择实时开发，新建“实时集成”作业，进入配置页面。</li>
-</ol>
-
-
-<ol>
-<li>源选择“MySQL(Binlog)”，目标选择“Talos”<strong>（仅支持binlog格式<strong><strong>schema</strong></strong>的talos）</strong></li>
-</ol>
-<ul>
-<li><ul>
-<li>匹配类型选择库表，指定数据库数据表，如果想订阅整个数据库Binlog信息，此处数据表随意选择即可，后续订阅库级别的Talos即可</li>
-<li>注意：数据库所在集群环境需要和Talos集群环境一致，否则会出现类似如下错误</li>
-<li></li>
-</ul>
-</li>
-</ul>
-<p>其余配置以及作业管理参照：<a href="https://xiaomi.f.mioffice.cn/wiki/wikk4TN9Zibaq51jutqF5lRNRaf">https://xiaomi.f.mioffice.cn/wiki/wikk4TN9Zibaq51jutqF5lRNRaf</a></p>
-<p>我是在中国北京IPD损益测算环境下进行的</p>
-<h2 id="3-3-链路监控图"><a href="#3-3-链路监控图" class="headerlink" title="3.3. 链路监控图"></a>3.3. 链路监控图</h2><p><a href="https://dt.mi.com/workspace/#/workspace/12499/operationCenter/realTimeOperate/jobDetail?jobId=1672564&amp;jobVersion=1&amp;partKey=tracingMonitor">https://dt.mi.com/workspace/#/workspace/12499/operationCenter/realTimeOperate/jobDetail?jobId=1672564&amp;jobVersion=1&amp;partKey=tracingMonitor</a></p>
-
-
-<p>采集作业同步实例级别的 binlog，记录到 TALOS(1)，然后接了一个集成作业，过滤某张用户需要的表(也就是新建作业部分我们选定的数据表)到下游的系统 TALOS(2) </p>
-<p>如果想要订阅整个数据库的变更记录，接入TALOS(1)，如果想要订阅具体的表，接入TALOS(2），然后在小米融合云的Talos Platform就可以查看具体信息了</p>
-<p>我们这里是订阅整个损益系统的数据库表的变更，所以连的上12499那个topic</p>
-
-
-<p>因为talos platform我们团队之前已经开过权限 因此在对应的环境下是可以直接看到topic的</p>
-<h1 id="4-Java-TalosConsumer"><a href="#4-Java-TalosConsumer" class="headerlink" title="4. Java TalosConsumer"></a>4. Java TalosConsumer</h1><p>生产Binlog消息部分已经由数据工厂做好，只需要关注Talos消费者逻辑，这里主要介绍使用流程和配置；<br>参考<br><a href="https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java">https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java</a></p>
-<h2 id="4-1-TalosConsumer-使用流程"><a href="#4-1-TalosConsumer-使用流程" class="headerlink" title="4.1. TalosConsumer 使用流程"></a>4.1. TalosConsumer 使用流程</h2><h3 id="4-1-1-准备工作"><a href="#4-1-1-准备工作" class="headerlink" title="4.1.1. 准备工作"></a>4.1.1. 准备工作</h3><p><a href="https://cloud.mioffice.cn/product/docs/talos/talos/join/join_prepare/join_prepare">接入前准备</a></p>
-<h3 id="4-1-2-配置server地址"><a href="#4-1-2-配置server地址" class="headerlink" title="4.1.2. 配置server地址"></a>4.1.2. 配置server地址</h3><p>使用配置文件构造TalosConsumerConfig，并配置Talos的service uri，我们提供http和https，具体URI见<a href="https://cloud.d.xiaomi.net/product/docs/talos/talos/join/join_prepare/talos_cluster_info#/">集群信息</a>；很多配置是可Configurable的，用户可以根据<a href="https://cloud.mioffice.cn/product/docs/talos/talos/details/talos_consumer/talos_consumer/talos_consumer_config">配置详解</a>的说明针对自己业务数据的情况进行配置。</p>
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Default</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>galaxy.talos.service.endpoint</td>
-<td>指定Talos Server的URI，可以配置http和https，相关集群对应的URI请见<a href="https://docs.api.xiaomi.com/talos/outer-cluster-info.html">集群信息</a></td>
-<td>–</td>
-</tr>
-</tbody></table>
-<pre><code class="plain">    Properties pros = new Properties();
-    pros.setProperty(&quot;galaxy.talos.service.endpoint&quot;, &quot;$talosServiceURI&quot;);
-    consumerConfig = new TalosConsumerConfig(pros);
-</code></pre>
-<h3 id="4-1-3-构造Credential"><a href="#4-1-3-构造Credential" class="headerlink" title="4.1.3. 构造Credential"></a>4.1.3. 构造Credential</h3><p>使用融合云创建Team的AccessKey和SecretKey构造合法的Credential，只有合法的Credential才能Authentication success。</p>
-<pre><code class="plain"> // credential
-    credential = new Credential();
-    credential.setSecretKeyId(accessKey)
-        .setSecretKey(accessSecret)
-        .setType(UserType.DEV_XIAOMI);
-</code></pre>
-<h3 id="4-1-4-实现接口"><a href="#4-1-4-实现接口" class="headerlink" title="4.1.4. 实现接口"></a>4.1.4. 实现接口</h3><p>实现MessageProcessor和MessageProcessorFactory接口，实现这个接口，处理从server读取的数据</p>
-<pre><code class="plain">private static class MyMessageProcessor implements MessageProcessor &#123;
-    @Override
-    public void init(TopicAndPartition topicAndPartition, long messageOffset) &#123;
-
-    &#125;
-    @Override
-    public void process(List&lt;MessageAndOffset&gt; messages, MessageCheckpointer messageCheckpointer) &#123;
-      try &#123;
-        // add your process logic for &#39;messages&#39;
-        for (MessageAndOffset messageAndOffset : messages) &#123;
-          LOG.info(&quot;Message content: &quot; + new String(
-              messageAndOffset.getMessage().getMessage()));
-        &#125;
-
-        long count = successGetNumber.addAndGet(messages.size());
-        LOG.info(&quot;Consuming total data so far: &quot; + count);
-
-        /** if user has set &#39;galaxy.talos.consumer.checkpoint.auto.commit&#39; to false,
-         * then you can call the &#39;checkpoint&#39; to commit the list of messages.
-         */
-        //messageCheckpointer.checkpoint();
-      &#125; catch (Throwable throwable) &#123;
-        LOG.error(&quot;process error, &quot;, throwable);
-      &#125;
-    &#125;
-
-    @Override
-    public void shutdown(MessageCheckpointer messageCheckpointer) &#123;
-
-    &#125;
-  &#125;
-</code></pre>
-<p><strong>MessageProcessorFactory接口</strong></p>
-<pre><code class="plain">  private static class MyMessageProcessorFactory implements MessageProcessorFactory &#123;
-    @Override
-    public MessageProcessor createProcessor() &#123;
-      return new MyMessageProcessor();
-    &#125;
-  &#125;
-</code></pre>
-<h3 id="4-1-5-读取数据"><a href="#4-1-5-读取数据" class="headerlink" title="4.1.5. 读取数据"></a>4.1.5. 读取数据</h3><p>实例化TalosConsumer即可，它会自动读取数据、进行rebalance和维护消费的offset</p>
-<pre><code class="plain"> talosConsumer = new TalosConsumer(consumerGroup, consumerConfig,
-        credential, topicName, new MyMessageProcessorFactory(),
-        clientPrefix, new SimpleTopicAbnormalCallback());
-</code></pre>
-<p><a href="https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java">示例代码链接</a></p>
-<h2 id="4-2-TalosConsumer-参数项"><a href="#4-2-TalosConsumer-参数项" class="headerlink" title="4.2. TalosConsumer 参数项"></a>4.2. TalosConsumer 参数项</h2><table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>必需项</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>galaxy.talos.service.endpoint</td>
-<td>指定Talos Server的URI，参见<a href="https://cloud.mioffice.cn/product/docs/talos/talos/join/join_prepare/talos_cluster_info">集群信息</a></td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.topic.name</td>
-<td>指定用户获取数据的Topic Name</td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.access.key</td>
-<td>指定Team AccessKey，参见<a href="https://cloud.mioffice.cn/product/docs/talos/talos_platform/talos_platform_auth">融合云认证机制</a></td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.access.secret</td>
-<td>指定Team SecretKey，参见<a href="https://cloud.mioffice.cn/product/docs/talos/talos_platform/talos_platform_auth">融合云认证机制</a></td>
-<td>–</td>
-<td>true</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.fetch.interval.ms</td>
-<td>指定每个partition拉取数据的时间间隔&#x2F;频率</td>
-<td>200ms</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.max.fetch.records</td>
-<td>指定每个partition拉取数据batch条目数的最大值</td>
-<td>1000</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.checkpoint.auto.commit</td>
-<td>指定系统是否自动commit消费的数据</td>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.commit.offset.record.fetched.num</td>
-<td>指定consumer commit offset 消息条目数维度的频率</td>
-<td>10000</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.commit.offset.interval.milli</td>
-<td>指定consumer commit offset 时间维度的频率</td>
-<td>5000ms</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.out.of.range.reset.latest.offset</td>
-<td>指定当用户拉取消息时offset出现越界，是否从该partition的最新offset开始拉取</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.start.reset.offset.value</td>
-<td>指定从当前Partition的StartOffset还是EndOffset开始读取消息</td>
-<td>-1</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.start.whether.reset.offset</td>
-<td>指定TalosConsumer启动时是否重置offset</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.client.falcon.monitor.switch</td>
-<td>指定消费过程是否需要监控</td>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.degrade.fetch.interval</td>
-<td>被限速之后拉取数据的时间间隔&#x2F;频率</td>
-<td>60s</td>
-<td>false</td>
-</tr>
-<tr>
-<td>galaxy.talos.consumer.accelerate.switch</td>
-<td>是否开启自动加速拉取数据</td>
-<td>false</td>
-<td>false</td>
-</tr>
-</tbody></table>
-<h1 id="5-Binlog数据解析"><a href="#5-Binlog数据解析" class="headerlink" title="5. Binlog数据解析"></a>5. Binlog数据解析</h1><h5 id="Binlog-thrift定义"><a href="#Binlog-thrift定义" class="headerlink" title="Binlog thrift定义"></a>Binlog thrift定义</h5><pre><code class="plain">struct Binlog &#123;
-          1: required i64 timestamp,    // binlog产生的时间戳
-          2: required Operation operationType,  // 数据操作类型
-          3: required list&lt;ColumnSchema&gt; schema,  //表结构
-          4: optional list&lt;Row&gt; rows,  // 改动后的数据
-          5: optional string database, //数据库名
-          6: optional string table,  // 表名
-          7: optional list&lt;string&gt; primaryKey,  // 主键
-          8: optional list&lt;Row&gt; oldRows,  // 改动前的数据
-          9: optional i64 offset,   // 唯一顺序id
-        &#125;
-</code></pre>
-<h5 id="changlog表结构"><a href="#changlog表结构" class="headerlink" title="changlog表结构"></a>changlog表结构</h5><pre><code class="plain">CREATE TABLE `changelog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modifier` varchar(255) NOT NULL COMMENT &#39;修改人&#39;,
-  `modificationTime` datetime NOT NULL COMMENT &#39;修改时间&#39;,
-  `databaseName` varchar(255) NOT NULL COMMENT &#39;库名&#39;,
-  `tableName` varchar(255) NOT NULL COMMENT &#39;表名&#39;,
-  `primaryKey` varchar(255) NOT NULL,
-  `modifyCol` varchar(255) NOT NULL COMMENT &#39;修改列字段&#39;,
-  `modifyRow` varchar(255) NOT NULL COMMENT &#39;修改行对应主键id值&#39;,
-  `Oldvalue` varchar(255) NOT NULL COMMENT &#39;旧值&#39;,
-  `Newvalue` varchar(255) NOT NULL COMMENT &#39;新值&#39;,
-  `diff` longtext NOT NULL COMMENT &#39;json信息存储&#39;,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
-</code></pre>
-<h5 id="反序列化Talos中的数据"><a href="#反序列化Talos中的数据" class="headerlink" title="反序列化Talos中的数据"></a>反序列化Talos中的数据</h5><pre><code class="java">Binlog binlog = BinlogDeserializer.deserialize(messageAndOffset.message.getMessage())
-</code></pre>
-<h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5>
-
-<ol>
-<li>处理方法<strong>process</strong>：处理来自Talos的消息：</li>
-</ol>
-<ul>
-<li><ul>
-<li>对每条消息进行处理：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>反序列化Binlog消息</li>
-<li>获取相关信息，修改时间、数据库名、表名、主键、旧行列表、新行列表以及表结构schema</li>
-<li>获取修改人字段的索引（约定修改人字段名称为update_user）</li>
-<li>如果Binlog为UPDATE操作：</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li><ul>
-<li>获取新旧行的差异Map。</li>
-<li>添加**”modify Time”<strong>、</strong>“databaseName”<strong>和</strong>“tableName”**字段到差异Map。</li>
-<li>插入到<strong>changelog</strong>表。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li>完成对消息的处理。</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>获取修改人字段索引方法<strong>get_modifier_columnIndex</strong>：查找列模式列表中是否包含名为**”update_user”**的字段，并返回其索引。</li>
-<li>获取差异信息方法<strong>getDiff</strong>：比较旧行和新行的数据，生成差异信息Map。</li>
-</ol>
-<h5 id="getColumnValue方法"><a href="#getColumnValue方法" class="headerlink" title="getColumnValue方法"></a>getColumnValue方法</h5><p>ColumnSchema与Row按顺序一一对应，可以自行根据ColumnSchema.type将Row中存储的数据解析为对应的类型，示例代码如下：</p>
-<pre><code class="java">private static Object getColumnValue(Row row, int columnIndex, ColumnSchema columnSchema) &#123;
-        switch (columnSchema.type) &#123;
-        case TINYINT: case SMALLINT: case MEDIUMINT: case INT: case UNSIGNEDTINYINT: case UNSIGNEDMEDIUMINT:
-        case UNSIGNEDSMALLINT: case UNSIGNEDINT: case YEAR:
-            System.out.println(binlog.rows.get(0).row.get(index).getI32Value());
-            break;
-        case BIGINT: case UNSIGNEDBIGINT: case DATETIME: case DATE: case TIME: case TIMESTAMP: case SET:
-            System.out.println(binlog.rows.get(0).row.get(index).getI64Value());
-            break;
-        case DOUBLE: case DECIMAL: case FLOAT:
-            System.out.println(binlog.rows.get(0).row.get(index).getDoubleValue());
-            break;
-        case CHAR: case VARCHAR: case JSON:
-            System.out.println(binlog.rows.get(0).row.get(index).getStringValue());
-            break;
-    &#125;
-&#125;
-</code></pre>
-<h1 id="6-其他实现细节"><a href="#6-其他实现细节" class="headerlink" title="6. 其他实现细节"></a>6. 其他实现细节</h1><h2 id="6-1-kc加密"><a href="#6-1-kc加密" class="headerlink" title="6.1. kc加密"></a>6.1. kc加密</h2><p><a href="https://cloud.mioffice.cn/next/console/keycenter/sid/encry?env=cn&amp;projectId=13153&amp;sid=mi-ipd-research">https://cloud.mioffice.cn/next/console/keycenter/sid/encry?env=cn&amp;projectId=13153&amp;sid=mi-ipd-research</a></p>
-<h2 id="6-2-改用mybatis"><a href="#6-2-改用mybatis" class="headerlink" title="6.2. 改用mybatis"></a>6.2. 改用mybatis</h2><p>之前用的jdbc，比较简单，但为了后面好管理，改为mybatis，其中这个地方卡了很久</p>
-<pre><code class="java">//注入
-@Autowired
-    private MyMessageProcessorFactory myMessageProcessorFactory;
-
-@Autowired
-    private TalosConfig talosConfig;
-//    启动消费者
-public void start() throws TException &#123;
-    TalosConsumerConfig consumerConfig = talosConfig.consumerConfig(&quot;serverBeijing5_Zhongjingyun&quot;);
-Credential credential = talosConfig.credential();
-//不再是new对象而是改为注入，myMessageProcessorFactory里面注入myMessageProcessor
-TalosConsumer talosConsumer = new TalosConsumer(TalosConfig.consumerGroup, consumerConfig,
-                                                credential, topicName, myMessageProcessorFactory,
-                                                clientPrefix, new SimpleTopicAbnormalCallback());
-
-&#125;
-</code></pre>
-<h1 id="7-部署相关"><a href="#7-部署相关" class="headerlink" title="7. 部署相关"></a>7. 部署相关</h1><ol>
-<li>推到git仓库上面（master生产 test 测试）<br><a href="https://git.n.xiaomi.com/mit/supplychain/ipd/ipd-data-change-log">https://git.n.xiaomi.com/mit/supplychain/ipd/ipd-data-change-log</a></li>
-<li>在IAM资源树服务上创建节点（给个权限就行）</li>
-<li>创建应用<br><a href="https://cloud.mioffice.cn/next/console/matrix/apps?appId=17958&amp;projectId=363992">https://cloud.mioffice.cn/next/console/matrix/apps?appId=17958&amp;projectId=363992</a></li>
-<li>应用上创建部署空间</li>
-<li>流水线配置（选那个</li>
-<li>（我创建的模板就行） 这里matrix部分要选刚刚建的部署空间</li>
-<li>本地执行脚本触发流水线<br>后面需要指定环境参数  .&#x2F;mitag.sh pro<br>才能打到正确的tag</li>
-</ol>
-<p>&#96;&#96;&#96;git<br>#!&#x2F;bin&#x2F;bash</p>
-<h1 id="设置-Bash-脚本选项，set-e-表示遇到错误就停止执行脚本"><a href="#设置-Bash-脚本选项，set-e-表示遇到错误就停止执行脚本" class="headerlink" title="设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本"></a>设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本</h1><p>set -e</p>
-<h1 id="默认前缀是-“test”"><a href="#默认前缀是-“test”" class="headerlink" title="默认前缀是 “test”"></a>默认前缀是 “test”</h1><p>prefix&#x3D;”test”</p>
-<h1 id="如果第一个参数是-“pre”，则前缀变为-“pre”"><a href="#如果第一个参数是-“pre”，则前缀变为-“pre”" class="headerlink" title="如果第一个参数是 “pre”，则前缀变为 “pre”"></a>如果第一个参数是 “pre”，则前缀变为 “pre”</h1><p>if [[ $1 &#x3D;&#x3D; “pre” ]]; then<br>    prefix&#x3D;”pre”<br>fi</p>
-<h1 id="如果第一个参数是-“pro”，则前缀变为-“pro”"><a href="#如果第一个参数是-“pro”，则前缀变为-“pro”" class="headerlink" title="如果第一个参数是 “pro”，则前缀变为 “pro”"></a>如果第一个参数是 “pro”，则前缀变为 “pro”</h1><p>if [[ $1 &#x3D;&#x3D; “pro” ]]; then<br>    prefix&#x3D;”pro”<br>fi</p>
-<h1 id="前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”"><a href="#前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”" class="headerlink" title="前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”"></a>前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”</h1><h1 id="自定义函数-mi-tag-，用于打标签"><a href="#自定义函数-mi-tag-，用于打标签" class="headerlink" title="自定义函数 mi-tag()，用于打标签"></a>自定义函数 mi-tag()，用于打标签</h1><p>function mi-tag() {<br>    # 设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本<br>    set -e<br>    # 更新本地代码，并拉取远程仓库的标签<br>    git pull –tags -f<br>    # 获取最大的标签号<br>    local maxTag&#x3D;0;<br>      # 列出所有的标签 过滤出具有特定前缀和日期匹配的标签列表<br>    for k in <code>git tag -l &quot;$&#123;prefix&#125;$(date +&#39;%Y%m%d&#39;)-*&quot;</code><br>    do<br>      # 将标签名中的连字符（”-“）替换为空格<br>      local arr&#x3D;(<code>echo $k|tr &quot;-&quot; &quot; &quot;</code>)<br>      # 算数组arr的长度，并将结果减去1 得到数组最后一个元素的索引。<br>      local index&#x3D;&#96;expr $</p>
-]]></content>
-      <categories>
-        <category>项目</category>
       </categories>
   </entry>
   <entry>
@@ -3782,6 +3095,217 @@ public object intercept(object obj, java.lang. reflect. Method method, 0bject[] 
       </categories>
   </entry>
   <entry>
+    <title>SQL</title>
+    <url>/2023/06/04/SQL/</url>
+    <content><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>1、题目：现在运营想要筛选出所有<strong>北京大学</strong>的学生进行用户调研，请你从用户信息表中取出满足条件的数据，结果返回<strong>设备id</strong>和<strong>学校</strong>。<span id="more"></span></p>
+<p>SELECT device_id,university FROM user_profile WHERE university&#x3D; ‘北京大学</p>
+<p>注意 返回数据用逗号隔开</p>
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>2、查询考试成绩有不及格的学生的学号</p>
+<p>SELECT DISTINCT 学号 FROM 成绩表 WHERE 成绩&lt; 60</p>
+<p>DISTINCT用来去重</p>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>3、查找年龄大于24岁的用户信息</p>
+<p>SELECT device_id, gender, age, university FROM user_profile WHERE age is not null and age &gt; 24</p>
+<p>null 是大于所有数值型还是小于所有数值型是由 DBMS 决定的，严谨起见，还是加上 age is not null 的条件</p>
+<h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>4、查询所有系号在2和3之间的班号和班名。</p>
+<p>SELECT 班号,班名 FROM 班级表 WHERE 系号 BETWEEN <code>2` `AND </code>3</p>
+<h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>5、查询所有系号不在2和3之间的班号和班名。</p>
+<p>SELECT 班号,班名 FROM 班级表 WHERE 系号 NOT BETWEEN <code>2` `AND </code>3</p>
+<h1 id="6"><a href="#6" class="headerlink" title="6"></a>6</h1><p>6、现在运营想要查看除复旦大学以外的所有用户明细，请你取出相应数据</p>
+<p>SELECT<code> </code>device_id,gender,age,university <code>FROM` `user_profile</code>WHERE<code> </code>university <code>NOT` `IN` `(</code>‘复旦大学’&#96;&#96;)或者select device_id,gender,age,university from user_profile where university!&#x3D;”复旦大学”</p>
+<p>where 字段 in（not in） 一个范围</p>
+<h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><p>7、现在运营想要找到<strong>男性且GPA在3.5以上</strong>的用户进行调研，请你取出相关数据。</p>
+<p>select device_id,gender,age ,university,gpa from user_profile where gender&#x3D;”male” and gpa&gt;3.5</p>
+<h1 id="8"><a href="#8" class="headerlink" title="8"></a>8</h1><p>8、查询所有系号大于1且班名以“电子 ” 开头的班号和班名。</p>
+<p>SELECT<code> </code>班号,班名 <code>FROM` `班级表</code>WHERE<code> </code>系号&gt;1 <code>AND` `班名 </code>LIKE<code> </code>‘电子%’</p>
+<h1 id="9"><a href="#9" class="headerlink" title="9"></a>9</h1><p>9、现在运营想要找到<strong>学校为北大或GPA在3.7以上</strong>的用户进行调研，请你取出相关数据</p>
+<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>university&#x3D;&#96;&#96;’北京大学’<code> </code>OR<code> </code>gpa &gt; 3.7</p>
+<h1 id="10"><a href="#10" class="headerlink" title="10"></a>10</h1><p>10、现在运营想要找到<strong>学校为北大、复旦和山大</strong>的同学进行调研，请你取出相关数据。</p>
+<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>university <code>IN` `(</code>‘北京大学’<code> </code>, <code>&#39;复旦大学&#39;</code>, <code>&#39;山东大学&#39;</code>)</p>
+<h1 id="11"><a href="#11" class="headerlink" title="11"></a>11</h1><p>11、现在运营想要找到gpa在3.5以上的山东大学用户 或 gpa在3.8以上的复旦大学同学进行用户调研，请你取出相应数据</p>
+<p>SELECT<code> </code>device_id,gender,age,university,gpa <code>FROM` `user_profile</code>WHERE<code> </code>(university&#x3D;<code>&#39;山东大学&#39;</code>AND<code> </code>gpa &gt; 3.5) <code>OR` `(university=</code>‘复旦大学’<code> </code>AND<code> </code>gpa &gt; 3.8)</p>
+<h1 id="12"><a href="#12" class="headerlink" title="12"></a>12</h1><p>12、现在运营想查看所有大学中带有北京的用户的信息，请你取出相应数据。</p>
+<p>SELECT device_id,age,university  FROM user_profile WHERE university  LIKE ‘%北京%’</p>
+<p><strong>拓展：</strong></p>
+<p>这道题主要考察的是模糊查询 字段名 like ‘匹配内容’</p>
+<ol>
+<li>_ ：下划线 代表匹配任意一个字符；</li>
+<li>% ：百分号 代表匹配0个或多个字符；</li>
+<li>[]: 中括号 代表匹配其中的任意一个字符；</li>
+<li>[^]: ^尖冒号 代表 非，取反的意思；不匹配中的任意一个字符。</li>
+</ol>
+<p>tips：面试常问的一个问题：你了解哪些数据库优化技术？ SQL语句优化也属于数据库优化一部分，而我们的like模糊查询会引起全表扫描，速度比较慢，应该尽量避免使用like关键字进行模糊查询。</p>
+<h1 id="13"><a href="#13" class="headerlink" title="13"></a>13</h1><p>13 复旦大学学生gpa最高值</p>
+<p>方法一：</p>
+<p><strong>desc倒排</strong></p>
+<p>select gpa from user_profile where university &#x3D;’复旦大学’ order by  gpa desc limit 1</p>
+<p>方法二：</p>
+<p>聚合函数必须放在前面 不可在where里面</p>
+<p>SELECT MAX(gpa)gpa FROM user_profile WHERE university &#x3D; ‘复旦大学’</p>
+<p><strong>拓展</strong></p>
+<h2 id="使用聚合函数汇总数据"><a href="#使用聚合函数汇总数据" class="headerlink" title="使用聚合函数汇总数据"></a>使用聚合函数汇总数据</h2><p>SQL提供的统计函数有：COUNT(【Shift+8】)：统计表中元组个数；COUNT([DISTINCT] &lt;列名&gt;)：统计本列列值个数；SUM( &lt;列名&gt; )：计算列值总和；AVG( &lt;列名&gt; )：计算列值平均值；MAX( &lt;列名&gt; )：求列值最大值；MIN( &lt;列名&gt; )： 求列值最小值。上述函数中除COUNT(【Shift+8】)外，其他函数在计算过程中均忽略NULL值。</p>
+<p><strong>统计函数不能出现在WHERE子句中。</strong>例如，查询成绩最高的学生的学号，如下写法是错误的：SELECT 学号 FROM 成绩表WHERE 成绩 &#x3D; MX(成绩</p>
+<h1 id="14"><a href="#14" class="headerlink" title="14"></a>14</h1><p>14、题目：现在运营想要看一下男性用户有多少人以及他们的平均gpa是多少，用以辅助设计相关活动，请你取出相应数据。</p>
+<p>问题分解：</p>
+<ol>
+<li>限定条件为 男性用户；</li>
+<li>有多少人，明显是计数，count函数；</li>
+<li>平均gpa，求平均值用avg函数；</li>
+</ol>
+<hr>
+<p>细节问题：根据输出示例，有两个问题需要注意：</p>
+<ol>
+<li>表头重命名，用as语法</li>
+<li>浮点数的平均值可能小数点位数很多，按照示例保存一位小数，用round函数</li>
+</ol>
+<p>使用ROUND()函数，ROUND返回一个数值，舍入到指定的长度或精度</p>
+<p>select count(gender) as male_num,round(avg(gpa),1) as avg_gpa from user_profile where gender&#x3D;’male’ </p>
+<h1 id="15"><a href="#15" class="headerlink" title="15"></a>15</h1><p>15、现在运营想要对每个学校不同性别的用户活跃情况和发帖数量进行分析，请分别计算出每个学校每种性别的用户数、30天内平均活跃天数和平均发帖数量。</p>
+<p>结果：这里最好用下round(x,1)</p>
+<p>select      gender, university,     count(device_id) as user_num,     avg(active_days_within_30) as avg_active_days,     avg(question_cnt) as avg_question_cnt from user_profile group by gender, university</p>
+<p><strong>在面试某上海上市金融科技公司中曾被问到的一个问题是：</strong></p>
+<ol>
+<li>你在项目中你用过分组函数吗？</li>
+</ol>
+<p>我：用过（必须展现实力）</p>
+<ol>
+<li>那你听清楚我下面这个问题，分组SQL语句中，select和from和where和group by 和 having 这几部分的执行顺序是怎么样的？</li>
+</ol>
+<p>我：先是from，再到 where ，再到select，再到group by ，最后having。</p>
+<ol>
+<li>你能说说为什么是这样子的吗？</li>
+</ol>
+<p>我：因为首先肯定是要确定数据从哪张表来，然后按where条件查询出结果，再然后才能进行group by分组（分组条件可以有多个，按字段顺序依次分组），最后是由having对分组后的结果集进行过滤</p>
+<p>我的理解： 先看他是根据什么分组的 然后看需要啥字段 给他就行了</p>
+<h1 id="16"><a href="#16" class="headerlink" title="16"></a>16</h1><p>16、题目：现在运营想查看每个学校用户的平均发贴和回帖情况，寻找低活跃度学校进行重点运营，请取出平均发贴数低于5的学校或平均回帖数小于20的学校。</p>
+<p>select     university,     round(avg(question_cnt), 1) as avg_question_cnt,     round(avg(answer_cnt), 1) as avg_answer_cnt from user_profile group by university having avg_question_cnt&lt;5 or avg_answer_cnt&lt;20 </p>
+<h2 id="使用HAVING"><a href="#使用HAVING" class="headerlink" title="使用HAVING"></a>使用HAVING</h2><p>HAVING子句用于对分组后的结果再进行过滤，它的功能有点像WHERE子句，但它用于组而不是单个记录。<strong>在HAVING子句中可以使用统计函数，但在WHERE子句中则不能。****HAVING通常与GROUP BY子句一起使用。</strong></p>
+<p>我的理解：</p>
+<h1 id="17"><a href="#17" class="headerlink" title="17"></a>17</h1><p>17、having 最后规律分组的数据 可以用select后面的as 字段</p>
+<p>题目：现在运营想要查看不同大学的用户平均发帖情况，并期望结果按照平均发帖情况进行升序排列，请你取出相应数据。</p>
+<p>select university,     avg(question_cnt) as avg_question_cnt from user_profile group by university order by avg_question_cnt</p>
+<p>同样的 order by 放在最后面就好了</p>
+<ol>
+<li>tips：在排序中order by 字段 asc –其中升序为asc(可以不写，默认就是按照升序排列),降序为desc（必须写）</li>
+</ol>
+<p>round最好也加一下</p>
+<h1 id="18"><a href="#18" class="headerlink" title="18"></a>18</h1><p>题目：现在运营想要查看所有来自浙江大学的用户题目回答明细情况，请你取出相应数据</p>
+<ul>
+<li>限定条件：来自浙江大学的用户，学校信息在用户画像表，答题情况在用户练习明细表，因此需要通过device_id关联两个表的数据； </li>
+<li>方法1：join两个表，用inner join，条件是on up.device_id&#x3D;qpd.device_id and up.university&#x3D;’浙江大学’</li>
+<li>方法2：先从画像表找到浙江大学的所有学生id列表where university&#x3D;’浙江大学’，再去练习明细表筛选出id在这个列表的记录，用where in</li>
+</ul>
+<p>select qpd.device_id, qpd.question_id, qpd.result from question_practice_detail as qpd inner join user_profile as up on up.device_id&#x3D;qpd.device_id and up.university&#x3D;’浙江大学’ order by question_idselect device_id, question_id, result from question_practice_detail where device_id in (     select device_id from user_profile     where university&#x3D;’浙江大学’ ) order by question_id</p>
+<p>子查询效率低一点 但是我写起来舒服</p>
+<p>xx表 inner join xx表 On 条件 order by XX</p>
+<p>还是用join吧 !!!! 用子查询好像不太行</p>
+<p>这里注意，一旦我们join了之后，select qpd.device_id, qpd.question_id, qpd.result后面跟的一定要是具体表的表名 不然查不出来！</p>
+<p>而且中间有条件的话别用where 条件直接在On里面写就行</p>
+<h1 id="19"><a href="#19" class="headerlink" title="19"></a>19</h1><p>运营想要了解每个学校答过题的用户平均答题数量情况，请你取出数据。</p>
+<ul>
+<li>每个学校：按学校分组，group by university</li>
+<li>平均答题数量：在每个学校的分组内，用总答题数量除以总人数即可得到平均答题数量count(question_id) &#x2F; count(distinct device_id)</li>
+<li>表连接：学校和答题信息在不同的表，需要做连接</li>
+</ul>
+<p>select university,     count(question_id) &#x2F; count(distinct qpd.device_id) as avg_answer_cnt from question_practice_detail as qpd inner join user_profile as up on qpd.device_id&#x3D;up.device_id group by university</p>
+<h1 id="20"><a href="#20" class="headerlink" title="20"></a>20</h1><h3 id="左连接，右连接，内连接，全连接的区别及使用"><a href="#左连接，右连接，内连接，全连接的区别及使用" class="headerlink" title="左连接，右连接，内连接，全连接的区别及使用"></a>左连接，右连接，内连接，全连接的区别及使用</h3><p>左连接 （left join）：返回包括左表的所有记录和右表中连接字段相等的记录右连接（right join）：返回包括右表的所有记录和左表中连接字段相等的记录等值连接或者叫内连接（inner join）：只返回两表相连相等的行全外连接（full join）：返回左右表中所有的记录和左右表中连接字段相等的记录。</p>
+<ul>
+<li>限定条件：无；</li>
+<li>每个学校：按学校分组group by university</li>
+<li>不同难度：按难度分组group by difficult_level</li>
+<li>平均答题数：总答题数除以总人数count(qpd.question_id) &#x2F; count(distinct qpd.device_id)</li>
+<li>来自上面信息三个表，需要联表，up与qpd用device_id连接，qd与qpd用question_id连接。</li>
+</ul>
+<p>select      university,     difficult_level,     round(count(qpd.question_id) &#x2F; count(distinct qpd.device_id), 4) as avg_answer_cnt from question_practice_detail as qpd left join user_profile as up on up.device_id&#x3D;qpd.device_id left join question_detail as qd on qd.question_id&#x3D;qpd.question_id group by university, difficult_level</p>
+<h1 id="21"><a href="#21" class="headerlink" title="21"></a>21</h1><p>运营想要查看<strong>参加了答题</strong>的山东大学的用户在不同难度下的平均答题题目数，请取出相应数据</p>
+<p>目前用inner比较稳妥</p>
+<p>20题用inner就可</p>
+<h1 id="22"><a href="#22" class="headerlink" title="22"></a>22</h1><p>分别查看学校为山东大学或者性别为男性的用户的device_id、gender、age和gpa数据，结果不去重</p>
+<ul>
+<li>限定条件：学校为山东大学或者性别为男性的用户：university&#x3D;’山东大学’, gender&#x3D;’male’；</li>
+<li>分别查看&amp;结果不去重：所以直接使用两个条件的or是不行的，直接用union也不行，要用union all，分别去查满足条件1的和满足条件2的，然后合在一起不去重</li>
+</ul>
+<p>SELECT device_id,gender,age,gpa FROM user_profile WHERE university&#x3D;’山东大学’  UNION ALL SELECT device_id,gender,age,gpa FROM user_profile WHERE gender&#x3D;’male’</p>
+<p>结果不去重 就加ALL</p>
+<h1 id="23"><a href="#23" class="headerlink" title="23"></a>23</h1><p>题目：现在运营想要将用户划分为25岁以下和25岁及以上两个年龄段，分别查看这两个年龄段用户数量</p>
+<p><strong>本题注意：age为null 也记为 25岁以下</strong></p>
+<h3 id="CASE函数"><a href="#CASE函数" class="headerlink" title="CASE函数"></a>CASE函数</h3><p>是一种多分支的函数，可以根据条件列表的值返回多个可能的结果表达式中的一个。可用在任何允许使用表达式的地方，但不能单独作为一个语句执行。</p>
+<p>case 条件表达式 when 条件表达式值 then 字段值 end as 字段</p>
+<p>SELECT CASE WHEN age &lt; 25 OR age IS NULL THEN ‘25岁以下’              WHEN age &gt;&#x3D; 25 THEN ‘25岁及以上’             END age_cut,COUNT(*) as number FROM user_profile GROUP BY age_cut</p>
+<h1 id="24"><a href="#24" class="headerlink" title="24"></a>24</h1><p>题目：现在运营想要将用户划分为<strong>20岁以下，20-24岁，25岁及以上</strong>三个年龄段，分别查看不同年龄段用户的明细情况，请取出相应数据。（注：若<strong>年龄为空</strong>请返回<strong>其他</strong>。）</p>
+<p>select     device_id,     gender,     case         when age&gt;&#x3D;25 then ‘25岁及以上’         when age&gt;&#x3D;20 then ‘20-24岁’         when age&lt;20 then ‘20岁以下’         else ‘其他’     end as age_cut from user_profile </p>
+<h1 id="25"><a href="#25" class="headerlink" title="25"></a>25</h1><p>题目：现在运营想要计算出<strong>2021年8月每天用户练习题目的数量</strong>，请取出相应数据。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424160950126.png" alt="img"></p>
+<p><strong>知识点</strong>：</p>
+<p>对于2021-05-03，用year month day函数直接取得想要的</p>
+<pre><code class="plain">select
+    day(date) as day,
+    count(question_id) as question_cnt
+from question_practice_detail
+where month(date)=8 and year(date)=2021
+group by date
+</code></pre>
+<h1 id="26"><a href="#26" class="headerlink" title="26"></a>26</h1><p>题目：现在运营想要查看用户在某天刷题后第二天还会再来刷题的平均概率。请你取出相应数据。<img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424161313268.png" alt="img"></p>
+<ul>
+<li><p>限定条件：第二天再来。</p>
+</li>
+<li><ul>
+<li>解法1：表里的数据可以看作是全部第一天来刷题了的，那么我们需要构造出第二天来了的字段，因此可以考虑用left join把第二天来了的拼起来，限定第二天来了的可以用date_add(date1, interval 1 day)&#x3D;date2筛选，并用device_id限定是同一个用户。</li>
+</ul>
+</li>
+<li><p>平均概率：</p>
+</li>
+<li><ul>
+<li>解法1：可以count(date1)得到左表全部的date记录数作为分母，count(date2)得到右表关联上了的date记录数作为分子，相除即可得到平均概率</li>
+</ul>
+</li>
+</ul>
+<pre><code class="plain">select count(date2) / count(date1) as avg_ret
+from (
+    select
+        distinct qpd.device_id,
+        qpd.date as date1,
+        uniq_id_date.date as date2
+    from question_practice_detail as qpd
+    left join(
+        select distinct device_id, date
+        from question_practice_detail
+    ) as uniq_id_date
+    on qpd.device_id=uniq_id_date.device_id
+        and date_add(qpd.date, interval 1 day)=uniq_id_date.date
+) as id_last_next_date
+</code></pre>
+<h1 id="27"><a href="#27" class="headerlink" title="27"></a>27</h1><p>题目：现在运营举办了一场比赛，收到了一些参赛申请，表数据记录形式如下所示，现在运营想要统计每个性别的用户分别有多少参赛者，请取出相应结果</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424162133044.png" alt="img"></p>
+<p><strong>字符串截取函数</strong></p>
+<p>substring_index(FIELD, sep, n)可以将字段FIELD按照sep分隔：</p>
+<p>(1).当n大于0时取第n个分隔符(n从1开始)左边的全部内容；</p>
+<p>(2).当n小于0时取倒数第n个分隔符(n从-1开始)右边的全部内容；</p>
+<pre><code class="plain">select
+    substring_index(profile, &#39;,&#39;, -1) as gender,
+    count(device_id) as number
+from user_submit
+group by gender
+</code></pre>
+<p>同理，对blog_url进行处理</p>
+<p>select device_id,substring_index(blog_url,’&#x2F;‘,-1) as user_name from user_submit;</p>
+<p>如果要找年龄呢？</p>
+<p>双层嵌套</p>
+<p>select substring_index(substring_index(profile,’,’,-2) ,’,’,1) as age,count(device_id) as number from user_submit group by age;</p>
+<h1 id="28"><a href="#28" class="headerlink" title="28"></a>28</h1><p>现在运营想要找到每个学校gpa最低的同学来做调研，请你取出每个学校的最低gpa。</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424163904655.png" alt="img"></p>
+<pre><code class="plain">select device_id,university,gpa
+from user_profile
+where (university,gpa) in (select university,min(gpa) from user_profile group by university)
+order by university;
+</code></pre>
+<p>子查询：去重的university 以及min gpa</p>
+<p>然后用In判断符合条件的就行</p>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Spring</title>
     <url>/2023/06/04/Spring/</url>
     <content><![CDATA[<h2 id="使用Spring框架的好处是什么？"><a href="#使用Spring框架的好处是什么？" class="headerlink" title="使用Spring框架的好处是什么？"></a>使用Spring框架的好处是什么？</h2><ul>
@@ -4317,6 +3841,482 @@ IAccountService as = ac.getBean(&quot;accountService&quot;,IAccountService.class
 ]]></content>
       <categories>
         <category>八股</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>binlog日志变更技术方案</title>
+    <url>/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p><strong>需求</strong>：实现数据修改日志功能，所有的参数项，在编辑并提交保存后，需要将历史数据放入log表中，记录修改人、修改时间、操作字段、变更前数据、变更后数据；</p>
+<p><strong>目的</strong> :订阅binlog日志实现业务解耦</p>
+<p>通过集成Talos消息队列和订阅数据库Binlog，从0-1完成IPD损益平台审计功能开发，实现数据的实时追溯和业务解耦 </p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908230749263.png" alt="image-20230908230749263"></p>
+ <span id="more"></span>
+
+
+
+<h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h1><p><strong>需求</strong>：实现数据修改日志功能，所有的参数项，在编辑并提交保存后，需要将历史数据放入log表中，记录修改人、修改时间、操作字段、变更前数据、变更后数据；</p>
+<p><strong>目的</strong> :订阅binlog日志实现业务解耦</p>
+<h1 id="2-总体架构"><a href="#2-总体架构" class="headerlink" title="2. 总体架构"></a>2. 总体架构</h1><p><img src="/.io//1693205640157-7a229db8-0092-43b1-adf6-bdeec5d85e62.jpeg" alt="img"><img src="/.io//1690165570738-77d55d8d-c6ae-4191-8b00-1bef098f7c2b.jpeg" alt="img"></p>
+<h1 id="3-接入数据工厂"><a href="#3-接入数据工厂" class="headerlink" title="3. 接入数据工厂"></a>3. 接入数据工厂</h1><p>由于技术升级等原因，融合云的Binlog Source目前已停新增，后面会逐步下线，且数据集成功能较Binlog Source更加强大，综上，选择数据工厂链路实现数据库的Binlog到Talos的采集。</p>
+<h2 id="3-1-数据工厂信息"><a href="#3-1-数据工厂信息" class="headerlink" title="3.1. 数据工厂信息"></a>3.1. 数据工厂信息</h2><p>平台地址：<a href="https://dt.mi.com/workspace">https://dt.mi.com/workspace</a></p>
+<p>功能模块：数据工场-数据开发-实时&#x2F;离线-集成作业</p>
+<h2 id="3-2-新建作业"><a href="#3-2-新建作业" class="headerlink" title="3.2. 新建作业"></a>3.2. 新建作业</h2><p>创建作业前，需要先将MySQL数据库源添加到空间内（如果是写入已有topic，需要将topic导入到空间，并加入写权限），详细操作可见&gt;&gt;<a href="https://xiaomi.f.mioffice.cn/docs/dock4SieqNccJ4xnM1vZRHBN3Le#YVt3ga">数据源管理</a></p>
+<ol>
+<li>开发模块中选择实时开发，新建“实时集成”作业，进入配置页面。</li>
+</ol>
+
+
+<ol>
+<li>源选择“MySQL(Binlog)”，目标选择“Talos”<strong>（仅支持binlog格式<strong><strong>schema</strong></strong>的talos）</strong></li>
+</ol>
+<ul>
+<li><ul>
+<li>匹配类型选择库表，指定数据库数据表，如果想订阅整个数据库Binlog信息，此处数据表随意选择即可，后续订阅库级别的Talos即可</li>
+<li>注意：数据库所在集群环境需要和Talos集群环境一致，否则会出现类似如下错误</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<p>其余配置以及作业管理参照：<a href="https://xiaomi.f.mioffice.cn/wiki/wikk4TN9Zibaq51jutqF5lRNRaf">https://xiaomi.f.mioffice.cn/wiki/wikk4TN9Zibaq51jutqF5lRNRaf</a></p>
+<p>我是在中国北京IPD损益测算环境下进行的</p>
+<h2 id="3-3-链路监控图"><a href="#3-3-链路监控图" class="headerlink" title="3.3. 链路监控图"></a>3.3. 链路监控图</h2><p><a href="https://dt.mi.com/workspace/#/workspace/12499/operationCenter/realTimeOperate/jobDetail?jobId=1672564&amp;jobVersion=1&amp;partKey=tracingMonitor">https://dt.mi.com/workspace/#/workspace/12499/operationCenter/realTimeOperate/jobDetail?jobId=1672564&amp;jobVersion=1&amp;partKey=tracingMonitor</a></p>
+
+
+<p>采集作业同步实例级别的 binlog，记录到 TALOS(1)，然后接了一个集成作业，过滤某张用户需要的表(也就是新建作业部分我们选定的数据表)到下游的系统 TALOS(2) </p>
+<p>如果想要订阅整个数据库的变更记录，接入TALOS(1)，如果想要订阅具体的表，接入TALOS(2），然后在小米融合云的Talos Platform就可以查看具体信息了</p>
+<p>我们这里是订阅整个损益系统的数据库表的变更，所以连的上12499那个topic</p>
+
+
+<p>因为talos platform我们团队之前已经开过权限 因此在对应的环境下是可以直接看到topic的</p>
+<h1 id="4-Java-TalosConsumer"><a href="#4-Java-TalosConsumer" class="headerlink" title="4. Java TalosConsumer"></a>4. Java TalosConsumer</h1><p>生产Binlog消息部分已经由数据工厂做好，只需要关注Talos消费者逻辑，这里主要介绍使用流程和配置；<br>参考<br><a href="https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java">https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java</a></p>
+<h2 id="4-1-TalosConsumer-使用流程"><a href="#4-1-TalosConsumer-使用流程" class="headerlink" title="4.1. TalosConsumer 使用流程"></a>4.1. TalosConsumer 使用流程</h2><h3 id="4-1-1-准备工作"><a href="#4-1-1-准备工作" class="headerlink" title="4.1.1. 准备工作"></a>4.1.1. 准备工作</h3><p><a href="https://cloud.mioffice.cn/product/docs/talos/talos/join/join_prepare/join_prepare">接入前准备</a></p>
+<h3 id="4-1-2-配置server地址"><a href="#4-1-2-配置server地址" class="headerlink" title="4.1.2. 配置server地址"></a>4.1.2. 配置server地址</h3><p>使用配置文件构造TalosConsumerConfig，并配置Talos的service uri，我们提供http和https，具体URI见<a href="https://cloud.d.xiaomi.net/product/docs/talos/talos/join/join_prepare/talos_cluster_info#/">集群信息</a>；很多配置是可Configurable的，用户可以根据<a href="https://cloud.mioffice.cn/product/docs/talos/talos/details/talos_consumer/talos_consumer/talos_consumer_config">配置详解</a>的说明针对自己业务数据的情况进行配置。</p>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>galaxy.talos.service.endpoint</td>
+<td>指定Talos Server的URI，可以配置http和https，相关集群对应的URI请见<a href="https://docs.api.xiaomi.com/talos/outer-cluster-info.html">集群信息</a></td>
+<td>–</td>
+</tr>
+</tbody></table>
+<pre><code class="plain">    Properties pros = new Properties();
+    pros.setProperty(&quot;galaxy.talos.service.endpoint&quot;, &quot;$talosServiceURI&quot;);
+    consumerConfig = new TalosConsumerConfig(pros);
+</code></pre>
+<h3 id="4-1-3-构造Credential"><a href="#4-1-3-构造Credential" class="headerlink" title="4.1.3. 构造Credential"></a>4.1.3. 构造Credential</h3><p>使用融合云创建Team的AccessKey和SecretKey构造合法的Credential，只有合法的Credential才能Authentication success。</p>
+<pre><code class="plain"> // credential
+    credential = new Credential();
+    credential.setSecretKeyId(accessKey)
+        .setSecretKey(accessSecret)
+        .setType(UserType.DEV_XIAOMI);
+</code></pre>
+<h3 id="4-1-4-实现接口"><a href="#4-1-4-实现接口" class="headerlink" title="4.1.4. 实现接口"></a>4.1.4. 实现接口</h3><p>实现MessageProcessor和MessageProcessorFactory接口，实现这个接口，处理从server读取的数据</p>
+<pre><code class="plain">private static class MyMessageProcessor implements MessageProcessor &#123;
+    @Override
+    public void init(TopicAndPartition topicAndPartition, long messageOffset) &#123;
+
+    &#125;
+    @Override
+    public void process(List&lt;MessageAndOffset&gt; messages, MessageCheckpointer messageCheckpointer) &#123;
+      try &#123;
+        // add your process logic for &#39;messages&#39;
+        for (MessageAndOffset messageAndOffset : messages) &#123;
+          LOG.info(&quot;Message content: &quot; + new String(
+              messageAndOffset.getMessage().getMessage()));
+        &#125;
+
+        long count = successGetNumber.addAndGet(messages.size());
+        LOG.info(&quot;Consuming total data so far: &quot; + count);
+
+        /** if user has set &#39;galaxy.talos.consumer.checkpoint.auto.commit&#39; to false,
+         * then you can call the &#39;checkpoint&#39; to commit the list of messages.
+         */
+        //messageCheckpointer.checkpoint();
+      &#125; catch (Throwable throwable) &#123;
+        LOG.error(&quot;process error, &quot;, throwable);
+      &#125;
+    &#125;
+
+    @Override
+    public void shutdown(MessageCheckpointer messageCheckpointer) &#123;
+
+    &#125;
+  &#125;
+</code></pre>
+<p><strong>MessageProcessorFactory接口</strong></p>
+<pre><code class="plain">  private static class MyMessageProcessorFactory implements MessageProcessorFactory &#123;
+    @Override
+    public MessageProcessor createProcessor() &#123;
+      return new MyMessageProcessor();
+    &#125;
+  &#125;
+</code></pre>
+<h3 id="4-1-5-读取数据"><a href="#4-1-5-读取数据" class="headerlink" title="4.1.5. 读取数据"></a>4.1.5. 读取数据</h3><p>实例化TalosConsumer即可，它会自动读取数据、进行rebalance和维护消费的offset</p>
+<pre><code class="plain"> talosConsumer = new TalosConsumer(consumerGroup, consumerConfig,
+        credential, topicName, new MyMessageProcessorFactory(),
+        clientPrefix, new SimpleTopicAbnormalCallback());
+</code></pre>
+<p><a href="https://github.com/XiaoMi/galaxy-sdk-java/blob/master/galaxy-talos-client/galaxy-talos-example/src/main/java/com/xiaomi/infra/codelab/talos/TalosConsumerDemo.java">示例代码链接</a></p>
+<h2 id="4-2-TalosConsumer-参数项"><a href="#4-2-TalosConsumer-参数项" class="headerlink" title="4.2. TalosConsumer 参数项"></a>4.2. TalosConsumer 参数项</h2><table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>必需项</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>galaxy.talos.service.endpoint</td>
+<td>指定Talos Server的URI，参见<a href="https://cloud.mioffice.cn/product/docs/talos/talos/join/join_prepare/talos_cluster_info">集群信息</a></td>
+<td>–</td>
+<td>true</td>
+</tr>
+<tr>
+<td>galaxy.talos.topic.name</td>
+<td>指定用户获取数据的Topic Name</td>
+<td>–</td>
+<td>true</td>
+</tr>
+<tr>
+<td>galaxy.talos.access.key</td>
+<td>指定Team AccessKey，参见<a href="https://cloud.mioffice.cn/product/docs/talos/talos_platform/talos_platform_auth">融合云认证机制</a></td>
+<td>–</td>
+<td>true</td>
+</tr>
+<tr>
+<td>galaxy.talos.access.secret</td>
+<td>指定Team SecretKey，参见<a href="https://cloud.mioffice.cn/product/docs/talos/talos_platform/talos_platform_auth">融合云认证机制</a></td>
+<td>–</td>
+<td>true</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.fetch.interval.ms</td>
+<td>指定每个partition拉取数据的时间间隔&#x2F;频率</td>
+<td>200ms</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.max.fetch.records</td>
+<td>指定每个partition拉取数据batch条目数的最大值</td>
+<td>1000</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.checkpoint.auto.commit</td>
+<td>指定系统是否自动commit消费的数据</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.commit.offset.record.fetched.num</td>
+<td>指定consumer commit offset 消息条目数维度的频率</td>
+<td>10000</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.commit.offset.interval.milli</td>
+<td>指定consumer commit offset 时间维度的频率</td>
+<td>5000ms</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.out.of.range.reset.latest.offset</td>
+<td>指定当用户拉取消息时offset出现越界，是否从该partition的最新offset开始拉取</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.start.reset.offset.value</td>
+<td>指定从当前Partition的StartOffset还是EndOffset开始读取消息</td>
+<td>-1</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.start.whether.reset.offset</td>
+<td>指定TalosConsumer启动时是否重置offset</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.client.falcon.monitor.switch</td>
+<td>指定消费过程是否需要监控</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.degrade.fetch.interval</td>
+<td>被限速之后拉取数据的时间间隔&#x2F;频率</td>
+<td>60s</td>
+<td>false</td>
+</tr>
+<tr>
+<td>galaxy.talos.consumer.accelerate.switch</td>
+<td>是否开启自动加速拉取数据</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h1 id="5-Binlog数据解析"><a href="#5-Binlog数据解析" class="headerlink" title="5. Binlog数据解析"></a>5. Binlog数据解析</h1><h5 id="Binlog-thrift定义"><a href="#Binlog-thrift定义" class="headerlink" title="Binlog thrift定义"></a>Binlog thrift定义</h5><pre><code class="plain">struct Binlog &#123;
+          1: required i64 timestamp,    // binlog产生的时间戳
+          2: required Operation operationType,  // 数据操作类型
+          3: required list&lt;ColumnSchema&gt; schema,  //表结构
+          4: optional list&lt;Row&gt; rows,  // 改动后的数据
+          5: optional string database, //数据库名
+          6: optional string table,  // 表名
+          7: optional list&lt;string&gt; primaryKey,  // 主键
+          8: optional list&lt;Row&gt; oldRows,  // 改动前的数据
+          9: optional i64 offset,   // 唯一顺序id
+        &#125;
+</code></pre>
+<h5 id="changlog表结构"><a href="#changlog表结构" class="headerlink" title="changlog表结构"></a>changlog表结构</h5><pre><code class="plain">CREATE TABLE `changelog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `modifier` varchar(255) NOT NULL COMMENT &#39;修改人&#39;,
+  `modificationTime` datetime NOT NULL COMMENT &#39;修改时间&#39;,
+  `databaseName` varchar(255) NOT NULL COMMENT &#39;库名&#39;,
+  `tableName` varchar(255) NOT NULL COMMENT &#39;表名&#39;,
+  `primaryKey` varchar(255) NOT NULL,
+  `modifyCol` varchar(255) NOT NULL COMMENT &#39;修改列字段&#39;,
+  `modifyRow` varchar(255) NOT NULL COMMENT &#39;修改行对应主键id值&#39;,
+  `Oldvalue` varchar(255) NOT NULL COMMENT &#39;旧值&#39;,
+  `Newvalue` varchar(255) NOT NULL COMMENT &#39;新值&#39;,
+  `diff` longtext NOT NULL COMMENT &#39;json信息存储&#39;,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
+</code></pre>
+<h5 id="反序列化Talos中的数据"><a href="#反序列化Talos中的数据" class="headerlink" title="反序列化Talos中的数据"></a>反序列化Talos中的数据</h5><pre><code class="java">Binlog binlog = BinlogDeserializer.deserialize(messageAndOffset.message.getMessage())
+</code></pre>
+<h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5>
+
+<ol>
+<li>处理方法<strong>process</strong>：处理来自Talos的消息：</li>
+</ol>
+<ul>
+<li><ul>
+<li>对每条消息进行处理：</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>反序列化Binlog消息</li>
+<li>获取相关信息，修改时间、数据库名、表名、主键、旧行列表、新行列表以及表结构schema</li>
+<li>获取修改人字段的索引（约定修改人字段名称为update_user）</li>
+<li>如果Binlog为UPDATE操作：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li><ul>
+<li>获取新旧行的差异Map。</li>
+<li>添加**”modify Time”<strong>、</strong>“databaseName”<strong>和</strong>“tableName”**字段到差异Map。</li>
+<li>插入到<strong>changelog</strong>表。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>完成对消息的处理。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>获取修改人字段索引方法<strong>get_modifier_columnIndex</strong>：查找列模式列表中是否包含名为**”update_user”**的字段，并返回其索引。</li>
+<li>获取差异信息方法<strong>getDiff</strong>：比较旧行和新行的数据，生成差异信息Map。</li>
+</ol>
+<h5 id="getColumnValue方法"><a href="#getColumnValue方法" class="headerlink" title="getColumnValue方法"></a>getColumnValue方法</h5><p>ColumnSchema与Row按顺序一一对应，可以自行根据ColumnSchema.type将Row中存储的数据解析为对应的类型，示例代码如下：</p>
+<pre><code class="java">private static Object getColumnValue(Row row, int columnIndex, ColumnSchema columnSchema) &#123;
+        switch (columnSchema.type) &#123;
+        case TINYINT: case SMALLINT: case MEDIUMINT: case INT: case UNSIGNEDTINYINT: case UNSIGNEDMEDIUMINT:
+        case UNSIGNEDSMALLINT: case UNSIGNEDINT: case YEAR:
+            System.out.println(binlog.rows.get(0).row.get(index).getI32Value());
+            break;
+        case BIGINT: case UNSIGNEDBIGINT: case DATETIME: case DATE: case TIME: case TIMESTAMP: case SET:
+            System.out.println(binlog.rows.get(0).row.get(index).getI64Value());
+            break;
+        case DOUBLE: case DECIMAL: case FLOAT:
+            System.out.println(binlog.rows.get(0).row.get(index).getDoubleValue());
+            break;
+        case CHAR: case VARCHAR: case JSON:
+            System.out.println(binlog.rows.get(0).row.get(index).getStringValue());
+            break;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="6-其他实现细节"><a href="#6-其他实现细节" class="headerlink" title="6. 其他实现细节"></a>6. 其他实现细节</h1><h2 id="6-1-kc加密"><a href="#6-1-kc加密" class="headerlink" title="6.1. kc加密"></a>6.1. kc加密</h2><p><a href="https://cloud.mioffice.cn/next/console/keycenter/sid/encry?env=cn&amp;projectId=13153&amp;sid=mi-ipd-research">https://cloud.mioffice.cn/next/console/keycenter/sid/encry?env=cn&amp;projectId=13153&amp;sid=mi-ipd-research</a></p>
+<h2 id="6-2-改用mybatis"><a href="#6-2-改用mybatis" class="headerlink" title="6.2. 改用mybatis"></a>6.2. 改用mybatis</h2><p>之前用的jdbc，比较简单，但为了后面好管理，改为mybatis，其中这个地方卡了很久</p>
+<pre><code class="java">//注入
+@Autowired
+    private MyMessageProcessorFactory myMessageProcessorFactory;
+
+@Autowired
+    private TalosConfig talosConfig;
+//    启动消费者
+public void start() throws TException &#123;
+    TalosConsumerConfig consumerConfig = talosConfig.consumerConfig(&quot;serverBeijing5_Zhongjingyun&quot;);
+Credential credential = talosConfig.credential();
+//不再是new对象而是改为注入，myMessageProcessorFactory里面注入myMessageProcessor
+TalosConsumer talosConsumer = new TalosConsumer(TalosConfig.consumerGroup, consumerConfig,
+                                                credential, topicName, myMessageProcessorFactory,
+                                                clientPrefix, new SimpleTopicAbnormalCallback());
+
+&#125;
+</code></pre>
+<h1 id="7-部署相关"><a href="#7-部署相关" class="headerlink" title="7. 部署相关"></a>7. 部署相关</h1><ol>
+<li>推到git仓库上面（master生产 test 测试）<br><a href="https://git.n.xiaomi.com/mit/supplychain/ipd/ipd-data-change-log">https://git.n.xiaomi.com/mit/supplychain/ipd/ipd-data-change-log</a></li>
+<li>在IAM资源树服务上创建节点（给个权限就行）</li>
+<li>创建应用<br><a href="https://cloud.mioffice.cn/next/console/matrix/apps?appId=17958&amp;projectId=363992">https://cloud.mioffice.cn/next/console/matrix/apps?appId=17958&amp;projectId=363992</a></li>
+<li>应用上创建部署空间</li>
+<li>流水线配置（选那个</li>
+<li>（我创建的模板就行） 这里matrix部分要选刚刚建的部署空间</li>
+<li>本地执行脚本触发流水线<br>后面需要指定环境参数  .&#x2F;mitag.sh pro<br>才能打到正确的tag</li>
+</ol>
+<p>&#96;&#96;&#96;git<br>#!&#x2F;bin&#x2F;bash</p>
+<h1 id="设置-Bash-脚本选项，set-e-表示遇到错误就停止执行脚本"><a href="#设置-Bash-脚本选项，set-e-表示遇到错误就停止执行脚本" class="headerlink" title="设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本"></a>设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本</h1><p>set -e</p>
+<h1 id="默认前缀是-“test”"><a href="#默认前缀是-“test”" class="headerlink" title="默认前缀是 “test”"></a>默认前缀是 “test”</h1><p>prefix&#x3D;”test”</p>
+<h1 id="如果第一个参数是-“pre”，则前缀变为-“pre”"><a href="#如果第一个参数是-“pre”，则前缀变为-“pre”" class="headerlink" title="如果第一个参数是 “pre”，则前缀变为 “pre”"></a>如果第一个参数是 “pre”，则前缀变为 “pre”</h1><p>if [[ $1 &#x3D;&#x3D; “pre” ]]; then<br>    prefix&#x3D;”pre”<br>fi</p>
+<h1 id="如果第一个参数是-“pro”，则前缀变为-“pro”"><a href="#如果第一个参数是-“pro”，则前缀变为-“pro”" class="headerlink" title="如果第一个参数是 “pro”，则前缀变为 “pro”"></a>如果第一个参数是 “pro”，则前缀变为 “pro”</h1><p>if [[ $1 &#x3D;&#x3D; “pro” ]]; then<br>    prefix&#x3D;”pro”<br>fi</p>
+<h1 id="前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”"><a href="#前缀会加在-tag-名称之前，例如：”test-mi-matrix-20230802-01”" class="headerlink" title="前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”"></a>前缀会加在 tag 名称之前，例如：”test-mi-matrix-20230802-01”</h1><h1 id="自定义函数-mi-tag-，用于打标签"><a href="#自定义函数-mi-tag-，用于打标签" class="headerlink" title="自定义函数 mi-tag()，用于打标签"></a>自定义函数 mi-tag()，用于打标签</h1><p>function mi-tag() {<br>    # 设置 Bash 脚本选项，set -e 表示遇到错误就停止执行脚本<br>    set -e<br>    # 更新本地代码，并拉取远程仓库的标签<br>    git pull –tags -f<br>    # 获取最大的标签号<br>    local maxTag&#x3D;0;<br>      # 列出所有的标签 过滤出具有特定前缀和日期匹配的标签列表<br>    for k in <code>git tag -l &quot;$&#123;prefix&#125;$(date +&#39;%Y%m%d&#39;)-*&quot;</code><br>    do<br>      # 将标签名中的连字符（”-“）替换为空格<br>      local arr&#x3D;(<code>echo $k|tr &quot;-&quot; &quot; &quot;</code>)<br>      # 算数组arr的长度，并将结果减去1 得到数组最后一个元素的索引。<br>      local index&#x3D;&#96;expr $</p>
+]]></content>
+      <categories>
+        <category>项目</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>基于hexo的Quiet主题搭建博客教程</title>
+    <url>/2023/05/01/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="1、参考的文章"><a href="#1、参考的文章" class="headerlink" title="1、参考的文章"></a>1、参考的文章</h1><p>搭建博客</p>
+<p><a href="https://www.bilibili.com/read/cv12633102">https://www.bilibili.com/read/cv12633102</a></p>
+<p>域名绑定</p>
+<p><a href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a><span id="more"></span></p>
+<p>主题修改</p>
+<p><a href="https://zhuanlan.zhihu.com/p/618864711">https://zhuanlan.zhihu.com/p/618864711</a></p>
+<h1 id="2、遇到的报错信息"><a href="#2、遇到的报错信息" class="headerlink" title="2、遇到的报错信息"></a>2、遇到的报错信息</h1><h2 id="2-1-遇到转义问题"><a href="#2-1-遇到转义问题" class="headerlink" title="2.1 遇到转义问题"></a>2.1 遇到转义问题</h2><pre><code>git config --global core.autocrlf false
+</code></pre>
+<h2 id="2-2-打开viacheung-github-io跳转绑定域名但显示空白"><a href="#2-2-打开viacheung-github-io跳转绑定域名但显示空白" class="headerlink" title="2.2 打开viacheung.github.io跳转绑定域名但显示空白"></a>2.2 打开viacheung.github.io跳转绑定域名但显示空白</h2><p>原因是我们没有在阿里云服务器配置好</p>
+<p>具体配置：<a href="https://blog.csdn.net/Mancuojie/article/details/119906071">https://blog.csdn.net/Mancuojie/article/details/119906071</a></p>
+<p>然后你需要在博客的根目录的<code>source</code>文件夹下新建一个<code>CNAME</code>文件（不要有任何后缀），在里面写入自己的域名</p>
+<p>最后在你博客的Github仓库里找到设置，下拉到Pages填入你的域名保存。大功告成！</p>
+<p>踩坑小tip：按照教程完成一件事情最好全做完，不要想当然分模块，有可能这一步出问题就是因为没把全部事情做完，比如这个打开空白的事情一直以为是之前设置有误，结果是阿里云服务器于域名没有配好。</p>
+<h1 id="3、需要的github操作"><a href="#3、需要的github操作" class="headerlink" title="3、需要的github操作"></a>3、需要的github操作</h1><p>1、我们访问的域名需要是github的用户名.github.io这种形式，github用户名修改在account里面。</p>
+<p>2、同时在博客的根目录下的_config.yml里应该是这种形式:</p>
+<pre><code> deploy:
+  type: git
+  repository: git@github.com:viacheung/viacheung.github.io.git
+  branch: master
+</code></pre>
+<p> respository里面直接在我们的博客代码里面进行如下复制操作</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170302215.png" alt="image-20230424170302215"></p>
+<h1 id="4、更换主题"><a href="#4、更换主题" class="headerlink" title="4、更换主题"></a>4、更换主题</h1><p>下载相应主题放到 theme 文件夹下。</p>
+<p>打开博客目录下的_config.yml文件，在里面设置为theme: blinkfox   （blinkfox为我们要使用的主题名）,然后重新执行hexo g来重新生成。</p>
+<p>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再执行hexo g 和 hexo s 重新生成和发布。</p>
+<h1 id="5、增加评论功能"><a href="#5、增加评论功能" class="headerlink" title="5、增加评论功能"></a>5、增加评论功能</h1><p>这里采用的是 <code>gitalk</code> 一个基于 Github Issue 和 Preact 开发的评论插件</p>
+<p>我们只需要在 <code>Quiet </code>主题文件里面的<code>_config.yml</code>配置文件的 <code>gitalk</code> 进行配置</p>
+<p>首先，您需要选择一个公共github存储库（已存在或创建一个新的github存储库）用于存储评论，</p>
+<p>然后需要创建 <strong>GitHub Application</strong>，如果没有 <a href="https://github.com/settings/applications/new">点击这里申请</a>，<code>Authorization callback URL</code> 填写当前使用插件页面的域名。</p>
+<img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230501002945716.png" alt="image-20230501002945716" style="zoom: 67%;">
+
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/2020-02-02-17-34-57.png" alt="img"></p>
+<pre><code class="yaml">gitalk:
+  clientID: 43557dd07d33bd0ebcdd # （需要替换）GitHub Application Client ID.
+  clientSecret: 4f8841de720cb270e38dea5ff52818c9eb744c36 #（需要替换）GitHub Application Client Secret.
+  repo: blog_commets #（需要替换）GitHub仓库名
+  owner: viacheung #（需要替换）GitHub repository 所有者，可以是个人或者组织。
+  admin: [&#39;viacheung&#39;] #（需要替换）GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。
+</code></pre>
+<p>然后发布的时候题头需要comments: true</p>
+<h2 id="Error-Validation-Failed"><a href="#Error-Validation-Failed" class="headerlink" title="Error: Validation Failed"></a>Error: Validation Failed</h2><p>可能会出现Error: Validation Failed的问题，我的解决办法是添加了一句 <strong>id: decodeURI(location.pathname)</strong> ，使用了JS的解码函数decodeURI()</p>
+<p>在bloh&#x2F;themes&#x2F;Quiet&#x2F;layout&#x2F;_widget&#x2F;commet.ejs里面配置如下：</p>
+<pre><code class="ejs">&lt;% if(theme.gitalk.clientID &amp;&amp; theme.gitalk.clientSecret) &#123; %&gt;
+    &lt;!-- Gitalk --&gt;
+    &lt;script&gt;
+        const data = &#39;&#123;&quot;clientID&quot;:&quot;&lt;%= theme.gitalk.clientID %&gt;&quot;,&quot;clientSecret&quot;:&quot;&lt;%= theme.gitalk.clientSecret %&gt;&quot;,&quot;repo&quot;:&quot;&lt;%= theme.gitalk.repo %&gt;&quot;,&quot;owner&quot;:&quot;&lt;%= theme.gitalk.owner %&gt;&quot;,&quot;admin&quot;:&quot;&lt;%= theme.gitalk.admin %&gt;&quot;&#125;&#39;
+        const gitalk = new Gitalk(&#123;
+            ...JSON.parse( data),
+            id:decodeURI(location.pathname),
+            distractionFreeMode:false
+        &#125;)
+        
+        if(Boolean(&#39;&lt;%= page.comments %&gt;&#39;))&#123;
+            gitalk.render(&#39;gitalk-container&#39;)
+        &#125;
+    &lt;/script&gt;
+&lt;% &#125; %&gt;
+</code></pre>
+<h1 id="6-、插入图像"><a href="#6-、插入图像" class="headerlink" title="6 、插入图像"></a>6 、插入图像</h1><p>修改博客根目录中<code>_config.yml</code>文件的配置项<code>post_asset_folder</code>为<code>true</code>：</p>
+<p>npm install hexo-asset-image –save</p>
+<p>当文章需要添加图片时，将需要添加的图片放入同名的文件夹中，同时通过相对路径索引到该图片。</p>
+<p>右键引入图像</p>
+<p>有待改进</p>
+<p><strong>Typora文件名为中文保存时，插入图片的路径的中文部分是字符串乱码的，怎么解决？</strong></p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170226645.png" alt="image-20230424170226645"></p>
+<h1 id="7、写博客"><a href="#7、写博客" class="headerlink" title="7、写博客"></a>7、写博客</h1><p>我们的文章（F:\programFiles\blog\source_posts在此处）前面需要加这个</p>
+<p>在C:\Users\50537\OneDrive\blog\scaffolds\post.md里面可以配格式</p>
+<hr>
+<pre><code>title: 基于hexo的Quiet主题搭建博客教程
+comments: true
+categories:
+  - 教程
+aubot: viacheung
+tags:
+  - Hexo
+  - Quiet
+toc: true
+date: 2023-5-1 0:55
+</code></pre>
+<hr>
+<pre><code>笔记前面都加上这个 然后hexo clean   g   d
+</code></pre>
+<h1 id="8、换主题"><a href="#8、换主题" class="headerlink" title="8、换主题"></a>8、换主题</h1><p>找了一个还不错的主题，quiet</p>
+<p><a href="https://github.com/79E/hexo-theme-quiet">https://github.com/79E/hexo-theme-quiet</a></p>
+<p>下载下来，放在F:\programFiles\blog的themes</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306032304160.png" alt="image-20230603230455013"></p>
+<p>此处执行 </p>
+<pre><code>hexo clean 
+hexo g 
+hexo d
+</code></pre>
+<hr>
+<h2 id="8-1关于github里面提到的问题"><a href="#8-1关于github里面提到的问题" class="headerlink" title="8.1关于github里面提到的问题"></a>8.1关于github里面提到的问题</h2><p><strong>css 样式没有加载出来</strong></p>
+<p>需要管理员打开cmd 切换到博客根路径</p>
+<pre><code>C:\WINDOWS\system32&gt;F:
+
+F:\&gt;cd programFiles
+
+F:\programFiles&gt;cd blog
+</code></pre>
+<p>然后执行</p>
+<pre><code>npm i hexo-renderer-less
+npm i hexo-renderer-ejs
+</code></pre>
+<p>反正成功了</p>
+<p>不知道是不是这个起作用了</p>
+<p><a href="https://www.cnblogs.com/xrblog/p/11587356.html">https://www.cnblogs.com/xrblog/p/11587356.html</a></p>
+<h1 id="9、对于Hexo的理解"><a href="#9、对于Hexo的理解" class="headerlink" title="9、对于Hexo的理解"></a>9、对于Hexo的理解</h1><p>F:\programFiles\blog\source里面的文件名对应theme里面配置文件的导航名称</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230424170212169.png" alt="image-20230424170212169"></p>
+<h1 id="10-、绑定域名"><a href="#10-、绑定域名" class="headerlink" title="10 、绑定域名"></a>10 、绑定域名</h1><p>source下面有个CNAME 里面写zhangweiyang.xyz</p>
+<p>github里面有个CNAME 里面写zhangweiyang.xyz</p>
+<h1 id="11、操作命令"><a href="#11、操作命令" class="headerlink" title="11、操作命令"></a>11、操作命令</h1><h2 id="11-1-新建文章"><a href="#11-1-新建文章" class="headerlink" title="11. 1 新建文章"></a>11. 1 新建文章</h2><pre><code>blog根目录下：
+
+hexo new &quot;xxx&quot;
+</code></pre>
+<h1 id="12、文章截断"><a href="#12、文章截断" class="headerlink" title="12、文章截断"></a>12、文章截断</h1><p>在需要截断的地方加入：</p>
+<!--more-->
+
+<p>首页就会显示这条以上的所有内容，隐藏接下来的所有内容。<br>例如本文会显示到修改配置上面。</p>
+<p>这个明显就方便很多，但当然有利有弊，比如开头都是废话首页看着就不是很好看，因此我一般会先选择方法二，如果感觉文章前面的写的不太好再用方法一。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
       </categories>
   </entry>
   <entry>
@@ -8594,7 +8594,7 @@ class Solution &#123;
 </code></pre>
 <h2 id="复原-IP-地址"><a href="#复原-IP-地址" class="headerlink" title="复原 IP 地址"></a>复原 IP 地址</h2><p><strong>有效 IP 地址</strong> 正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 ‘.’ 分隔。</p>
 <ul>
-<li>例如：”0.1.2.201” 和”192.168.1.1” 是 <strong>有效</strong> IP 地址，但是 “0.011.255.245”、”192.168.1.312” 和 “<a href="mailto:&#x31;&#x39;&#x32;&#46;&#x31;&#x36;&#56;&#x40;&#x31;&#x2e;&#x31;">&#x31;&#x39;&#x32;&#46;&#x31;&#x36;&#56;&#x40;&#x31;&#x2e;&#x31;</a>“ 是 <strong>无效</strong> IP 地址。</li>
+<li>例如：”0.1.2.201” 和”192.168.1.1” 是 <strong>有效</strong> IP 地址，但是 “0.011.255.245”、”192.168.1.312” 和 “<a href="mailto:&#49;&#57;&#50;&#x2e;&#x31;&#54;&#x38;&#x40;&#x31;&#46;&#x31;">&#49;&#57;&#50;&#x2e;&#x31;&#54;&#x38;&#x40;&#x31;&#46;&#x31;</a>“ 是 <strong>无效</strong> IP 地址。</li>
 </ul>
 <p>给定一个只包含数字的字符串 s ，用以表示一个 IP 地址，返回所有可能的<strong>有效 IP 地址</strong>，这些地址可以通过在 s 中插入 ‘.’ 来形成。你 <strong>不能</strong> 重新排序或删除 s 中的任何数字。你可以按 <strong>任何</strong> 顺序返回答案。</p>
 <pre><code class="plain">class Solution &#123;
@@ -9285,63 +9285,6 @@ class Solution &#123;
       </categories>
   </entry>
   <entry>
-    <title>小技巧</title>
-    <url>/2023/06/04/%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>~~~java就用这个来创建代码块</p>
-<p><strong>一些变量符号</strong><span id="more"></span></p>
-<p>表示数量的话用cnt</p>
-<p>flag表示标志，一般为正负</p>
-<p><strong>IDEA插件LeetEditor</strong></p>
-<p>出现cookie问题 怎么办？在idea进行插件更新！这是没想到的！</p>
-<pre><code class="plain">class Solution &#123;
-    public boolean exist(char[][] board, String word) &#123;
-        int h = board.length, w = board[0].length;
-        boolean[][] visited = new boolean[h][w];
-        for (int i = 0; i &lt; h; i++) &#123;//遍历每个格子看以其开头是否可行
-            for (int j = 0; j &lt; w; j++) &#123;
-                boolean flag = check(board, visited, i, j, word, 0);
-                if (flag) &#123;
-                    return true;
-                &#125;
-            &#125;
-        &#125;
-        return false;//都不行的话才返回false
-    &#125;
-public boolean check(char[][] board, boolean[][] visited, int i, int j, String s, int k) &#123;
-    if (board[i][j] != s.charAt(k)) &#123;
-        return false;
-    &#125; else if (k == s.length() - 1) &#123;
-        return true;
-    &#125;
-    visited[i][j] = true;
-    int[][] directions = &#123;&#123;0, 1&#125;, &#123;0, -1&#125;, &#123;1, 0&#125;, &#123;-1, 0&#125;&#125;;
-    boolean result = false;
-    for (int[] dir : directions) &#123;//做选择
-        int newi = i + dir[0], newj = j + dir[1];
-        if (newi &gt;= 0 &amp;&amp; newi &lt; board.length &amp;&amp; newj &gt;= 0 &amp;&amp; newj &lt; board[0].length) &#123;
-            if (!visited[newi][newj]) &#123;//看是否被用过
-                boolean flag = check(board, visited, newi, newj, s, k + 1);回溯 此时是在board[i][j]=s.charAt(k)的基础上，因此k+1;
-                if (flag) &#123;
-                    result = true;
-                    break;//只要有一条路径可行 直接跳过for循环 返回true
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-    visited[i][j] = false;//每一格判断完是否是可行的之后需要将其置为false，因为其他格子也要用到该格子作为路径
-    return result; 返回结果
-&#125;
-</code></pre>
-<p>}</p>
-<p><strong>求最值</strong></p>
-<p>求最大值就int maxSum &#x3D; Integer.MIN_VALUE;</p>
-<p>反之亦然</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-  </entry>
-  <entry>
     <title>多线程</title>
     <url>/2023/06/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="请简要描述线程与进程的关系-区别及优缺点？"><a href="#请简要描述线程与进程的关系-区别及优缺点？" class="headerlink" title="请简要描述线程与进程的关系,区别及优缺点？"></a>请简要描述线程与进程的关系,区别及优缺点？</h2><p><strong>根本区别</strong>：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位<span id="more"></span></p>
@@ -9757,24 +9700,63 @@ public boolean check(char[][] board, boolean[][] visited, int i, int j, String s
       </categories>
   </entry>
   <entry>
-    <title>并查集</title>
-    <url>/2023/06/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/</url>
-    <content><![CDATA[<p><a href="https://blog.csdn.net/the_zed/article/details/105126583">https://blog.csdn.net/the_zed/article/details/105126583</a></p>
-<p>查找和合并 ，一边查询一边修改结点指向是并查集的特色。<span id="more"></span></p>
-<h2 id="除法求值399"><a href="#除法求值399" class="headerlink" title="除法求值399"></a>除法求值399</h2><p>&#96;&#96;&#96;plain<br>public class Solution {<br>            public double[] calcEquation(List&lt;List<String>&gt; equations, double[] values, List&lt;List<String>&gt; queries) {<br>                int equationsSize &#x3D; equations.size();<br>                &#x2F;&#x2F;因为子数组里面有两个元素[[“a”,”b”],[“b”,”c”]], values &#x3D; [2.0,3.0], queries &#x3D; [[“a”,”c”],[“b”,”a”],[“a”,”e”]<br>                UnionFind unionFind &#x3D; new UnionFind(2 * equationsSize);<br>                &#x2F;&#x2F; 第 1 步：预处理，将变量的值与 id 进行映射，使得并查集的底层使用数组实现，方便编码<br>                Map&lt;String, Integer&gt; hashMap &#x3D; new HashMap&lt;&gt;(2 * equationsSize);<br>                int id &#x3D; 0;<br>                for (int i &#x3D; 0; i &lt; equationsSize; i++) {<br>                    List<String> equation &#x3D; equations.get(i);<br>                    String var1 &#x3D; equation.get(0);<br>                    String var2 &#x3D; equation.get(1);</String></String></String></p>
-<pre><code>                if (!hashMap.containsKey(var1)) &#123;
-                    hashMap.put(var1, id);
-                    id++;
-                &#125;
-                if (!hashMap.containsKey(var2)) &#123;
-                    hashMap.put(var2, id);
-                    id++;
-                &#125;
-                //hashmap   -&gt;   
-</code></pre>
+    <title>审批流离职转岗人员替换技术方案</title>
+    <url>/2023/09/08/%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A6%BB%E8%81%8C%E8%BD%AC%E5%B2%97%E4%BA%BA%E5%91%98%E6%9B%BF%E6%8D%A2%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>由于近半年离职转岗同学较多，导致R平台、PLM大量流程任务处理不及时，没有及时更换审批人</p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>系统可以根据HR系统提供得离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上；</p>
+<p>系统管理员、项目经理可以手动转离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上；</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png" alt="image-20230908232036861"></p>
+<span id="more"></span>
+
+<h1 id="平台范围"><a href="#平台范围" class="headerlink" title="平台范围"></a>平台范围</h1><p>R平台、Windchill、RC平台</p>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><h2 id="离职场景处理："><a href="#离职场景处理：" class="headerlink" title="离职场景处理："></a>离职场景处理：</h2><h3 id="自动交接（离职只有自动交接）："><a href="#自动交接（离职只有自动交接）：" class="headerlink" title="自动交接（离职只有自动交接）："></a>自动交接（离职只有自动交接）：</h3><p>  根据HR系统中人员离职流程完成时间后，推送过来的离职人员和交接人，每天早晨五点自动将R平台和PLM中的所有计划任务、流程任务、权限角色、配置表对应人员、项目角色成员、物料分类扩展属性值（ODM技术负责人、技术负责人、SQE工程师、资源工程师；）替换完成后发送邮件和飞书通知给对应交接人、流程发起人、项目经理</p>
+<h3 id="需要HR提供的信息"><a href="#需要HR提供的信息" class="headerlink" title="需要HR提供的信息"></a>需要HR提供的信息</h3><p>  离职或转岗人员、工作交接人、交接时间（流程走完时间）</p>
+<h3 id="功能模块处理逻辑（做去重处理）"><a href="#功能模块处理逻辑（做去重处理）" class="headerlink" title="功能模块处理逻辑（做去重处理）"></a>功能模块处理逻辑（做去重处理）</h3><p>  项目计划任务：除去已完成任务以外所有该离职人员的任务转到工作交接人上</p>
+<p>  流程任务：除去已完成流程以外所有流程节点中包含该离职人员的处理人替换为工作交接人</p>
+<p>  权限角色：该离职人员所有的权限角色都赋予到工作交接人上</p>
+<h1 id="详细设计文档"><a href="#详细设计文档" class="headerlink" title="详细设计文档"></a>详细设计文档</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>简单的背景介绍：可以引用架构设计文档、产品设计文档</p>
+<p>服务命名：plm-service</p>
+<h2 id="设计考虑"><a href="#设计考虑" class="headerlink" title="设计考虑"></a>设计考虑</h2><p>本系统设计最重要关注的点有哪些。</p>
+<ul>
+<li>功能特性：离职转岗待办对接，消息通知；</li>
+<li>兼容性：待办转接后能继续处理 历史不改变 进行中的调整，未开始的切换交接人整体对接流程</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908231938460.png" alt="image-20230908231938460"></p>
+<h2 id="接口设计-（对外提供的）"><a href="#接口设计-（对外提供的）" class="headerlink" title="接口设计 （对外提供的）"></a>接口设计 （对外提供的）</h2><h3 id="3-1-接口协议"><a href="#3-1-接口协议" class="headerlink" title="3.1 接口协议"></a>3.1 接口协议</h3><p>前端交互： HTTP (REST）服务间： RPC(Dubbo)</p>
+<h3 id="3-2-接口列表"><a href="#3-2-接口列表" class="headerlink" title="3.2 接口列表"></a>3.2 接口列表</h3><p>3.2.1 消费离职消息接口（notify 回调接口）</p>
+<p>&#x2F;hrod&#x2F;notify&#x2F;terminal</p>
+<p>3.3.2 消费转岗消息接口（notify 回调接口）</p>
+<p>&#x2F;hrod&#x2F;notify&#x2F;transfer</p>
+<h2 id="外部依赖"><a href="#外部依赖" class="headerlink" title="外部依赖"></a>外部依赖</h2><h3 id="HROD-的离职转岗消息"><a href="#HROD-的离职转岗消息" class="headerlink" title="HROD 的离职转岗消息"></a>HROD 的离职转岗消息</h3><h3 id="方式-1-notify-接口："><a href="#方式-1-notify-接口：" class="headerlink" title="方式 1 notify 接口："></a>方式 1 notify 接口：</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908231959533.png" alt="image-20230908231959533"></p>
+<h3 id="方式-2-统一数据平台-RoketMq"><a href="#方式-2-统一数据平台-RoketMq" class="headerlink" title="方式 2 统一数据平台 RoketMq"></a>方式 2 统一数据平台 RoketMq</h3><h2 id="内部设计"><a href="#内部设计" class="headerlink" title="内部设计"></a>内部设计</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png" alt="image-20230908232036861"></p>
+<h3 id="类图-x2F-交互图-x2F-序列图-x2F-流程图-等"><a href="#类图-x2F-交互图-x2F-序列图-x2F-流程图-等" class="headerlink" title="类图&#x2F;交互图&#x2F;序列图&#x2F;流程图 等"></a>类图&#x2F;交互图&#x2F;序列图&#x2F;流程图 等</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232055644.png" alt="image-20230908232055644"></p>
+<p>说明：</p>
+<ul>
+<li><ul>
+<li>每一个listen都订阅统一的topic,但是配置对应的只接收属性为对应事件的消息</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><ol>
+<li><ol>
+<li>原因是事件信息存放与action中</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li>每个listen将对应的action向下传递，统一走到commonNotifyService类中</li>
+<li>加载每个事件对应的handle在每个事件的handle中将传递过来的params转换。具体业务每个事件自己处理</li>
+<li>每个接入的业务(离职转岗)做如上三个Consumer的逻辑处理；</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>算法</category>
+        <category>项目</category>
       </categories>
   </entry>
   <entry>
@@ -10298,6 +10280,84 @@ for(int i=0;i&lt;muti_stack.pop();i++)&#123;
       </categories>
   </entry>
   <entry>
+    <title>小技巧</title>
+    <url>/2023/06/04/%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>~~~java就用这个来创建代码块</p>
+<p><strong>一些变量符号</strong><span id="more"></span></p>
+<p>表示数量的话用cnt</p>
+<p>flag表示标志，一般为正负</p>
+<p><strong>IDEA插件LeetEditor</strong></p>
+<p>出现cookie问题 怎么办？在idea进行插件更新！这是没想到的！</p>
+<pre><code class="plain">class Solution &#123;
+    public boolean exist(char[][] board, String word) &#123;
+        int h = board.length, w = board[0].length;
+        boolean[][] visited = new boolean[h][w];
+        for (int i = 0; i &lt; h; i++) &#123;//遍历每个格子看以其开头是否可行
+            for (int j = 0; j &lt; w; j++) &#123;
+                boolean flag = check(board, visited, i, j, word, 0);
+                if (flag) &#123;
+                    return true;
+                &#125;
+            &#125;
+        &#125;
+        return false;//都不行的话才返回false
+    &#125;
+public boolean check(char[][] board, boolean[][] visited, int i, int j, String s, int k) &#123;
+    if (board[i][j] != s.charAt(k)) &#123;
+        return false;
+    &#125; else if (k == s.length() - 1) &#123;
+        return true;
+    &#125;
+    visited[i][j] = true;
+    int[][] directions = &#123;&#123;0, 1&#125;, &#123;0, -1&#125;, &#123;1, 0&#125;, &#123;-1, 0&#125;&#125;;
+    boolean result = false;
+    for (int[] dir : directions) &#123;//做选择
+        int newi = i + dir[0], newj = j + dir[1];
+        if (newi &gt;= 0 &amp;&amp; newi &lt; board.length &amp;&amp; newj &gt;= 0 &amp;&amp; newj &lt; board[0].length) &#123;
+            if (!visited[newi][newj]) &#123;//看是否被用过
+                boolean flag = check(board, visited, newi, newj, s, k + 1);回溯 此时是在board[i][j]=s.charAt(k)的基础上，因此k+1;
+                if (flag) &#123;
+                    result = true;
+                    break;//只要有一条路径可行 直接跳过for循环 返回true
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    visited[i][j] = false;//每一格判断完是否是可行的之后需要将其置为false，因为其他格子也要用到该格子作为路径
+    return result; 返回结果
+&#125;
+</code></pre>
+<p>}</p>
+<p><strong>求最值</strong></p>
+<p>求最大值就int maxSum &#x3D; Integer.MIN_VALUE;</p>
+<p>反之亦然</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>并查集</title>
+    <url>/2023/06/04/%E5%B9%B6%E6%9F%A5%E9%9B%86/</url>
+    <content><![CDATA[<p><a href="https://blog.csdn.net/the_zed/article/details/105126583">https://blog.csdn.net/the_zed/article/details/105126583</a></p>
+<p>查找和合并 ，一边查询一边修改结点指向是并查集的特色。<span id="more"></span></p>
+<h2 id="除法求值399"><a href="#除法求值399" class="headerlink" title="除法求值399"></a>除法求值399</h2><p>&#96;&#96;&#96;plain<br>public class Solution {<br>            public double[] calcEquation(List&lt;List<String>&gt; equations, double[] values, List&lt;List<String>&gt; queries) {<br>                int equationsSize &#x3D; equations.size();<br>                &#x2F;&#x2F;因为子数组里面有两个元素[[“a”,”b”],[“b”,”c”]], values &#x3D; [2.0,3.0], queries &#x3D; [[“a”,”c”],[“b”,”a”],[“a”,”e”]<br>                UnionFind unionFind &#x3D; new UnionFind(2 * equationsSize);<br>                &#x2F;&#x2F; 第 1 步：预处理，将变量的值与 id 进行映射，使得并查集的底层使用数组实现，方便编码<br>                Map&lt;String, Integer&gt; hashMap &#x3D; new HashMap&lt;&gt;(2 * equationsSize);<br>                int id &#x3D; 0;<br>                for (int i &#x3D; 0; i &lt; equationsSize; i++) {<br>                    List<String> equation &#x3D; equations.get(i);<br>                    String var1 &#x3D; equation.get(0);<br>                    String var2 &#x3D; equation.get(1);</String></String></String></p>
+<pre><code>                if (!hashMap.containsKey(var1)) &#123;
+                    hashMap.put(var1, id);
+                    id++;
+                &#125;
+                if (!hashMap.containsKey(var2)) &#123;
+                    hashMap.put(var2, id);
+                    id++;
+                &#125;
+                //hashmap   -&gt;   
+</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
     <title>开发岗开发题</title>
     <url>/2023/06/04/%E5%BC%80%E5%8F%91%E5%B2%97%E5%BC%80%E5%8F%91%E9%A2%98/</url>
     <content><![CDATA[<h2 id="linux、docker操作"><a href="#linux、docker操作" class="headerlink" title="linux、docker操作"></a>linux、docker操作</h2><h4 id="2、Docker"><a href="#2、Docker" class="headerlink" title="2、Docker"></a>2、Docker</h4><p>Docker如何解决大型项目依赖关系复杂，不同组件依赖的兼容性问题？<span id="more"></span></p>
@@ -10456,105 +10516,6 @@ taskkill /pid 8080 /f                       //释放
 ]]></content>
       <categories>
         <category>八股</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数学</title>
-    <url>/2023/06/04/%E6%95%B0%E5%AD%A6/</url>
-    <content><![CDATA[<h2 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a>Pow(x, n)</h2><p>实现 <a href="https://www.cplusplus.com/reference/valarray/pow/">pow(x,n)</a> ，即计算 x 的整数 n 次幂函数（即，xn ）。</p>
-<p><strong>题解：</strong></p>
-<p>本质就是递归算法，<span id="more"></span>不用一个个乘，比如要计算x^64 可以计算x—x2—x4—x8—x16—x32—x65</p>
-<p>如果n为奇数再乘以个x，为0的话结果为1</p>
-<pre><code class="plain">class Solution &#123;
-    public double myPow(double x, int n) &#123;
-        // 判断正负
-        return n&gt;=0?quickMul(x,n):1.0/quickMul(x,-n);
-    &#125;
-    public double quickMul(double x,int n)&#123;
-        if(n==0) return 1.0;
-        // 计算n/2的值
-        double y=quickMul(x,n/2);
-        return n%2==0?y*y:y*y*x;
-    &#125;
-&#125;
-</code></pre>
-<h2 id="回文数"><a href="#回文数" class="headerlink" title="回文数"></a>回文数</h2><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p>
-<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
-<ul>
-<li>例如，121 是回文，而 123 不是。</li>
-</ul>
-<p><strong>题解：</strong></p>
-<p>1、特殊情况，负数不是回文，尾数为0的话只有0符合回文要求</p>
-<p>2、为了避免数字反转可能导致的溢出问题，只反转一半和数字前半部分比较</p>
-<ul>
-<li><p>每次进行取余然后计算反转数字revertNumber，并计算移除数字x，循环出口为revertNumber&gt;x；</p>
-</li>
-<li><ul>
-<li>奇数的话revertNumber要移除最后一位</li>
-<li>偶数不用管</li>
-</ul>
-</li>
-</ul>
-<pre><code class="plain">class Solution &#123;
-    public boolean isPalindrome(int x) &#123;
-        // 特殊情况
-        if(x&lt;0||x%10==0&amp;&amp;x!=0) return false;
-        int revertNumber=0;
-        while(x&gt;revertNumber)&#123;
-            revertNumber=revertNumber*10+x%10;
-            x/=10;
-        &#125;
-        // 考虑奇数偶数两种情况
-        return revertNumber==x||revertNumber/10==x;
-    &#125;
-&#125;
-</code></pre>
-<p> <img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031148423.png" alt="img"></p>
-<h2 id="特征方程解法"><a href="#特征方程解法" class="headerlink" title="特征方程解法"></a>特征方程解法</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031151072.png" alt="img"></p>
-<h2 id="力扣48题翻转矩阵"><a href="#力扣48题翻转矩阵" class="headerlink" title="力扣48题翻转矩阵"></a><strong>力扣48题翻转矩阵</strong></h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031149078.png" alt="img"><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031150218.png" alt="img"></p>
-<p>只关注我画黑框的部分 其余三块都是每个元素旋转而成</p>
-<pre><code class="plain">//        官方第二种方法
-        class Solution &#123;
-            public void rotate(int[][] matrix) &#123;
-                int n = matrix.length;
-                for (int i = 0; i &lt; n / 2; ++i) &#123;//行数 向下区取余
-                    for (int j = 0; j &lt; (n + 1) / 2; ++j) &#123;//列数 加一再向下取余
-                        int temp = matrix[i][j];
-                        matrix[i][j] = matrix[n - j - 1][i];
-                        matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
-                        matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
-                        matrix[j][n - i - 1] = temp;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-</code></pre>
-<p>最终解法 将旋转分解为水平翻转和主对角线翻转(因为这俩翻转都是俩俩交换 直接temp换就完事儿，而旋转是4个元素在换)</p>
-<pre><code class="plain">class Solution &#123;
-    public void rotate(int[][] matrix) &#123;
-        int n = matrix.length;
-        // 水平翻转
-        for (int i = 0; i &lt; n / 2; ++i) &#123;
-            for (int j = 0; j &lt; n; ++j) &#123;
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[n - i - 1][j];
-                matrix[n - i - 1][j] = temp;
-            &#125;
-        &#125;
-        // 主对角线翻转
-        for (int i = 0; i &lt; n; ++i) &#123;
-            for (int j = 0; j &lt; i; ++j) &#123;
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
-            &#125;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>算法</category>
       </categories>
   </entry>
   <entry>
@@ -10879,6 +10840,105 @@ $!velocityTool.date()   获取当前时间
 ]]></content>
       <categories>
         <category>八股</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数学</title>
+    <url>/2023/06/04/%E6%95%B0%E5%AD%A6/</url>
+    <content><![CDATA[<h2 id="Pow-x-n"><a href="#Pow-x-n" class="headerlink" title="Pow(x, n)"></a>Pow(x, n)</h2><p>实现 <a href="https://www.cplusplus.com/reference/valarray/pow/">pow(x,n)</a> ，即计算 x 的整数 n 次幂函数（即，xn ）。</p>
+<p><strong>题解：</strong></p>
+<p>本质就是递归算法，<span id="more"></span>不用一个个乘，比如要计算x^64 可以计算x—x2—x4—x8—x16—x32—x65</p>
+<p>如果n为奇数再乘以个x，为0的话结果为1</p>
+<pre><code class="plain">class Solution &#123;
+    public double myPow(double x, int n) &#123;
+        // 判断正负
+        return n&gt;=0?quickMul(x,n):1.0/quickMul(x,-n);
+    &#125;
+    public double quickMul(double x,int n)&#123;
+        if(n==0) return 1.0;
+        // 计算n/2的值
+        double y=quickMul(x,n/2);
+        return n%2==0?y*y:y*y*x;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="回文数"><a href="#回文数" class="headerlink" title="回文数"></a>回文数</h2><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p>
+<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<ul>
+<li>例如，121 是回文，而 123 不是。</li>
+</ul>
+<p><strong>题解：</strong></p>
+<p>1、特殊情况，负数不是回文，尾数为0的话只有0符合回文要求</p>
+<p>2、为了避免数字反转可能导致的溢出问题，只反转一半和数字前半部分比较</p>
+<ul>
+<li><p>每次进行取余然后计算反转数字revertNumber，并计算移除数字x，循环出口为revertNumber&gt;x；</p>
+</li>
+<li><ul>
+<li>奇数的话revertNumber要移除最后一位</li>
+<li>偶数不用管</li>
+</ul>
+</li>
+</ul>
+<pre><code class="plain">class Solution &#123;
+    public boolean isPalindrome(int x) &#123;
+        // 特殊情况
+        if(x&lt;0||x%10==0&amp;&amp;x!=0) return false;
+        int revertNumber=0;
+        while(x&gt;revertNumber)&#123;
+            revertNumber=revertNumber*10+x%10;
+            x/=10;
+        &#125;
+        // 考虑奇数偶数两种情况
+        return revertNumber==x||revertNumber/10==x;
+    &#125;
+&#125;
+</code></pre>
+<p> <img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031148423.png" alt="img"></p>
+<h2 id="特征方程解法"><a href="#特征方程解法" class="headerlink" title="特征方程解法"></a>特征方程解法</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031151072.png" alt="img"></p>
+<h2 id="力扣48题翻转矩阵"><a href="#力扣48题翻转矩阵" class="headerlink" title="力扣48题翻转矩阵"></a><strong>力扣48题翻转矩阵</strong></h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031149078.png" alt="img"><img src="https://raw.githubusercontent.com/viacheung/img/main/image/202306031150218.png" alt="img"></p>
+<p>只关注我画黑框的部分 其余三块都是每个元素旋转而成</p>
+<pre><code class="plain">//        官方第二种方法
+        class Solution &#123;
+            public void rotate(int[][] matrix) &#123;
+                int n = matrix.length;
+                for (int i = 0; i &lt; n / 2; ++i) &#123;//行数 向下区取余
+                    for (int j = 0; j &lt; (n + 1) / 2; ++j) &#123;//列数 加一再向下取余
+                        int temp = matrix[i][j];
+                        matrix[i][j] = matrix[n - j - 1][i];
+                        matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+                        matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+                        matrix[j][n - i - 1] = temp;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+</code></pre>
+<p>最终解法 将旋转分解为水平翻转和主对角线翻转(因为这俩翻转都是俩俩交换 直接temp换就完事儿，而旋转是4个元素在换)</p>
+<pre><code class="plain">class Solution &#123;
+    public void rotate(int[][] matrix) &#123;
+        int n = matrix.length;
+        // 水平翻转
+        for (int i = 0; i &lt; n / 2; ++i) &#123;
+            for (int j = 0; j &lt; n; ++j) &#123;
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - i - 1][j];
+                matrix[n - i - 1][j] = temp;
+            &#125;
+        &#125;
+        // 主对角线翻转
+        for (int i = 0; i &lt; n; ++i) &#123;
+            for (int j = 0; j &lt; i; ++j) &#123;
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>算法</category>
       </categories>
   </entry>
   <entry>
@@ -12825,149 +12885,6 @@ class Solution &#123;
       </categories>
   </entry>
   <entry>
-    <title>设计模式</title>
-    <url>/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ul>
-<li><p>1、单一职责（Single Responsibility Principle）</p>
-</li>
-<li><ul>
-<li>定义：一个类只负责一个功能另有中的相应职责———-就一个类而言，应该只有一个引起它变化的原因；<span id="more"></span></li>
-<li>优点：实现高内聚，低耦合；</li>
-<li>应用场景：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>也就是说一个类里最好是放一种类型的方法；比如：DAO：只放操作数据库的方法；Util：只放某个工具的方法；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>2、开闭原则（Open Close Principle）</p>
-</li>
-<li><ul>
-<li>定义：当有新的需求的时候，我们不用修改现在的代码，只需要添加新的代码就可以</li>
-<li>优点：对拓展开放，对内修改关闭。</li>
-</ul>
-</li>
-<li><p>3、里氏替换原则（Liskov Substitution Principle）</p>
-</li>
-<li><ul>
-<li>定义：所有引用基类的地方必须能透明地使用其子类的对象，也就是说子类对象可以替换其父类对象，而程序执行效果不变。</li>
-<li>里氏替换原则是使代码符合开闭原则的一个重要保证；</li>
-<li>优点：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>约束继承泛滥，是开闭原则的一种体现；</li>
-<li>加强程序的健壮性，同时变更时也可以做到非常好的提高程序的维护性、扩展性。降低需求变更时引入的风险；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li>要求：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>○ 子类可以扩展父类的功能，但不能改变父类原有的功能</li>
-<li>○ 子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法；</li>
-<li>○ 子类可以增加自己特有的方法；</li>
-<li>○ 当子类单独的方法重载父类的方法时，方法的前置条件（即方法的输入&#x2F;入参）要比父类方法的输入参数更宽松；</li>
-<li>○ 当子类的方法实现父类的方法时（重载&#x2F;重写或实现抽象方法）的后置条件（即方法的输出&#x2F;返回值）要比父类更严格或者相等；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>4、接口隔离原则（Interface Segregation Principle）</p>
-</li>
-<li><ul>
-<li>定义：不能强迫用户去依赖那些他们不使用的接口。即：使用多个专门的接口会比使用单一的总接口好；</li>
-<li>优点：避免同一个接口里面包含不同类职责的方法，接口责任划分更加明确，符合高内聚低耦合的思想。</li>
-<li>接口分隔原则：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>1、一个类对一个类的依赖应该建立在最小的接口上</li>
-<li>2、建立单一接口，不要建立庞大臃肿的接口</li>
-<li>3、尽量细化接口，接口中的方法尽量少</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>5、依赖倒置原则（Dependency Inversion Principle）</p>
-</li>
-<li><ul>
-<li>定义：抽象不应该不依赖于细节，细节应该依赖于抽象；即：针对接口编程，而不是针对实现编程。</li>
-<li>优点：可以减少类间的耦合性、提高系统的稳定性，提高代码可读性和可维护性，可降低修改程序所造成的的风险。</li>
-<li>要求：</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>依赖抽象，而不是依赖实现。</li>
-<li>抽象不应该依赖细节；细节应该依赖抽象。</li>
-<li>高层模块不能依赖低层模块，二者都应该依赖抽象。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>6、迪米特原则（Law of Demeter 又名Least Knowledge Principle）</p>
-</li>
-<li><ul>
-<li>定义：一个对象应该对尽可能少的对象有接触，也就是只接触那些真正需要接触的对象。</li>
-<li>优点：降低类与类之间的耦合</li>
-</ul>
-</li>
-</ul>
-<h2 id="Spring-使⽤了哪些设计模式？"><a href="#Spring-使⽤了哪些设计模式？" class="headerlink" title="Spring 使⽤了哪些设计模式？"></a>Spring 使⽤了哪些设计模式？</h2><p>Spring 框架中⽤到了哪些设计模式？⼯⼚设计模式 : Spring 使⽤⼯⼚模式通过BeanFactory 、 ApplicationContext 创建 bean 对象。代理设计模式 : Spring AOP 功能的实现。单例设计模式 : Spring 中的 Bean 默认都是单例的。模板⽅法模式 : Spring 中 jdbcTemplate 、 hibernateTemplate 等以Template 结尾的对数据库操作的类，它们就使⽤到了模板模式。包装器设计模式 : 我们的项⽬需要连接多个数据库，⽽且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。观察者模式: Spring 事件驱动模型就是观察者模式很经典的⼀个应⽤。适配器模式 :Spring AOP 的增强或通知(Advice)使⽤到了适配器模式、spring MVC 中也是⽤到了适配器模式适配 Controller 。 </p>
-<h2 id="stream流和for的区别？"><a href="#stream流和for的区别？" class="headerlink" title="stream流和for的区别？"></a>stream流和for的区别？</h2><h2 id="jdk1-8的新特性有哪些？"><a href="#jdk1-8的新特性有哪些？" class="headerlink" title="jdk1.8的新特性有哪些？"></a>jdk1.8的新特性有哪些？</h2><p>lamad表达式，stream流，localDate和localDateTime日期类</p>
-<table>
-<thead>
-<tr>
-<th><strong>特征</strong></th>
-<th><strong>jdk17</strong></th>
-<th><strong>jdk8</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>垃圾收集器</td>
-<td>ZGC（jdk11提出）（新型垃圾收集器）</td>
-<td>G1收集器</td>
-</tr>
-<tr>
-<td>新特性</td>
-<td>Record类、引入了C++风格的内存管理</td>
-<td>Lambda表达式、Stream API、函数式接口</td>
-</tr>
-<tr>
-<td>性能比较</td>
-<td>改进了JIT编译器、垃圾回收器，提升了性能和响应速度</td>
-<td>不如17</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>Java 17则更适合用于开发大型应用程序和高性能应用程序，例如高性能计算、云计算、大数据处理等。</td>
-<td>Java 8适用于开发中小型应用程序和Web应用程序，例如Web服务、企业级应用程序和桌面应用程序等。</td>
-</tr>
-</tbody></table>
-<p>ZGC优化在哪</p>
-<ul>
-<li>支持 JVM 选项 -XX:+UseDynamicNumberOfGCThreads。此功能默认启用，并告诉 ZGC 对其使用的 GC 线程数保持智能，这通常会导致 Java 应用程序级别的更高吞吐量和更低延迟。</li>
-<li>使用了ZGC的JVM在停止运行时， 基本上是实时的，而之前版本花费的时间更多。</li>
-<li>标记算法现在通常使用更少的内存，并且不再容易出现过多的内存使用。</li>
-<li>ZGC 现在可以在 macOS&#x2F;Aarch64 上运行。</li>
-<li>ZGC 现在发布了两个 GarbageCollectorMXBean，以提供有关 GC 周期和 GC 暂停的信息。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>八股</category>
-      </categories>
-  </entry>
-  <entry>
     <title>计算机网络</title>
     <url>/2023/06/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<h2 id="计算机网络的各层协议及作用？"><a href="#计算机网络的各层协议及作用？" class="headerlink" title="计算机网络的各层协议及作用？"></a>计算机网络的各层协议及作用？</h2><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230318181257136.png" alt="img" style="zoom:50%;">
@@ -13379,6 +13296,149 @@ Content-Length:112
 <p>2：<strong>异或校验</strong>：定义初值，按每个字节异或，求结果。</p>
 <p>3：<strong>CRC校验</strong>：已有很多的标准及计算方式，可以返回8字节，16字节，32字节的结果。</p>
 <p>所谓校验和，就是将被校验数据进行累加，并舍弃累加溢出的位，最终得到的1个或多个字节的结果。验证数据的准确性</p>
+]]></content>
+      <categories>
+        <category>八股</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>设计模式</title>
+    <url>/2023/06/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ul>
+<li><p>1、单一职责（Single Responsibility Principle）</p>
+</li>
+<li><ul>
+<li>定义：一个类只负责一个功能另有中的相应职责———-就一个类而言，应该只有一个引起它变化的原因；<span id="more"></span></li>
+<li>优点：实现高内聚，低耦合；</li>
+<li>应用场景：</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>也就是说一个类里最好是放一种类型的方法；比如：DAO：只放操作数据库的方法；Util：只放某个工具的方法；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2、开闭原则（Open Close Principle）</p>
+</li>
+<li><ul>
+<li>定义：当有新的需求的时候，我们不用修改现在的代码，只需要添加新的代码就可以</li>
+<li>优点：对拓展开放，对内修改关闭。</li>
+</ul>
+</li>
+<li><p>3、里氏替换原则（Liskov Substitution Principle）</p>
+</li>
+<li><ul>
+<li>定义：所有引用基类的地方必须能透明地使用其子类的对象，也就是说子类对象可以替换其父类对象，而程序执行效果不变。</li>
+<li>里氏替换原则是使代码符合开闭原则的一个重要保证；</li>
+<li>优点：</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>约束继承泛滥，是开闭原则的一种体现；</li>
+<li>加强程序的健壮性，同时变更时也可以做到非常好的提高程序的维护性、扩展性。降低需求变更时引入的风险；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>要求：</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>○ 子类可以扩展父类的功能，但不能改变父类原有的功能</li>
+<li>○ 子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法；</li>
+<li>○ 子类可以增加自己特有的方法；</li>
+<li>○ 当子类单独的方法重载父类的方法时，方法的前置条件（即方法的输入&#x2F;入参）要比父类方法的输入参数更宽松；</li>
+<li>○ 当子类的方法实现父类的方法时（重载&#x2F;重写或实现抽象方法）的后置条件（即方法的输出&#x2F;返回值）要比父类更严格或者相等；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>4、接口隔离原则（Interface Segregation Principle）</p>
+</li>
+<li><ul>
+<li>定义：不能强迫用户去依赖那些他们不使用的接口。即：使用多个专门的接口会比使用单一的总接口好；</li>
+<li>优点：避免同一个接口里面包含不同类职责的方法，接口责任划分更加明确，符合高内聚低耦合的思想。</li>
+<li>接口分隔原则：</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>1、一个类对一个类的依赖应该建立在最小的接口上</li>
+<li>2、建立单一接口，不要建立庞大臃肿的接口</li>
+<li>3、尽量细化接口，接口中的方法尽量少</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>5、依赖倒置原则（Dependency Inversion Principle）</p>
+</li>
+<li><ul>
+<li>定义：抽象不应该不依赖于细节，细节应该依赖于抽象；即：针对接口编程，而不是针对实现编程。</li>
+<li>优点：可以减少类间的耦合性、提高系统的稳定性，提高代码可读性和可维护性，可降低修改程序所造成的的风险。</li>
+<li>要求：</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>依赖抽象，而不是依赖实现。</li>
+<li>抽象不应该依赖细节；细节应该依赖抽象。</li>
+<li>高层模块不能依赖低层模块，二者都应该依赖抽象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>6、迪米特原则（Law of Demeter 又名Least Knowledge Principle）</p>
+</li>
+<li><ul>
+<li>定义：一个对象应该对尽可能少的对象有接触，也就是只接触那些真正需要接触的对象。</li>
+<li>优点：降低类与类之间的耦合</li>
+</ul>
+</li>
+</ul>
+<h2 id="Spring-使⽤了哪些设计模式？"><a href="#Spring-使⽤了哪些设计模式？" class="headerlink" title="Spring 使⽤了哪些设计模式？"></a>Spring 使⽤了哪些设计模式？</h2><p>Spring 框架中⽤到了哪些设计模式？⼯⼚设计模式 : Spring 使⽤⼯⼚模式通过BeanFactory 、 ApplicationContext 创建 bean 对象。代理设计模式 : Spring AOP 功能的实现。单例设计模式 : Spring 中的 Bean 默认都是单例的。模板⽅法模式 : Spring 中 jdbcTemplate 、 hibernateTemplate 等以Template 结尾的对数据库操作的类，它们就使⽤到了模板模式。包装器设计模式 : 我们的项⽬需要连接多个数据库，⽽且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。观察者模式: Spring 事件驱动模型就是观察者模式很经典的⼀个应⽤。适配器模式 :Spring AOP 的增强或通知(Advice)使⽤到了适配器模式、spring MVC 中也是⽤到了适配器模式适配 Controller 。 </p>
+<h2 id="stream流和for的区别？"><a href="#stream流和for的区别？" class="headerlink" title="stream流和for的区别？"></a>stream流和for的区别？</h2><h2 id="jdk1-8的新特性有哪些？"><a href="#jdk1-8的新特性有哪些？" class="headerlink" title="jdk1.8的新特性有哪些？"></a>jdk1.8的新特性有哪些？</h2><p>lamad表达式，stream流，localDate和localDateTime日期类</p>
+<table>
+<thead>
+<tr>
+<th><strong>特征</strong></th>
+<th><strong>jdk17</strong></th>
+<th><strong>jdk8</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>垃圾收集器</td>
+<td>ZGC（jdk11提出）（新型垃圾收集器）</td>
+<td>G1收集器</td>
+</tr>
+<tr>
+<td>新特性</td>
+<td>Record类、引入了C++风格的内存管理</td>
+<td>Lambda表达式、Stream API、函数式接口</td>
+</tr>
+<tr>
+<td>性能比较</td>
+<td>改进了JIT编译器、垃圾回收器，提升了性能和响应速度</td>
+<td>不如17</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>Java 17则更适合用于开发大型应用程序和高性能应用程序，例如高性能计算、云计算、大数据处理等。</td>
+<td>Java 8适用于开发中小型应用程序和Web应用程序，例如Web服务、企业级应用程序和桌面应用程序等。</td>
+</tr>
+</tbody></table>
+<p>ZGC优化在哪</p>
+<ul>
+<li>支持 JVM 选项 -XX:+UseDynamicNumberOfGCThreads。此功能默认启用，并告诉 ZGC 对其使用的 GC 线程数保持智能，这通常会导致 Java 应用程序级别的更高吞吐量和更低延迟。</li>
+<li>使用了ZGC的JVM在停止运行时， 基本上是实时的，而之前版本花费的时间更多。</li>
+<li>标记算法现在通常使用更少的内存，并且不再容易出现过多的内存使用。</li>
+<li>ZGC 现在可以在 macOS&#x2F;Aarch64 上运行。</li>
+<li>ZGC 现在发布了两个 GarbageCollectorMXBean，以提供有关 GC 周期和 GC 暂停的信息。</li>
+</ul>
 ]]></content>
       <categories>
         <category>八股</category>
@@ -14468,96 +14528,6 @@ for filename in fileNameList:
       </categories>
   </entry>
   <entry>
-    <title>防雷防电检测系统</title>
-    <url>/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h3 id="项目概要"><a href="#项目概要" class="headerlink" title="项目概要"></a>项目概要</h3><p>这个项目是基于Springboot开发的web项目，部署于港口现场<span id="more"></span>，后续对系统持续进行迭代升级。系统主要用于与港口油罐区布设的电压，电阻，温度等监测设备交互，通过modbus协议向设备发送请求获取设备返回的数据。在系统后端对数据进行解析并展示于前端。</p>
-<p>港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器；</p>
-<p>研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。</p>
-<p>前端5s轮询一次，1h是持久化到数据库</p>
-<p>redis存的是 key：设备（40） map&lt;类型：值&gt; ip端口 </p>
-<p>这个项目是基于Springboot开发的web项目，在研一入学前开始对系统进行设计和开发，并部署于港口现场，后续对系统持续进行迭代升级。系统主要用于与港口油罐区布设的电压，电阻，温度等监测设备交互，通过modbus协议向设备发送请求获取设备返回的数据。在系统后端对数据进行解析并展示于前端。</p>
-<ol>
-<li>根据modbus协议，构建请求帧，生成CRC校验码，通过串口或串口服务器发送至设备，获取返回帧</li>
-<li>根据具体设备（每个硬件不同）解析协议配置解析流程，根据协议对返回帧进行解析，返回的是一个16进制字符串，校验CRC编码，以及数据长度，判断返回数据是否有效</li>
-<li>在redis中维护产品信息，记录每个产品的相关信息以及当前状态，设备状态变化时予以更新</li>
-<li>定义全局变量DataDisplays，将解析好的设备数据存入其中。</li>
-<li>解析时根据配置好的设备阈值判定是否达到预警条件，捕捉预警数据，前端轮询异常设备信息进行报警</li>
-<li>配置一个定时线程，每隔一个小时从缓存中读取设备数据写入mysql进行持久化</li>
-</ol>
-<h3 id="系统流程"><a href="#系统流程" class="headerlink" title="系统流程"></a>系统流程</h3><ol>
-<li>在系统启动时，通过一个监听器来监听web应用，在web应用启动时，对系统进行初始化</li>
-</ol>
-<ul>
-<li><ul>
-<li>清空redis，从mysql中读取各个设备报警阈值配置，写入redis</li>
-<li>初始化全局变量DataDisplays，读取区域，到区域内产品类别，到具体产品，到产品解析协议的继承关系。将各设备展示数据赋null，写入全局变量</li>
-<li>启动轮询线程，进行数据读取和解析</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>获取产品和解析协议的继承关系，逐个轮询设备，调用readData方法获取设备返回的字节流，以map的形式存储</li>
-<li>在readData中调用getReturnData，根据解析协议，为设备构建请求帧，生成CRC校验码，通过串口或串口服务器发送至设备</li>
-</ol>
-<ul>
-<li><ul>
-<li>串口服务器方式通过与串口服务器ip建立socket连接，以字节缓冲输入输出流的形式发送和读取数据</li>
-<li>串口方式根据端口名打开端口，配置串口参数，发送和读取数据</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>对返回数据进行判定，校验CRC编码，以及数据长度，判断返回数据是否有效</li>
-</ol>
-<ul>
-<li><ul>
-<li>当返回数据为空时，根据配置好的重试次数进行重新读取，若重试次数达到上限依旧没有读取到有效数据从redis中读取对应设备的字节缓存信息</li>
-<li>当返回数据不为空时，更新缓存状态，将数据更新时间写入redis。</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>将字节数据以map的形式返回给readData</li>
-</ol>
-<ul>
-<li><ul>
-<li>若返回数据为空，从redis中读取，否则，记录设备当前字节流，写入redis</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>对返回的字节数据进行解析，封装成用于展示的数据</li>
-</ol>
-<ul>
-<li><ul>
-<li>在解析过程中对报警数据进行捕捉，如果解析到当前数据为报警数据，将该报警数据写入mysql。</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>如果解析数据不为空，更新全局变量DataDisplays中的数据</li>
-<li>在一类产品轮询结束后，统计解析数据中报警设备，更新redis设备信息中的状态</li>
-<li>通过一个可以周期性执行任务的单线程线程池执行该线程</li>
-<li>通过@Scheduled定义一个每小时执行一次的轮询任务，从全局变量中读取各个设备的数据写入mysql</li>
-<li>报警功能通过前端轮询向后端发送请求读取设备信息，设备从redis中读取每个设备的状态信息，统计状态异常的设备数量，如果数量不为零，前端进行报警</li>
-</ol>
-<h3 id="项目值得改进的地方"><a href="#项目值得改进的地方" class="headerlink" title="项目值得改进的地方"></a><strong>项目值得改进的地方</strong></h3><p><strong>数据实时显示：</strong></p>
-<p>现在是前端轮询调用后端接口，读取数据，效率不高</p>
-<p>改进：</p>
-<p>引入websocket：通过websocket在服务器和浏览器间建立持久性的连接</p>
-<p>协议有两部分：握手和数据传输。握手是基于http协议的。</p>
-<p>一旦WebSocket连接建立后，后续数据都以帧序列的形式传输。在客户端断开WebSocket连接或Server端中断连接前，不需要客户端和服务端重新发起连接请求。在海量并发及客户端与服务器交互负载流量大的情况下，极大的节省了网络带宽资源的消耗，有明显的性能优势，且客户端发送和接受消息是在同一个持久连接上发起，实现了“真·长链接”，实时性优势明显。</p>
-<p>WebSocket有以下特点：</p>
-<ul>
-<li>是真正的全双工方式，建立连接后客户端与服务器端是完全平等的，可以互相主动请求。而HTTP长连接基于HTTP，是传统的客户端对服务器发起请求的模式。</li>
-<li>HTTP长连接中，每次数据交换除了真正的数据部分外，服务器和客户端还要大量交换HTTP header，信息交换效率很低。WebSocket协议通过第一个request建立了TCP连接之后，之后交换的数据都不需要发送 HTTP header就能交换数据，这显然和原有的HTTP协议有区别所以它需要对服务器和客户端都进行升级才能实现（主流浏览器都已支持HTML5）</li>
-</ul>
-<h1 id><a href="#" class="headerlink" title></a></h1>]]></content>
-      <categories>
-        <category>项目</category>
-      </categories>
-  </entry>
-  <entry>
     <title>链表</title>
     <url>/2023/06/04/%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>常用方法：dummyNode空结点 、双指针、快慢指针<span id="more"></span></p>
@@ -15285,6 +15255,96 @@ for filename in fileNameList:
 ]]></content>
       <categories>
         <category>算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>防雷防电检测系统</title>
+    <url>/2023/06/04/%E9%98%B2%E9%9B%B7%E9%98%B2%E7%94%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h3 id="项目概要"><a href="#项目概要" class="headerlink" title="项目概要"></a>项目概要</h3><p>这个项目是基于Springboot开发的web项目，部署于港口现场<span id="more"></span>，后续对系统持续进行迭代升级。系统主要用于与港口油罐区布设的电压，电阻，温度等监测设备交互，通过modbus协议向设备发送请求获取设备返回的数据。在系统后端对数据进行解析并展示于前端。</p>
+<p>港口油罐区硬件设备通过双绞线布设周围，然后底部通过光纤连，每个区域连一个串口服务器，然后通过交换机连到中控室和服务器；</p>
+<p>研究生期间，主要参与了与江苏科源公司合作的一个港口油罐区防雷防爆防雷电监测预警系统的开发，现在系统部署于辽宁营口市两处港口现场，运行状态稳定。</p>
+<p>前端5s轮询一次，1h是持久化到数据库</p>
+<p>redis存的是 key：设备（40） map&lt;类型：值&gt; ip端口 </p>
+<p>这个项目是基于Springboot开发的web项目，在研一入学前开始对系统进行设计和开发，并部署于港口现场，后续对系统持续进行迭代升级。系统主要用于与港口油罐区布设的电压，电阻，温度等监测设备交互，通过modbus协议向设备发送请求获取设备返回的数据。在系统后端对数据进行解析并展示于前端。</p>
+<ol>
+<li>根据modbus协议，构建请求帧，生成CRC校验码，通过串口或串口服务器发送至设备，获取返回帧</li>
+<li>根据具体设备（每个硬件不同）解析协议配置解析流程，根据协议对返回帧进行解析，返回的是一个16进制字符串，校验CRC编码，以及数据长度，判断返回数据是否有效</li>
+<li>在redis中维护产品信息，记录每个产品的相关信息以及当前状态，设备状态变化时予以更新</li>
+<li>定义全局变量DataDisplays，将解析好的设备数据存入其中。</li>
+<li>解析时根据配置好的设备阈值判定是否达到预警条件，捕捉预警数据，前端轮询异常设备信息进行报警</li>
+<li>配置一个定时线程，每隔一个小时从缓存中读取设备数据写入mysql进行持久化</li>
+</ol>
+<h3 id="系统流程"><a href="#系统流程" class="headerlink" title="系统流程"></a>系统流程</h3><ol>
+<li>在系统启动时，通过一个监听器来监听web应用，在web应用启动时，对系统进行初始化</li>
+</ol>
+<ul>
+<li><ul>
+<li>清空redis，从mysql中读取各个设备报警阈值配置，写入redis</li>
+<li>初始化全局变量DataDisplays，读取区域，到区域内产品类别，到具体产品，到产品解析协议的继承关系。将各设备展示数据赋null，写入全局变量</li>
+<li>启动轮询线程，进行数据读取和解析</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>获取产品和解析协议的继承关系，逐个轮询设备，调用readData方法获取设备返回的字节流，以map的形式存储</li>
+<li>在readData中调用getReturnData，根据解析协议，为设备构建请求帧，生成CRC校验码，通过串口或串口服务器发送至设备</li>
+</ol>
+<ul>
+<li><ul>
+<li>串口服务器方式通过与串口服务器ip建立socket连接，以字节缓冲输入输出流的形式发送和读取数据</li>
+<li>串口方式根据端口名打开端口，配置串口参数，发送和读取数据</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>对返回数据进行判定，校验CRC编码，以及数据长度，判断返回数据是否有效</li>
+</ol>
+<ul>
+<li><ul>
+<li>当返回数据为空时，根据配置好的重试次数进行重新读取，若重试次数达到上限依旧没有读取到有效数据从redis中读取对应设备的字节缓存信息</li>
+<li>当返回数据不为空时，更新缓存状态，将数据更新时间写入redis。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>将字节数据以map的形式返回给readData</li>
+</ol>
+<ul>
+<li><ul>
+<li>若返回数据为空，从redis中读取，否则，记录设备当前字节流，写入redis</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>对返回的字节数据进行解析，封装成用于展示的数据</li>
+</ol>
+<ul>
+<li><ul>
+<li>在解析过程中对报警数据进行捕捉，如果解析到当前数据为报警数据，将该报警数据写入mysql。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>如果解析数据不为空，更新全局变量DataDisplays中的数据</li>
+<li>在一类产品轮询结束后，统计解析数据中报警设备，更新redis设备信息中的状态</li>
+<li>通过一个可以周期性执行任务的单线程线程池执行该线程</li>
+<li>通过@Scheduled定义一个每小时执行一次的轮询任务，从全局变量中读取各个设备的数据写入mysql</li>
+<li>报警功能通过前端轮询向后端发送请求读取设备信息，设备从redis中读取每个设备的状态信息，统计状态异常的设备数量，如果数量不为零，前端进行报警</li>
+</ol>
+<h3 id="项目值得改进的地方"><a href="#项目值得改进的地方" class="headerlink" title="项目值得改进的地方"></a><strong>项目值得改进的地方</strong></h3><p><strong>数据实时显示：</strong></p>
+<p>现在是前端轮询调用后端接口，读取数据，效率不高</p>
+<p>改进：</p>
+<p>引入websocket：通过websocket在服务器和浏览器间建立持久性的连接</p>
+<p>协议有两部分：握手和数据传输。握手是基于http协议的。</p>
+<p>一旦WebSocket连接建立后，后续数据都以帧序列的形式传输。在客户端断开WebSocket连接或Server端中断连接前，不需要客户端和服务端重新发起连接请求。在海量并发及客户端与服务器交互负载流量大的情况下，极大的节省了网络带宽资源的消耗，有明显的性能优势，且客户端发送和接受消息是在同一个持久连接上发起，实现了“真·长链接”，实时性优势明显。</p>
+<p>WebSocket有以下特点：</p>
+<ul>
+<li>是真正的全双工方式，建立连接后客户端与服务器端是完全平等的，可以互相主动请求。而HTTP长连接基于HTTP，是传统的客户端对服务器发起请求的模式。</li>
+<li>HTTP长连接中，每次数据交换除了真正的数据部分外，服务器和客户端还要大量交换HTTP header，信息交换效率很低。WebSocket协议通过第一个request建立了TCP连接之后，之后交换的数据都不需要发送 HTTP header就能交换数据，这显然和原有的HTTP协议有区别所以它需要对服务器和客户端都进行升级才能实现（主流浏览器都已支持HTML5）</li>
+</ul>
+<h1 id><a href="#" class="headerlink" title></a></h1>]]></content>
+      <categories>
+        <category>项目</category>
       </categories>
   </entry>
   <entry>

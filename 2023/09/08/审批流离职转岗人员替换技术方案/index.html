@@ -22,22 +22,26 @@
     var CONFIG = {"hostname":"viacheung.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Leetcode插件因为我已经在一台电脑上配置好了，因此在新电脑上面只需要在idea安装leetcode editor，输入用户名密码保存路径和格式设置（可直接远程操作原电脑进行复制操作） 505371530@qq.com 4873350781cet $&amp;#123;question.content&amp;#125;   package leetcode.editor.en;   public class">
+  <meta name="description" content="背景由于近半年离职转岗同学较多，导致R平台、PLM大量流程任务处理不及时，没有及时更换审批人 目标系统可以根据HR系统提供得离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上； 系统管理员、项目经理可以手动转离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="插件">
-<meta property="og:url" content="http://viacheung.github.io/2023/06/04/%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:title" content="审批流离职转岗人员替换技术方案">
+<meta property="og:url" content="http://viacheung.github.io/2023/09/08/%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A6%BB%E8%81%8C%E8%BD%AC%E5%B2%97%E4%BA%BA%E5%91%98%E6%9B%BF%E6%8D%A2%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="命运石之门">
-<meta property="og:description" content="Leetcode插件因为我已经在一台电脑上配置好了，因此在新电脑上面只需要在idea安装leetcode editor，输入用户名密码保存路径和格式设置（可直接远程操作原电脑进行复制操作） 505371530@qq.com 4873350781cet $&amp;#123;question.content&amp;#125;   package leetcode.editor.en;   public class">
+<meta property="og:description" content="背景由于近半年离职转岗同学较多，导致R平台、PLM大量流程任务处理不及时，没有及时更换审批人 目标系统可以根据HR系统提供得离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上； 系统管理员、项目经理可以手动转离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上；">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220706213501965.png">
-<meta property="article:published_time" content="2023-06-04T06:08:17.000Z">
-<meta property="article:modified_time" content="2023-06-04T06:30:35.540Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908231938460.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908231959533.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232055644.png">
+<meta property="article:published_time" content="2023-09-08T15:22:12.000Z">
+<meta property="article:modified_time" content="2023-09-08T15:22:48.503Z">
 <meta property="article:author" content="ViaCheung">
 <meta property="article:tag" content="Java,python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220706213501965.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png">
 
-<link rel="canonical" href="http://viacheung.github.io/2023/06/04/%E6%8F%92%E4%BB%B6/">
+<link rel="canonical" href="http://viacheung.github.io/2023/09/08/%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A6%BB%E8%81%8C%E8%BD%AC%E5%B2%97%E4%BA%BA%E5%91%98%E6%9B%BF%E6%8D%A2%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/">
 
 
 <script id="page-configurations">
@@ -50,7 +54,7 @@
   };
 </script>
 
-  <title>插件 | 命运石之门</title>
+  <title>审批流离职转岗人员替换技术方案 | 命运石之门</title>
   
 
 
@@ -194,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/06/04/%E6%8F%92%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://viacheung.github.io/2023/09/08/%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A6%BB%E8%81%8C%E8%BD%AC%E5%B2%97%E4%BA%BA%E5%91%98%E6%9B%BF%E6%8D%A2%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -207,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          插件
+          审批流离职转岗人员替换技术方案
         </h1>
 
         <div class="post-meta">
@@ -221,7 +225,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-06-04 14:08:17 / 修改时间：14:30:35" itemprop="dateCreated datePublished" datetime="2023-06-04T14:08:17+08:00">2023-06-04</time>
+              <time title="创建时间：2023-09-08 23:22:12 / 修改时间：23:22:48" itemprop="dateCreated datePublished" datetime="2023-09-08T23:22:12+08:00">2023-09-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,7 +233,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
                 </span>
             </span>
 
@@ -251,29 +255,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Leetcode插件"><a href="#Leetcode插件" class="headerlink" title="Leetcode插件"></a>Leetcode插件</h1><p>因为我已经在一台电脑上配置好了，因此在新电脑上面只需要在idea安装leetcode editor，输入用户名密码保存路径和格式设置（可直接远程操作原电脑进行复制操作）</p>
-<p><a href="mailto:505371530@qq.com">505371530@qq.com</a> 4873350781cet</p>
-<pre><code class="plain">$&#123;question.content&#125;
-  package leetcode.editor.en;
-  public class $!velocityTool.camelCaseName($&#123;question.titleSlug&#125;)&#123;
-      public static void main(String[] args) &#123;
-           Solution solution = new $!velocityTool.camelCaseName($&#123;question.titleSlug&#125;)().new Solution();
-      &#125;
-      $&#123;question.code&#125;
-  &#125;
-$&#123;question.title&#125;   题目标题    示例:两数之和
-$&#123;question.titleSlug&#125;   题目标记    示例:two-sum
-$&#123;question.frontendQuestionId&#125;  题目编号
-$&#123;question.content&#125; 题目描述
-$&#123;question.code&#125;    题目代码
-$!velocityTool.camelCaseName(str)   转换字符为大驼峰样式（开头字母大写）
-$!velocityTool.smallCamelCaseName(str)  转换字符为小驼峰样式（开头字母小写）
-$!velocityTool.snakeCaseName(str)   转换字符为蛇形样式
-$!velocityTool.leftPadZeros(str,n)  在字符串的左边填充0，使字符串的长度至少为n
-$!velocityTool.date()   获取当前时间
-</code></pre>
-<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20220706213501965.png" alt="img"></p>
-<p>记得勾选画框处，Custom Templete ,如果有的题模板不对的话，右键clear cache</p>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>由于近半年离职转岗同学较多，导致R平台、PLM大量流程任务处理不及时，没有及时更换审批人</p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>系统可以根据HR系统提供得离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上；</p>
+<p>系统管理员、项目经理可以手动转离职或转岗信息自动将待办工作、权限、项目转移到工作交接人上；</p>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png" alt="image-20230908232036861"></p>
+<span id="more"></span>
+
+<h1 id="平台范围"><a href="#平台范围" class="headerlink" title="平台范围"></a>平台范围</h1><p>R平台、Windchill、RC平台</p>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><h2 id="离职场景处理："><a href="#离职场景处理：" class="headerlink" title="离职场景处理："></a>离职场景处理：</h2><h3 id="自动交接（离职只有自动交接）："><a href="#自动交接（离职只有自动交接）：" class="headerlink" title="自动交接（离职只有自动交接）："></a>自动交接（离职只有自动交接）：</h3><p>  根据HR系统中人员离职流程完成时间后，推送过来的离职人员和交接人，每天早晨五点自动将R平台和PLM中的所有计划任务、流程任务、权限角色、配置表对应人员、项目角色成员、物料分类扩展属性值（ODM技术负责人、技术负责人、SQE工程师、资源工程师；）替换完成后发送邮件和飞书通知给对应交接人、流程发起人、项目经理</p>
+<h3 id="需要HR提供的信息"><a href="#需要HR提供的信息" class="headerlink" title="需要HR提供的信息"></a>需要HR提供的信息</h3><p>  离职或转岗人员、工作交接人、交接时间（流程走完时间）</p>
+<h3 id="功能模块处理逻辑（做去重处理）"><a href="#功能模块处理逻辑（做去重处理）" class="headerlink" title="功能模块处理逻辑（做去重处理）"></a>功能模块处理逻辑（做去重处理）</h3><p>  项目计划任务：除去已完成任务以外所有该离职人员的任务转到工作交接人上</p>
+<p>  流程任务：除去已完成流程以外所有流程节点中包含该离职人员的处理人替换为工作交接人</p>
+<p>  权限角色：该离职人员所有的权限角色都赋予到工作交接人上</p>
+<h1 id="详细设计文档"><a href="#详细设计文档" class="headerlink" title="详细设计文档"></a>详细设计文档</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>简单的背景介绍：可以引用架构设计文档、产品设计文档</p>
+<p>服务命名：plm-service</p>
+<h2 id="设计考虑"><a href="#设计考虑" class="headerlink" title="设计考虑"></a>设计考虑</h2><p>本系统设计最重要关注的点有哪些。</p>
+<ul>
+<li>功能特性：离职转岗待办对接，消息通知；</li>
+<li>兼容性：待办转接后能继续处理 历史不改变 进行中的调整，未开始的切换交接人整体对接流程</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908231938460.png" alt="image-20230908231938460"></p>
+<h2 id="接口设计-（对外提供的）"><a href="#接口设计-（对外提供的）" class="headerlink" title="接口设计 （对外提供的）"></a>接口设计 （对外提供的）</h2><h3 id="3-1-接口协议"><a href="#3-1-接口协议" class="headerlink" title="3.1 接口协议"></a>3.1 接口协议</h3><p>前端交互： HTTP (REST）服务间： RPC(Dubbo)</p>
+<h3 id="3-2-接口列表"><a href="#3-2-接口列表" class="headerlink" title="3.2 接口列表"></a>3.2 接口列表</h3><p>3.2.1 消费离职消息接口（notify 回调接口）</p>
+<p>&#x2F;hrod&#x2F;notify&#x2F;terminal</p>
+<p>3.3.2 消费转岗消息接口（notify 回调接口）</p>
+<p>&#x2F;hrod&#x2F;notify&#x2F;transfer</p>
+<h2 id="外部依赖"><a href="#外部依赖" class="headerlink" title="外部依赖"></a>外部依赖</h2><h3 id="HROD-的离职转岗消息"><a href="#HROD-的离职转岗消息" class="headerlink" title="HROD 的离职转岗消息"></a>HROD 的离职转岗消息</h3><h3 id="方式-1-notify-接口："><a href="#方式-1-notify-接口：" class="headerlink" title="方式 1 notify 接口："></a>方式 1 notify 接口：</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908231959533.png" alt="image-20230908231959533"></p>
+<h3 id="方式-2-统一数据平台-RoketMq"><a href="#方式-2-统一数据平台-RoketMq" class="headerlink" title="方式 2 统一数据平台 RoketMq"></a>方式 2 统一数据平台 RoketMq</h3><h2 id="内部设计"><a href="#内部设计" class="headerlink" title="内部设计"></a>内部设计</h2><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232036861.png" alt="image-20230908232036861"></p>
+<h3 id="类图-x2F-交互图-x2F-序列图-x2F-流程图-等"><a href="#类图-x2F-交互图-x2F-序列图-x2F-流程图-等" class="headerlink" title="类图&#x2F;交互图&#x2F;序列图&#x2F;流程图 等"></a>类图&#x2F;交互图&#x2F;序列图&#x2F;流程图 等</h3><p><img src="https://raw.githubusercontent.com/viacheung/img/main/image/image-20230908232055644.png" alt="image-20230908232055644"></p>
+<p>说明：</p>
+<ul>
+<li><ul>
+<li>每一个listen都订阅统一的topic,但是配置对应的只接收属性为对应事件的消息</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><ol>
+<li><ol>
+<li>原因是事件信息存放与action中</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li>每个listen将对应的action向下传递，统一走到commonNotifyService类中</li>
+<li>加载每个事件对应的handle在每个事件的handle中将传递过来的params转换。具体业务每个事件自己处理</li>
+<li>每个接入的业务(离职转岗)做如上三个Consumer的逻辑处理；</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -304,7 +337,7 @@ $!velocityTool.date()   获取当前时间
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://viacheung.github.io/2023/06/04/%E6%8F%92%E4%BB%B6/" title="插件">http://viacheung.github.io/2023/06/04/插件/</a>
+    <a href="http://viacheung.github.io/2023/09/08/%E5%AE%A1%E6%89%B9%E6%B5%81%E7%A6%BB%E8%81%8C%E8%BD%AC%E5%B2%97%E4%BA%BA%E5%91%98%E6%9B%BF%E6%8D%A2%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" title="审批流离职转岗人员替换技术方案">http://viacheung.github.io/2023/09/08/审批流离职转岗人员替换技术方案/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -321,13 +354,10 @@ $!velocityTool.date()   获取当前时间
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/06/04/JAVA%E9%9B%86%E5%90%88/" rel="prev" title="JAVA集合">
-      <i class="fa fa-chevron-left"></i> JAVA集合
+    <a href="/2023/09/08/binlog%E6%97%A5%E5%BF%97%E5%8F%98%E6%9B%B4%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" rel="prev" title="binlog日志变更技术方案">
+      <i class="fa fa-chevron-left"></i> binlog日志变更技术方案
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/06/04/Mybatis/" rel="next" title="Mybatis">
-      Mybatis <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -386,7 +416,7 @@ $!velocityTool.date()   获取当前时间
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Leetcode%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">Leetcode插件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">平台范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E8%81%8C%E5%9C%BA%E6%99%AF%E5%A4%84%E7%90%86%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">离职场景处理：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E4%BA%A4%E6%8E%A5%EF%BC%88%E7%A6%BB%E8%81%8C%E5%8F%AA%E6%9C%89%E8%87%AA%E5%8A%A8%E4%BA%A4%E6%8E%A5%EF%BC%89%EF%BC%9A"><span class="nav-number">4.1.1.</span> <span class="nav-text">自动交接（离职只有自动交接）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E8%A6%81HR%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">4.1.2.</span> <span class="nav-text">需要HR提供的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91%EF%BC%88%E5%81%9A%E5%8E%BB%E9%87%8D%E5%A4%84%E7%90%86%EF%BC%89"><span class="nav-number">4.1.3.</span> <span class="nav-text">功能模块处理逻辑（做去重处理）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3"><span class="nav-number">5.</span> <span class="nav-text">详细设计文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%A7%88"><span class="nav-number">5.1.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E8%80%83%E8%99%91"><span class="nav-number">5.2.</span> <span class="nav-text">设计考虑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1-%EF%BC%88%E5%AF%B9%E5%A4%96%E6%8F%90%E4%BE%9B%E7%9A%84%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">接口设计 （对外提供的）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%8E%A5%E5%8F%A3%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.3.1.</span> <span class="nav-text">3.1 接口协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%8E%A5%E5%8F%A3%E5%88%97%E8%A1%A8"><span class="nav-number">5.3.2.</span> <span class="nav-text">3.2 接口列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E4%BE%9D%E8%B5%96"><span class="nav-number">5.4.</span> <span class="nav-text">外部依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HROD-%E7%9A%84%E7%A6%BB%E8%81%8C%E8%BD%AC%E5%B2%97%E6%B6%88%E6%81%AF"><span class="nav-number">5.4.1.</span> <span class="nav-text">HROD 的离职转岗消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F-1-notify-%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="nav-number">5.4.2.</span> <span class="nav-text">方式 1 notify 接口：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F-2-%E7%BB%9F%E4%B8%80%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-RoketMq"><span class="nav-number">5.4.3.</span> <span class="nav-text">方式 2 统一数据平台 RoketMq</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E8%AE%BE%E8%AE%A1"><span class="nav-number">5.5.</span> <span class="nav-text">内部设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9B%BE-x2F-%E4%BA%A4%E4%BA%92%E5%9B%BE-x2F-%E5%BA%8F%E5%88%97%E5%9B%BE-x2F-%E6%B5%81%E7%A8%8B%E5%9B%BE-%E7%AD%89"><span class="nav-number">5.5.1.</span> <span class="nav-text">类图&#x2F;交互图&#x2F;序列图&#x2F;流程图 等</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
